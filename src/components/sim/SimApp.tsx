@@ -45,6 +45,7 @@ export function SimApp() {
   const lessonId = useSim((s) => s.lessonId);
   const step = useSim((s) => s.step);
   const explain = useSim((s) => s.explain);
+  const navOpen = useSim((s) => s.navOpen);
   const playing = useSim((s) => s.playing);
   const help = useSim((s) => s.help);
   const query = useSim((s) => s.query);
@@ -66,6 +67,7 @@ export function SimApp() {
   const prev = useSim((s) => s.prev);
   const togglePlay = useSim((s) => s.togglePlay);
   const toggleExplain = useSim((s) => s.toggleExplain);
+  const toggleNav = useSim((s) => s.toggleNav);
   const toggleRotate = useSim((s) => s.toggleRotate);
   const autoRotate = useSim((s) => s.autoRotate);
   const bumpReplay = useSim((s) => s.bumpReplay);
@@ -81,6 +83,7 @@ export function SimApp() {
         explain?: boolean;
         locale?: Locale;
         textScale?: number;
+        navOpen?: boolean;
       };
       if (saved.lessonId && lessons.some((l) => l.id === saved.lessonId)) {
         useSim.getState().setLesson(saved.lessonId);
@@ -92,6 +95,7 @@ export function SimApp() {
         const force = id === "glossary" || id === "refs" || id === "quiz";
         useSim.setState({ explain: force ? true : saved.explain });
       }
+      if (typeof saved.navOpen === "boolean") useSim.setState({ navOpen: saved.navOpen });
     } catch {
       /* ignore broken saves */
     }
@@ -104,6 +108,7 @@ export function SimApp() {
         JSON.stringify({
           lessonId: s.lessonId,
           explain: s.explain,
+          navOpen: s.navOpen,
           locale: s.locale,
           textScale: s.textScale,
         }),
@@ -134,6 +139,7 @@ export function SimApp() {
         togglePlay();
       }
       if (e.key === "e" || e.key === "E") toggleExplain();
+      if (e.key === "[") useSim.getState().toggleNav();
       if (e.key === "Escape") {
         if (useSim.getState().photos) useSim.getState().togglePhotos();
         else if (useSim.getState().presenting && !document.fullscreenElement) useSim.getState().togglePresent();
@@ -178,7 +184,9 @@ export function SimApp() {
   const table = TABLES[lesson.id];
   const figure = current.caption ? tr(locale, current.caption) : table?.caption[locale];
   const gloss = lesson.id === "glossary" ? GLOSSARY[step] : undefined;
-  const appClass = ["app", explain ? "" : "explain-off", presenting ? "presenting" : ""].filter(Boolean).join(" ");
+  const appClass = ["app", explain ? "" : "explain-off", navOpen ? "" : "nav-off", presenting ? "presenting" : ""]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <div className={appClass} style={{ ["--type" as string]: String(textScale) }}>
@@ -228,17 +236,41 @@ export function SimApp() {
           </button>
           <button
             type="button"
+            className={navOpen ? "btn on" : "btn"}
+            aria-pressed={navOpen}
+            onClick={toggleNav}
+            aria-label={ui(locale, navOpen ? "hideNav" : "showNav")}
+          >
+            {navOpen ? <ChevronLeft size={16} /> : <ChevronRight size={16} />}
+            <span className="btn-label">{ui(locale, "nav")}</span>
+          </button>
+          <button
+            type="button"
             className={explain ? "btn on" : "btn"}
             aria-pressed={explain}
             onClick={toggleExplain}
+            aria-label={ui(locale, explain ? "hideNotes" : "showNotes")}
           >
             <BookOpen size={16} />
-            <span className="btn-label">{ui(locale, "explainOn")}</span>
+            <span className="btn-label">{ui(locale, explain ? "hideNotes" : "showNotes")}</span>
           </button>
         </div>
       </header>
 
-      <nav className="nav" aria-label="Mục lục">
+      <nav className="nav" aria-label={ui(locale, "nav")}>
+        <div className="side-head">
+          <span className="kicker">{ui(locale, "nav")}</span>
+          <button
+            type="button"
+            className="btn btn-icon"
+            onClick={toggleNav}
+            aria-expanded={navOpen}
+            aria-label={ui(locale, navOpen ? "hideNav" : "showNav")}
+          >
+            {navOpen ? <ChevronLeft size={16} /> : <ChevronRight size={16} />}
+          </button>
+        </div>
+        {navOpen ? (
         <div className="nav-scroll">
           {chapters.map((chapter) => (
             <section key={chapter.id} className="chapter-block">
@@ -264,6 +296,7 @@ export function SimApp() {
             </section>
           ))}
         </div>
+        ) : null}
       </nav>
 
       <div className="stage-wrap">
@@ -273,7 +306,7 @@ export function SimApp() {
         <div className="stage-caption">
           <span>
             {ui(locale, "step")} {step + 1}/{lesson.steps.length}
-            {inspect ? ` · ${inspect}` : ""}
+            {inspect ? ` · ${tr(locale, inspect)}` : ""}
           </span>
           <strong>{tr(locale, current.title)}</strong>
           {figure ? (
@@ -319,7 +352,7 @@ export function SimApp() {
                 key={s.title}
                 type="button"
                 className={i === step ? "dot on" : i < step ? "dot seen" : "dot"}
-                aria-label={s.title}
+                aria-label={tr(locale, s.title)}
                 onClick={() => setStep(i)}
               />
             ))}
@@ -330,9 +363,21 @@ export function SimApp() {
         </button>
       </div>
 
-      {explain ? (
-        <aside className="panel" aria-label="Giải thích">
-          <div className="panel-scroll">
+      <aside className="panel" aria-label={ui(locale, "notes")}>
+        <div className="side-head">
+          <span className="kicker">{ui(locale, explain ? "notes" : "showNotes")}</span>
+          <button
+            type="button"
+            className="btn btn-icon"
+            onClick={toggleExplain}
+            aria-expanded={explain}
+            aria-label={ui(locale, explain ? "hideNotes" : "showNotes")}
+          >
+            {explain ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
+          </button>
+        </div>
+        {explain ? (
+        <div className="panel-scroll">
             {photos ? <PhotoDrawer lessonId={lessonId} locale={locale} onClose={togglePhotos} embedded /> : null}
             {lesson.id === "glossary" || lesson.id === "refs" ? (
               <input
@@ -433,13 +478,13 @@ export function SimApp() {
                   <small>
                     {lesson.id === "refs" || lesson.id === "glossary" ? tr(locale, s.title) : `${ui(locale, "step")} ${i + 1}`}
                   </small>
-                  {lesson.id === "refs" ? s.body : tr(locale, s.title)}
+                  {lesson.id === "refs" ? tr(locale, s.body) : tr(locale, s.title)}
                 </button>
               ))}
             </div>
           </div>
-        </aside>
-      ) : null}
+        ) : null}
+      </aside>
 
       {help ? (
         <div className="help-layer" onClick={toggleHelp} role="presentation">
@@ -627,7 +672,9 @@ function ControlDock({ kinds }: { kinds: ControlKind[] }) {
       {kinds.includes("temperature") ? (
         <label className="ctrl">
           <span>
-            {phaseFromTemp(s.temp).name} · <strong>{s.temp.toFixed(0)} °C</strong> · {phaseFromTemp(s.temp).en}
+            {tr(locale, phaseFromTemp(s.temp).name)} · <strong>{s.temp.toFixed(0)} °C</strong>
+            {" · "}
+            {tr(locale, phaseFromTemp(s.temp).range)}
           </span>
           <input type="range" min={-150} max={90} value={s.temp} onChange={(e) => s.patch({ temp: Number(e.target.value) })} />
         </label>

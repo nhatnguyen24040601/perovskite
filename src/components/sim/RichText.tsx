@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { REFS } from "@/lib/sim/content";
+import { tr } from "@/lib/sim/i18n";
+import { useSim } from "@/lib/sim/store";
 
 export function RichText({ text }: { text: string }) {
   const [hot, setHot] = useState<number | null>(null);
+  const locale = useSim((s) => s.locale);
   const parts = text.split(/(\[\d+\])/g);
   return (
     <>
@@ -28,7 +31,7 @@ export function RichText({ text }: { text: string }) {
           >
             {part}
             <span className="cite-tip" role="tooltip">
-              {ref ? ref.cite : `[${m[1]}]`}
+              {ref ? tr(locale, ref.cite) : `[${m[1]}]`}
             </span>
           </span>
         );

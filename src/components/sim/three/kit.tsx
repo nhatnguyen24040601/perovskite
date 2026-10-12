@@ -4,6 +4,24 @@ import { useLayoutEffect, useMemo, useRef, type ReactNode, type RefObject } from
 import * as THREE from "three";
 import { useSim } from "@/lib/sim/store";
 import { tr } from "@/lib/sim/i18n";
+import type { Locale } from "@/lib/sim/store";
+
+function localize(node: ReactNode, locale: Locale): ReactNode {
+  if (locale === "vi") return node;
+  if (typeof node === "string") {
+    const exact = tr(locale, node);
+    if (exact !== node) return exact;
+    const trimmed = node.trim();
+    if (!trimmed || trimmed === node) return node;
+    const hit = tr(locale, trimmed);
+    if (hit === trimmed) return node;
+    const lead = node.match(/^\s*/)?.[0] ?? "";
+    const tail = node.match(/\s*$/)?.[0] ?? "";
+    return `${lead}${hit}${tail}`;
+  }
+  if (Array.isArray(node)) return node.map((child) => localize(child, locale));
+  return node;
+}
 
 export const SPHERE = new THREE.SphereGeometry(1, 28, 18);
 export const OCTA = new THREE.OctahedronGeometry(1, 0);
@@ -40,7 +58,7 @@ export function Tag({
 }) {
   const textScale = useSim((s) => s.textScale);
   const locale = useSim((s) => s.locale);
-  const shown = typeof children === "string" ? tr(locale, children) : children;
+  const shown = localize(children, locale);
   return (
     <Html
       position={position}

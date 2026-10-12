@@ -9,6 +9,7 @@ type SimState = {
   step: number;
   playing: boolean;
   explain: boolean;
+  navOpen: boolean;
   autoRotate: boolean;
   replay: number;
   help: boolean;
@@ -45,6 +46,7 @@ type SimState = {
   prev: () => void;
   togglePlay: () => void;
   toggleExplain: () => void;
+  toggleNav: () => void;
   toggleRotate: () => void;
   bumpReplay: () => void;
   toggleHelp: () => void;
@@ -61,6 +63,7 @@ export const useSim = create<SimState>((set, get) => ({
   step: 0,
   playing: false,
   explain: true,
+  navOpen: true,
   autoRotate: true,
   replay: 0,
   help: false,
@@ -135,6 +138,7 @@ export const useSim = create<SimState>((set, get) => ({
   },
   togglePlay: () => set((s) => ({ playing: !s.playing })),
   toggleExplain: () => set((s) => ({ explain: !s.explain })),
+  toggleNav: () => set((s) => ({ navOpen: !s.navOpen })),
   toggleRotate: () => set((s) => ({ autoRotate: !s.autoRotate })),
   bumpReplay: () => set((s) => ({ replay: s.replay + 1 })),
   toggleHelp: () => set((s) => ({ help: !s.help })),

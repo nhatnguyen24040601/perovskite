@@ -61,12 +61,16 @@
   background: var(--color-bg);
 }
 
+.app.nav-off {
+  grid-template-columns: 46px minmax(0, 1fr) 360px;
+}
+
 .app.explain-off {
-  grid-template-columns: 252px minmax(0, 1fr);
-  grid-template-areas:
-    "top top"
-    "nav stage"
-    "nav play";
+  grid-template-columns: 252px minmax(0, 1fr) 46px;
+}
+
+.app.nav-off.explain-off {
+  grid-template-columns: 46px minmax(0, 1fr) 46px;
 }
 
 .topbar {
@@ -353,7 +357,7 @@
 }
 
 .photo-dock.embedded .photo-img {
-  max-height: 160px;
+  max-height: none;
 }
 
 .photo-bar {
@@ -364,11 +368,25 @@
 }
 
 .photo-img {
+  display: block;
   width: 100%;
-  max-height: 220px;
-  object-fit: cover;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  object-position: center;
+  background: #070a0d;
   border-radius: 12px;
-  background: var(--color-surface);
+}
+
+.photo-dock:not(.embedded) {
+  max-height: min(78%, 680px);
+}
+
+.photo-dock:not(.embedded) .photo-img {
+  max-height: min(62vh, 520px);
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .photo-alt {
@@ -406,6 +424,10 @@
     "play";
 }
 
+.app.presenting.explain-off .panel {
+  display: none;
+}
+
 .app.presenting .nav {
   display: none;
 }
@@ -431,10 +453,39 @@
   background: var(--color-ink);
   min-height: 0;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px 0;
+  flex: none;
+}
+
+.app.nav-off .nav > .side-head,
+.app.explain-off .panel > .side-head {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100%;
+  padding: 10px 4px;
+}
+
+.app.nav-off .nav > .side-head .kicker,
+.app.explain-off .panel > .side-head .kicker {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  letter-spacing: 0.12em;
 }
 
 .nav-scroll {
-  height: 100%;
+  height: auto;
+  flex: 1;
+  min-height: 0;
   overflow: auto;
   padding: 10px;
   display: flex;
@@ -691,6 +742,8 @@
 
 .panel-scroll {
   overflow: auto;
+  flex: 1;
+  min-height: 0;
   padding: 16px 16px 24px;
   display: flex;
   flex-direction: column;
@@ -1035,10 +1088,42 @@
       "play";
   }
 
+  .app.nav-off .nav,
+  .app.explain-off .panel {
+    display: none;
+  }
+
+  .app.nav-off:not(.explain-off) {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(200px, 1fr) minmax(160px, 38dvh) auto;
+    grid-template-areas:
+      "top"
+      "stage"
+      "panel"
+      "play";
+  }
+
+  .app.nav-off.explain-off,
+  .app.presenting.nav-off,
+  .app.presenting.nav-off.explain-off {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(220px, 1fr) auto;
+    grid-template-areas:
+      "top"
+      "stage"
+      "play";
+  }
+
   .photo-dock {
     top: auto;
     bottom: 8px;
-    max-height: 46%;
+    max-height: min(72%, 560px);
+  }
+
+  .photo-dock.embedded .photo-img,
+  .photo-dock:not(.embedded) .photo-img {
+    max-height: min(42dvh, 360px);
+    object-fit: contain;
   }
 
   .dock {

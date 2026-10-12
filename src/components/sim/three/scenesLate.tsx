@@ -1,5 +1,5 @@
 import { useFrame } from "@react-three/fiber";
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { QUIZ, REFS } from "@/lib/sim/content";
 import { tr } from "@/lib/sim/i18n";
@@ -410,6 +410,81 @@ function NucleationScene({ step }: { step: number }) {
 
 function MethodsScene({ step }: { step: number }) {
   const locale = useSim((s) => s.locale);
+  if (step === 0) return <MethodCards step={0} />;
+  return (
+    <group>
+      {step === 1 ? <SpinTour /> : null}
+      {step === 2 ? (
+        <group>
+          <Slab position={[0, -0.25, 0]} size={[2.2, 0.16, 1.3]} color="#e6c15a" />
+          <Slab position={[0, 0.02, 0]} size={[2.2, 0.18, 1.3]} color="#2a2140" />
+          <FlowDots count={8} color="#3cba84" speed={0.4} path={(t) => [-0.9 + t * 1.8, 1.1 - t * 0.9, 0.2]} />
+          <Tag position={[0, 1.35, 0]} accent>
+            MAI/FAI đi vào · vàng → đen
+          </Tag>
+        </group>
+      ) : null}
+      {step === 3 ? (
+        <group>
+          <mesh>
+            <boxGeometry args={[2.4, 1.6, 1.5]} />
+            <meshBasicMaterial color="#79b0ff" wireframe transparent opacity={0.4} />
+          </mesh>
+          <Slab position={[0, -0.55, 0]} size={[1.2, 0.08, 0.6]} color="#e0b15a" emissive={0.8} />
+          <FlowDots count={10} color="#f4efe6" speed={0.35} path={(t) => [(t - 0.5) * 0.8, -0.4 + t * 0.9, 0]} />
+          <Tag position={[0, 1.25, 0]} accent>
+            nguồn nóng · hơi đi lên
+          </Tag>
+        </group>
+      ) : null}
+      {step === 4 ? (
+        <group>
+          <mesh>
+            <cylinderGeometry args={[0.7, 0.62, 1.3, 24]} />
+            <meshStandardMaterial color="#9ec9ea" transparent opacity={0.28} />
+          </mesh>
+          <OctaMesh color="#6d4bd6" scale={0.55} />
+          <Tag position={[0, 1.25, 0]} accent>
+            tinh thể lớn dần
+          </Tag>
+        </group>
+      ) : null}
+      {step === 5 ? (
+        <group>
+          {Array.from({ length: 7 }).map((_, i) => (
+            <group key={i} position={[-1.8 + i * 0.6, 0, 0]}>
+              <OctaMesh color={["#6d4bd6", "#4d86d6", "#3ec4c4", "#3cba84", "#e6c15a", "#e07a32", "#e15b4c"][i]!} scale={0.28} />
+            </group>
+          ))}
+          <Tag position={[0, 1.15, 0]} accent>
+            nước đá · ~10 nm · 410–700 nm
+          </Tag>
+        </group>
+      ) : null}
+      {step === 6 ? <BladeTour /> : null}
+      {step === 7 ? (
+        <group>
+          {[-1.5, 1.5].map((x) => (
+            <mesh key={x} position={[x, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
+              <cylinderGeometry args={[0.32, 0.32, 0.25, 16]} />
+              <meshStandardMaterial color="#9aa6b4" />
+            </mesh>
+          ))}
+          <Slab position={[0, 0, 0]} size={[2.4, 0.05, 0.8]} color="#3a2a55" />
+          <Tag position={[0, 1.05, 0]} accent>
+            cuộn → phủ khe → sấy · 10–14%
+          </Tag>
+        </group>
+      ) : null}
+      <Tag position={[0, -1.45, 0]}>
+        {tr(locale, "đang xem lối")} {step}
+      </Tag>
+    </group>
+  );
+}
+
+function MethodCards({ step }: { step: number }) {
+  const locale = useSim((s) => s.locale);
   const cards = [
     { name: "1 quay phủ", color: "#6d4bd6" },
     { name: "2 hai bước", color: "#e6c15a" },
@@ -429,12 +504,7 @@ function MethodsScene({ step }: { step: number }) {
         const on = step === 0 || step === i + 1;
         return (
           <group key={c.name} position={[x, y, 0]}>
-            <Slab
-              position={[0, 0, 0]}
-              size={[1.25, 0.72, 0.12]}
-              color={on ? c.color : "#1e2832"}
-              emissive={on ? 0.28 : 0}
-            />
+            <Slab position={[0, 0, 0]} size={[1.25, 0.72, 0.12]} color={on ? c.color : "#1e2832"} emissive={on ? 0.28 : 0} />
             <Tag position={[0, 0, 0.2]} accent={step === i + 1}>
               {c.name}
             </Tag>
@@ -442,9 +512,45 @@ function MethodsScene({ step }: { step: number }) {
         );
       })}
       <Tag position={[0, -1.55, 0]} accent>
-        {step === 0
-          ? tr(locale, "chọn một lối — các mục sau đi từng nhịp")
-          : `${tr(locale, "đang xem lối")} ${step}`}
+        {tr(locale, "chọn một lối — các mục sau đi từng nhịp")}
+      </Tag>
+    </group>
+  );
+}
+
+function SpinTour() {
+  const [phase, setPhase] = useState(0);
+  useFrame(({ clock }) => {
+    const p = Math.floor((clock.elapsedTime % 8) / 2);
+    setPhase((cur) => (cur === p ? cur : p));
+  });
+  const labels = ["1 nhỏ mực", "2 quay ly tâm", "3 dung môi đối", "4 sấy 100–150 °C"];
+  return (
+    <group>
+      <SpinRig phase={phase} />
+      <Tag position={[0, 1.55, 0]} accent>
+        {labels[phase] ?? labels[0]}
+      </Tag>
+    </group>
+  );
+}
+
+function BladeTour() {
+  const blade = useRef<THREE.Group>(null);
+  useFrame(({ clock }) => {
+    const t = (clock.elapsedTime % 3) / 3;
+    if (blade.current) blade.current.position.x = -1.2 + t * 2.4;
+  });
+  return (
+    <group>
+      <Slab position={[0, -0.4, 0]} size={[3.1, 0.06, 1.15]} color="#d5e2ea" />
+      <Slab position={[0, -0.32, 0]} size={[2.8, 0.05, 0.95]} color="#6d4bd6" />
+      <group ref={blade}>
+        <Slab position={[0, 0.15, 0]} size={[0.1, 0.5, 1.25]} color="#d7dde6" />
+        <Slab position={[0.25, 0.28, 0]} size={[0.08, 0.2, 1.25]} color="#79b0ff" emissive={0.35} />
+      </group>
+      <Tag position={[0, 1.15, 0]} accent>
+        dao gạt · khe cố định độ dày
       </Tag>
     </group>
   );
@@ -950,11 +1056,9 @@ function StackScene({ step }: { step: number }) {
               emissive={on ? 0.45 : 0.05}
               onClick={() => setStep(i === 0 ? 1 : i <= 3 ? 2 : i - 1)}
             />
-            {on ? (
-              <Tag position={[1.35, center, 0]} accent>
-                {layer.name}
-              </Tag>
-            ) : null}
+            <Tag position={[1.4, center, 0.15]} accent={on}>
+              {layer.name}
+            </Tag>
           </group>
         );
       })}
@@ -1047,32 +1151,110 @@ function VerifyScene({ step }: { step: number }) {
   );
 }
 
-const LOOP = ["Cấu trúc", "Tính chất", "Hiệu năng", "Thiết kế lại"];
-
 function FinaleScene({ step }: { step: number }) {
-  const active = Math.min(3, step);
+  const ring = useRef<THREE.Group>(null);
+  useFrame(({ clock }) => {
+    if (ring.current) ring.current.rotation.y = clock.elapsedTime * 0.35;
+  });
+  if (step === 0) {
+    return (
+      <group>
+        <Slab position={[0, 0, 0]} size={[1.8, 0.28, 1.1]} color="#3a2a55" />
+        <FlowDots count={3} color="#e4a23a" speed={0.45} path={(t) => [0, 1.3 - t * 1.15, 0.35]} />
+        <FlowDots count={3} color="#79b0ff" speed={0.3} path={(t) => [-0.2 - t * 1.1, 0.15, 0.2]} />
+        <FlowDots count={3} color="#e08a55" speed={0.3} path={(t) => [0.2 + t * 1.1, -0.15, 0.2]} />
+        <Tag position={[0, 1.45, 0]} accent>
+          bốn bước
+        </Tag>
+        <Tag position={[-1.5, 0.2, 0]}>hấp thụ</Tag>
+        <Tag position={[1.55, 0, 0]}>thu điện</Tag>
+      </group>
+    );
+  }
+  if (step === 1) {
+    return (
+      <group>
+        <UnitCell aLabel="A" bLabel="B" xLabel="X" highlight="A" />
+        <Tag position={[-1.5, 1.2, 0]}>núm A</Tag>
+        <Tag position={[0, 1.45, 0]} accent>
+          núm B
+        </Tag>
+        <Tag position={[1.5, 1.2, 0]}>núm X</Tag>
+      </group>
+    );
+  }
+  if (step === 2) {
+    return (
+      <group>
+        <Slab position={[-1.1, 0.15, 0]} size={[0.7, 0.45, 0.5]} color="#e08a55" />
+        <Slab position={[1.1, 0.85, 0]} size={[0.7, 1.7, 0.5]} color="#6d4bd6" emissive={0.25} />
+        <Tag position={[-1.1, 0.7, 0]}>3,8%</Tag>
+        <Tag position={[1.1, 1.95, 0]} accent>
+          27,3%
+        </Tag>
+        <Tag position={[0, -1.15, 0]}>một lớp</Tag>
+      </group>
+    );
+  }
+  if (step === 3) {
+    return (
+      <group>
+        <OctaMesh color="#6d4bd6" scale={0.7} />
+        <group ref={ring}>
+          {[0, 1, 2, 3, 4].map((i) => {
+            const a = (i / 5) * Math.PI * 2;
+            return (
+              <mesh key={i} position={[Math.cos(a) * 1.35, Math.sin(a) * 0.85, 0]}>
+                <sphereGeometry args={[0.12, 12, 10]} />
+                <meshStandardMaterial color="#e08a55" emissive="#e08a55" emissiveIntensity={0.45} />
+              </mesh>
+            );
+          })}
+        </group>
+        <Tag position={[0, 1.55, 0]} accent>
+          năm kẻ thù
+        </Tag>
+      </group>
+    );
+  }
+  if (step === 4) {
+    return (
+      <group>
+        {Array.from({ length: 8 }).map((_, i) => (
+          <mesh key={i} position={[(i % 4) * 0.45 - 0.7, Math.floor(i / 4) * 0.4 - 0.1, 0]}>
+            <sphereGeometry args={[0.1, 12, 10]} />
+            <meshStandardMaterial color="#6d4bd6" emissive="#6d4bd6" emissiveIntensity={0.35} />
+          </mesh>
+        ))}
+        <Slab position={[0, -0.85, 0]} size={[2.2, 0.08, 1.2]} color="#2a2140" />
+        <Tag position={[0, 1.2, 0]} accent>
+          mầm cùng lúc
+        </Tag>
+      </group>
+    );
+  }
+  if (step === 5) {
+    const layers = ["#9ec9ea", "#c46a45", "#b07adf", "#3a2a55", "#8b939e", "#d9d3c8", "#b7daf2"];
+    return (
+      <group>
+        {layers.map((c, i) => (
+          <Slab key={c} position={[0, -1.05 + i * 0.32, 0]} size={[1.7, i === 3 ? 0.28 : 0.16, 1]} color={c} emissive={i === 3 ? 0.35 : 0.04} />
+        ))}
+        <Tag position={[1.5, 0, 0]} accent>
+          mỗi lớp một việc
+        </Tag>
+      </group>
+    );
+  }
   return (
     <group>
-      {LOOP.map((name, i) => {
-        const ang = (i / 4) * Math.PI * 2 - Math.PI / 2;
-        const on = i === active;
-        return (
-          <group key={name} position={[Math.cos(ang) * 1.8, 0.2, Math.sin(ang) * 1.8]}>
-            <mesh>
-              <cylinderGeometry args={[0.42, 0.42, 0.18, 20]} />
-              <meshStandardMaterial color={on ? "#e4a23a" : "#1e2832"} emissive={on ? "#e4a23a" : "#000"} emissiveIntensity={0.45} />
-            </mesh>
-            <Tag position={[0, 0.55, 0]} accent={on}>
-              {name}
-            </Tag>
-          </group>
-        );
-      })}
-      <mesh rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[1.8, 0.02, 8, 48]} />
-        <meshBasicMaterial color="#93a0ac" />
-      </mesh>
-      {step >= 4 ? <Tag position={[0, -1.3, 0]}>mạng mềm là cả hai mặt</Tag> : null}
+      <Slab position={[0, -0.25, 0]} size={[2.2, 0.35, 1.2]} color="#b7c3ce" />
+      <Slab position={[0, 0.12, 0]} size={[2.2, 0.08, 1.2]} color="#6d4bd6" emissive={0.3} />
+      <Tag position={[-1.3, 0.7, 0]}>Si · 150–180 µm</Tag>
+      <Tag position={[1.15, 0.7, 0]} accent>
+        tandem
+      </Tag>
+      <Tag position={[0, -1.15, 0]}>đo T80</Tag>
     </group>
   );
 }

@@ -420,7 +420,7 @@
   }
 
   .top-actions > .btn {
-    width: 40px;
+    width: 32px;
     padding: 0;
   }
 }
@@ -813,6 +813,32 @@
 .btn-icon {
   width: 44px;
   padding: 0;
+}
+
+.top-actions .btn,
+.playback .btn,
+.dock .btn,
+.seg .btn,
+.photo-bar .btn {
+  min-height: 32px;
+  padding: 0 10px;
+  font-size: 12px;
+  gap: 5px;
+}
+
+.top-actions .btn-icon,
+.playback .btn-icon,
+.dock .btn-icon,
+.photo-bar .btn-icon {
+  width: 32px;
+  min-height: 32px;
+  padding: 0;
+}
+
+.top-actions svg,
+.playback svg {
+  width: 14px;
+  height: 14px;
 }
 
 .btn.good {

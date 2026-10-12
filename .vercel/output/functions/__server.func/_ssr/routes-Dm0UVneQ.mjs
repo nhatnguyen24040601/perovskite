@@ -2,7 +2,7 @@ import { i as __toESM } from "../_runtime.mjs";
 import { a as useFrame, c as EdgesGeometry, d as OctahedronGeometry, f as Quaternion, i as Canvas, l as MathUtils, m as Vector3, n as OrbitControls, o as useThree, p as SphereGeometry, r as Html, s as BoxGeometry, t as Grid, u as Object3D, v as require_jsx_runtime, y as require_react } from "../_libs/@react-three/drei+[...].mjs";
 import { a as Pause, c as Image, d as ChevronLeft, f as BookOpen, i as Play, l as CircleHelp, o as Minimize2, r as RotateCcw, s as Maximize2, t as X, u as ChevronRight } from "../_libs/lucide-react.mjs";
 import { t as create } from "../_libs/zustand.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-UzMO1IKr.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-Dm0UVneQ.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var base = (text) => ({
@@ -237,19 +237,23 @@ var lessons = [
 		steps: [
 			{
 				title: "Điện áp hở mạch Voc",
-				body: "Voc là điện áp lớn nhất khi không lấy dòng. Nó phụ thuộc Eg và mức độ tái hợp. Pin perovskite tốt thường khoảng 1,15–1,20 V."
+				body: "Voc là điện áp lớn nhất khi không lấy dòng. Nó phụ thuộc Eg và mức độ tái hợp. Pin perovskite tốt thường khoảng 1,15–1,20 V.",
+				caption: "Đường dòng–áp. Trục ngang là điện áp, trục dọc là dòng trên mỗi cm². Voc nằm trên trục điện áp khi dòng bằng không."
 			},
 			{
 				title: "Dòng ngắn mạch Jsc",
-				body: "Jsc là dòng lớn nhất trên mỗi cm² khi nối tắt hai cực. Nó phụ thuộc số photon bị hấp thụ. Mức điển hình khoảng 25–26 mA/cm²."
+				body: "Jsc là dòng lớn nhất trên mỗi cm² khi nối tắt hai cực. Nó phụ thuộc số photon bị hấp thụ. Mức điển hình khoảng 25–26 mA/cm².",
+				caption: "Jsc là chỗ đường cong cắt trục dòng, khi điện áp bằng không."
 			},
 			{
 				title: "Hệ số lấp đầy FF",
-				body: "FF đo độ «vuông» của đường dòng–áp. Góc bị tròn vì điện trở. Pin tốt nằm khoảng 0,83–0,87. Hình chữ nhật công suất cực đại nằm trong đường cong."
+				body: "FF đo độ «vuông» của đường dòng–áp. Góc bị tròn vì điện trở. Pin tốt nằm khoảng 0,83–0,87. Hình chữ nhật công suất cực đại nằm trong đường cong.",
+				caption: "Hình chữ nhật trong đường cong là công suất lớn nhất. FF là tỉ lệ hình chữ nhật ấy so với Voc nhân Jsc."
 			},
 			{
 				title: "PCE = Voc × Jsc × FF / Pin",
-				body: "Với Pin = 100 mW/cm² (phổ AM1.5G). Ví dụ Voc 1,19 V, Jsc 25,8 mA/cm², FF 0,86 cho PCE ≈ 26,4%. Kỷ lục một lớp trong tài liệu khoảng 26–27%."
+				body: "Với Pin = 100 mW/cm² (phổ AM1.5G). Ví dụ Voc 1,19 V, Jsc 25,8 mA/cm², FF 0,86 cho PCE ≈ 26,4%. Kỷ lục một lớp trong tài liệu khoảng 26–27%.",
+				caption: "Hiệu suất đọc từ công thức trên hình. 26,4% là ví dụ khi kéo thanh, không phải một kỷ lục mới."
 			}
 		]
 	},
@@ -271,23 +275,28 @@ var lessons = [
 		steps: [
 			{
 				title: "Trần khoảng 33,7%",
-				body: "Năm 1961, Shockley và Queisser chỉ ra một pin một lớp hấp thụ không vượt khoảng 33,7% dưới ánh nắng chuẩn, dù vật liệu hoàn hảo [70]. Đường trên màn hình là dạng minh họa, đỉnh được giữ đúng 33,7%."
+				body: "Năm 1961, Shockley và Queisser chỉ ra một pin một lớp hấp thụ không vượt khoảng 33,7% dưới ánh nắng chuẩn, dù vật liệu hoàn hảo [70]. Đường trên màn hình là dạng minh họa, đỉnh được giữ đúng 33,7%.",
+				caption: "Đường trần một lớp theo vùng cấm. Đỉnh được giữ ở 33,7%. Dạng đường là minh họa, không phải từng điểm tính lại từ phổ mặt trời."
 			},
 			{
 				title: "Vùng cấm nhỏ",
-				body: "Hấp thụ được nhiều photon nên dòng lớn, nhưng mỗi photon chỉ cho năng lượng cỡ Eg, phần dư thành nhiệt, điện áp thấp."
+				body: "Hấp thụ được nhiều photon nên dòng lớn, nhưng mỗi photon chỉ cho năng lượng cỡ Eg, phần dư thành nhiệt, điện áp thấp.",
+				caption: "Eg thấp: dòng lớn, điện áp thấp, phần dư của photon thành nhiệt."
 			},
 			{
 				title: "Vùng cấm lớn",
-				body: "Mỗi điện tử mang nhiều năng lượng, điện áp cao, nhưng bỏ phí nhiều photon đỏ và hồng ngoại, dòng nhỏ."
+				body: "Mỗi điện tử mang nhiều năng lượng, điện áp cao, nhưng bỏ phí nhiều photon đỏ và hồng ngoại, dòng nhỏ.",
+				caption: "Eg cao: điện áp cao, nhưng nhiều photon đỏ và hồng ngoại không đủ năng lượng."
 			},
 			{
 				title: "Điểm cân bằng",
-				body: "Tối ưu nằm quanh Eg ≈ 1,1–1,4 eV. Từ khoảng 1,0 đến 1,6 eV, trần vẫn trên 30%."
+				body: "Tối ưu nằm quanh Eg ≈ 1,1–1,4 eV. Từ khoảng 1,0 đến 1,6 eV, trần vẫn trên 30%.",
+				caption: "Đỉnh đường nằm quanh 1,1–1,4 eV. Từ 1,0 đến 1,6 eV, trần vẫn trên 30%."
 			},
 			{
 				title: "Muốn vượt trần thì phải xếp chồng",
-				body: "Pin song song (tandem) đặt nhiều lớp có vùng cấm khác nhau: lớp trên nuốt photon năng lượng cao, lớp dưới nhặt phần còn lại. Sẽ gặp lại ở chương 3 và 5."
+				body: "Pin song song (tandem) đặt nhiều lớp có vùng cấm khác nhau: lớp trên nuốt photon năng lượng cao, lớp dưới nhặt phần còn lại. Sẽ gặp lại ở chương 3 và phần đề xuất cải tiến.",
+				caption: "Tandem vượt một đường trần vì lớp trên và lớp dưới chia nhau phổ."
 			}
 		]
 	},
@@ -757,20 +766,24 @@ var lessons = [
 		steps: [
 			{
 				title: "2009, Miyasaka",
-				body: "Nhóm Miyasaka ở Nhật lần đầu dùng perovskite trong pin và chỉ đạt 3,8% [7]. Silicon đã mất hơn 50 năm cho một quãng đường tương tự."
+				body: "Nhóm Miyasaka ở Nhật lần đầu dùng perovskite trong pin và chỉ đạt 3,8% [7]. Silicon đã mất hơn 50 năm cho một quãng đường tương tự.",
+				caption: "Mốc 3,8% năm 2009. Đường cam là một lớp. Đường lục ngang là mức 33,7%."
 			},
 			{
 				title: "Đường một lớp",
 				body: "Trong khoảng 17 năm, pin một lớp leo tới 27,3% trên biểu đồ NREL 2026 được tài liệu dẫn [1]. Đường vẽ ở đây là minh họa các mốc tài liệu nêu, không phải từng điểm gốc.",
+				caption: "Đường cam nối các mốc tài liệu nêu cho pin một lớp, tới 27,3%. Không phải số đo gốc từng năm.",
 				note: warn("Số thị trường và thông cáo công ty ở chương 4 cần đối chiếu biểu đồ gốc tại nrel.gov trước khi trích dẫn.")
 			},
 			{
 				title: "Tandem vượt trần một lớp",
-				body: "Tandem perovskite/silicon được tài liệu ghi 35% [1]. Nó được phép vượt 33,7% vì không còn là pin một lớp."
+				body: "Tandem perovskite/silicon được tài liệu ghi 35% [1]. Nó được phép vượt 33,7% vì không còn là pin một lớp.",
+				caption: "Đường lam là tandem và được phép vượt 33,7% vì không còn là pin một lớp."
 			},
 			{
 				title: "Sáu lý do phía sau tốc độ ấy",
-				body: "Hấp thụ mạnh, điện tích đi xa, exciton tự tách, dung thứ khuyết tật, chỉnh Eg dễ, chế tạo rẻ. Các mục sau lần lượt mở từng lý do."
+				body: "Hấp thụ mạnh, điện tích đi xa, exciton tự tách, dung thứ khuyết tật, chỉnh Eg dễ, chế tạo rẻ. Các mục sau lần lượt mở từng lý do.",
+				caption: "Sáu lý do mở ở mục 3.1 đến 3.6. Hình chỉ giữ các đường để thấy chỗ đứng."
 			}
 		]
 	},
@@ -1022,19 +1035,23 @@ var lessons = [
 		steps: [
 			{
 				title: "Bốn cột",
-				body: "Silicon tinh thể, CdTe màng mỏng, pin hữu cơ (OPV), và perovskite halide. Chiều cao cột là hiệu suất kỷ lục mà tài liệu nêu, ở mức gần đúng."
+				body: "Silicon tinh thể, CdTe màng mỏng, pin hữu cơ (OPV), và perovskite halide. Chiều cao cột là hiệu suất kỷ lục mà tài liệu nêu, ở mức gần đúng.",
+				caption: "Bốn cột. Chiều cao là hiệu suất một lớp gần đúng. Cột perovskite không dùng số tandem 35%."
 			},
 			{
 				title: "Hiệu suất và độ dày",
-				body: "Silicon ≈ 27–28% nhưng dày 150–180 µm. CdTe ≈ 23%, dày vài µm. OPV ≈ 20%, dày ≈ 0,1 µm. Perovskite 27,3% một lớp và 35% tandem, dày ≈ 0,5 µm."
+				body: "Silicon ≈ 27–28% nhưng dày 150–180 µm. CdTe ≈ 23%, dày vài µm. OPV ≈ 20%, dày ≈ 0,1 µm. Perovskite 27,3% một lớp và 35% tandem, dày ≈ 0,5 µm.",
+				caption: "Nhãn dưới cột là độ dày. Silicon cao về hiệu suất nhưng dày hơn perovskite khoảng 300 lần."
 			},
 			{
 				title: "Nhiệt độ và núm vùng cấm",
-				body: "Silicon trên 1400 °C, không chỉnh Eg. CdTe khoảng 500–600 °C, chỉnh Eg hạn chế. OPV và perovskite đều dưới 150 °C; perovskite chỉnh Eg rất rộng."
+				body: "Silicon trên 1400 °C, không chỉnh Eg. CdTe khoảng 500–600 °C, chỉnh Eg hạn chế. OPV và perovskite đều dưới 150 °C; perovskite chỉnh Eg rất rộng.",
+				caption: "Nhãn tiếp theo là nhiệt độ chế tạo. Perovskite nằm dưới 150 °C."
 			},
 			{
 				title: "Bền và độc",
-				body: "Silicon và CdTe đã có 25 năm ngoài trời; CdTe vướng cadmium. OPV còn hạn chế về bền. Perovskite đang cải thiện, và vướng chì — lượng nhỏ, nhưng hòa tan được trong nước."
+				body: "Silicon và CdTe đã có 25 năm ngoài trời; CdTe vướng cadmium. OPV còn hạn chế về bền. Perovskite đang cải thiện, và vướng chì — lượng nhỏ, nhưng hòa tan được trong nước.",
+				caption: "Bước cuối nhắc độ bền: silicon và CdTe đã có khoảng 25 năm ngoài trời. Perovskite chưa có mức ấy."
 			}
 		]
 	},
@@ -1161,15 +1178,18 @@ var lessons = [
 		steps: [
 			{
 				title: "Hai giai đoạn",
-				body: "Mọi cách nuôi tinh thể đều có tạo mầm (nucleation) — những mầm tí hon xuất hiện — và lớn lên (growth)."
+				body: "Mọi cách nuôi tinh thể đều có tạo mầm (nucleation) — những mầm tí hon xuất hiện — và lớn lên (growth).",
+				caption: "Hai giai đoạn của mọi cách nuôi tinh thể: tạo mầm, rồi lớn lên."
 			},
 			{
 				title: "Mầm cùng một lúc",
-				body: "Bí quyết của màng mịn, hạt đều: mọi mầm xuất hiện đồng loạt, rồi lớn với tốc độ như nhau."
+				body: "Bí quyết của màng mịn, hạt đều: mọi mầm xuất hiện đồng loạt, rồi lớn với tốc độ như nhau.",
+				caption: "Mầm cùng cỡ nghĩa là chúng xuất hiện cùng lúc và lớn cùng tốc độ."
 			},
 			{
 				title: "Mầm rải rác thì thủng lỗ kim",
-				body: "Nếu mầm xuất hiện lúc có lúc không, màng có lỗ kim (pinhole) và hạt to nhỏ lẫn lộn. Một lỗ kim trên tấm pin lớn có thể thành đường chập."
+				body: "Nếu mầm xuất hiện lúc có lúc không, màng có lỗ kim (pinhole) và hạt to nhỏ lẫn lộn. Một lỗ kim trên tấm pin lớn có thể thành đường chập.",
+				caption: "Chấm cam là lỗ kim. Trên tấm lớn, một lỗ có thể thành đường chập cả mô-đun."
 			}
 		]
 	},
@@ -1401,19 +1421,23 @@ var lessons = [
 		steps: [
 			{
 				title: "Vài gam trên một mét vuông",
-				body: "Một tấm pin perovskite chứa chì cỡ vài gam mỗi mét vuông, ít hơn nhiều so với một ắc quy ô tô. Nhưng chì hòa tan trong nước, nên vẫn phải ngăn rò rỉ."
+				body: "Một tấm pin perovskite chứa chì cỡ vài gam mỗi mét vuông, ít hơn nhiều so với một ắc quy ô tô. Nhưng chì hòa tan trong nước, nên vẫn phải ngăn rò rỉ.",
+				caption: "Cột ngang là hiệu suất tài liệu dùng để so họ vật liệu, không phải bảng thị trường."
 			},
 			{
 				title: "Thiếc cùng nhóm, dễ bị oxy hóa",
-				body: "Sn²⁺ dễ thành Sn⁴⁺, thừa lỗ trống, pin bị rò điện. Tài liệu nêu kỷ lục khoảng 16–17%. Cột Sn–Pb cao hơn, khoảng 24% trong hình minh họa của tài liệu, vẫn dưới chì 27,3%."
+				body: "Sn²⁺ dễ thành Sn⁴⁺, thừa lỗ trống, pin bị rò điện. Tài liệu nêu kỷ lục khoảng 16–17%. Cột Sn–Pb cao hơn, khoảng 24% trong hình minh họa của tài liệu, vẫn dưới chì 27,3%.",
+				caption: "Cột thiếc thấp hơn chì vì Sn²⁺ dễ thành Sn⁴⁺ và pin bị rò."
 			},
 			{
 				title: "Perovskite kép",
-				body: "Cs₂AgBiBr₆ thay hai Pb bằng một Ag và một Bi xếp xen kẽ. Bền, nhưng vùng cấm gián tiếp, hấp thụ kém, hiệu suất khoảng 6% [36]."
+				body: "Cs₂AgBiBr₆ thay hai Pb bằng một Ag và một Bi xếp xen kẽ. Bền, nhưng vùng cấm gián tiếp, hấp thụ kém, hiệu suất khoảng 6% [36].",
+				caption: "Cs₂AgBiBr₆ bền hơn nhưng vùng cấm gián tiếp, hấp thụ kém, nên cột ngắn."
 			},
 			{
 				title: "Việc làm được ngay",
 				body: "Giảm lượng chì, đóng gói chống rò, thêm lớp hấp phụ chì, và thiết kế để tái chế. Thay chì hoàn toàn vẫn còn kém xa về hiệu suất.",
+				caption: "Việc làm được ngay là khóa chì lại. Cột ngắn không có nghĩa chất ấy đã thay được chì.",
 				note: warn("Các cột là số tài liệu dùng để so sánh họ vật liệu, không phải một bảng xếp hạng thị trường.")
 			}
 		]
@@ -1422,7 +1446,7 @@ var lessons = [
 		id: "pin",
 		chapter: "c5",
 		section: "5.1",
-		title: "Nền đề xuất — xếp lớp kiểu p-i-n",
+		title: "Bước 1 — chọn kiến trúc p-i-n",
 		scene: "pin",
 		cam: "stack",
 		controls: ["architecture"],
@@ -1446,15 +1470,18 @@ var lessons = [
 			},
 			{
 				title: "p-i-n, ánh sáng vào cửa lỗ trống",
-				body: "Kiến trúc đảo (inverted): ánh sáng đi qua lớp lỗ trống. Hầu hết pin trên 27% hiện là p-i-n, vì NiOₓ, SAM và C₆₀ bền hơn và ít tổn thất hơn [39]."
+				body: "Kiến trúc đảo (inverted): ánh sáng đi qua lớp lỗ trống. Hầu hết pin trên 27% hiện là p-i-n, vì NiOₓ, SAM và C₆₀ bền hơn và ít tổn thất hơn [39].",
+				caption: "Hai cách xếp cùng một lớp hấp thụ. p-i-n đón nắng ở cửa lỗ trống. Hầu hết pin trên 27% hiện là kiểu này [39]."
 			},
 			{
 				title: "Đổi chiều ánh sáng",
-				body: "Nút trên màn hình lật hai cách xếp. Cùng một lớp hấp thụ, thứ tự cửa chọn lọc đổi vai trò của mặt đón nắng."
+				body: "Nút trên màn hình lật hai cách xếp. Cùng một lớp hấp thụ, thứ tự cửa chọn lọc đổi vai trò của mặt đón nắng.",
+				caption: "Hình: bên trái n-i-p, bên phải p-i-n. Mũi tên vàng là chiều ánh sáng. Bấm nút để đổi kiểu đang được nói tới."
 			},
 			{
 				title: "Bậc thang năng lượng",
-				body: "Các mức được xếp thành bậc. Điện tử chỉ có đường xuống dốc về phía ETL. Lỗ trống chỉ có đường về phía HTL. Không cần chúng «chọn đúng» bằng ý chí."
+				body: "Các mức được xếp thành bậc. Điện tử chỉ có đường xuống dốc về phía ETL. Lỗ trống chỉ có đường về phía HTL. Không cần chúng «chọn đúng» bằng ý chí.",
+				caption: "Hình: khối lam là cửa điện tử, khối cam là cửa lỗ trống. Các hạt chạy về đúng cửa của mình."
 			}
 		]
 	},
@@ -1462,7 +1489,7 @@ var lessons = [
 		id: "stack",
 		chapter: "c5",
 		section: "5.2",
-		title: "Xếp từng lớp để chặn năm kẻ thù",
+		title: "Bước 2 — mỗi lớp một việc",
 		scene: "stack",
 		cam: "stack",
 		controls: ["explode"],
@@ -1482,43 +1509,53 @@ var lessons = [
 		steps: [
 			{
 				title: "Không phát minh một chất mới",
-				body: "Đề xuất chương 5 ghép những gì đã được chứng minh riêng lẻ, để chặn cùng lúc năm kẻ thù ở mục 3.9. Bấm từng lát trên mô hình để nhảy tới lời dẫn của lát đó."
+				body: "Đề xuất chương 5 ghép những gì đã được chứng minh riêng lẻ, để chặn cùng lúc năm kẻ thù ở mục 3.9. Bấm từng lát trên mô hình để nhảy tới lời dẫn của lát đó.",
+				caption: "Hình: chồng lớp của đề xuất. Lớp đang sáng là lớp đang được nói tới. Độ dày vẽ không theo tỉ lệ thật."
 			},
 			{
 				title: "Kính lọc UV",
-				body: "Chặn tia cực tím trước khi vào pin. Nhắm kẻ thù số 4 [26]."
+				body: "Chặn tia cực tím trước khi vào pin. Nhắm kẻ thù số 4 [26].",
+				caption: "Kính trên cùng chặn tia cực tím trước khi vào pin."
 			},
 			{
 				title: "ITO + NiOₓ + SAM",
-				body: "Điện cực trong suốt, lớp lấy lỗ trống, và đơn lớp tự sắp xếp tạo mặt tiếp xúc ít khuyết tật [39]."
+				body: "Điện cực trong suốt, lớp lấy lỗ trống, và đơn lớp tự sắp xếp tạo mặt tiếp xúc ít khuyết tật [39].",
+				caption: "ITO trong suốt lấy dòng. NiOₓ và SAM là cửa lỗ trống, ít phụ gia hơn các lớp lỗ trống đời đầu."
 			},
 			{
 				title: "Lớp 2D mặt dưới",
-				body: "Thụ động hóa giao diện dưới, cản ion và đỡ tổn thất điện áp [30]."
+				body: "Thụ động hóa giao diện dưới, cản ion và đỡ tổn thất điện áp [30].",
+				caption: "Lớp 2D mặt dưới lấp bẫy và cản ion ở giao diện dưới."
 			},
 			{
 				title: "Lõi Cs₀.₀₅FA₀.₉₅PbI₃",
-				body: "Không MA nên bền nhiệt hơn. Thuần iod nên không tách pha kiểu Hoke. Hệ số dung hạn nằm vùng chịu được [19][22][24]."
+				body: "Không MA nên bền nhiệt hơn. Thuần iod nên không tách pha kiểu Hoke. Hệ số dung hạn nằm vùng chịu được [19][22][24].",
+				caption: "Lõi không có methylammonium, chỉ iod, thêm khoảng 5% cesium để khung khỏi đổ sang pha vàng."
 			},
 			{
 				title: "Lớp 2D mặt trên",
-				body: "Lấp bẫy, kỵ nước, chặn ion. Nhắm ẩm và di chuyển ion [29][30]."
+				body: "Lấp bẫy, kỵ nước, chặn ion. Nhắm ẩm và di chuyển ion [29][30].",
+				caption: "Lớp 2D mặt trên kỵ nước và chặn ion đi lên."
 			},
 			{
 				title: "C₆₀",
-				body: "Lấy điện tử, đưa chúng ra khỏi perovskite [39]."
+				body: "Lấy điện tử, đưa chúng ra khỏi perovskite [39].",
+				caption: "C₆₀ nhận điện tử và đưa chúng ra khỏi perovskite."
 			},
 			{
 				title: "SnO₂ phủ từng lớp nguyên tử",
-				body: "ALD cho một lớp ô-xít mỏng nhưng đặc khít, ngăn iod đi lên ăn điện cực kim loại [39][40]."
+				body: "ALD cho một lớp ô-xít mỏng nhưng đặc khít, ngăn iod đi lên ăn điện cực kim loại [39][40].",
+				caption: "SnO₂ phủ từng lớp nguyên tử là một tấm chắn đặc, để iod không ăn điện cực kim loại."
 			},
 			{
 				title: "Điện cực Cu/Ag",
-				body: "Thu điện tử sau khi chúng đã qua rào SnO₂. Kim loại không được chạm trực tiếp dòng iod."
+				body: "Thu điện tử sau khi chúng đã qua rào SnO₂. Kim loại không được chạm trực tiếp dòng iod.",
+				caption: "Kim loại chỉ gặp điện tử sau khi chúng đã qua rào SnO₂."
 			},
 			{
 				title: "Kính–kính và gioăng mép",
-				body: "Đóng gói kín, chặn ẩm và oxy [38]. Kéo thanh «tách lớp» để xem từng lát; hình không theo tỉ lệ bề dày thật."
+				body: "Đóng gói kín, chặn ẩm và oxy [38]. Kéo thanh «tách lớp» để xem từng lát; hình không theo tỉ lệ bề dày thật.",
+				caption: "Kéo thanh tách lớp để xem từng lát. Kính dưới và gioăng mép khóa ẩm với oxy."
 			}
 		]
 	},
@@ -1526,7 +1563,7 @@ var lessons = [
 		id: "why",
 		chapter: "c5",
 		section: "5.3",
-		title: "Vì sao chọn đúng những thành phần ấy",
+		title: "Bước 3 — vì sao đúng những chất ấy",
 		scene: "why",
 		cam: "default",
 		steps: [
@@ -1556,37 +1593,44 @@ var lessons = [
 		id: "verify",
 		chapter: "c5",
 		section: "5.4",
-		title: "Cách kiểm chứng đề xuất — chuẩn ISOS",
+		title: "Bước 4 — chứng minh bằng chuẩn ISOS",
 		scene: "verify",
 		cam: "plot",
 		steps: [
 			{
 				title: "Một con số bền phải kèm điều kiện",
-				body: "Cộng đồng đã thống nhất bộ giao thức ISOS, đăng trên Nature Energy năm 2020 [38]. Không có điều kiện thử thì một câu «bền 1000 giờ» không nói được gì."
+				body: "Cộng đồng đã thống nhất bộ giao thức ISOS, đăng trên Nature Energy năm 2020 [38]. Không có điều kiện thử thì một câu «bền 1000 giờ» không nói được gì.",
+				caption: "Trục ngang là giờ chiếu, trục dọc là phần trăm hiệu suất còn lại."
 			},
 			{
 				title: "Mức đề xuất: ISOS-L-3",
-				body: "Chiếu sáng liên tục, nhiệt độ 65–85 °C, có độ ẩm. Ba mũi tên trên mô hình là đèn, nhiệt và ẩm cùng lúc."
+				body: "Chiếu sáng liên tục, nhiệt độ 65–85 °C, có độ ẩm. Ba mũi tên trên mô hình là đèn, nhiệt và ẩm cùng lúc.",
+				caption: "Mức đề xuất là đèn, nhiệt 65–85 °C và ẩm cùng lúc — ISOS-L-3."
 			},
 			{
 				title: "Thước T80",
-				body: "T80 là thời gian cho tới khi hiệu suất còn 80% giá trị ban đầu. Đường đỏ là pin chưa tối ưu. Đường xanh là mục tiêu thiết kế."
+				body: "T80 là thời gian cho tới khi hiệu suất còn 80% giá trị ban đầu. Đường đỏ là pin chưa tối ưu. Đường xanh là mục tiêu thiết kế.",
+				caption: "Đường cam giảm nhanh. Đường lục là mục tiêu thiết kế, chưa phải số đo của đúng tổ hợp này."
 			},
 			{
 				title: "Mục tiêu của đề xuất",
-				body: "Hiệu suất ban đầu ≥ 26% trên tế bào 1 cm². Giữ trên 90% sau 2000 giờ ISOS-L-3. Dấu sao nhắc mức tài liệu nêu cho pin 27,3%: khoảng 93% sau 2000 giờ [39] — đó là số đã báo cáo cho một pin khác, không phải cho đúng tổ hợp này."
+				body: "Hiệu suất ban đầu ≥ 26% trên tế bào 1 cm². Giữ trên 90% sau 2000 giờ ISOS-L-3. Dấu sao nhắc mức tài liệu nêu cho pin 27,3%: khoảng 93% sau 2000 giờ [39] — đó là số đã báo cáo cho một pin khác, không phải cho đúng tổ hợp này.",
+				caption: "Mốc 93% sau 2000 giờ là số đã báo cáo cho một pin khác [39], đặt lên hình để có thước so."
 			},
 			{
 				title: "Phép đo đi kèm",
-				body: "PLQY để theo dõi Voc. Nhiễu xạ tia X để xem pha còn nguyên không. Phổ khối hoặc XPS để bắt iod đã bò tới điện cực hay chưa."
+				body: "PLQY để theo dõi Voc. Nhiễu xạ tia X để xem pha còn nguyên không. Phổ khối hoặc XPS để bắt iod đã bò tới điện cực hay chưa.",
+				caption: "PLQY, nhiễu xạ tia X và phổ khối là ba phép đo đi kèm. Chúng không vẽ thành đường thứ ba."
 			},
 			{
 				title: "Bỏ lần lượt từng lớp",
-				body: "Đối chứng: tháo lớp 2D trên, lớp 2D dưới, rồi lớp ALD, để biết mỗi lớp đóng góp bao nhiêu. Không làm đối chứng thì không biết lớp nào đang gánh."
+				body: "Đối chứng: tháo lớp 2D trên, lớp 2D dưới, rồi lớp ALD, để biết mỗi lớp đóng góp bao nhiêu. Không làm đối chứng thì không biết lớp nào đang gánh.",
+				caption: "Tháo lần lượt lớp 2D và lớp ALD mới biết mỗi lớp đóng góp bao nhiêu."
 			},
 			{
 				title: "Và đây vẫn là giả thuyết",
 				body: "Từng mảnh đã có bài báo. Chưa có nghiên cứu nào kiểm chứng đúng tổ hợp này. Các lớp có thể cãi nhau: lớp 2D làm giảm dẫn, quy trình ALD có thể hỏng bề mặt perovskite.",
+				caption: "Nhãn giả thuyết nghĩa là hình này chưa phải một pin đã chế tạo.",
 				note: idea("Đừng đọc chương 5 như một bản thiết kế đã chạy ra pin. Tài liệu gọi đúng tên của nó: một giả thuyết hợp lý.")
 			}
 		]
@@ -1595,33 +1639,44 @@ var lessons = [
 		id: "finale",
 		chapter: "c6",
 		section: "6",
-		title: "Khép vòng — cấu trúc, tính chất, pin, thiết kế lại",
+		title: "Bảy kết luận của cả hành trình",
 		scene: "finale",
 		cam: "wide",
 		steps: [
 			{
-				title: "Cấu trúc → tính chất → hiệu năng → thiết kế lại",
-				body: "Cả câu chuyện perovskite halide nằm gọn trong một vòng. Đổi ion là đổi cấu trúc. Cấu trúc quyết định Eg và độ bền. Hiệu năng buộc ta thiết kế lại cấu trúc."
+				title: "Kết luận 1 — Bốn bước biến ánh sáng thành điện",
+				body: "Photon rơi vào lớp tím. Điện tử đi lên vùng dẫn, lỗ trống ở lại, rồi hai hạt ra hai cửa. Không có máy quay, không đốt nhiên liệu.",
+				caption: "Hình: một photon, một lần tách, hai mũi tên ra mạch ngoài. Đây là cả pin mặt trời, thu gọn vào bốn động tác."
 			},
 			{
-				title: "Pin cần gì",
-				body: "Một chất bán dẫn có vùng cấm hợp, hấp thụ mạnh, điện tích đi xa, ít khuyết tật gây hại, rẻ, và bền."
+				title: "Kết luận 2 — ABX₃ là ba núm vặn trên một khung",
+				body: "A là cation lớn trong hốc, B là chì hoặc thiếc ở tâm bát diện, X là I, Br hoặc Cl ở đỉnh. Đổi một ion là đổi vùng cấm và độ bền.",
+				caption: "Hình: một ô mạng. Nhãn A, B, X là ba núm vặn, không phải ba chất rời nhau."
 			},
 			{
-				title: "ABX₃ cho ta núm vặn",
-				body: "Khung bát diện PbX₆ nối góc, cation A trong hốc. Kích thước ion, độ nghiêng, và số chiều 3D hay 2D quyết định vùng cấm lẫn độ bền."
+				title: "Kết luận 3 — Tổ hợp hiếm: 3,8% lên 27,3% rồi tandem",
+				body: "Vùng cấm thẳng, hấp thụ mạnh trong lớp mỏng cỡ 0,5 µm, điện tích đi được xa hơn bề dày lớp, và chế tạo dưới 150 °C. Vì vậy hiệu suất tài liệu dẫn đi từ 3,8% năm 2009 lên 27,3% một lớp, và tandem được ghi 35% [1][7].",
+				caption: "Hình: hai mốc trên cùng một cột thời gian. 27,3% là mức một lớp được tài liệu dẫn, không phải chiều cao của tandem."
 			},
 			{
-				title: "Một tổ hợp hiếm",
-				body: "Vùng cấm thẳng chỉnh được, hấp thụ mạnh, exciton tự tách, điện tích đi xa, dung thứ khuyết tật, chế tạo rẻ. Hiệu suất từ 3,8% năm 2009 lên 27,3% một lớp và 35% tandem trong số liệu tài liệu dẫn cho 2026."
+				title: "Kết luận 4 — Mạng mềm là cả ưu điểm lẫn năm kẻ thù",
+				body: "Cùng liên kết yếu cho tinh thể tự vá và cho ion iod nhảy, cho ẩm, oxy, nhiệt và tia cực tím làm hỏng pin. Năm kẻ thù ấy không phải chuyện phụ của hiệu suất cao.",
+				caption: "Hình: tinh thể ở giữa, năm chấm cảnh báo quay quanh. Mỗi chấm là một kẻ thù đã gặp ở mục 3.9."
 			},
 			{
-				title: "Mạng mềm là cả hai mặt",
-				body: "Ẩm, oxy, nhiệt, UV và ion iod di chuyển đều đi ra từ liên kết yếu. Chì là mối quan ngại môi trường phải quản lý, không phải một chú thích cuối trang."
+				title: "Kết luận 5 — Bảy cách chế tạo, một quy tắc mầm",
+				body: "Quay phủ, hai bước, chân không, kết tinh nhiệt độ ngược, chích nóng, dao gạt và phủ khe khác nhau ở chỗ ép mầm ra. Chúng giống nhau ở quy tắc: mầm phải xuất hiện cùng lúc, rồi lớn đều, nếu không thì thủng lỗ kim.",
+				caption: "Hình: nhiều mầm cùng cỡ bung ra, rồi khép thành một màng. Ảnh thực của từng cách nằm ở chương phương pháp chế tạo."
 			},
 			{
-				title: "Đích bây giờ là độ bền",
-				body: "Kiểm chứng theo ISOS. Lõi Cs/FA thuần iod, kẹp 2D hai mặt, rào ALD, đóng gói kính–kính là giả thuyết dựa trên kết quả đã công bố. Con đường thương mại gần nhất là tandem perovskite/silicon, đang ở thì thí điểm."
+				title: "Kết luận 6 — Đề xuất cải tiến chặn kẻ thù bằng từng lớp",
+				body: "Không cần một chất mới. Kính lọc UV, cửa lỗ trống NiOₓ và SAM, lớp 2D hai mặt, lõi FA/Cs thuần iod, C₆₀, rào SnO₂ và kính kín — mỗi lớp gánh một kẻ thù. Đây vẫn là giả thuyết ghép từ các bài đã công bố, chưa phải pin đã làm.",
+				caption: "Hình: chồng lớp của đề xuất. Lớp đang sáng là lớp đang được nói tới. Độ dày vẽ không theo tỉ lệ thật."
+			},
+			{
+				title: "Kết luận 7 — Việc còn lại là độ bền; đường gần là tandem",
+				body: "Số bền chỉ có nghĩa khi kèm điều kiện. Mục tiêu đề xuất là giữ trên 90% sau 2000 giờ ISOS-L-3, trên tế bào khoảng 1 cm², rồi mới nói tới tấm lớn. Con đường thương mại gần nhất vẫn là trải perovskite lên silicon có sẵn.",
+				caption: "Hình: lớp perovskite mỏng nằm trên lát silicon dày. Đồng hồ là phép thử T80, chưa phải một pin đã qua 2000 giờ."
 			}
 		]
 	},
@@ -1718,7 +1773,7 @@ var chapters = [
 	{
 		id: "c4",
 		num: "4",
-		title: "Làm ra vật liệu rồi làm ra tấm pin",
+		title: "Phương pháp chế tạo",
 		lessonIds: [
 			"methods",
 			"nucleation",
@@ -1733,7 +1788,7 @@ var chapters = [
 	{
 		id: "c5",
 		num: "5",
-		title: "Ghép thành pin bền hơn",
+		title: "Đề xuất cải tiến",
 		lessonIds: [
 			"pin",
 			"stack",
@@ -1744,7 +1799,7 @@ var chapters = [
 	{
 		id: "c6",
 		num: "6",
-		title: "Khép vòng",
+		title: "Kết luận",
 		lessonIds: ["finale", "quiz"]
 	},
 	{
@@ -2481,13 +2536,109 @@ var FAB_EN = {
 	"Bay hơi chân không không phụ thuộc vào mực chảy. Nó phủ đều tấm lớn và cả bề mặt kim tự tháp của silicon. Ngành màn hình và bán dẫn đã có sẵn lò loại này.": "Vacuum evaporation does not depend on ink flowing. It coats a large plate evenly, including the pyramid texture of silicon. Display and semiconductor factories already have this kind of tool.",
 	"Buồng chân không khổ lớn. Các hạt hơi rơi đều lên tấm. So với phủ ướt, không có vệt dao hay mép giọt.": "A large vacuum chamber. Vapor particles fall evenly onto the plate. Unlike wet coating, there is no blade streak and no drop edge."
 };
+/** New figure captions, conclusion copy, and chart words. Keys are the Vietnamese source. */
+var EXTRA_EN = {
+	năm: "year",
+	giờ: "hours",
+	"% còn lại": "% left",
+	"bốn bước": "four steps",
+	"hấp thụ": "absorb",
+	"thu điện": "collect",
+	"núm A": "knob A",
+	"núm B": "knob B",
+	"núm X": "knob X",
+	"3,8%": "3.8%",
+	"năm kẻ thù": "five threats",
+	"mầm cùng lúc": "nuclei together",
+	"mỗi lớp một việc": "one job per layer",
+	tandem: "tandem",
+	"đo T80": "measure T80",
+	"Kính UV": "UV glass",
+	"2D dưới": "2D, bottom",
+	"Lõi FA/Cs": "FA/Cs core",
+	"2D trên": "2D, top",
+	"Kính kín": "Sealed glass",
+	"Đề xuất cải tiến": "Proposed improvement",
+	"Phương pháp chế tạo": "Fabrication methods",
+	"Kết luận": "Conclusions",
+	"Bảy kết luận của cả hành trình": "Seven conclusions from the whole path",
+	"Bước 1 — chọn kiến trúc p-i-n": "Step 1 — choose a p-i-n stack",
+	"Bước 2 — mỗi lớp một việc": "Step 2 — one job per layer",
+	"Bước 3 — vì sao đúng những chất ấy": "Step 3 — why those ingredients",
+	"Bước 4 — chứng minh bằng chuẩn ISOS": "Step 4 — prove it with ISOS",
+	"Kết luận 1 — Bốn bước biến ánh sáng thành điện": "Conclusion 1 — four steps turn light into electricity",
+	"Kết luận 2 — ABX₃ là ba núm vặn trên một khung": "Conclusion 2 — ABX₃ is three knobs on one frame",
+	"Kết luận 3 — Tổ hợp hiếm: 3,8% lên 27,3% rồi tandem": "Conclusion 3 — a rare mix: 3.8% to 27.3%, then a tandem",
+	"Kết luận 4 — Mạng mềm là cả ưu điểm lẫn năm kẻ thù": "Conclusion 4 — the soft lattice is the advantage and the five threats",
+	"Kết luận 5 — Bảy cách chế tạo, một quy tắc mầm": "Conclusion 5 — seven fabrication routes, one nucleation rule",
+	"Kết luận 6 — Đề xuất cải tiến chặn kẻ thù bằng từng lớp": "Conclusion 6 — the proposal blocks each threat with a layer",
+	"Kết luận 7 — Việc còn lại là độ bền; đường gần là tandem": "Conclusion 7 — what remains is lifetime; the near path is the tandem",
+	"Photon rơi vào lớp tím. Điện tử đi lên vùng dẫn, lỗ trống ở lại, rồi hai hạt ra hai cửa. Không có máy quay, không đốt nhiên liệu.": "A photon falls into the purple layer. The electron climbs into the conduction band, the hole stays, and the two carriers leave by opposite doors. No engine, no fuel.",
+	"Hình: một photon, một lần tách, hai mũi tên ra mạch ngoài. Đây là cả pin mặt trời, thu gọn vào bốn động tác.": "Figure: one photon, one separation, two arrows into the outside circuit. The whole solar cell, reduced to four motions.",
+	"A là cation lớn trong hốc, B là chì hoặc thiếc ở tâm bát diện, X là I, Br hoặc Cl ở đỉnh. Đổi một ion là đổi vùng cấm và độ bền.": "A is the large cation in the cavity, B is lead or tin at the center of the octahedron, X is I, Br or Cl at the corners. Change one ion and you change the gap and the lifetime.",
+	"Hình: một ô mạng. Nhãn A, B, X là ba núm vặn, không phải ba chất rời nhau.": "Figure: one unit cell. The labels A, B and X are three knobs, not three unrelated chemicals.",
+	"Vùng cấm thẳng, hấp thụ mạnh trong lớp mỏng cỡ 0,5 µm, điện tích đi được xa hơn bề dày lớp, và chế tạo dưới 150 °C. Vì vậy hiệu suất tài liệu dẫn đi từ 3,8% năm 2009 lên 27,3% một lớp, và tandem được ghi 35% [1][7].": "A direct gap, strong absorption in a film about 0.5 µm thick, carriers that travel farther than the film is thick, and fabrication below 150 °C. That is why the cited record runs from 3.8% in 2009 to 27.3% for a single junction, with tandems listed at 35% [1][7].",
+	"Hình: hai mốc trên cùng một cột thời gian. 27,3% là mức một lớp được tài liệu dẫn, không phải chiều cao của tandem.": "Figure: two milestones on one timeline. 27.3% is the cited single-junction mark, not the tandem height.",
+	"Cùng liên kết yếu cho tinh thể tự vá và cho ion iod nhảy, cho ẩm, oxy, nhiệt và tia cực tím làm hỏng pin. Năm kẻ thù ấy không phải chuyện phụ của hiệu suất cao.": "The same weak bonds let the crystal heal itself and let iodide ions hop, and they let moisture, oxygen, heat and ultraviolet light damage the cell. Those five threats are not a footnote to the high efficiency.",
+	"Hình: tinh thể ở giữa, năm chấm cảnh báo quay quanh. Mỗi chấm là một kẻ thù đã gặp ở mục 3.9.": "Figure: the crystal in the center, five warning dots around it. Each dot is a threat already met in section 3.9.",
+	"Quay phủ, hai bước, chân không, kết tinh nhiệt độ ngược, chích nóng, dao gạt và phủ khe khác nhau ở chỗ ép mầm ra. Chúng giống nhau ở quy tắc: mầm phải xuất hiện cùng lúc, rồi lớn đều, nếu không thì thủng lỗ kim.": "Spin coating, two-step, vacuum, inverse-temperature growth, hot injection, blade and slot-die differ in how they force nuclei to appear. They share one rule: the nuclei must appear together and then grow evenly, or the film gets pinholes.",
+	"Hình: nhiều mầm cùng cỡ bung ra, rồi khép thành một màng. Ảnh thực của từng cách nằm ở chương phương pháp chế tạo.": "Figure: many nuclei of one size burst out, then close into a film. Real photos of each route sit in the fabrication chapter.",
+	"Không cần một chất mới. Kính lọc UV, cửa lỗ trống NiOₓ và SAM, lớp 2D hai mặt, lõi FA/Cs thuần iod, C₆₀, rào SnO₂ và kính kín — mỗi lớp gánh một kẻ thù. Đây vẫn là giả thuyết ghép từ các bài đã công bố, chưa phải pin đã làm.": "No new material is required. UV-filter glass, a NiOₓ and SAM hole contact, 2D layers on both faces, an iodide-only FA/Cs core, C₆₀, an SnO₂ barrier and a glass seal — each layer carries one threat. This is still a hypothesis assembled from published pieces, not a cell that has been built.",
+	"Hình: chồng lớp của đề xuất. Lớp đang sáng là lớp đang được nói tới. Độ dày vẽ không theo tỉ lệ thật.": "Figure: the proposed stack. The bright layer is the one being discussed. Drawn thicknesses are not to scale.",
+	"Số bền chỉ có nghĩa khi kèm điều kiện. Mục tiêu đề xuất là giữ trên 90% sau 2000 giờ ISOS-L-3, trên tế bào khoảng 1 cm², rồi mới nói tới tấm lớn. Con đường thương mại gần nhất vẫn là trải perovskite lên silicon có sẵn.": "A lifetime number means something only with its test conditions. The proposal’s target is to keep more than 90% after 2000 hours of ISOS-L-3, on a cell of about 1 cm², before anyone talks about a large module. The nearest commercial path is still perovskite spread onto silicon that already exists.",
+	"Hình: lớp perovskite mỏng nằm trên lát silicon dày. Đồng hồ là phép thử T80, chưa phải một pin đã qua 2000 giờ.": "Figure: a thin perovskite layer on a thick silicon slice. The clock is the T80 test, not a cell that has already passed 2000 hours.",
+	"Đường dòng–áp. Trục ngang là điện áp, trục dọc là dòng trên mỗi cm². Voc nằm trên trục điện áp khi dòng bằng không.": "Current–voltage curve. Horizontal axis is voltage, vertical axis is current per square centimetre. Voc sits on the voltage axis where current is zero.",
+	"Jsc là chỗ đường cong cắt trục dòng, khi điện áp bằng không.": "Jsc is where the curve meets the current axis, where voltage is zero.",
+	"Hình chữ nhật trong đường cong là công suất lớn nhất. FF là tỉ lệ hình chữ nhật ấy so với Voc nhân Jsc.": "The rectangle inside the curve is the maximum power. FF is that rectangle compared with Voc times Jsc.",
+	"Hiệu suất đọc từ công thức trên hình. 26,4% là ví dụ khi kéo thanh, không phải một kỷ lục mới.": "Efficiency is read from the formula on the figure. 26.4% is the example on the sliders, not a new record.",
+	"Đường trần một lớp theo vùng cấm. Đỉnh được giữ ở 33,7%. Dạng đường là minh họa, không phải từng điểm tính lại từ phổ mặt trời.": "The single-junction ceiling against bandgap. The peak is held at 33.7%. The shape is illustrative, not every point recomputed from the solar spectrum.",
+	"Eg thấp: dòng lớn, điện áp thấp, phần dư của photon thành nhiệt.": "A low gap: large current, low voltage, the leftover photon energy becomes heat.",
+	"Eg cao: điện áp cao, nhưng nhiều photon đỏ và hồng ngoại không đủ năng lượng.": "A high gap: high voltage, but many red and infrared photons do not have enough energy.",
+	"Đỉnh đường nằm quanh 1,1–1,4 eV. Từ 1,0 đến 1,6 eV, trần vẫn trên 30%.": "The peak sits near 1.1–1.4 eV. From 1.0 to 1.6 eV the ceiling stays above 30%.",
+	"Tandem vượt một đường trần vì lớp trên và lớp dưới chia nhau phổ.": "A tandem may cross the single ceiling because the top and bottom layers split the spectrum.",
+	"Mốc 3,8% năm 2009. Đường cam là một lớp. Đường lục ngang là mức 33,7%.": "The 3.8% mark in 2009. The orange line is the single junction. The horizontal green line is 33.7%.",
+	"Đường cam nối các mốc tài liệu nêu cho pin một lớp, tới 27,3%. Không phải số đo gốc từng năm.": "The orange line joins cited single-junction milestones, up to 27.3%. It is not an original measurement for every year.",
+	"Đường lam là tandem và được phép vượt 33,7% vì không còn là pin một lớp.": "The blue line is the tandem and may cross 33.7% because it is no longer a single junction.",
+	"Sáu lý do mở ở mục 3.1 đến 3.6. Hình chỉ giữ các đường để thấy chỗ đứng.": "The six reasons open in sections 3.1 to 3.6. The figure keeps the lines so you can see where things stand.",
+	"Bốn cột. Chiều cao là hiệu suất một lớp gần đúng. Cột perovskite không dùng số tandem 35%.": "Four columns. Height is the approximate single-junction efficiency. The perovskite column does not use the 35% tandem number.",
+	"Nhãn dưới cột là độ dày. Silicon cao về hiệu suất nhưng dày hơn perovskite khoảng 300 lần.": "The label under each column is thickness. Silicon is high in efficiency but about 300 times thicker than perovskite.",
+	"Nhãn tiếp theo là nhiệt độ chế tạo. Perovskite nằm dưới 150 °C.": "The next label is the fabrication temperature. Perovskite sits below 150 °C.",
+	"Bước cuối nhắc độ bền: silicon và CdTe đã có khoảng 25 năm ngoài trời. Perovskite chưa có mức ấy.": "The last step adds lifetime: silicon and CdTe already have about 25 years outdoors. Perovskite does not have that yet.",
+	"Cột ngang là hiệu suất tài liệu dùng để so họ vật liệu, không phải bảng thị trường.": "The horizontal bars are efficiencies the source uses to compare material families, not a market table.",
+	"Cột thiếc thấp hơn chì vì Sn²⁺ dễ thành Sn⁴⁺ và pin bị rò.": "The tin bar is lower than lead because Sn²⁺ readily becomes Sn⁴⁺ and the cell leaks.",
+	"Cs₂AgBiBr₆ bền hơn nhưng vùng cấm gián tiếp, hấp thụ kém, nên cột ngắn.": "Cs₂AgBiBr₆ is more stable but its gap is indirect and absorption is weak, so the bar is short.",
+	"Việc làm được ngay là khóa chì lại. Cột ngắn không có nghĩa chất ấy đã thay được chì.": "What can be done now is to lock the lead in. A short bar does not mean that material already replaces lead.",
+	"Trục ngang là giờ chiếu, trục dọc là phần trăm hiệu suất còn lại.": "Horizontal axis is hours under light, vertical axis is the percent of efficiency still left.",
+	"Mức đề xuất là đèn, nhiệt 65–85 °C và ẩm cùng lúc — ISOS-L-3.": "The proposed level is light, 65–85 °C and humidity together — ISOS-L-3.",
+	"Đường cam giảm nhanh. Đường lục là mục tiêu thiết kế, chưa phải số đo của đúng tổ hợp này.": "The orange curve falls quickly. The green curve is the design target, not a measurement of this exact stack.",
+	"Mốc 93% sau 2000 giờ là số đã báo cáo cho một pin khác [39], đặt lên hình để có thước so.": "The 93% after 2000 hours is a number reported for a different cell [39], drawn here as a ruler to compare against.",
+	"PLQY, nhiễu xạ tia X và phổ khối là ba phép đo đi kèm. Chúng không vẽ thành đường thứ ba.": "PLQY, X-ray diffraction and mass spectrometry are the three companion measurements. They are not drawn as a third curve.",
+	"Tháo lần lượt lớp 2D và lớp ALD mới biết mỗi lớp đóng góp bao nhiêu.": "Only removing the 2D layers and the ALD layer one at a time tells you how much each one contributes.",
+	"Nhãn giả thuyết nghĩa là hình này chưa phải một pin đã chế tạo.": "The hypothesis label means this figure is not a cell that has been built.",
+	"Hai giai đoạn của mọi cách nuôi tinh thể: tạo mầm, rồi lớn lên.": "The two stages of every crystal-growth route: nucleate, then grow.",
+	"Mầm cùng cỡ nghĩa là chúng xuất hiện cùng lúc và lớn cùng tốc độ.": "Nuclei of one size mean they appeared together and grew at the same rate.",
+	"Chấm cam là lỗ kim. Trên tấm lớn, một lỗ có thể thành đường chập cả mô-đun.": "The orange dot is a pinhole. On a large plate, one hole can short the whole module.",
+	"Hai cách xếp cùng một lớp hấp thụ. p-i-n đón nắng ở cửa lỗ trống. Hầu hết pin trên 27% hiện là kiểu này [39].": "Two orders for the same absorber. p-i-n lets the sunlight in through the hole contact. Most cells above 27% are now this way [39].",
+	"Hình: bên trái n-i-p, bên phải p-i-n. Mũi tên vàng là chiều ánh sáng. Bấm nút để đổi kiểu đang được nói tới.": "Figure: n-i-p on the left, p-i-n on the right. The gold arrow is the direction of the light. Use the button to switch which one is being discussed.",
+	"Điện tử chỉ đi xuống dốc về ETL. Lỗ trống chỉ đi về HTL. Bậc thang năng lượng làm việc chọn hộ, không cần hạt «chọn đúng».": "Electrons only roll downhill toward the ETL. Holes only move toward the HTL. The energy staircase does the choosing.",
+	"Hình: khối lam là cửa điện tử, khối cam là cửa lỗ trống. Các hạt chạy về đúng cửa của mình.": "Figure: the blue block is the electron door, the orange block is the hole door. Carriers run to their own door.",
+	"Kính trên cùng chặn tia cực tím trước khi vào pin.": "The top glass stops ultraviolet light before it enters the cell.",
+	"ITO trong suốt lấy dòng. NiOₓ và SAM là cửa lỗ trống, ít phụ gia hơn các lớp lỗ trống đời đầu.": "Transparent ITO collects current. NiOₓ and the SAM are the hole door, with fewer additives than the early hole layers.",
+	"Lớp 2D mặt dưới lấp bẫy và cản ion ở giao diện dưới.": "The bottom 2D layer fills traps and slows ions at the lower interface.",
+	"Lõi không có methylammonium, chỉ iod, thêm khoảng 5% cesium để khung khỏi đổ sang pha vàng.": "The core has no methylammonium, iodide only, plus about 5% cesium so the frame does not fall into the yellow phase.",
+	"Lớp 2D mặt trên kỵ nước và chặn ion đi lên.": "The top 2D layer sheds water and stops ions from climbing.",
+	"C₆₀ nhận điện tử và đưa chúng ra khỏi perovskite.": "C₆₀ takes the electrons and carries them out of the perovskite.",
+	"SnO₂ phủ từng lớp nguyên tử là một tấm chắn đặc, để iod không ăn điện cực kim loại.": "SnO₂ grown atomic layer by atomic layer is a dense shield, so iodide does not eat the metal electrode.",
+	"Kim loại chỉ gặp điện tử sau khi chúng đã qua rào SnO₂.": "The metal meets the electrons only after they have passed the SnO₂ barrier.",
+	"Kéo thanh tách lớp để xem từng lát. Kính dưới và gioăng mép khóa ẩm với oxy.": "Drag the split slider to see each slice. The bottom glass and the edge seal lock out moisture and oxygen."
+};
 /** Filled with exact Vietnamese → English for lesson paragraphs. Fabrication copy also lives in fab-en.ts. */
 var BODY_EN = {};
 var UI = {
 	vi: {
 		brand: "Phòng thí nghiệm perovskite",
 		sub: "Halide · ABX₃ · cùng một hành trình",
-		journey: "Ánh sáng → điện → khung ABX₃ → vì sao hợp pin → bảy cách làm → pin bền hơn",
+		journey: "Ánh sáng → điện → khung ABX₃ → vì sao hợp pin → phương pháp chế tạo → đề xuất cải tiến → kết luận",
 		explainOn: "Giải thích từng bước",
 		help: "Cách đọc",
 		photos: "Ảnh thực",
@@ -2537,7 +2688,7 @@ var UI = {
 	en: {
 		brand: "Perovskite Lab",
 		sub: "Halide · ABX₃ · one continuous path",
-		journey: "Light → electricity → the ABX₃ frame → why it makes a cell → seven ways to make it → a tougher cell",
+		journey: "Light → electricity → the ABX₃ frame → why it makes a cell → fabrication methods → proposed improvement → conclusions",
 		explainOn: "Step-by-step notes",
 		help: "How to read",
 		photos: "Real photos",
@@ -2852,11 +3003,11 @@ var PHRASE = {
 };
 function tr(locale, text) {
 	if (locale === "vi" || !text) return text;
-	return PHRASE[text] ?? LABELS_EN[text] ?? FAB_EN[text] ?? BODY_EN[text] ?? text;
+	return PHRASE[text] ?? LABELS_EN[text] ?? FAB_EN[text] ?? EXTRA_EN[text] ?? BODY_EN[text] ?? text;
 }
 var HELP = {
 	vi: [
-		"Cột trái là các chương của cùng một hành trình: ánh sáng thành điện, khung ABX₃, vì sao hợp pin, bảy cách chế tạo, rồi pin bền hơn.",
+		"Cột trái là các chương của cùng một hành trình: ánh sáng thành điện, khung ABX₃, vì sao hợp pin, phương pháp chế tạo, đề xuất cải tiến, rồi kết luận.",
 		"Mỗi mục có mô hình 3D. Bấm một bước để nhảy đúng hình của bước đó. Mũi tên chuyển bước, phím cách phát hoặc dừng, phím E bật lời giải thích.",
 		"«Ảnh thực» mở ảnh chụp thiết bị và vật liệu tương ứng với mục đang xem. Chú thích ghi rõ ảnh minh họa cái gì.",
 		"Số trong ngoặc [n] là nguồn. Rê chuột hoặc chạm vào số để xem trích dẫn đầy đủ.",
@@ -2864,7 +3015,7 @@ var HELP = {
 		"Hộp tím là kiến thức nền, hộp cam là chỗ cần dè số liệu, hộp xanh là giả thuyết chương 5 — chưa phải pin đã làm ra."
 	],
 	en: [
-		"The left column is one path: light into electricity, the ABX₃ frame, why it suits a cell, seven ways to make it, then a tougher cell.",
+		"The left column is one path: light into electricity, the ABX₃ frame, why it suits a cell, fabrication methods, the proposed improvement, then the conclusions.",
 		"Each section has a 3D model. Click a step to jump to that picture. Arrow keys change steps, space plays or pauses, E toggles the notes.",
 		"“Real photos” opens photographs of the matching equipment and materials. The caption says what the photo is actually showing.",
 		"A number in brackets [n] is a source. Hover or tap it to read the full citation.",
@@ -4068,6 +4219,60 @@ var color = {
 	credit: "Glass on Web",
 	href: "https://www.glassonweb.com/article/thin-film-solar-cells-low-cost-glass-substrates"
 };
+var itc = {
+	src: "/photos/itc-vials.jpg",
+	alt: {
+		vi: "Bốn lọ thật trong bài kết tinh nhanh: dung dịch trong, mầm đỏ, dung dịch vàng, và tinh thể đen nằm đáy lọ.",
+		en: "Four real vials from a rapid-growth paper: clear solution, red seeds, a yellow solution, and black crystals at the bottom."
+	},
+	credit: "Nature Communications, 2016 — rapid growth of halide perovskite crystals",
+	href: "https://www.nature.com/articles/ncomms13303"
+};
+var bladeLab = {
+	src: "/photos/blade-lab.jpg",
+	alt: {
+		vi: "Trên là sơ đồ dao gạt: nhỏ mực, lưỡi chạy, màng ướt, rồi sấy. Dưới là ảnh máy thật, lưỡi trên bàn nhiệt.",
+		en: "Top: blade-coating steps — dispense, blade motion, wet film, dry. Bottom: a real blade coater sitting on a hot plate."
+	},
+	credit: "Springer — Doctor blade coating, laboratory photograph in the figure",
+	href: "https://link.springer.com/chapter/10.1007/978-981-99-0961-2_12"
+};
+var r2r = {
+	src: "/photos/r2r-coater.jpg",
+	alt: {
+		vi: "Máy phủ cuộn-sang-cuộn thật: cuộn thả bên trái, đầu phủ ở giữa, lò, rồi cuộn thu bên phải.",
+		en: "A real roll-to-roll coater: unwind on the left, coating head in the middle, oven, then rewind on the right."
+	},
+	credit: "infinityPV — LR2RC roll-to-roll coater",
+	href: "https://www.infinitypv.com/r2r-academy/roll-to-roll-processing"
+};
+var evapReal = {
+	src: "/photos/evap-chamber.jpg",
+	alt: {
+		vi: "Buồng bay hơi nhiệt đang chạy: nguồn sáng ở dưới, đế treo phía trên. Chất trong ảnh không phải muối perovskite; hình cho thấy đúng hình học của cách 3.",
+		en: "A thermal evaporator running: hot source below, substrate hung above. The charge in the photo is not a perovskite salt; the geometry is what method 3 uses."
+	},
+	credit: "Kintek Solution — thermal evaporation",
+	href: "https://kindle-tech.com/faqs/what-is-the-principle-of-thermal-evaporation-method"
+};
+var slotFig = {
+	src: "/photos/slotdie-fig.jpg",
+	alt: {
+		vi: "Sơ đồ dây chuyền phủ khe: mực perovskite, lớp vận chuyển, điện cực, rồi sấy hồng ngoại. Ảnh góc là màng thật — lỗ kim khi mặt đế không thấm, và màng kín khi thấm tốt.",
+		en: "A slot-die line diagram: perovskite ink, transport layers, electrode, then infrared drying. The corner photos are real films — pinholes on a poorly wetting surface, and a dense film when wetting is good."
+	},
+	credit: "infinityPV — slot-die coating of perovskite cells",
+	href: "https://www.infinitypv.com/news/slot-die-coating-advances-for-high-performance-perovskite-solar-cells-a-study-on-interface-roughness"
+};
+var antiLab = {
+	src: "/photos/antisolvent-lab.jpg",
+	alt: {
+		vi: "Hình từ một bài chế tạo: nhỏ dung môi đối, rồi trải màng. Hai ảnh dưới là pipette thật và tấm đã phủ, sấy trên bàn nhiệt.",
+		en: "A fabrication figure: antisolvent drops, then spreading the film. The lower two frames are a real pipette and a coated sheet dried on a hot plate."
+	},
+	credit: "TechXplore — perovskite fabrication figure with laboratory photos",
+	href: "https://techxplore.com/news/2022-01-fabrication-perovskite-solar-cells-piece.html"
+};
 var lab = [
 	cell,
 	dark,
@@ -4228,7 +4433,101 @@ var PHOTO_SETS = {
 	],
 	refs: [cell]
 };
-function photosFor(id) {
+var STEP_PHOTOS = {
+	methods: [
+		[
+			spin,
+			bladeLab,
+			evapReal,
+			itc,
+			dots,
+			r2r
+		],
+		[
+			drop,
+			spin,
+			waferSpin
+		],
+		[dark, antiLab],
+		[evapReal, vac],
+		[itc],
+		[dots, dots2],
+		[bladeLab],
+		[
+			slotFig,
+			r2r,
+			flex
+		]
+	],
+	nucleation: [
+		[spin, dark],
+		[sem, dark],
+		[sem]
+	],
+	films: [
+		[drop, waferSpin],
+		[spin, waferSpin],
+		[antiLab, spin],
+		[dark, color],
+		[itc, dark],
+		[dark, cell],
+		[evapReal, vac],
+		[evapReal, sem]
+	],
+	grow: [
+		[itc],
+		[itc],
+		[itc],
+		[sem, itc],
+		[dots2],
+		[dots],
+		[
+			dots,
+			dots2,
+			peled
+		]
+	],
+	scale: [
+		[cell, module],
+		[bladeLab],
+		[bladeLab, slotFig],
+		[slotFig],
+		[r2r, flex],
+		[evapReal]
+	],
+	pin: [
+		[sem, cell],
+		[sem, cell],
+		[sem],
+		[sem, cell]
+	],
+	stack: [
+		[sem],
+		[sem],
+		[sem, cell],
+		[sem],
+		[dark],
+		[sem],
+		[sem],
+		[cell],
+		[sem],
+		[module]
+	],
+	finale: [
+		[cell, color],
+		[dark, sem],
+		[module, cell],
+		[dark],
+		[spin, bladeLab],
+		[sem, cell],
+		[module, minis]
+	]
+};
+function photosFor(id, step) {
+	if (typeof step === "number") {
+		const row = STEP_PHOTOS[id]?.[step];
+		if (row && row.length > 0) return row;
+	}
 	return PHOTO_SETS[id] ?? lab;
 }
 function photoAlt(photo, locale) {
@@ -8120,6 +8419,212 @@ function NucleationScene({ step }) {
 }
 function MethodsScene({ step }) {
 	const locale = useSim((s) => s.locale);
+	if (step === 0) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(MethodCards, { step: 0 });
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
+		step === 1 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SpinTour, {}) : null,
+		step === 2 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
+				position: [
+					0,
+					-.25,
+					0
+				],
+				size: [
+					2.2,
+					.16,
+					1.3
+				],
+				color: "#e6c15a"
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
+				position: [
+					0,
+					.02,
+					0
+				],
+				size: [
+					2.2,
+					.18,
+					1.3
+				],
+				color: "#2a2140"
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(FlowDots, {
+				count: 8,
+				color: "#3cba84",
+				speed: .4,
+				path: (t) => [
+					-.9 + t * 1.8,
+					1.1 - t * .9,
+					.2
+				]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
+				position: [
+					0,
+					1.35,
+					0
+				],
+				accent: true,
+				children: "MAI/FAI đi vào · vàng → đen"
+			})
+		] }) : null,
+		step === 3 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
+				2.4,
+				1.6,
+				1.5
+			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshBasicMaterial", {
+				color: "#79b0ff",
+				wireframe: true,
+				transparent: true,
+				opacity: .4
+			})] }),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
+				position: [
+					0,
+					-.55,
+					0
+				],
+				size: [
+					1.2,
+					.08,
+					.6
+				],
+				color: "#e0b15a",
+				emissive: .8
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(FlowDots, {
+				count: 10,
+				color: "#f4efe6",
+				speed: .35,
+				path: (t) => [
+					(t - .5) * .8,
+					-.4 + t * .9,
+					0
+				]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
+				position: [
+					0,
+					1.25,
+					0
+				],
+				accent: true,
+				children: "nguồn nóng · hơi đi lên"
+			})
+		] }) : null,
+		step === 4 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("cylinderGeometry", { args: [
+				.7,
+				.62,
+				1.3,
+				24
+			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
+				color: "#9ec9ea",
+				transparent: true,
+				opacity: .28
+			})] }),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(OctaMesh, {
+				color: "#6d4bd6",
+				scale: .55
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
+				position: [
+					0,
+					1.25,
+					0
+				],
+				accent: true,
+				children: "tinh thể lớn dần"
+			})
+		] }) : null,
+		step === 5 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [Array.from({ length: 7 }).map((_, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
+			position: [
+				-1.8 + i * .6,
+				0,
+				0
+			],
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(OctaMesh, {
+				color: [
+					"#6d4bd6",
+					"#4d86d6",
+					"#3ec4c4",
+					"#3cba84",
+					"#e6c15a",
+					"#e07a32",
+					"#e15b4c"
+				][i],
+				scale: .28
+			})
+		}, i)), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
+			position: [
+				0,
+				1.15,
+				0
+			],
+			accent: true,
+			children: "nước đá · ~10 nm · 410–700 nm"
+		})] }) : null,
+		step === 6 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BladeTour, {}) : null,
+		step === 7 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
+			[-1.5, 1.5].map((x) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
+				position: [
+					x,
+					0,
+					0
+				],
+				rotation: [
+					0,
+					0,
+					Math.PI / 2
+				],
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("cylinderGeometry", { args: [
+					.32,
+					.32,
+					.25,
+					16
+				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", { color: "#9aa6b4" })]
+			}, x)),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
+				position: [
+					0,
+					0,
+					0
+				],
+				size: [
+					2.4,
+					.05,
+					.8
+				],
+				color: "#3a2a55"
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
+				position: [
+					0,
+					1.05,
+					0
+				],
+				accent: true,
+				children: "cuộn → phủ khe → sấy · 10–14%"
+			})
+		] }) : null,
+		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Tag, {
+			position: [
+				0,
+				-1.45,
+				0
+			],
+			children: [
+				tr(locale, "đang xem lối"),
+				" ",
+				step
+			]
+		})
+	] });
+}
+function MethodCards({ step }) {
+	const locale = useSim((s) => s.locale);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [[
 		{
 			name: "1 quay phủ",
@@ -8191,8 +8696,103 @@ function MethodsScene({ step }) {
 			0
 		],
 		accent: true,
-		children: step === 0 ? tr(locale, "chọn một lối — các mục sau đi từng nhịp") : `${tr(locale, "đang xem lối")} ${step}`
+		children: tr(locale, "chọn một lối — các mục sau đi từng nhịp")
 	})] });
+}
+function SpinTour() {
+	const [phase, setPhase] = (0, import_react.useState)(0);
+	useFrame(({ clock }) => {
+		const p = Math.floor(clock.elapsedTime % 8 / 2);
+		setPhase((cur) => cur === p ? cur : p);
+	});
+	const labels = [
+		"1 nhỏ mực",
+		"2 quay ly tâm",
+		"3 dung môi đối",
+		"4 sấy 100–150 °C"
+	];
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SpinRig, { phase }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
+		position: [
+			0,
+			1.55,
+			0
+		],
+		accent: true,
+		children: labels[phase] ?? labels[0]
+	})] });
+}
+function BladeTour() {
+	const blade = (0, import_react.useRef)(null);
+	useFrame(({ clock }) => {
+		const t = clock.elapsedTime % 3 / 3;
+		if (blade.current) blade.current.position.x = -1.2 + t * 2.4;
+	});
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
+			position: [
+				0,
+				-.4,
+				0
+			],
+			size: [
+				3.1,
+				.06,
+				1.15
+			],
+			color: "#d5e2ea"
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
+			position: [
+				0,
+				-.32,
+				0
+			],
+			size: [
+				2.8,
+				.05,
+				.95
+			],
+			color: "#6d4bd6"
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
+			ref: blade,
+			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
+				position: [
+					0,
+					.15,
+					0
+				],
+				size: [
+					.1,
+					.5,
+					1.25
+				],
+				color: "#d7dde6"
+			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
+				position: [
+					.25,
+					.28,
+					0
+				],
+				size: [
+					.08,
+					.2,
+					1.25
+				],
+				color: "#79b0ff",
+				emissive: .35
+			})]
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
+			position: [
+				0,
+				1.15,
+				0
+			],
+			accent: true,
+			children: "dao gạt · khe cố định độ dày"
+		})
+	] });
 }
 function SpinRig({ phase }) {
 	const spin = (0, import_react.useRef)(null);
@@ -9509,15 +10109,15 @@ function StackScene({ step }) {
 			color: layer.color,
 			emissive: on ? .45 : .05,
 			onClick: () => setStep(i === 0 ? 1 : i <= 3 ? 2 : i - 1)
-		}), on ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
+		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
 			position: [
-				1.35,
+				1.4,
 				center,
-				0
+				.15
 			],
-			accent: true,
+			accent: on,
 			children: layer.name
-		}) : null] }, layer.name);
+		})] }, layer.name);
 	}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(FlowDots, {
 		count: 4,
 		color: "#e4a23a",
@@ -9764,65 +10364,334 @@ function VerifyScene({ step }) {
 		}
 	});
 }
-var LOOP = [
-	"Cấu trúc",
-	"Tính chất",
-	"Hiệu năng",
-	"Thiết kế lại"
-];
 function FinaleScene({ step }) {
-	const active = Math.min(3, step);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		LOOP.map((name, i) => {
-			const ang = i / 4 * Math.PI * 2 - Math.PI / 2;
-			const on = i === active;
-			return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-				position: [
-					Math.cos(ang) * 1.8,
-					.2,
-					Math.sin(ang) * 1.8
-				],
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("cylinderGeometry", { args: [
-					.42,
-					.42,
-					.18,
-					20
-				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-					color: on ? "#e4a23a" : "#1e2832",
-					emissive: on ? "#e4a23a" : "#000",
-					emissiveIntensity: .45
-				})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
-					position: [
-						0,
-						.55,
-						0
-					],
-					accent: on,
-					children: name
-				})]
-			}, name);
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-			rotation: [
-				Math.PI / 2,
-				0,
-				0
-			],
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("torusGeometry", { args: [
-				1.8,
-				.02,
-				8,
-				48
-			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshBasicMaterial", { color: "#93a0ac" })]
-		}),
-		step >= 4 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
+	const ring = (0, import_react.useRef)(null);
+	useFrame(({ clock }) => {
+		if (ring.current) ring.current.rotation.y = clock.elapsedTime * .35;
+	});
+	if (step === 0) return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
 			position: [
 				0,
-				-1.3,
+				0,
 				0
 			],
-			children: "mạng mềm là cả hai mặt"
-		}) : null
+			size: [
+				1.8,
+				.28,
+				1.1
+			],
+			color: "#3a2a55"
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(FlowDots, {
+			count: 3,
+			color: "#e4a23a",
+			speed: .45,
+			path: (t) => [
+				0,
+				1.3 - t * 1.15,
+				.35
+			]
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(FlowDots, {
+			count: 3,
+			color: "#79b0ff",
+			speed: .3,
+			path: (t) => [
+				-.2 - t * 1.1,
+				.15,
+				.2
+			]
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(FlowDots, {
+			count: 3,
+			color: "#e08a55",
+			speed: .3,
+			path: (t) => [
+				.2 + t * 1.1,
+				-.15,
+				.2
+			]
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
+			position: [
+				0,
+				1.45,
+				0
+			],
+			accent: true,
+			children: "bốn bước"
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
+			position: [
+				-1.5,
+				.2,
+				0
+			],
+			children: "hấp thụ"
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
+			position: [
+				1.55,
+				0,
+				0
+			],
+			children: "thu điện"
+		})
+	] });
+	if (step === 1) return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(UnitCell, {
+			aLabel: "A",
+			bLabel: "B",
+			xLabel: "X",
+			highlight: "A"
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
+			position: [
+				-1.5,
+				1.2,
+				0
+			],
+			children: "núm A"
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
+			position: [
+				0,
+				1.45,
+				0
+			],
+			accent: true,
+			children: "núm B"
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
+			position: [
+				1.5,
+				1.2,
+				0
+			],
+			children: "núm X"
+		})
+	] });
+	if (step === 2) return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
+			position: [
+				-1.1,
+				.15,
+				0
+			],
+			size: [
+				.7,
+				.45,
+				.5
+			],
+			color: "#e08a55"
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
+			position: [
+				1.1,
+				.85,
+				0
+			],
+			size: [
+				.7,
+				1.7,
+				.5
+			],
+			color: "#6d4bd6",
+			emissive: .25
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
+			position: [
+				-1.1,
+				.7,
+				0
+			],
+			children: "3,8%"
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
+			position: [
+				1.1,
+				1.95,
+				0
+			],
+			accent: true,
+			children: "27,3%"
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
+			position: [
+				0,
+				-1.15,
+				0
+			],
+			children: "một lớp"
+		})
+	] });
+	if (step === 3) return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(OctaMesh, {
+			color: "#6d4bd6",
+			scale: .7
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
+			ref: ring,
+			children: [
+				0,
+				1,
+				2,
+				3,
+				4
+			].map((i) => {
+				const a = i / 5 * Math.PI * 2;
+				return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
+					position: [
+						Math.cos(a) * 1.35,
+						Math.sin(a) * .85,
+						0
+					],
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("sphereGeometry", { args: [
+						.12,
+						12,
+						10
+					] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
+						color: "#e08a55",
+						emissive: "#e08a55",
+						emissiveIntensity: .45
+					})]
+				}, i);
+			})
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
+			position: [
+				0,
+				1.55,
+				0
+			],
+			accent: true,
+			children: "năm kẻ thù"
+		})
+	] });
+	if (step === 4) return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
+		Array.from({ length: 8 }).map((_, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
+			position: [
+				i % 4 * .45 - .7,
+				Math.floor(i / 4) * .4 - .1,
+				0
+			],
+			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("sphereGeometry", { args: [
+				.1,
+				12,
+				10
+			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
+				color: "#6d4bd6",
+				emissive: "#6d4bd6",
+				emissiveIntensity: .35
+			})]
+		}, i)),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
+			position: [
+				0,
+				-.85,
+				0
+			],
+			size: [
+				2.2,
+				.08,
+				1.2
+			],
+			color: "#2a2140"
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
+			position: [
+				0,
+				1.2,
+				0
+			],
+			accent: true,
+			children: "mầm cùng lúc"
+		})
+	] });
+	if (step === 5) return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [[
+		"#9ec9ea",
+		"#c46a45",
+		"#b07adf",
+		"#3a2a55",
+		"#8b939e",
+		"#d9d3c8",
+		"#b7daf2"
+	].map((c, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
+		position: [
+			0,
+			-1.05 + i * .32,
+			0
+		],
+		size: [
+			1.7,
+			i === 3 ? .28 : .16,
+			1
+		],
+		color: c,
+		emissive: i === 3 ? .35 : .04
+	}, c)), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
+		position: [
+			1.5,
+			0,
+			0
+		],
+		accent: true,
+		children: "mỗi lớp một việc"
+	})] });
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
+			position: [
+				0,
+				-.25,
+				0
+			],
+			size: [
+				2.2,
+				.35,
+				1.2
+			],
+			color: "#b7c3ce"
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
+			position: [
+				0,
+				.12,
+				0
+			],
+			size: [
+				2.2,
+				.08,
+				1.2
+			],
+			color: "#6d4bd6",
+			emissive: .3
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
+			position: [
+				-1.3,
+				.7,
+				0
+			],
+			children: "Si · 150–180 µm"
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
+			position: [
+				1.15,
+				.7,
+				0
+			],
+			accent: true,
+			children: "tandem"
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
+			position: [
+				0,
+				-1.15,
+				0
+			],
+			children: "đo T80"
+		})
 	] });
 }
 function QuizScene({ step }) {
@@ -10735,9 +11604,10 @@ function SimApp() {
 	});
 }
 function PhotoDrawer({ lessonId, locale, onClose, embedded = false }) {
-	const shots = photosFor(lessonId);
+	const step = useSim((s) => s.step);
+	const shots = photosFor(lessonId, step);
 	const [index, setIndex] = (0, import_react.useState)(0);
-	(0, import_react.useEffect)(() => setIndex(0), [lessonId]);
+	(0, import_react.useEffect)(() => setIndex(0), [lessonId, step]);
 	const photo = shots[Math.min(index, Math.max(0, shots.length - 1))] ?? shots[0];
 	const n = shots.length;
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("aside", {

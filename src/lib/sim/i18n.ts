@@ -1,13 +1,14 @@
 import type { Locale } from "./store";
 import { LABELS_EN } from "./labels-en";
 import { FAB_EN } from "./fab-en";
+import { EXTRA_EN } from "./extra-en";
 import { BODY_EN } from "./body-en";
 
 const UI = {
   vi: {
     brand: "Phòng thí nghiệm perovskite",
     sub: "Halide · ABX₃ · cùng một hành trình",
-    journey: "Ánh sáng → điện → khung ABX₃ → vì sao hợp pin → bảy cách làm → pin bền hơn",
+    journey: "Ánh sáng → điện → khung ABX₃ → vì sao hợp pin → phương pháp chế tạo → đề xuất cải tiến → kết luận",
     explainOn: "Giải thích từng bước",
     help: "Cách đọc",
     photos: "Ảnh thực",
@@ -57,7 +58,7 @@ const UI = {
   en: {
     brand: "Perovskite Lab",
     sub: "Halide · ABX₃ · one continuous path",
-    journey: "Light → electricity → the ABX₃ frame → why it makes a cell → seven ways to make it → a tougher cell",
+    journey: "Light → electricity → the ABX₃ frame → why it makes a cell → fabrication methods → proposed improvement → conclusions",
     explainOn: "Step-by-step notes",
     help: "How to read",
     photos: "Real photos",
@@ -377,12 +378,12 @@ const PHRASE: Record<string, string> = {
 
 export function tr(locale: Locale, text: string): string {
   if (locale === "vi" || !text) return text;
-  return PHRASE[text] ?? LABELS_EN[text] ?? FAB_EN[text] ?? BODY_EN[text] ?? text;
+  return PHRASE[text] ?? LABELS_EN[text] ?? FAB_EN[text] ?? EXTRA_EN[text] ?? BODY_EN[text] ?? text;
 }
 
 export const HELP: Record<Locale, string[]> = {
   vi: [
-    "Cột trái là các chương của cùng một hành trình: ánh sáng thành điện, khung ABX₃, vì sao hợp pin, bảy cách chế tạo, rồi pin bền hơn.",
+    "Cột trái là các chương của cùng một hành trình: ánh sáng thành điện, khung ABX₃, vì sao hợp pin, phương pháp chế tạo, đề xuất cải tiến, rồi kết luận.",
     "Mỗi mục có mô hình 3D. Bấm một bước để nhảy đúng hình của bước đó. Mũi tên chuyển bước, phím cách phát hoặc dừng, phím E bật lời giải thích.",
     "«Ảnh thực» mở ảnh chụp thiết bị và vật liệu tương ứng với mục đang xem. Chú thích ghi rõ ảnh minh họa cái gì.",
     "Số trong ngoặc [n] là nguồn. Rê chuột hoặc chạm vào số để xem trích dẫn đầy đủ.",
@@ -390,7 +391,7 @@ export const HELP: Record<Locale, string[]> = {
     "Hộp tím là kiến thức nền, hộp cam là chỗ cần dè số liệu, hộp xanh là giả thuyết chương 5 — chưa phải pin đã làm ra.",
   ],
   en: [
-    "The left column is one path: light into electricity, the ABX₃ frame, why it suits a cell, seven ways to make it, then a tougher cell.",
+    "The left column is one path: light into electricity, the ABX₃ frame, why it suits a cell, fabrication methods, the proposed improvement, then the conclusions.",
     "Each section has a 3D model. Click a step to jump to that picture. Arrow keys change steps, space plays or pauses, E toggles the notes.",
     "“Real photos” opens photographs of the matching equipment and materials. The caption says what the photo is actually showing.",
     "A number in brackets [n] is a source. Hover or tap it to read the full citation.",

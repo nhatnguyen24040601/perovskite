@@ -152,6 +152,61 @@ const color: Photo = {
   href: "https://www.glassonweb.com/article/thin-film-solar-cells-low-cost-glass-substrates",
 };
 
+const itc: Photo = {
+  src: "/photos/itc-vials.jpg",
+  alt: {
+    vi: "Bốn lọ thật trong bài kết tinh nhanh: dung dịch trong, mầm đỏ, dung dịch vàng, và tinh thể đen nằm đáy lọ.",
+    en: "Four real vials from a rapid-growth paper: clear solution, red seeds, a yellow solution, and black crystals at the bottom.",
+  },
+  credit: "Nature Communications, 2016 — rapid growth of halide perovskite crystals",
+  href: "https://www.nature.com/articles/ncomms13303",
+};
+const bladeLab: Photo = {
+  src: "/photos/blade-lab.jpg",
+  alt: {
+    vi: "Trên là sơ đồ dao gạt: nhỏ mực, lưỡi chạy, màng ướt, rồi sấy. Dưới là ảnh máy thật, lưỡi trên bàn nhiệt.",
+    en: "Top: blade-coating steps — dispense, blade motion, wet film, dry. Bottom: a real blade coater sitting on a hot plate.",
+  },
+  credit: "Springer — Doctor blade coating, laboratory photograph in the figure",
+  href: "https://link.springer.com/chapter/10.1007/978-981-99-0961-2_12",
+};
+const r2r: Photo = {
+  src: "/photos/r2r-coater.jpg",
+  alt: {
+    vi: "Máy phủ cuộn-sang-cuộn thật: cuộn thả bên trái, đầu phủ ở giữa, lò, rồi cuộn thu bên phải.",
+    en: "A real roll-to-roll coater: unwind on the left, coating head in the middle, oven, then rewind on the right.",
+  },
+  credit: "infinityPV — LR2RC roll-to-roll coater",
+  href: "https://www.infinitypv.com/r2r-academy/roll-to-roll-processing",
+};
+const evapReal: Photo = {
+  src: "/photos/evap-chamber.jpg",
+  alt: {
+    vi: "Buồng bay hơi nhiệt đang chạy: nguồn sáng ở dưới, đế treo phía trên. Chất trong ảnh không phải muối perovskite; hình cho thấy đúng hình học của cách 3.",
+    en: "A thermal evaporator running: hot source below, substrate hung above. The charge in the photo is not a perovskite salt; the geometry is what method 3 uses.",
+  },
+  credit: "Kintek Solution — thermal evaporation",
+  href: "https://kindle-tech.com/faqs/what-is-the-principle-of-thermal-evaporation-method",
+};
+const slotFig: Photo = {
+  src: "/photos/slotdie-fig.jpg",
+  alt: {
+    vi: "Sơ đồ dây chuyền phủ khe: mực perovskite, lớp vận chuyển, điện cực, rồi sấy hồng ngoại. Ảnh góc là màng thật — lỗ kim khi mặt đế không thấm, và màng kín khi thấm tốt.",
+    en: "A slot-die line diagram: perovskite ink, transport layers, electrode, then infrared drying. The corner photos are real films — pinholes on a poorly wetting surface, and a dense film when wetting is good.",
+  },
+  credit: "infinityPV — slot-die coating of perovskite cells",
+  href: "https://www.infinitypv.com/news/slot-die-coating-advances-for-high-performance-perovskite-solar-cells-a-study-on-interface-roughness",
+};
+const antiLab: Photo = {
+  src: "/photos/antisolvent-lab.jpg",
+  alt: {
+    vi: "Hình từ một bài chế tạo: nhỏ dung môi đối, rồi trải màng. Hai ảnh dưới là pipette thật và tấm đã phủ, sấy trên bàn nhiệt.",
+    en: "A fabrication figure: antisolvent drops, then spreading the film. The lower two frames are a real pipette and a coated sheet dried on a hot plate.",
+  },
+  credit: "TechXplore — perovskite fabrication figure with laboratory photos",
+  href: "https://techxplore.com/news/2022-01-fabrication-perovskite-solar-cells-piece.html",
+};
+
 const lab = [cell, dark, color];
 const make = [spin, drop, waferSpin, vac];
 const nano = [dots, dots2, peled];
@@ -205,7 +260,40 @@ export const PHOTO_SETS: Record<string, Photo[]> = {
   refs: [cell],
 };
 
-export function photosFor(id: string): Photo[] {
+const STEP_PHOTOS: Record<string, Photo[][]> = {
+  methods: [
+    [spin, bladeLab, evapReal, itc, dots, r2r],
+    [drop, spin, waferSpin],
+    [dark, antiLab],
+    [evapReal, vac],
+    [itc],
+    [dots, dots2],
+    [bladeLab],
+    [slotFig, r2r, flex],
+  ],
+  nucleation: [[spin, dark], [sem, dark], [sem]],
+  films: [
+    [drop, waferSpin],
+    [spin, waferSpin],
+    [antiLab, spin],
+    [dark, color],
+    [itc, dark],
+    [dark, cell],
+    [evapReal, vac],
+    [evapReal, sem],
+  ],
+  grow: [[itc], [itc], [itc], [sem, itc], [dots2], [dots], [dots, dots2, peled]],
+  scale: [[cell, module], [bladeLab], [bladeLab, slotFig], [slotFig], [r2r, flex], [evapReal]],
+  pin: [[sem, cell], [sem, cell], [sem], [sem, cell]],
+  stack: [[sem], [sem], [sem, cell], [sem], [dark], [sem], [sem], [cell], [sem], [module]],
+  finale: [[cell, color], [dark, sem], [module, cell], [dark], [spin, bladeLab], [sem, cell], [module, minis]],
+};
+
+export function photosFor(id: string, step?: number): Photo[] {
+  if (typeof step === "number") {
+    const row = STEP_PHOTOS[id]?.[step];
+    if (row && row.length > 0) return row;
+  }
   return PHOTO_SETS[id] ?? lab;
 }
 

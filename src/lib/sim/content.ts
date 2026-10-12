@@ -249,18 +249,22 @@ export const lessons: Lesson[] = [
       {
         title: "Điện áp hở mạch Voc",
         body: "Voc là điện áp lớn nhất khi không lấy dòng. Nó phụ thuộc Eg và mức độ tái hợp. Pin perovskite tốt thường khoảng 1,15–1,20 V.",
+        caption: "Đường dòng–áp. Trục ngang là điện áp, trục dọc là dòng trên mỗi cm². Voc nằm trên trục điện áp khi dòng bằng không.",
       },
       {
         title: "Dòng ngắn mạch Jsc",
         body: "Jsc là dòng lớn nhất trên mỗi cm² khi nối tắt hai cực. Nó phụ thuộc số photon bị hấp thụ. Mức điển hình khoảng 25–26 mA/cm².",
+        caption: "Jsc là chỗ đường cong cắt trục dòng, khi điện áp bằng không.",
       },
       {
         title: "Hệ số lấp đầy FF",
         body: "FF đo độ «vuông» của đường dòng–áp. Góc bị tròn vì điện trở. Pin tốt nằm khoảng 0,83–0,87. Hình chữ nhật công suất cực đại nằm trong đường cong.",
+        caption: "Hình chữ nhật trong đường cong là công suất lớn nhất. FF là tỉ lệ hình chữ nhật ấy so với Voc nhân Jsc.",
       },
       {
         title: "PCE = Voc × Jsc × FF / Pin",
         body: "Với Pin = 100 mW/cm² (phổ AM1.5G). Ví dụ Voc 1,19 V, Jsc 25,8 mA/cm², FF 0,86 cho PCE ≈ 26,4%. Kỷ lục một lớp trong tài liệu khoảng 26–27%.",
+        caption: "Hiệu suất đọc từ công thức trên hình. 26,4% là ví dụ khi kéo thanh, không phải một kỷ lục mới.",
       },
     ],
   },
@@ -277,22 +281,27 @@ export const lessons: Lesson[] = [
       {
         title: "Trần khoảng 33,7%",
         body: "Năm 1961, Shockley và Queisser chỉ ra một pin một lớp hấp thụ không vượt khoảng 33,7% dưới ánh nắng chuẩn, dù vật liệu hoàn hảo [70]. Đường trên màn hình là dạng minh họa, đỉnh được giữ đúng 33,7%.",
+        caption: "Đường trần một lớp theo vùng cấm. Đỉnh được giữ ở 33,7%. Dạng đường là minh họa, không phải từng điểm tính lại từ phổ mặt trời.",
       },
       {
         title: "Vùng cấm nhỏ",
         body: "Hấp thụ được nhiều photon nên dòng lớn, nhưng mỗi photon chỉ cho năng lượng cỡ Eg, phần dư thành nhiệt, điện áp thấp.",
+        caption: "Eg thấp: dòng lớn, điện áp thấp, phần dư của photon thành nhiệt.",
       },
       {
         title: "Vùng cấm lớn",
         body: "Mỗi điện tử mang nhiều năng lượng, điện áp cao, nhưng bỏ phí nhiều photon đỏ và hồng ngoại, dòng nhỏ.",
+        caption: "Eg cao: điện áp cao, nhưng nhiều photon đỏ và hồng ngoại không đủ năng lượng.",
       },
       {
         title: "Điểm cân bằng",
         body: "Tối ưu nằm quanh Eg ≈ 1,1–1,4 eV. Từ khoảng 1,0 đến 1,6 eV, trần vẫn trên 30%.",
+        caption: "Đỉnh đường nằm quanh 1,1–1,4 eV. Từ 1,0 đến 1,6 eV, trần vẫn trên 30%.",
       },
       {
         title: "Muốn vượt trần thì phải xếp chồng",
-        body: "Pin song song (tandem) đặt nhiều lớp có vùng cấm khác nhau: lớp trên nuốt photon năng lượng cao, lớp dưới nhặt phần còn lại. Sẽ gặp lại ở chương 3 và 5.",
+        body: "Pin song song (tandem) đặt nhiều lớp có vùng cấm khác nhau: lớp trên nuốt photon năng lượng cao, lớp dưới nhặt phần còn lại. Sẽ gặp lại ở chương 3 và phần đề xuất cải tiến.",
+        caption: "Tandem vượt một đường trần vì lớp trên và lớp dưới chia nhau phổ.",
       },
     ],
   },
@@ -664,19 +673,23 @@ export const lessons: Lesson[] = [
       {
         title: "2009, Miyasaka",
         body: "Nhóm Miyasaka ở Nhật lần đầu dùng perovskite trong pin và chỉ đạt 3,8% [7]. Silicon đã mất hơn 50 năm cho một quãng đường tương tự.",
+        caption: "Mốc 3,8% năm 2009. Đường cam là một lớp. Đường lục ngang là mức 33,7%.",
       },
       {
         title: "Đường một lớp",
         body: "Trong khoảng 17 năm, pin một lớp leo tới 27,3% trên biểu đồ NREL 2026 được tài liệu dẫn [1]. Đường vẽ ở đây là minh họa các mốc tài liệu nêu, không phải từng điểm gốc.",
+        caption: "Đường cam nối các mốc tài liệu nêu cho pin một lớp, tới 27,3%. Không phải số đo gốc từng năm.",
         note: warn("Số thị trường và thông cáo công ty ở chương 4 cần đối chiếu biểu đồ gốc tại nrel.gov trước khi trích dẫn."),
       },
       {
         title: "Tandem vượt trần một lớp",
         body: "Tandem perovskite/silicon được tài liệu ghi 35% [1]. Nó được phép vượt 33,7% vì không còn là pin một lớp.",
+        caption: "Đường lam là tandem và được phép vượt 33,7% vì không còn là pin một lớp.",
       },
       {
         title: "Sáu lý do phía sau tốc độ ấy",
         body: "Hấp thụ mạnh, điện tích đi xa, exciton tự tách, dung thứ khuyết tật, chỉnh Eg dễ, chế tạo rẻ. Các mục sau lần lượt mở từng lý do.",
+        caption: "Sáu lý do mở ở mục 3.1 đến 3.6. Hình chỉ giữ các đường để thấy chỗ đứng.",
       },
     ],
   },
@@ -885,18 +898,22 @@ export const lessons: Lesson[] = [
       {
         title: "Bốn cột",
         body: "Silicon tinh thể, CdTe màng mỏng, pin hữu cơ (OPV), và perovskite halide. Chiều cao cột là hiệu suất kỷ lục mà tài liệu nêu, ở mức gần đúng.",
+        caption: "Bốn cột. Chiều cao là hiệu suất một lớp gần đúng. Cột perovskite không dùng số tandem 35%.",
       },
       {
         title: "Hiệu suất và độ dày",
         body: "Silicon ≈ 27–28% nhưng dày 150–180 µm. CdTe ≈ 23%, dày vài µm. OPV ≈ 20%, dày ≈ 0,1 µm. Perovskite 27,3% một lớp và 35% tandem, dày ≈ 0,5 µm.",
+        caption: "Nhãn dưới cột là độ dày. Silicon cao về hiệu suất nhưng dày hơn perovskite khoảng 300 lần.",
       },
       {
         title: "Nhiệt độ và núm vùng cấm",
         body: "Silicon trên 1400 °C, không chỉnh Eg. CdTe khoảng 500–600 °C, chỉnh Eg hạn chế. OPV và perovskite đều dưới 150 °C; perovskite chỉnh Eg rất rộng.",
+        caption: "Nhãn tiếp theo là nhiệt độ chế tạo. Perovskite nằm dưới 150 °C.",
       },
       {
         title: "Bền và độc",
         body: "Silicon và CdTe đã có 25 năm ngoài trời; CdTe vướng cadmium. OPV còn hạn chế về bền. Perovskite đang cải thiện, và vướng chì — lượng nhỏ, nhưng hòa tan được trong nước.",
+        caption: "Bước cuối nhắc độ bền: silicon và CdTe đã có khoảng 25 năm ngoài trời. Perovskite chưa có mức ấy.",
       },
     ],
   },
@@ -1006,14 +1023,17 @@ export const lessons: Lesson[] = [
       {
         title: "Hai giai đoạn",
         body: "Mọi cách nuôi tinh thể đều có tạo mầm (nucleation) — những mầm tí hon xuất hiện — và lớn lên (growth).",
+        caption: "Hai giai đoạn của mọi cách nuôi tinh thể: tạo mầm, rồi lớn lên.",
       },
       {
         title: "Mầm cùng một lúc",
         body: "Bí quyết của màng mịn, hạt đều: mọi mầm xuất hiện đồng loạt, rồi lớn với tốc độ như nhau.",
+        caption: "Mầm cùng cỡ nghĩa là chúng xuất hiện cùng lúc và lớn cùng tốc độ.",
       },
       {
         title: "Mầm rải rác thì thủng lỗ kim",
         body: "Nếu mầm xuất hiện lúc có lúc không, màng có lỗ kim (pinhole) và hạt to nhỏ lẫn lộn. Một lỗ kim trên tấm pin lớn có thể thành đường chập.",
+        caption: "Chấm cam là lỗ kim. Trên tấm lớn, một lỗ có thể thành đường chập cả mô-đun.",
       },
     ],
   },
@@ -1246,18 +1266,22 @@ export const lessons: Lesson[] = [
       {
         title: "Vài gam trên một mét vuông",
         body: "Một tấm pin perovskite chứa chì cỡ vài gam mỗi mét vuông, ít hơn nhiều so với một ắc quy ô tô. Nhưng chì hòa tan trong nước, nên vẫn phải ngăn rò rỉ.",
+        caption: "Cột ngang là hiệu suất tài liệu dùng để so họ vật liệu, không phải bảng thị trường.",
       },
       {
         title: "Thiếc cùng nhóm, dễ bị oxy hóa",
         body: "Sn²⁺ dễ thành Sn⁴⁺, thừa lỗ trống, pin bị rò điện. Tài liệu nêu kỷ lục khoảng 16–17%. Cột Sn–Pb cao hơn, khoảng 24% trong hình minh họa của tài liệu, vẫn dưới chì 27,3%.",
+        caption: "Cột thiếc thấp hơn chì vì Sn²⁺ dễ thành Sn⁴⁺ và pin bị rò.",
       },
       {
         title: "Perovskite kép",
         body: "Cs₂AgBiBr₆ thay hai Pb bằng một Ag và một Bi xếp xen kẽ. Bền, nhưng vùng cấm gián tiếp, hấp thụ kém, hiệu suất khoảng 6% [36].",
+        caption: "Cs₂AgBiBr₆ bền hơn nhưng vùng cấm gián tiếp, hấp thụ kém, nên cột ngắn.",
       },
       {
         title: "Việc làm được ngay",
         body: "Giảm lượng chì, đóng gói chống rò, thêm lớp hấp phụ chì, và thiết kế để tái chế. Thay chì hoàn toàn vẫn còn kém xa về hiệu suất.",
+        caption: "Việc làm được ngay là khóa chì lại. Cột ngắn không có nghĩa chất ấy đã thay được chì.",
         note: warn("Các cột là số tài liệu dùng để so sánh họ vật liệu, không phải một bảng xếp hạng thị trường."),
       },
     ],
@@ -1266,7 +1290,7 @@ export const lessons: Lesson[] = [
     id: "pin",
     chapter: "c5",
     section: "5.1",
-    title: "Nền đề xuất — xếp lớp kiểu p-i-n",
+    title: "Bước 1 — chọn kiến trúc p-i-n",
     scene: "pin",
     cam: "stack",
     controls: ["architecture"],
@@ -1283,14 +1307,17 @@ export const lessons: Lesson[] = [
       {
         title: "p-i-n, ánh sáng vào cửa lỗ trống",
         body: "Kiến trúc đảo (inverted): ánh sáng đi qua lớp lỗ trống. Hầu hết pin trên 27% hiện là p-i-n, vì NiOₓ, SAM và C₆₀ bền hơn và ít tổn thất hơn [39].",
+        caption: "Hai cách xếp cùng một lớp hấp thụ. p-i-n đón nắng ở cửa lỗ trống. Hầu hết pin trên 27% hiện là kiểu này [39].",
       },
       {
         title: "Đổi chiều ánh sáng",
         body: "Nút trên màn hình lật hai cách xếp. Cùng một lớp hấp thụ, thứ tự cửa chọn lọc đổi vai trò của mặt đón nắng.",
+        caption: "Hình: bên trái n-i-p, bên phải p-i-n. Mũi tên vàng là chiều ánh sáng. Bấm nút để đổi kiểu đang được nói tới.",
       },
       {
         title: "Bậc thang năng lượng",
         body: "Các mức được xếp thành bậc. Điện tử chỉ có đường xuống dốc về phía ETL. Lỗ trống chỉ có đường về phía HTL. Không cần chúng «chọn đúng» bằng ý chí.",
+        caption: "Hình: khối lam là cửa điện tử, khối cam là cửa lỗ trống. Các hạt chạy về đúng cửa của mình.",
       },
     ],
   },
@@ -1298,7 +1325,7 @@ export const lessons: Lesson[] = [
     id: "stack",
     chapter: "c5",
     section: "5.2",
-    title: "Xếp từng lớp để chặn năm kẻ thù",
+    title: "Bước 2 — mỗi lớp một việc",
     scene: "stack",
     cam: "stack",
     controls: ["explode"],
@@ -1319,42 +1346,52 @@ export const lessons: Lesson[] = [
       {
         title: "Không phát minh một chất mới",
         body: "Đề xuất chương 5 ghép những gì đã được chứng minh riêng lẻ, để chặn cùng lúc năm kẻ thù ở mục 3.9. Bấm từng lát trên mô hình để nhảy tới lời dẫn của lát đó.",
+        caption: "Hình: chồng lớp của đề xuất. Lớp đang sáng là lớp đang được nói tới. Độ dày vẽ không theo tỉ lệ thật.",
       },
       {
         title: "Kính lọc UV",
         body: "Chặn tia cực tím trước khi vào pin. Nhắm kẻ thù số 4 [26].",
+        caption: "Kính trên cùng chặn tia cực tím trước khi vào pin.",
       },
       {
         title: "ITO + NiOₓ + SAM",
         body: "Điện cực trong suốt, lớp lấy lỗ trống, và đơn lớp tự sắp xếp tạo mặt tiếp xúc ít khuyết tật [39].",
+        caption: "ITO trong suốt lấy dòng. NiOₓ và SAM là cửa lỗ trống, ít phụ gia hơn các lớp lỗ trống đời đầu.",
       },
       {
         title: "Lớp 2D mặt dưới",
         body: "Thụ động hóa giao diện dưới, cản ion và đỡ tổn thất điện áp [30].",
+        caption: "Lớp 2D mặt dưới lấp bẫy và cản ion ở giao diện dưới.",
       },
       {
         title: "Lõi Cs₀.₀₅FA₀.₉₅PbI₃",
         body: "Không MA nên bền nhiệt hơn. Thuần iod nên không tách pha kiểu Hoke. Hệ số dung hạn nằm vùng chịu được [19][22][24].",
+        caption: "Lõi không có methylammonium, chỉ iod, thêm khoảng 5% cesium để khung khỏi đổ sang pha vàng.",
       },
       {
         title: "Lớp 2D mặt trên",
         body: "Lấp bẫy, kỵ nước, chặn ion. Nhắm ẩm và di chuyển ion [29][30].",
+        caption: "Lớp 2D mặt trên kỵ nước và chặn ion đi lên.",
       },
       {
         title: "C₆₀",
         body: "Lấy điện tử, đưa chúng ra khỏi perovskite [39].",
+        caption: "C₆₀ nhận điện tử và đưa chúng ra khỏi perovskite.",
       },
       {
         title: "SnO₂ phủ từng lớp nguyên tử",
         body: "ALD cho một lớp ô-xít mỏng nhưng đặc khít, ngăn iod đi lên ăn điện cực kim loại [39][40].",
+        caption: "SnO₂ phủ từng lớp nguyên tử là một tấm chắn đặc, để iod không ăn điện cực kim loại.",
       },
       {
         title: "Điện cực Cu/Ag",
         body: "Thu điện tử sau khi chúng đã qua rào SnO₂. Kim loại không được chạm trực tiếp dòng iod.",
+        caption: "Kim loại chỉ gặp điện tử sau khi chúng đã qua rào SnO₂.",
       },
       {
         title: "Kính–kính và gioăng mép",
         body: "Đóng gói kín, chặn ẩm và oxy [38]. Kéo thanh «tách lớp» để xem từng lát; hình không theo tỉ lệ bề dày thật.",
+        caption: "Kéo thanh tách lớp để xem từng lát. Kính dưới và gioăng mép khóa ẩm với oxy.",
       },
     ],
   },
@@ -1362,7 +1399,7 @@ export const lessons: Lesson[] = [
     id: "why",
     chapter: "c5",
     section: "5.3",
-    title: "Vì sao chọn đúng những thành phần ấy",
+    title: "Bước 3 — vì sao đúng những chất ấy",
     scene: "why",
     cam: "default",
     steps: [
@@ -1392,37 +1429,44 @@ export const lessons: Lesson[] = [
     id: "verify",
     chapter: "c5",
     section: "5.4",
-    title: "Cách kiểm chứng đề xuất — chuẩn ISOS",
+    title: "Bước 4 — chứng minh bằng chuẩn ISOS",
     scene: "verify",
     cam: "plot",
     steps: [
       {
         title: "Một con số bền phải kèm điều kiện",
         body: "Cộng đồng đã thống nhất bộ giao thức ISOS, đăng trên Nature Energy năm 2020 [38]. Không có điều kiện thử thì một câu «bền 1000 giờ» không nói được gì.",
+        caption: "Trục ngang là giờ chiếu, trục dọc là phần trăm hiệu suất còn lại.",
       },
       {
         title: "Mức đề xuất: ISOS-L-3",
         body: "Chiếu sáng liên tục, nhiệt độ 65–85 °C, có độ ẩm. Ba mũi tên trên mô hình là đèn, nhiệt và ẩm cùng lúc.",
+        caption: "Mức đề xuất là đèn, nhiệt 65–85 °C và ẩm cùng lúc — ISOS-L-3.",
       },
       {
         title: "Thước T80",
         body: "T80 là thời gian cho tới khi hiệu suất còn 80% giá trị ban đầu. Đường đỏ là pin chưa tối ưu. Đường xanh là mục tiêu thiết kế.",
+        caption: "Đường cam giảm nhanh. Đường lục là mục tiêu thiết kế, chưa phải số đo của đúng tổ hợp này.",
       },
       {
         title: "Mục tiêu của đề xuất",
         body: "Hiệu suất ban đầu ≥ 26% trên tế bào 1 cm². Giữ trên 90% sau 2000 giờ ISOS-L-3. Dấu sao nhắc mức tài liệu nêu cho pin 27,3%: khoảng 93% sau 2000 giờ [39] — đó là số đã báo cáo cho một pin khác, không phải cho đúng tổ hợp này.",
+        caption: "Mốc 93% sau 2000 giờ là số đã báo cáo cho một pin khác [39], đặt lên hình để có thước so.",
       },
       {
         title: "Phép đo đi kèm",
         body: "PLQY để theo dõi Voc. Nhiễu xạ tia X để xem pha còn nguyên không. Phổ khối hoặc XPS để bắt iod đã bò tới điện cực hay chưa.",
+        caption: "PLQY, nhiễu xạ tia X và phổ khối là ba phép đo đi kèm. Chúng không vẽ thành đường thứ ba.",
       },
       {
         title: "Bỏ lần lượt từng lớp",
         body: "Đối chứng: tháo lớp 2D trên, lớp 2D dưới, rồi lớp ALD, để biết mỗi lớp đóng góp bao nhiêu. Không làm đối chứng thì không biết lớp nào đang gánh.",
+        caption: "Tháo lần lượt lớp 2D và lớp ALD mới biết mỗi lớp đóng góp bao nhiêu.",
       },
       {
         title: "Và đây vẫn là giả thuyết",
         body: "Từng mảnh đã có bài báo. Chưa có nghiên cứu nào kiểm chứng đúng tổ hợp này. Các lớp có thể cãi nhau: lớp 2D làm giảm dẫn, quy trình ALD có thể hỏng bề mặt perovskite.",
+        caption: "Nhãn giả thuyết nghĩa là hình này chưa phải một pin đã chế tạo.",
         note: idea(
           "Đừng đọc chương 5 như một bản thiết kế đã chạy ra pin. Tài liệu gọi đúng tên của nó: một giả thuyết hợp lý.",
         ),
@@ -1433,33 +1477,44 @@ export const lessons: Lesson[] = [
     id: "finale",
     chapter: "c6",
     section: "6",
-    title: "Khép vòng — cấu trúc, tính chất, pin, thiết kế lại",
+    title: "Bảy kết luận của cả hành trình",
     scene: "finale",
     cam: "wide",
     steps: [
       {
-        title: "Cấu trúc → tính chất → hiệu năng → thiết kế lại",
-        body: "Cả câu chuyện perovskite halide nằm gọn trong một vòng. Đổi ion là đổi cấu trúc. Cấu trúc quyết định Eg và độ bền. Hiệu năng buộc ta thiết kế lại cấu trúc.",
+        title: "Kết luận 1 — Bốn bước biến ánh sáng thành điện",
+        body: "Photon rơi vào lớp tím. Điện tử đi lên vùng dẫn, lỗ trống ở lại, rồi hai hạt ra hai cửa. Không có máy quay, không đốt nhiên liệu.",
+        caption: "Hình: một photon, một lần tách, hai mũi tên ra mạch ngoài. Đây là cả pin mặt trời, thu gọn vào bốn động tác.",
       },
       {
-        title: "Pin cần gì",
-        body: "Một chất bán dẫn có vùng cấm hợp, hấp thụ mạnh, điện tích đi xa, ít khuyết tật gây hại, rẻ, và bền.",
+        title: "Kết luận 2 — ABX₃ là ba núm vặn trên một khung",
+        body: "A là cation lớn trong hốc, B là chì hoặc thiếc ở tâm bát diện, X là I, Br hoặc Cl ở đỉnh. Đổi một ion là đổi vùng cấm và độ bền.",
+        caption: "Hình: một ô mạng. Nhãn A, B, X là ba núm vặn, không phải ba chất rời nhau.",
       },
       {
-        title: "ABX₃ cho ta núm vặn",
-        body: "Khung bát diện PbX₆ nối góc, cation A trong hốc. Kích thước ion, độ nghiêng, và số chiều 3D hay 2D quyết định vùng cấm lẫn độ bền.",
+        title: "Kết luận 3 — Tổ hợp hiếm: 3,8% lên 27,3% rồi tandem",
+        body: "Vùng cấm thẳng, hấp thụ mạnh trong lớp mỏng cỡ 0,5 µm, điện tích đi được xa hơn bề dày lớp, và chế tạo dưới 150 °C. Vì vậy hiệu suất tài liệu dẫn đi từ 3,8% năm 2009 lên 27,3% một lớp, và tandem được ghi 35% [1][7].",
+        caption: "Hình: hai mốc trên cùng một cột thời gian. 27,3% là mức một lớp được tài liệu dẫn, không phải chiều cao của tandem.",
       },
       {
-        title: "Một tổ hợp hiếm",
-        body: "Vùng cấm thẳng chỉnh được, hấp thụ mạnh, exciton tự tách, điện tích đi xa, dung thứ khuyết tật, chế tạo rẻ. Hiệu suất từ 3,8% năm 2009 lên 27,3% một lớp và 35% tandem trong số liệu tài liệu dẫn cho 2026.",
+        title: "Kết luận 4 — Mạng mềm là cả ưu điểm lẫn năm kẻ thù",
+        body: "Cùng liên kết yếu cho tinh thể tự vá và cho ion iod nhảy, cho ẩm, oxy, nhiệt và tia cực tím làm hỏng pin. Năm kẻ thù ấy không phải chuyện phụ của hiệu suất cao.",
+        caption: "Hình: tinh thể ở giữa, năm chấm cảnh báo quay quanh. Mỗi chấm là một kẻ thù đã gặp ở mục 3.9.",
       },
       {
-        title: "Mạng mềm là cả hai mặt",
-        body: "Ẩm, oxy, nhiệt, UV và ion iod di chuyển đều đi ra từ liên kết yếu. Chì là mối quan ngại môi trường phải quản lý, không phải một chú thích cuối trang.",
+        title: "Kết luận 5 — Bảy cách chế tạo, một quy tắc mầm",
+        body: "Quay phủ, hai bước, chân không, kết tinh nhiệt độ ngược, chích nóng, dao gạt và phủ khe khác nhau ở chỗ ép mầm ra. Chúng giống nhau ở quy tắc: mầm phải xuất hiện cùng lúc, rồi lớn đều, nếu không thì thủng lỗ kim.",
+        caption: "Hình: nhiều mầm cùng cỡ bung ra, rồi khép thành một màng. Ảnh thực của từng cách nằm ở chương phương pháp chế tạo.",
       },
       {
-        title: "Đích bây giờ là độ bền",
-        body: "Kiểm chứng theo ISOS. Lõi Cs/FA thuần iod, kẹp 2D hai mặt, rào ALD, đóng gói kính–kính là giả thuyết dựa trên kết quả đã công bố. Con đường thương mại gần nhất là tandem perovskite/silicon, đang ở thì thí điểm.",
+        title: "Kết luận 6 — Đề xuất cải tiến chặn kẻ thù bằng từng lớp",
+        body: "Không cần một chất mới. Kính lọc UV, cửa lỗ trống NiOₓ và SAM, lớp 2D hai mặt, lõi FA/Cs thuần iod, C₆₀, rào SnO₂ và kính kín — mỗi lớp gánh một kẻ thù. Đây vẫn là giả thuyết ghép từ các bài đã công bố, chưa phải pin đã làm.",
+        caption: "Hình: chồng lớp của đề xuất. Lớp đang sáng là lớp đang được nói tới. Độ dày vẽ không theo tỉ lệ thật.",
+      },
+      {
+        title: "Kết luận 7 — Việc còn lại là độ bền; đường gần là tandem",
+        body: "Số bền chỉ có nghĩa khi kèm điều kiện. Mục tiêu đề xuất là giữ trên 90% sau 2000 giờ ISOS-L-3, trên tế bào khoảng 1 cm², rồi mới nói tới tấm lớn. Con đường thương mại gần nhất vẫn là trải perovskite lên silicon có sẵn.",
+        caption: "Hình: lớp perovskite mỏng nằm trên lát silicon dày. Đồng hồ là phép thử T80, chưa phải một pin đã qua 2000 giờ.",
       },
     ],
   },
@@ -1522,11 +1577,11 @@ export const chapters: Chapter[] = [
   {
     id: "c4",
     num: "4",
-    title: "Làm ra vật liệu rồi làm ra tấm pin",
+    title: "Phương pháp chế tạo",
     lessonIds: ["methods", "nucleation", "films", "grow", "scale", "apps", "market", "lead"],
   },
-  { id: "c5", num: "5", title: "Ghép thành pin bền hơn", lessonIds: ["pin", "stack", "why", "verify"] },
-  { id: "c6", num: "6", title: "Khép vòng", lessonIds: ["finale", "quiz"] },
+  { id: "c5", num: "5", title: "Đề xuất cải tiến", lessonIds: ["pin", "stack", "why", "verify"] },
+  { id: "c6", num: "6", title: "Kết luận", lessonIds: ["finale", "quiz"] },
   { id: "cA", num: "A", title: "Phụ lục", lessonIds: ["glossary", "refs"] },
 ];
 

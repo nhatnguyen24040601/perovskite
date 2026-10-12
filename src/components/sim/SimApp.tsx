@@ -477,9 +477,10 @@ function PhotoDrawer({
   onClose: () => void;
   embedded?: boolean;
 }) {
-  const shots = photosFor(lessonId);
+  const step = useSim((s) => s.step);
+  const shots = photosFor(lessonId, step);
   const [index, setIndex] = useState(0);
-  useEffect(() => setIndex(0), [lessonId]);
+  useEffect(() => setIndex(0), [lessonId, step]);
   const photo: Photo = shots[Math.min(index, Math.max(0, shots.length - 1))] ?? shots[0]!;
   const n = shots.length;
   return (

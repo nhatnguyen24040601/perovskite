@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Perovskite Lab",
+      "hasCanvas": false,
+      "bodyTextLen": 2684,
+      "bodyTextHash": "1a1430e2174e93ef13d74ffd92e9b13e9fbe9373cf921f9466a513fe1f366ff1",
+      "bodyTextPrefix": "Phòng thí nghiệm perovskite Halide · ABX₃ · cùng một hành trình ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Perovskite Lab",
+      "hasCanvas": false,
+      "bodyTextLen": 2618,
+      "bodyTextHash": "8fbe133008332fde01eacdc8bc4920e84e0667ef00fb80705518716cda944444",
+      "bodyTextPrefix": "Phòng thí nghiệm perovskite Halide · ABX₃ · cùng một hành trình ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}

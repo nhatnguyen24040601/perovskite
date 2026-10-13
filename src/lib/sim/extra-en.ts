@@ -80,16 +80,16 @@ export const EXTRA_EN: Record<string, string> = {
   "Hiệu suất đọc từ công thức trên hình. 26,4% là ví dụ khi kéo thanh, không phải một kỷ lục mới.":
     "Efficiency is read from the formula on the figure. 26.4% is the example on the sliders, not a new record.",
 
-  "Đường trần một lớp theo vùng cấm. Đỉnh được giữ ở 33,7%. Dạng đường là minh họa, không phải từng điểm tính lại từ phổ mặt trời.":
-    "The single-junction ceiling against bandgap. The peak is held at 33.7%. The shape is illustrative, not every point recomputed from the solar spectrum.",
-  "Eg thấp: dòng lớn, điện áp thấp, phần dư của photon thành nhiệt.":
-    "A low gap: large current, low voltage, the leftover photon energy becomes heat.",
-  "Eg cao: điện áp cao, nhưng nhiều photon đỏ và hồng ngoại không đủ năng lượng.":
-    "A high gap: high voltage, but many red and infrared photons do not have enough energy.",
-  "Đỉnh đường nằm quanh 1,1–1,4 eV. Từ 1,0 đến 1,6 eV, trần vẫn trên 30%.":
-    "The peak sits near 1.1–1.4 eV. From 1.0 to 1.6 eV the ceiling stays above 30%.",
-  "Tandem vượt một đường trần vì lớp trên và lớp dưới chia nhau phổ.":
-    "A tandem may cross the single ceiling because the top and bottom layers split the spectrum.",
+  "Bên trái là một lớp. Quả cầu đỏ và cam yếu hơn Eg thì xuyên xuống và mờ. Quả cầu vàng, xanh, tím dừng trong lớp; hạt bay sang trái là phần dư thành nhiệt, hạt tím to hơn vì dư nhiều hơn. Cột lam là áp, theo Eg. Cột lục là phần giữ lại, đọc cùng chấm vàng trên đường. Đỉnh đường là 33,7%.":
+    "On the left, one layer. Red and orange spheres weaker than Eg pass down and fade. Gold, green and violet spheres stop in the layer; the specks flying left are leftover energy turning into heat, and the violet one is larger because more is left over. The blue bar is voltage, and it follows Eg. The green bar is what is kept, read together with the gold dot on the curve. The peak of the curve is 33.7%.",
+  "Eg = 0,9 eV. Cả năm quả cầu dừng trong lớp — dòng lớn. Hạt nhiệt của quả cầu tím là to nhất. Cột áp thấp. Chấm vàng nằm bên trái đỉnh, khoảng 27%.":
+    "Eg = 0.9 eV. All five spheres stop in the layer — a large current. The violet sphere’s heat speck is the largest. The voltage bar is short. The gold dot sits left of the peak, near 27%.",
+  "Eg = 2,2 eV. Quả cầu đỏ, cam và vàng xuyên lớp rồi mờ phía dưới. Chỉ quả cầu xanh và tím dừng. Cột áp cao, nhãn ghi nuốt 2/5. Chấm vàng nằm bên phải đỉnh, khoảng 19%.":
+    "Eg = 2.2 eV. The red, orange and gold spheres pass through the layer and fade below it. Only the green and violet spheres stop. The voltage bar is tall, and the label reads 2/5 swallowed. The gold dot sits right of the peak, near 19%.",
+  "Eg = 1,34 eV, đúng đỉnh. Một phần quả cầu đỏ xuyên, phần dư của quả cầu tím thành nhiệt, nhưng cột lục là cao nhất và chấm vàng đứng trên 33,7%. Vùng tô lục trên đường là 1,0–1,6 eV, vẫn trên 30%.":
+    "Eg = 1.34 eV, right at the peak. Some red spheres pass through and the violet sphere’s leftover becomes heat, but the green bar is the tallest and the gold dot stands on 33.7%. The green tint on the curve is 1.0–1.6 eV, still above 30%.",
+  "Lớp trên ≈ 1,7 eV: quả cầu xanh và tím dừng ở đó. Quả cầu cam và vàng xuyên qua rồi dừng ở lớp dưới ≈ 1,1 eV. Quả cầu đỏ yếu hơn cả hai thì vẫn xuyên. Đường bên phải vẫn là trần của một lớp, để thấy hai lớp không bị buộc theo đường ấy.":
+    "Top layer ≈ 1.7 eV: the green and violet spheres stop there. The orange and gold spheres pass through and stop in the bottom layer ≈ 1.1 eV. The red sphere, weaker than both, still passes through. The curve on the right is still the single-layer ceiling, so you can see that two layers are not bound to it.",
 
   "Mốc 3,8% năm 2009. Đường cam là một lớp. Đường lục ngang là mức 33,7%.":
     "The 3.8% mark in 2009. The orange line is the single junction. The horizontal green line is 33.7%.",

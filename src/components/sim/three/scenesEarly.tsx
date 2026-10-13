@@ -1,9 +1,9 @@
 import { useFrame } from "@react-three/fiber";
-import { useMemo, useRef, type ReactNode } from "react";
+import { useMemo, useRef, useState, type ReactNode, type RefObject } from "react";
 import * as THREE from "three";
 import { ivCurve, photonEnergy, sqEfficiency, wavelengthHex } from "@/lib/sim/physics";
 import { useSim } from "@/lib/sim/store";
-import { FlowDots, Ion, Molecule, OctaMesh, Pop, SPHERE, Slab, Tag, UnitCell } from "./kit";
+import { FlowDots, Ion, Molecule, OctaMesh, Pop, SPHERE, Seg, Slab, Tag, UnitCell } from "./kit";
 import { PlotFrame, Polyline } from "./plot";
 
 function SunGlyph() {
@@ -674,96 +674,498 @@ function BandsScene({ step }: { step: number }) {
   );
 }
 
+function fadeMesh(mesh: THREE.Mesh | null, x: number, y: number, z: number, opacity: number) {
+  if (!mesh) return;
+  mesh.position.set(x, y, z);
+  mesh.visible = opacity > 0.04;
+  const mat = mesh.material as THREE.MeshStandardMaterial;
+  if (mat && "opacity" in mat) {
+    mat.transparent = opacity < 0.98;
+    mat.opacity = Math.max(0, Math.min(1, opacity));
+    mat.depthWrite = opacity > 0.85;
+  }
+}
+
+function clamp01(t: number) {
+  return Math.min(1, Math.max(0, t));
+}
+
+function smooth(t: number) {
+  const x = clamp01(t);
+  return x * x * (3 - 2 * x);
+}
+
+function lerp(a: number, b: number, t: number) {
+  return a + (b - a) * t;
+}
+
+function along(pts: readonly [number, number, number][], u: number): [number, number, number] {
+  const lens: number[] = [];
+  let total = 0;
+  for (let i = 0; i < pts.length - 1; i++) {
+    const a = pts[i];
+    const b = pts[i + 1];
+    const len = Math.hypot(b[0] - a[0], b[1] - a[1], b[2] - a[2]);
+    lens.push(len);
+    total += len;
+  }
+  let d = clamp01(u) * total;
+  for (let i = 0; i < lens.length; i++) {
+    if (d <= lens[i] || i === lens.length - 1) {
+      const k = lens[i] === 0 ? 0 : Math.min(1, d / lens[i]);
+      const a = pts[i];
+      const b = pts[i + 1];
+      return [lerp(a[0], b[0], k), lerp(a[1], b[1], k), lerp(a[2], b[2], k)];
+    }
+    d -= lens[i];
+  }
+  const last = pts[pts.length - 1];
+  return [last[0], last[1], last[2]];
+}
+
+const CELL = {
+  itoY: 1.08,
+  htlY: 0.82,
+  absY: 0.04,
+  etlY: -0.7,
+  metalY: -0.96,
+  vbY: -0.28,
+  cbY: 0.4,
+  absTop: 0.62,
+  absBot: -0.54,
+  z: 0.86,
+};
+
+const WIRE: readonly [number, number, number][] = [
+  [0.18, CELL.metalY, 1.02],
+  [2.28, CELL.metalY, 1.02],
+  [2.28, CELL.itoY, 1.02],
+  [0.62, CELL.itoY, 1.02],
+];
+
 function CellStack() {
   return (
     <group>
-      <Slab position={[0, 1.05, 0]} size={[2.4, 0.1, 1.4]} color="#d5e2ea" opacity={0.55} />
-      <Tag position={[1.55, 1.05, 0]}>ITO</Tag>
-      <Slab position={[0, 0.78, 0]} size={[2.25, 0.22, 1.3]} color="#c46a45" />
-      <Tag position={[1.55, 0.78, 0]}>HTL</Tag>
-      <Slab position={[0, 0.05, 0]} size={[2.15, 0.95, 1.2]} color="#2a2140" emissive={0.16} />
-      <Tag position={[1.55, 0.05, 0]}>hấp thụ</Tag>
-      <Slab position={[0, -0.58, 0]} size={[2.25, 0.2, 1.3]} color="#4d86d6" />
-      <Tag position={[1.55, -0.58, 0]}>ETL</Tag>
-      <Slab position={[0, -0.86, 0]} size={[2.4, 0.12, 1.4]} color="#e0b15a" />
-      <Tag position={[1.55, -0.86, 0]}>kim loại</Tag>
+      <Slab position={[0, CELL.itoY, 0]} size={[2.3, 0.12, 1.28]} color="#d5e2ea" opacity={0.42} />
+      <Tag position={[1.58, CELL.itoY, 0]}>ITO</Tag>
+      <Slab position={[0, CELL.htlY, 0]} size={[2.12, 0.26, 1.16]} color="#c46a45" />
+      <Tag position={[1.58, CELL.htlY, 0]}>HTL</Tag>
+      <Slab position={[0, CELL.absY, 0]} size={[2.0, 1.16, 1.08]} color="#241c38" opacity={0.9} emissive={0.14} />
+      <Tag position={[1.58, CELL.absY, 0]}>hấp thụ</Tag>
+      <Slab position={[0, CELL.etlY, 0]} size={[2.12, 0.22, 1.16]} color="#4d86d6" />
+      <Tag position={[1.58, CELL.etlY, 0]}>ETL</Tag>
+      <Slab position={[0, CELL.metalY, 0]} size={[2.3, 0.14, 1.28]} color="#e0b15a" emissive={0.12} />
+      <Tag position={[1.58, CELL.metalY, 0]}>kim loại</Tag>
+    </group>
+  );
+}
+
+function GlowBall({
+  ballRef,
+  color,
+  radius = 0.1,
+  position,
+}: {
+  ballRef: RefObject<THREE.Mesh | null>;
+  color: string;
+  radius?: number;
+  position?: [number, number, number];
+}) {
+  return (
+    <mesh ref={ballRef} position={position}>
+      <sphereGeometry args={[radius, 18, 14]} />
+      <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.85} />
+    </mesh>
+  );
+}
+
+/** Step 1: a violet photon stops in the absorber; a red one passes through and is wasted. */
+function AbsorbAct() {
+  const violet = useRef<THREE.Mesh>(null);
+  const red = useRef<THREE.Mesh>(null);
+  const ring = useRef<THREE.Mesh>(null);
+  useFrame(({ clock }) => {
+    const period = 5.2;
+    const t = clock.elapsedTime % period;
+    const y0 = 2.02;
+    const speed = 1.18;
+    const y = y0 - speed * t;
+    const gate = t < 0.2 ? t / 0.2 : t > 4.55 ? 1 - (t - 4.55) / 0.65 : 1;
+    const vY = Math.max(CELL.absY, y);
+    fadeMesh(violet.current, -0.36, vY, CELL.z, gate);
+    const rY = Math.max(-1.28, y);
+    const past = rY < -0.62 ? clamp01((rY + 1.28) / 0.66) : 1;
+    fadeMesh(red.current, 0.42, rY, CELL.z, gate * past);
+    const arrival = (y0 - CELL.absY) / speed;
+    const age = t - arrival;
+    const showRing = age > 0 && t < 4.55;
+    if (ring.current) {
+      ring.current.visible = showRing;
+      ring.current.scale.setScalar(showRing ? Math.min(2.1, 0.65 + age * 0.7) : 0.2);
+      const mat = ring.current.material as THREE.MeshBasicMaterial;
+      mat.opacity = showRing ? Math.max(0, 0.65 - age * 0.22) : 0;
+    }
+  });
+  return (
+    <group>
+      <mesh position={[0, 1.78, CELL.z]} rotation={[Math.PI, 0, 0]}>
+        <coneGeometry args={[0.09, 0.22, 14]} />
+        <meshStandardMaterial color="#e4a23a" emissive="#e4a23a" emissiveIntensity={0.7} />
+      </mesh>
+      <Tag position={[0.78, 1.82, CELL.z]}>ánh sáng từ trên</Tag>
+      <GlowBall ballRef={violet} color="#7a4de8" radius={0.11} position={[-0.36, 2.02, CELL.z]} />
+      <GlowBall ballRef={red} color="#e15b4c" radius={0.11} position={[0.42, 2.02, CELL.z]} />
+      <mesh ref={ring} position={[-0.36, CELL.absY, CELL.z]} rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[0.16, 0.016, 8, 28]} />
+        <meshBasicMaterial color="#d2c4ff" transparent opacity={0} />
+      </mesh>
+      <Tag position={[-0.36, 0.48, CELL.z]}>E ≥ Eg · bị nuốt</Tag>
+      <Tag position={[0.42, -1.18, CELL.z]}>{"E < Eg · xuyên, lãng phí"}</Tag>
+    </group>
+  );
+}
+
+/** Step 2: the electron climbs only as far as the conduction band; leftover energy leaves as heat. */
+function PairAct() {
+  const photon = useRef<THREE.Mesh>(null);
+  const electron = useRef<THREE.Mesh>(null);
+  const hole = useRef<THREE.Mesh>(null);
+  const heat0 = useRef<THREE.Mesh>(null);
+  const heat1 = useRef<THREE.Mesh>(null);
+  const heat2 = useRef<THREE.Mesh>(null);
+  useFrame(({ clock }) => {
+    const t = clock.elapsedTime % 5.6;
+    const fade = t > 5.0 ? 1 - (t - 5.0) / 0.6 : 1;
+    const pU = clamp01(t / 1.15);
+    fadeMesh(photon.current, 0.02, lerp(1.85, CELL.vbY, smooth(pU)), CELL.z, pU < 0.98 ? fade : 0);
+    const born = t > 1.15;
+    const climb = smooth(clamp01((t - 1.15) / 1.2));
+    fadeMesh(electron.current, -0.2, lerp(CELL.vbY, CELL.cbY, climb), CELL.z + 0.04, born ? fade : 0);
+    fadeMesh(hole.current, -0.2, CELL.vbY, CELL.z + 0.04, born ? fade : 0);
+    [heat0, heat1, heat2].forEach((ref, i) => {
+      const ht = clamp01((t - 1.25 - i * 0.14) / 1.15);
+      fadeMesh(
+        ref.current,
+        lerp(0.05, -1.2, smooth(ht)),
+        lerp(0.02, 0.08 + i * 0.07, smooth(ht)),
+        CELL.z,
+        born ? fade * Math.sin(Math.PI * ht) : 0,
+      );
+    });
+  });
+  return (
+    <group>
+      <Slab position={[0, CELL.vbY, 0.7]} size={[1.65, 0.045, 0.05]} color="#e08a55" emissive={0.4} />
+      <Slab position={[0, CELL.cbY, 0.7]} size={[1.65, 0.045, 0.05]} color="#79b0ff" emissive={0.4} />
+      <Tag position={[1.02, CELL.vbY, 0.8]}>hóa trị</Tag>
+      <Tag position={[1.02, CELL.cbY, 0.8]}>dẫn</Tag>
+      <Tag position={[0.95, 0.06, 0.8]}>Eg</Tag>
+      <GlowBall ballRef={photon} color="#e4a23a" radius={0.1} position={[0.02, 1.85, CELL.z]} />
+      <GlowBall ballRef={electron} color="#79b0ff" radius={0.09} position={[-0.2, CELL.vbY, CELL.z]} />
+      <GlowBall ballRef={hole} color="#e08a55" radius={0.09} position={[-0.2, CELL.vbY, CELL.z]} />
+      <GlowBall ballRef={heat0} color="#e08a55" radius={0.055} />
+      <GlowBall ballRef={heat1} color="#e08a55" radius={0.05} />
+      <GlowBall ballRef={heat2} color="#e08a55" radius={0.045} />
+      <Tag position={[-1.45, 0.16, 0.8]}>phần dư → nhiệt</Tag>
+    </group>
+  );
+}
+
+/** Step 3: first they recombine; then selective contacts pull a pair apart and block the wrong way. */
+function SplitAct() {
+  const meetE = useRef<THREE.Mesh>(null);
+  const meetH = useRef<THREE.Mesh>(null);
+  const flash = useRef<THREE.Mesh>(null);
+  const okH = useRef<THREE.Mesh>(null);
+  const okE = useRef<THREE.Mesh>(null);
+  const badE = useRef<THREE.Mesh>(null);
+  const badH = useRef<THREE.Mesh>(null);
+  const [beat, setBeat] = useState<"meet" | "split">("meet");
+  const beatRef = useRef(beat);
+  useFrame(({ clock }) => {
+    const period = 8.4;
+    const t = clock.elapsedTime % period;
+    const next = t < 3.7 ? "meet" : "split";
+    if (beatRef.current !== next) {
+      beatRef.current = next;
+      setBeat(next);
+    }
+    const meetFade = t < 3.35 ? 1 : t < 3.7 ? 1 - (t - 3.35) / 0.35 : 0;
+    const approach = smooth(clamp01((t - 0.25) / 1.7));
+    const gone = t > 2.15;
+    fadeMesh(meetE.current, 0, lerp(CELL.cbY, 0.05, approach), CELL.z, gone ? 0 : meetFade);
+    fadeMesh(meetH.current, 0, lerp(CELL.vbY, 0.05, approach), CELL.z, gone ? 0 : meetFade);
+    if (flash.current) {
+      const age = t - 2.05;
+      const on = age > 0 && age < 0.85;
+      flash.current.visible = on;
+      flash.current.scale.setScalar(on ? 0.4 + age * 2.4 : 0.01);
+      const mat = flash.current.material as THREE.MeshBasicMaterial;
+      mat.opacity = on ? Math.max(0, 0.9 - age) : 0;
+    }
+    const local = t - 3.7;
+    const splitFade = local < 0.2 ? local / 0.2 : t > 7.85 ? 1 - (t - 7.85) / 0.55 : 1;
+    const move = smooth(clamp01(local / 1.45));
+    const wobble = move >= 1 ? Math.sin(clock.elapsedTime * 7) * 0.035 : 0;
+    fadeMesh(okH.current, -0.66, lerp(0.04, CELL.htlY, move), CELL.z, local > 0 ? splitFade : 0);
+    fadeMesh(okE.current, -0.66, lerp(0.04, CELL.etlY, move), CELL.z, local > 0 ? splitFade : 0);
+    fadeMesh(badE.current, 0.7, lerp(0.04, CELL.absTop - 0.02, move) + wobble, CELL.z, local > 0 ? splitFade : 0);
+    fadeMesh(badH.current, 0.7, lerp(0.04, CELL.absBot + 0.02, move) - wobble, CELL.z, local > 0 ? splitFade : 0);
+  });
+  return (
+    <group>
+      <GlowBall ballRef={meetE} color="#79b0ff" radius={0.09} position={[0, CELL.cbY, CELL.z]} />
+      <GlowBall ballRef={meetH} color="#e08a55" radius={0.09} position={[0, CELL.vbY, CELL.z]} />
+      <mesh ref={flash} position={[0, 0.05, CELL.z + 0.05]}>
+        <sphereGeometry args={[0.18, 16, 12]} />
+        <meshBasicMaterial color="#fff1c9" transparent opacity={0} />
+      </mesh>
+      {beat === "meet" ? (
+        <group>
+          <Tag position={[0, 0.72, CELL.z]}>gặp nhau → tái hợp</Tag>
+          <Tag position={[0, -0.42, CELL.z]}>thành nhiệt hoặc ánh sáng</Tag>
+        </group>
+      ) : (
+        <group>
+          <Slab position={[0.7, CELL.absTop + 0.02, 0.98]} size={[0.78, 0.055, 0.08]} color="#e15b4c" emissive={0.7} />
+          <Slab position={[0.7, CELL.absBot - 0.02, 0.98]} size={[0.78, 0.055, 0.08]} color="#e15b4c" emissive={0.7} />
+          <GlowBall ballRef={okH} color="#e08a55" radius={0.09} />
+          <GlowBall ballRef={okE} color="#79b0ff" radius={0.09} />
+          <GlowBall ballRef={badE} color="#79b0ff" radius={0.09} />
+          <GlowBall ballRef={badH} color="#e08a55" radius={0.09} />
+          <Tag position={[1.05, 1.4, 0]}>HTL chỉ lỗ trống</Tag>
+          <Tag position={[-1.42, CELL.etlY, 0]}>ETL chỉ điện tử</Tag>
+          <Tag position={[-1.25, -1.12, 0]}>đúng cửa</Tag>
+          <Tag position={[1.45, -1.42, 0]}>sai cửa, bị chặn</Tag>
+        </group>
+      )}
+    </group>
+  );
+}
+
+/** Step 4: hole waits at the ITO; the electron reaches the metal, then the lamp, then the hole. */
+function CollectAct() {
+  const hole = useRef<THREE.Mesh>(null);
+  const electron = useRef<THREE.Mesh>(null);
+  const flash = useRef<THREE.Mesh>(null);
+  const bulb = useRef<THREE.MeshStandardMaterial>(null);
+  const [meet, setMeet] = useState(false);
+  const meetRef = useRef(false);
+  useFrame(({ clock }) => {
+    const period = 7.4;
+    const t = clock.elapsedTime % period;
+    const showMeet = t > 5.15 && t < 6.15;
+    if (meetRef.current !== showMeet) {
+      meetRef.current = showMeet;
+      setMeet(showMeet);
+    }
+    const fade = t > 6.7 ? 1 - (t - 6.7) / 0.7 : 1;
+    const up = smooth(clamp01(t / 1.55));
+    const holeOp = t < 5.25 ? fade : t < 5.7 ? fade * (1 - (t - 5.25) / 0.45) : 0;
+    fadeMesh(hole.current, 0.62, lerp(CELL.absY, CELL.itoY, up), 1.08, holeOp);
+    let ex: number;
+    let ey: number;
+    let ez: number;
+    let onWire = false;
+    if (t < 1.55) {
+      const k = smooth(clamp01(t / 1.55));
+      ex = lerp(0.12, WIRE[0][0], k);
+      ey = lerp(CELL.absY, CELL.metalY, k);
+      ez = lerp(0.9, WIRE[0][2], k);
+    } else if (t < 5.15) {
+      onWire = true;
+      const p = along(WIRE, (t - 1.55) / 3.5);
+      ex = p[0];
+      ey = p[1];
+      ez = p[2];
+    } else {
+      ex = WIRE[3][0];
+      ey = WIRE[3][1];
+      ez = WIRE[3][2];
+    }
+    const elecOp = t < 5.25 ? fade : t < 5.7 ? fade * (1 - (t - 5.25) / 0.45) : 0;
+    fadeMesh(electron.current, ex, ey, ez, elecOp);
+    if (bulb.current) bulb.current.emissiveIntensity = onWire ? 1.8 : 0.06;
+    if (flash.current) {
+      const age = t - 5.15;
+      const on = age > 0 && age < 0.7;
+      flash.current.visible = on;
+      flash.current.scale.setScalar(on ? 0.35 + age * 2.2 : 0.01);
+      const mat = flash.current.material as THREE.MeshBasicMaterial;
+      mat.opacity = on ? Math.max(0, 0.85 - age) : 0;
+    }
+  });
+  return (
+    <group>
+      <Seg a={WIRE[0]} b={WIRE[1]} color="#d7dde6" radius={0.028} />
+      <Seg a={WIRE[1]} b={WIRE[2]} color="#d7dde6" radius={0.028} />
+      <Seg a={WIRE[2]} b={WIRE[3]} color="#d7dde6" radius={0.028} />
+      <mesh position={[2.28, 0.06, 1.02]}>
+        <sphereGeometry args={[0.22, 22, 16]} />
+        <meshStandardMaterial ref={bulb} color="#fff6e4" emissive="#e4a23a" emissiveIntensity={0.08} />
+      </mesh>
+      <mesh position={[2.28, -0.14, 1.02]} rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[0.1, 0.018, 8, 18]} />
+        <meshStandardMaterial color="#d7dde6" metalness={0.65} roughness={0.28} />
+      </mesh>
+      <GlowBall ballRef={hole} color="#e08a55" radius={0.11} position={[0.62, CELL.absY, 1.08]} />
+      <GlowBall ballRef={electron} color="#79b0ff" radius={0.09} position={[0.12, CELL.absY, 0.9]} />
+      <mesh ref={flash} position={[0.62, CELL.itoY, 1.12]}>
+        <sphereGeometry args={[0.16, 16, 12]} />
+        <meshBasicMaterial color="#fff1c9" transparent opacity={0} />
+      </mesh>
+      {meet ? (
+        <Tag position={[0.62, 1.5, 0]}>gặp lại, khép mạch</Tag>
+      ) : (
+        <Tag position={[0.62, 1.5, 0]}>lỗ trống → ITO</Tag>
+      )}
+      <Tag position={[0.9, -1.32, 0]}>điện tử → kim loại</Tag>
+      <Tag position={[2.28, 0.48, 1.02]}>chạy dây qua đèn</Tag>
+    </group>
+  );
+}
+
+const LOOP_LABEL = ["1 · hấp thụ", "2 · sinh cặp", "3 · tách", "4 · thu"] as const;
+
+/** Step 5: one clean loop of the successful path — absorb, pair, separate, collect. */
+function AllAct() {
+  const photon = useRef<THREE.Mesh>(null);
+  const electron = useRef<THREE.Mesh>(null);
+  const hole = useRef<THREE.Mesh>(null);
+  const heat = useRef<THREE.Mesh>(null);
+  const flash = useRef<THREE.Mesh>(null);
+  const bulb = useRef<THREE.MeshStandardMaterial>(null);
+  const [phase, setPhase] = useState(0);
+  const phaseRef = useRef(0);
+  useFrame(({ clock }) => {
+    const t = clock.elapsedTime % 11.2;
+    const next = t < 2 ? 0 : t < 3.7 ? 1 : t < 5.5 ? 2 : 3;
+    if (phaseRef.current !== next) {
+      phaseRef.current = next;
+      setPhase(next);
+    }
+    const pU = smooth(clamp01(t / 1.45));
+    const pOp = t < 1.65 ? 1 : t < 2.1 ? 1 - (t - 1.65) / 0.45 : 0;
+    fadeMesh(photon.current, 0, lerp(1.9, CELL.absY, pU), CELL.z, pOp);
+
+    const climb = smooth(clamp01((t - 1.7) / 1.1));
+    let hx = -0.16;
+    let hy = CELL.vbY;
+    let hz = CELL.z;
+    let hop = 0;
+    if (t >= 1.7 && t < 3.7) {
+      hop = 1;
+    } else if (t < 5.4) {
+      const k = smooth((t - 3.7) / 1.5);
+      hop = 1;
+      hy = lerp(CELL.vbY, CELL.htlY, k);
+    } else if (t < 6.6) {
+      const k = smooth((t - 5.4) / 1.1);
+      hop = 1;
+      hx = lerp(-0.16, 0.62, k);
+      hy = lerp(CELL.htlY, CELL.itoY, k);
+      hz = lerp(CELL.z, 1.08, k);
+    } else if (t < 9.45) {
+      hop = 1;
+      hx = 0.62;
+      hy = CELL.itoY;
+      hz = 1.08;
+    } else if (t < 9.95) {
+      hop = 1 - (t - 9.45) / 0.5;
+      hx = 0.62;
+      hy = CELL.itoY;
+      hz = 1.08;
+    }
+    let ex = -0.16;
+    let ey = CELL.vbY;
+    let ez = CELL.z;
+    let eop = 0;
+    if (t >= 1.7 && t < 3.7) {
+      eop = 1;
+      ey = lerp(CELL.vbY, CELL.cbY, climb);
+    } else if (t < 5.4) {
+      const k = smooth((t - 3.7) / 1.5);
+      eop = 1;
+      ex = lerp(-0.16, 0.12, k);
+      ey = lerp(CELL.cbY, CELL.etlY, k);
+    } else if (t < 6.5) {
+      const k = smooth((t - 5.4) / 1.0);
+      eop = 1;
+      ex = lerp(0.12, WIRE[0][0], k);
+      ey = lerp(CELL.etlY, CELL.metalY, k);
+      ez = lerp(CELL.z, WIRE[0][2], k);
+    } else if (t < 9.4) {
+      eop = 1;
+      const p = along(WIRE, (t - 6.5) / 2.9);
+      ex = p[0];
+      ey = p[1];
+      ez = p[2];
+    } else if (t < 9.95) {
+      eop = 1 - (t - 9.45) / 0.5;
+      ex = WIRE[3][0];
+      ey = WIRE[3][1];
+      ez = WIRE[3][2];
+    }
+    fadeMesh(hole.current, hx, hy, hz, hop);
+    fadeMesh(electron.current, ex, ey, ez, eop);
+    const heatT = clamp01((t - 1.85) / 1.25);
+    const heatOn = t > 1.85 && t < 3.45;
+    fadeMesh(
+      heat.current,
+      lerp(0.05, -1.2, smooth(heatT)),
+      lerp(0.04, 0.16, smooth(heatT)),
+      CELL.z,
+      heatOn ? Math.sin(Math.PI * heatT) : 0,
+    );
+    if (bulb.current) bulb.current.emissiveIntensity = t >= 6.5 && t < 9.45 ? 1.8 : 0.06;
+    if (flash.current) {
+      const age = t - 9.4;
+      const on = age > 0 && age < 0.6;
+      flash.current.visible = on;
+      flash.current.scale.setScalar(on ? 0.3 + age * 2.6 : 0.01);
+      const mat = flash.current.material as THREE.MeshBasicMaterial;
+      mat.opacity = on ? Math.max(0, 0.9 - age * 1.4) : 0;
+    }
+  });
+  return (
+    <group>
+      <Slab position={[0, CELL.vbY, 0.7]} size={[1.5, 0.04, 0.04]} color="#e08a55" emissive={0.35} />
+      <Slab position={[0, CELL.cbY, 0.7]} size={[1.5, 0.04, 0.04]} color="#79b0ff" emissive={0.35} />
+      <Seg a={WIRE[0]} b={WIRE[1]} color="#d7dde6" radius={0.028} />
+      <Seg a={WIRE[1]} b={WIRE[2]} color="#d7dde6" radius={0.028} />
+      <Seg a={WIRE[2]} b={WIRE[3]} color="#d7dde6" radius={0.028} />
+      <mesh position={[2.28, 0.06, 1.02]}>
+        <sphereGeometry args={[0.22, 22, 16]} />
+        <meshStandardMaterial ref={bulb} color="#fff6e4" emissive="#e4a23a" emissiveIntensity={0.06} />
+      </mesh>
+      <mesh position={[2.28, -0.14, 1.02]} rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[0.1, 0.018, 8, 18]} />
+        <meshStandardMaterial color="#d7dde6" metalness={0.65} roughness={0.28} />
+      </mesh>
+      <GlowBall ballRef={photon} color="#e4a23a" radius={0.1} position={[0, 1.9, CELL.z]} />
+      <GlowBall ballRef={electron} color="#79b0ff" radius={0.09} />
+      <GlowBall ballRef={hole} color="#e08a55" radius={0.09} />
+      <GlowBall ballRef={heat} color="#e08a55" radius={0.05} />
+      <mesh ref={flash} position={[0.62, CELL.itoY, 1.12]}>
+        <sphereGeometry args={[0.16, 16, 12]} />
+        <meshBasicMaterial color="#fff1c9" transparent opacity={0} />
+      </mesh>
+      <Tag position={[-1.42, 0.16, 0]} accent>
+        {LOOP_LABEL[phase]}
+      </Tag>
     </group>
   );
 }
 
 function CellScene({ step }: { step: number }) {
-  const bulb = useRef<THREE.Mesh>(null);
-  useFrame(({ clock }) => {
-    const mat = bulb.current?.material;
-    if (mat && "emissiveIntensity" in mat) {
-      (mat as THREE.MeshStandardMaterial).emissiveIntensity = 0.7 + Math.sin(clock.elapsedTime * 3) * 0.25;
-    }
-  });
   return (
-    <group>
+    <group position={[-0.15, 0.08, 0]}>
       <CellStack />
-      {step === 0 ? (
-        <group>
-          <FlowDots count={3} color="#7b4de0" speed={0.28} path={(t) => [-0.35, t < 0.78 ? 2.15 - t * 2.5 : 0.2, 0.4]} />
-          <FlowDots count={3} color="#d23b32" speed={0.28} path={(t) => [0.4, 2.15 - t * 3.5, 0.4]} />
-          <Tag position={[-1.7, 0.35, 0]}>bị hấp thụ</Tag>
-          <Tag position={[0.4, -1.35, 0]}>đi xuyên</Tag>
-        </group>
-      ) : null}
-      {step === 1 ? (
-        <group>
-          <FlowDots count={1} color="#e4a23a" speed={0.22} path={(t) => [0, t < 0.4 ? 2.1 - t * 4.6 : 0.25, 0.45]} />
-          <FlowDots count={1} color="#79b0ff" speed={0.22} path={(t) => [0.2, t < 0.4 ? 0.15 : 0.15 + ((t - 0.4) / 0.6) * 0.7, 0.45]} />
-          <mesh position={[-0.25, 0.02, 0.45]}>
-            <sphereGeometry args={[0.09, 14, 12]} />
-            <meshStandardMaterial color="#e08a55" emissive="#e08a55" emissiveIntensity={0.7} />
-          </mesh>
-          <Tag position={[-1.55, 0.95, 0]}>e⁻ lên vùng dẫn</Tag>
-          <Tag position={[-1.55, -0.25, 0]}>lỗ trống ở lại</Tag>
-          <Tag position={[1.15, 0.45, 0]}>thành nhiệt</Tag>
-        </group>
-      ) : null}
-      {step === 2 ? (
-        <group>
-          <FlowDots count={3} color="#e08a55" speed={0.24} path={(t) => [-0.2, 0.15 + t * 0.62, 0.4]} />
-          <FlowDots count={3} color="#79b0ff" speed={0.24} path={(t) => [0.2, 0.1 - t * 0.68, 0.4]} />
-          <Tag position={[-1.7, 0.85, 0]}>lỗ trống sang HTL</Tag>
-          <Tag position={[-1.7, -0.65, 0]}>điện tử sang ETL</Tag>
-          <Tag position={[0, 1.45, 0]}>tách trước khi tái hợp</Tag>
-        </group>
-      ) : null}
-      {step === 3 ? (
-        <group>
-          <mesh position={[1.7, 1.05, 0.2]}>
-            <boxGeometry args={[1.1, 0.03, 0.03]} />
-            <meshStandardMaterial color="#d7dde6" metalness={0.7} roughness={0.25} />
-          </mesh>
-          <mesh position={[2.22, 0.15, 0.2]}>
-            <boxGeometry args={[0.03, 1.85, 0.03]} />
-            <meshStandardMaterial color="#d7dde6" metalness={0.7} roughness={0.25} />
-          </mesh>
-          <mesh position={[1.7, -0.86, 0.2]}>
-            <boxGeometry args={[1.1, 0.03, 0.03]} />
-            <meshStandardMaterial color="#d7dde6" metalness={0.7} roughness={0.25} />
-          </mesh>
-          <mesh ref={bulb} position={[2.22, 0.15, 0.35]}>
-            <sphereGeometry args={[0.22, 20, 16]} />
-            <meshStandardMaterial color="#fff6e4" emissive="#e4a23a" emissiveIntensity={0.9} />
-          </mesh>
-          <FlowDots
-            count={6}
-            color="#79b0ff"
-            speed={0.22}
-            path={(t) => {
-              if (t < 0.25) return [1.15 + (t / 0.25) * 1.05, -0.86, 0.35];
-              if (t < 0.55) return [2.22, -0.86 + ((t - 0.25) / 0.3) * 1.9, 0.35];
-              if (t < 0.8) return [2.22 - ((t - 0.55) / 0.25) * 1.05, 1.05, 0.35];
-              return [1.15, 1.05 - ((t - 0.8) / 0.2) * 0.2, 0.35];
-            }}
-          />
-          <Tag position={[2.22, 0.7, 0.35]}>mạch ngoài</Tag>
-        </group>
-      ) : null}
+      {step <= 0 ? <AbsorbAct /> : null}
+      {step === 1 ? <PairAct /> : null}
+      {step === 2 ? <SplitAct /> : null}
+      {step === 3 ? <CollectAct /> : null}
+      {step >= 4 ? <AllAct /> : null}
     </group>
   );
 }
@@ -797,37 +1199,198 @@ function MetricsScene(_props: { step: number }) {
   );
 }
 
-function SqScene(_props: { step: number }) {
-  const eg = useSim((s) => s.eg);
+const RAIN = [
+  { e: 0.95, color: "#e15b4c", x: -0.5 },
+  { e: 1.2, color: "#e07a32", x: -0.25 },
+  { e: 1.55, color: "#e4a23a", x: 0 },
+  { e: 2.2, color: "#3cba84", x: 0.25 },
+  { e: 3.0, color: "#7a4de8", x: 0.5 },
+] as const;
+
+const SQ_HINT = [
+  "hai lỗ hổng không tránh được",
+  "nhiệt nhiều · áp thấp",
+  "bỏ photon đỏ · dòng nhỏ",
+  "cân bằng · đỉnh trần",
+  "hai lớp chia phổ",
+] as const;
+
+function OneAbsorber({ eg }: { eg: number }) {
+  const gap = 0.16 + Math.max(0, eg - 0.4) * 0.28;
+  const vb = -0.3;
+  const cb = vb + gap;
   return (
-    <PlotFrame x0={0.5} x1={3} y0={0} y1={40} xLabel="Eg (eV)" yLabel="%">
-      {(map) => {
-        const line: [number, number, number][] = [];
-        for (let i = 0; i <= 32; i++) {
-          const x = 0.5 + (i / 32) * 2.5;
-          line.push(map(x, sqEfficiency(x)));
-        }
-        const y = sqEfficiency(eg);
-        return (
-          <group>
-            <Polyline pts={line} color="#79b0ff" />
-            <SegMark at={map(1.34, 33.7)} label="33,7%" />
-            <mesh position={map(eg, y)}>
-              <sphereGeometry args={[0.12, 16, 12]} />
-              <meshStandardMaterial color="#e4a23a" emissive="#e4a23a" emissiveIntensity={0.8} />
-            </mesh>
-            <Tag position={map(eg, y + 3)} accent>
-              {eg.toFixed(2)} eV · ~{y.toFixed(1)}%
-            </Tag>
-          </group>
-        );
-      }}
-    </PlotFrame>
+    <group>
+      <Slab position={[0, 0.02, 0]} size={[1.7, 1.18, 0.78]} color="#241c38" opacity={0.92} emissive={0.12} />
+      <Slab position={[0, vb, 0.46]} size={[1.28, 0.045, 0.05]} color="#e08a55" emissive={0.5} />
+      <Slab position={[0, cb, 0.46]} size={[1.28, 0.045, 0.05]} color="#79b0ff" emissive={0.5} />
+      <Tag position={[0.62, vb, 0.55]}>hóa trị</Tag>
+      <Tag position={[0.62, cb, 0.55]}>dẫn</Tag>
+      <Tag position={[-0.2, (vb + cb) / 2, 0.55]}>Eg</Tag>
+    </group>
   );
 }
 
-function SegMark({ at, label }: { at: [number, number, number]; label: string }) {
-  return <Tag position={at}>{label}</Tag>;
+function TwoAbsorbers() {
+  return (
+    <group>
+      <Slab position={[0, 0.72, 0]} size={[1.7, 0.36, 0.78]} color="#3a2a55" emissive={0.18} />
+      <Tag position={[-1.15, 0.95, 0]}>trên · ≈ 1,7 eV</Tag>
+      <Slab position={[0, -0.12, 0]} size={[1.7, 0.42, 0.78]} color="#241c38" emissive={0.14} />
+      <Tag position={[-1.15, -0.42, 0]}>dưới · ≈ 1,1 eV</Tag>
+    </group>
+  );
+}
+
+function SqMeters({ eg }: { eg: number }) {
+  const pct = sqEfficiency(eg);
+  const vH = 0.24 + eg * 0.36;
+  const uH = 0.2 + (pct / 40) * 1.25;
+  const n = RAIN.filter((p) => p.e >= eg).length;
+  const swallowed = `nuốt ${n}/5` as "nuốt 0/5" | "nuốt 1/5" | "nuốt 2/5" | "nuốt 3/5" | "nuốt 4/5" | "nuốt 5/5";
+  return (
+    <group>
+      <mesh position={[-1.48, -0.48 + vH / 2, 0]}>
+        <boxGeometry args={[0.14, vH, 0.14]} />
+        <meshStandardMaterial color="#79b0ff" emissive="#79b0ff" emissiveIntensity={0.45} />
+      </mesh>
+      <Tag position={[-2.15, 0.05, 0]}>áp theo Eg</Tag>
+      <Tag position={[-2.15, -0.95, 0]}>{swallowed}</Tag>
+      <mesh position={[1.48, -0.48 + uH / 2, 0]}>
+        <boxGeometry args={[0.14, uH, 0.14]} />
+        <meshStandardMaterial color="#8fd0a8" emissive="#8fd0a8" emissiveIntensity={0.4} />
+      </mesh>
+      <Tag position={[2.15, 0.05, 0]} accent>
+        {pct.toFixed(1)}%
+      </Tag>
+      <Tag position={[2.15, -0.95, 0]}>phần giữ lại</Tag>
+    </group>
+  );
+}
+
+function SqRain({ eg, tandem }: { eg: number; tandem: boolean }) {
+  const a = useRef<THREE.Mesh>(null);
+  const b = useRef<THREE.Mesh>(null);
+  const c = useRef<THREE.Mesh>(null);
+  const d = useRef<THREE.Mesh>(null);
+  const e = useRef<THREE.Mesh>(null);
+  const ha = useRef<THREE.Mesh>(null);
+  const hb = useRef<THREE.Mesh>(null);
+  const hc = useRef<THREE.Mesh>(null);
+  const hd = useRef<THREE.Mesh>(null);
+  const he = useRef<THREE.Mesh>(null);
+  const photons = [a, b, c, d, e];
+  const heats = [ha, hb, hc, hd, he];
+  useFrame(({ clock }) => {
+    const t = clock.elapsedTime % 5.4;
+    const gate = t < 0.18 ? t / 0.18 : t > 4.75 ? 1 - (t - 4.75) / 0.65 : 1;
+    const y0 = 1.62;
+    const speed = 1.05;
+    const yNow = y0 - speed * t;
+    RAIN.forEach((p, i) => {
+      const topGap = tandem ? 1.7 : eg;
+      const stopTop = p.e >= topGap;
+      const stopBot = tandem && !stopTop && p.e >= 1.1;
+      const stops = stopTop || stopBot;
+      const stopY = tandem ? (stopTop ? 0.72 : -0.12) : 0.05;
+      if (!stops) {
+        const yy = Math.max(-1.15, yNow);
+        const fade = yy < -0.42 ? clamp01((yy + 1.15) / 0.73) : 1;
+        fadeMesh(photons[i]!.current, p.x, yy, 0.55, gate * fade);
+        fadeMesh(heats[i]!.current, p.x, stopY, 0.6, 0);
+      } else {
+        const yy = Math.max(stopY, yNow);
+        const arrival = (y0 - stopY) / speed;
+        const age = t - arrival;
+        const hold = age > 2.15 ? Math.max(0, 1 - (age - 2.15) / 1.1) : 1;
+        fadeMesh(photons[i]!.current, p.x, yy, 0.55, gate * (age > 0 ? hold : 1));
+        const gap = stopBot ? 1.1 : topGap;
+        const leftover = Math.max(0, p.e - gap);
+        const ht = clamp01(age / 1.05);
+        const heatOp = age > 0 && age < 1.2 ? Math.sin(Math.PI * ht) * Math.min(1, 0.3 + leftover * 0.45) : 0;
+        fadeMesh(
+          heats[i]!.current,
+          lerp(p.x, p.x - 0.12 - leftover * 0.2, smooth(ht)),
+          lerp(stopY + 0.08, stopY + 0.2, smooth(ht)),
+          0.62,
+          gate * heatOp,
+        );
+        if (heats[i]!.current) heats[i]!.current.scale.setScalar(0.5 + Math.min(1.35, leftover * 0.48));
+      }
+    });
+  });
+  return (
+    <group>
+      {RAIN.map((p, i) => (
+        <GlowBall key={p.color} ballRef={photons[i]!} color={p.color} radius={0.09} position={[p.x, 1.62, 0.55]} />
+      ))}
+      {RAIN.map((p, i) => (
+        <GlowBall key={`heat-${p.color}`} ballRef={heats[i]!} color="#e08a55" radius={0.07} />
+      ))}
+    </group>
+  );
+}
+
+function SqCurve({ eg, shade }: { eg: number; shade: boolean }) {
+  const y = sqEfficiency(eg);
+  return (
+    <group position={[2.35, 0.08, -0.15]}>
+      <PlotFrame x0={0.5} x1={3} y0={0} y1={40} w={3.25} h={2.4} xLabel="Eg (eV)" yLabel="%">
+        {(map) => {
+          const line: [number, number, number][] = [];
+          for (let i = 0; i <= 28; i++) {
+            const x = 0.5 + (i / 28) * 2.5;
+            line.push(map(x, sqEfficiency(x)));
+          }
+          const lo = map(1.0, 0);
+          const hi = map(1.6, 31);
+          return (
+            <group>
+              {shade ? (
+                <mesh position={[(lo[0] + hi[0]) / 2, (lo[1] + hi[1]) / 2, -0.05]}>
+                  <boxGeometry args={[Math.abs(hi[0] - lo[0]), Math.abs(hi[1] - lo[1]), 0.02]} />
+                  <meshBasicMaterial color="#8fd0a8" transparent opacity={0.2} depthWrite={false} />
+                </mesh>
+              ) : null}
+              <Polyline pts={line} color="#79b0ff" radius={0.026} />
+              {Math.abs(eg - 1.34) > 0.08 ? <Tag position={map(1.55, 37.5)}>đỉnh 33,7%</Tag> : null}
+              {shade ? <Tag position={map(1.3, 5)}>{"> 30%"}</Tag> : null}
+              <mesh position={map(eg, y)}>
+                <sphereGeometry args={[0.1, 16, 12]} />
+                <meshStandardMaterial color="#e4a23a" emissive="#e4a23a" emissiveIntensity={0.9} />
+              </mesh>
+              <Tag position={map(Math.min(2.55, Math.max(0.85, eg)), Math.min(37.5, y + 5))} accent>
+                {eg.toFixed(2)} eV · {y.toFixed(1)}%
+              </Tag>
+            </group>
+          );
+        }}
+      </PlotFrame>
+    </group>
+  );
+}
+
+function SqScene({ step }: { step: number }) {
+  const eg = useSim((s) => s.eg);
+  const tandem = step >= 4;
+  return (
+    <group position={[0.05, 0.08, 0]}>
+      <group position={[-2.05, 0, 0]}>
+        {tandem ? <TwoAbsorbers /> : <OneAbsorber eg={eg} />}
+        <SqRain eg={eg} tandem={tandem} />
+        {tandem ? null : <SqMeters eg={eg} />}
+        <mesh position={[0, 1.82, 0.1]}>
+          <sphereGeometry args={[0.15, 20, 16]} />
+          <meshStandardMaterial color="#ffe1a3" emissive="#e4a23a" emissiveIntensity={1.2} />
+        </mesh>
+        <Tag position={[0.55, 1.82, 0]}>nắng</Tag>
+        <Tag position={[0, tandem ? -0.95 : -1.28, 0]} accent>
+          {SQ_HINT[Math.min(step, 4)]}
+        </Tag>
+      </group>
+      <SqCurve eg={eg} shade={step === 3} />
+    </group>
+  );
 }
 
 function SiliconScene({ step }: { step: number }) {

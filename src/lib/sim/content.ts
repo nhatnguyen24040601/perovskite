@@ -214,51 +214,33 @@ export const lessons: Lesson[] = [
     steps: [
       {
         title: "Bước 1 — Hấp thụ",
-        body: "Photon có năng lượng lớn hơn hoặc bằng Eg bị vật liệu nuốt. Photon yếu hơn Eg đi xuyên qua và bị lãng phí.",
+        body: "Ánh sáng chiếu từ phía trên xuống. Photon tím có năng lượng lớn hơn hoặc bằng vùng cấm Eg thì bị lớp hấp thụ nuốt, nên nó dừng giữa lớp đó. Photon đỏ có năng lượng nhỏ hơn Eg không mở được vùng cấm, nên không bị nuốt: nó đi xuyên lớp hấp thụ và bị lãng phí, không sinh ra điện.",
+        caption:
+          "Lát cắt pin, ánh sáng từ trên. Quả cầu tím dừng giữa lớp hấp thụ (E ≥ Eg). Quả cầu đỏ không dừng: nó xuyên lớp hấp thụ rồi mờ dần phía dưới pin (E < Eg), nên không sinh cặp.",
       },
       {
         title: "Bước 2 — Sinh cặp điện tử–lỗ trống",
-        body: "Điện tử nhảy lên vùng dẫn, để lại một chỗ trống ở vùng hóa trị. Chỗ trống hành xử như hạt mang điện dương: lỗ trống (hole). Năng lượng dư của photon nhanh chóng thành nhiệt — tổn thất nhiệt hóa (thermalization).",
+        body: "Photon bị nuốt giao năng lượng cho một điện tử ở vùng hóa trị. Điện tử nhảy lên vùng dẫn và dừng đúng ở đó, chưa sang HTL hay ETL. Chỗ vừa trống trên vùng hóa trị là lỗ trống, mang điện dương, và ở lại. Phần năng lượng của photon cao hơn Eg không kéo điện tử lên thêm; nó tách ngang thành nhiệt. Đó là tổn thất nhiệt hóa.",
+        caption:
+          "Trong lớp hấp thụ: vạch cam là vùng hóa trị, vạch lam là vùng dẫn, khoảng giữa là Eg. Photon vàng rơi tới vạch cam rồi tắt. Điện tử lam nhảy lên đúng vạch lam và dừng. Lỗ trống cam ở lại vạch dưới. Hạt cam bay sang trái là phần dư thành nhiệt, không phải một mức năng lượng cao hơn.",
       },
       {
         title: "Bước 3 — Tách trước khi tái hợp",
-        body: "Điện tử và lỗ trống hút nhau. Nếu gặp lại, năng lượng mất thành nhiệt hoặc ánh sáng: tái hợp (recombination). Pin silicon dùng tiếp giáp p-n. Pin perovskite dùng hai lớp chọn lọc: ETL chỉ cho điện tử qua, HTL chỉ cho lỗ trống qua.",
+        body: "Điện tử âm và lỗ trống dương hút nhau. Nếu chúng gặp lại trong lớp hấp thụ, cặp mất: năng lượng thành nhiệt hoặc ánh sáng, gọi là tái hợp, và không có dòng. Pin silicon dùng tiếp giáp p-n để ngăn việc này. Pin perovskite dùng hai lớp chọn lọc. HTL ở trên chỉ nhận lỗ trống — điện tử đi lên thì bị chặn. ETL ở dưới chỉ nhận điện tử — lỗ trống đi xuống thì bị chặn. Hạt đúng cửa thì ra hai phía trước khi kịp gặp lại.",
+        caption:
+          "Nhịp 1: điện tử và lỗ trống tiến vào nhau, chạm giữa lớp hấp thụ, rồi một chớp sáng và cả hai biến mất — tái hợp. Nhịp 2, bên trái: lỗ trống đi lên vào HTL, điện tử đi xuống vào ETL. Bên phải: điện tử đi lên thì dừng trước HTL, lỗ trống đi xuống thì dừng trước ETL. Hình vẽ lớp chọn lọc của perovskite, không vẽ tiếp giáp p-n của silicon.",
       },
       {
         title: "Bước 4 — Thu vào mạch ngoài",
-        body: "Điện tử tới một điện cực, lỗ trống tới điện cực kia. Nối qua một bóng đèn, điện tử chạy mạch ngoài để gặp lại lỗ trống — đó là dòng điện có ích.",
-      },
-    ],
-  },
-  {
-    id: "metrics",
-    chapter: "c1",
-    section: "1.4",
-    title: "Bốn số đo của pin: Voc, Jsc, FF, hiệu suất",
-    scene: "metrics",
-    cam: "plot",
-    controls: ["iv"],
-    tune: [{ voc: 1.19, jsc: 25.8, ff: 0.86 }],
-    steps: [
-      {
-        title: "Điện áp hở mạch Voc",
-        body: "Voc là điện áp lớn nhất khi không lấy dòng. Nó phụ thuộc Eg và mức độ tái hợp. Pin perovskite tốt thường khoảng 1,15–1,20 V.",
-        caption: "Đường dòng–áp. Trục ngang là điện áp, trục dọc là dòng trên mỗi cm². Voc nằm trên trục điện áp khi dòng bằng không.",
+        body: "Lỗ trống đã tách thì đi tiếp lên điện cực trong suốt ITO. Điện tử đi tiếp xuống điện cực kim loại. Nối hai điện cực bằng dây qua một bóng đèn: điện tử rời kim loại, chạy trên dây, qua đèn, rồi tới ITO để gặp lỗ trống. Chỗ gặp lại ấy khép dòng — đó là dòng điện có ích. Đèn sáng vì điện tử chạy trên dây, không phải vì photon đập vào đèn.",
+        caption:
+          "Lỗ trống cam đi từ lớp hấp thụ lên ITO và chờ ở đó. Điện tử lam đi xuống kim loại, rồi theo dây bạc bên phải, xuyên bóng đèn, tới đúng chỗ lỗ trống. Khi chúng chạm nhau, cả hai tắt: gặp lại và khép mạch. Đèn chỉ sáng trong lúc điện tử đang ở trên dây.",
       },
       {
-        title: "Dòng ngắn mạch Jsc",
-        body: "Jsc là dòng lớn nhất trên mỗi cm² khi nối tắt hai cực. Nó phụ thuộc số photon bị hấp thụ. Mức điển hình khoảng 25–26 mA/cm².",
-        caption: "Jsc là chỗ đường cong cắt trục dòng, khi điện áp bằng không.",
-      },
-      {
-        title: "Hệ số lấp đầy FF",
-        body: "FF đo độ «vuông» của đường dòng–áp. Góc bị tròn vì điện trở. Pin tốt nằm khoảng 0,83–0,87. Hình chữ nhật công suất cực đại nằm trong đường cong.",
-        caption: "Hình chữ nhật trong đường cong là công suất lớn nhất. FF là tỉ lệ hình chữ nhật ấy so với Voc nhân Jsc.",
-      },
-      {
-        title: "PCE = Voc × Jsc × FF / Pin",
-        body: "Với Pin = 100 mW/cm² (phổ AM1.5G). Ví dụ Voc 1,19 V, Jsc 25,8 mA/cm², FF 0,86 cho PCE ≈ 26,4%. Kỷ lục một lớp trong tài liệu khoảng 26–27%.",
-        caption: "Hiệu suất đọc từ công thức trên hình. 26,4% là ví dụ khi kéo thanh, không phải một kỷ lục mới.",
+        title: "Bước 5 — Cả bốn bước một vòng",
+        body: "Ghép bốn bước thành một vòng, chỉ đường thành công. Photon vàng đủ năng lượng bị nuốt trong lớp hấp thụ. Điện tử nhảy lên vùng dẫn, lỗ trống ở lại vùng hóa trị, phần dư tách ngang thành nhiệt. Lỗ trống đi lên HTL rồi tới ITO. Điện tử đi xuống ETL rồi kim loại, chạy dây qua đèn và gặp lỗ trống ở ITO. Vòng này không vẽ photon đỏ bị lãng phí, cũng không vẽ tái hợp — hai việc ấy ở bước 1 và bước 3.",
+        caption:
+          "Một vòng, một nhãn đổi theo nhịp. 1 hấp thụ: photon vàng rơi vào lớp hấp thụ rồi tắt. 2 sinh cặp: điện tử lên vạch lam, lỗ trống ở vạch cam, hạt cam bay sang trái là nhiệt. 3 tách: lỗ trống vào HTL, điện tử vào ETL. 4 thu: lỗ trống tới ITO, điện tử xuống kim loại rồi chạy dây qua đèn để gặp lại. Đèn chỉ sáng ở nhịp 4.",
       },
     ],
   },
@@ -268,34 +250,39 @@ export const lessons: Lesson[] = [
     section: "1.5",
     title: "Trần một lớp: Shockley–Queisser",
     scene: "sq",
-    cam: "plot",
+    cam: "wide",
     controls: ["eg"],
     tune: [{ eg: 1.34 }, { eg: 0.9 }, { eg: 2.2 }, { eg: 1.34 }, { eg: 1.7 }],
     steps: [
       {
-        title: "Trần khoảng 33,7%",
-        body: "Năm 1961, Shockley và Queisser chỉ ra một pin một lớp hấp thụ không vượt khoảng 33,7% dưới ánh nắng chuẩn, dù vật liệu hoàn hảo [70]. Đường trên màn hình là dạng minh họa, đỉnh được giữ đúng 33,7%.",
-        caption: "Đường trần một lớp theo vùng cấm. Đỉnh được giữ ở 33,7%. Dạng đường là minh họa, không phải từng điểm tính lại từ phổ mặt trời.",
+        title: "Vì sao một lớp dừng ở khoảng 33,7%",
+        body: "Năm 1961, Shockley và Queisser tính trần của một lớp hấp thụ dưới nắng chuẩn: khoảng 33,7%, dù vật liệu không còn bẫy [70]. Hai tổn thất không tránh được. Photon yếu hơn Eg đi xuyên, không sinh cặp. Photon mạnh hơn Eg chỉ nộp đúng Eg, phần dư thành nhiệt. Phần còn lại mới thành điện. Đường bên phải là trần theo Eg. Đỉnh được giữ ở 33,7%. Dạng đường là minh họa, không phải từng điểm tính lại từ phổ mặt trời.",
+        caption:
+          "Bên trái là một lớp. Quả cầu đỏ và cam yếu hơn Eg thì xuyên xuống và mờ. Quả cầu vàng, xanh, tím dừng trong lớp; hạt bay sang trái là phần dư thành nhiệt, hạt tím to hơn vì dư nhiều hơn. Cột lam là áp, theo Eg. Cột lục là phần giữ lại, đọc cùng chấm vàng trên đường. Đỉnh đường là 33,7%.",
       },
       {
-        title: "Vùng cấm nhỏ",
-        body: "Hấp thụ được nhiều photon nên dòng lớn, nhưng mỗi photon chỉ cho năng lượng cỡ Eg, phần dư thành nhiệt, điện áp thấp.",
-        caption: "Eg thấp: dòng lớn, điện áp thấp, phần dư của photon thành nhiệt.",
+        title: "Vùng cấm nhỏ — dòng lớn, áp thấp",
+        body: "Eg khoảng 0,9 eV nuốt gần hết các photon trên hình, nên dòng lớn. Nhưng mỗi photon chỉ được tính bằng Eg. Quả cầu tím khoảng 3 eV nộp 0,9 eV và gần 2 eV thành nhiệt. Điện áp đi theo Eg nên cột áp thấp. Trần minh họa còn khoảng 27%, dưới đỉnh.",
+        caption:
+          "Eg = 0,9 eV. Cả năm quả cầu dừng trong lớp — dòng lớn. Hạt nhiệt của quả cầu tím là to nhất. Cột áp thấp. Chấm vàng nằm bên trái đỉnh, khoảng 27%.",
       },
       {
-        title: "Vùng cấm lớn",
-        body: "Mỗi điện tử mang nhiều năng lượng, điện áp cao, nhưng bỏ phí nhiều photon đỏ và hồng ngoại, dòng nhỏ.",
-        caption: "Eg cao: điện áp cao, nhưng nhiều photon đỏ và hồng ngoại không đủ năng lượng.",
+        title: "Vùng cấm lớn — áp cao, dòng nhỏ",
+        body: "Eg khoảng 2,2 eV cho điện áp cao, vì mỗi điện tử mang nhiều năng lượng. Photon đỏ, cam và vàng yếu hơn 2,2 eV không mở được vùng cấm, nên xuyên qua. Chỉ quả cầu xanh và tím bị nuốt, dòng nhỏ. Trần minh họa tụt xuống khoảng 19%.",
+        caption:
+          "Eg = 2,2 eV. Quả cầu đỏ, cam và vàng xuyên lớp rồi mờ phía dưới. Chỉ quả cầu xanh và tím dừng. Cột áp cao, nhãn ghi nuốt 2/5. Chấm vàng nằm bên phải đỉnh, khoảng 19%.",
       },
       {
-        title: "Điểm cân bằng",
-        body: "Tối ưu nằm quanh Eg ≈ 1,1–1,4 eV. Từ khoảng 1,0 đến 1,6 eV, trần vẫn trên 30%.",
-        caption: "Đỉnh đường nằm quanh 1,1–1,4 eV. Từ 1,0 đến 1,6 eV, trần vẫn trên 30%.",
+        title: "Điểm cân bằng quanh 1,1–1,4 eV",
+        body: "Hai tổn thất đổi chỗ cho nhau. Eg quá nhỏ thì nhiệt nhiều. Eg quá lớn thì bỏ nhiều photon. Chúng cân bằng quanh 1,1–1,4 eV. Đỉnh 33,7% nằm ở khoảng 1,34 eV trên đường minh họa. Từ 1,0 đến 1,6 eV, trần vẫn trên 30%. Perovskite chỉnh được Eg trong cửa sổ này.",
+        caption:
+          "Eg = 1,34 eV, đúng đỉnh. Một phần quả cầu đỏ xuyên, phần dư của quả cầu tím thành nhiệt, nhưng cột lục là cao nhất và chấm vàng đứng trên 33,7%. Vùng tô lục trên đường là 1,0–1,6 eV, vẫn trên 30%.",
       },
       {
-        title: "Muốn vượt trần thì phải xếp chồng",
-        body: "Pin song song (tandem) đặt nhiều lớp có vùng cấm khác nhau: lớp trên nuốt photon năng lượng cao, lớp dưới nhặt phần còn lại. Sẽ gặp lại ở chương 3 và phần đề xuất cải tiến.",
-        caption: "Tandem vượt một đường trần vì lớp trên và lớp dưới chia nhau phổ.",
+        title: "Hai lớp thì hết bị kẹt ở trần này",
+        body: "Trần 33,7% chỉ buộc một lớp. Pin song song xếp hai lớp. Lớp trên Eg khoảng 1,7 eV nuốt photon xanh và tím, để photon đỏ hơn đi qua. Lớp dưới Eg khoảng 1,1 eV nhặt đúng phần đó. Photon yếu hơn cả hai lớp thì vẫn xuyên. Mỗi lớp chỉ gánh một khúc phổ, nên nhiệt và phần đi xuyên đều bớt. Cùng kiểu tính cân bằng chi tiết, hai lớp đẩy trần lên khoảng 42% dưới nắng không hội tụ — vẫn là trần lý thuyết, không phải một pin đã đo. Chương 3 và phần đề xuất cải tiến sẽ gặp lại cách xếp này.",
+        caption:
+          "Lớp trên ≈ 1,7 eV: quả cầu xanh và tím dừng ở đó. Quả cầu cam và vàng xuyên qua rồi dừng ở lớp dưới ≈ 1,1 eV. Quả cầu đỏ yếu hơn cả hai thì vẫn xuyên. Đường bên phải vẫn là trần của một lớp, để thấy hai lớp không bị buộc theo đường ấy.",
       },
     ],
   },
@@ -1554,7 +1541,7 @@ export const chapters: Chapter[] = [
     id: "c1",
     num: "1",
     title: "Từ ánh sáng đến điện",
-    lessonIds: ["foundation", "photon", "bands", "cell", "metrics", "sq", "silicon", "ideal"],
+    lessonIds: ["foundation", "photon", "bands", "cell", "sq", "silicon", "ideal"],
   },
   {
     id: "c2",

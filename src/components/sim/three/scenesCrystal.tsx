@@ -11,24 +11,63 @@ import {
   ION,
 } from "@/lib/sim/physics";
 import { useSim } from "@/lib/sim/store";
-import { FACES, Ion, Molecule, OctaMesh, Pop, Slab, Tag, UnitCell } from "./kit";
+import { FACES, CORNERS, Ion, Molecule, OctaMesh, Pop, Seg, Slab, Tag, UnitCell } from "./kit";
 
+const CELL_EDGES = new THREE.EdgesGeometry(new THREE.BoxGeometry(2, 2, 2));
+
+function MaCorner() {
+  return (
+    <group position={[1.22, 1.18, 1.15]}>
+      <mesh position={[-0.1, 0, 0]}>
+        <sphereGeometry args={[0.16, 16, 12]} />
+        <meshStandardMaterial color="#3cba84" emissive="#3cba84" emissiveIntensity={0.28} roughness={0.35} />
+      </mesh>
+      <mesh position={[0.14, 0.05, 0]}>
+        <sphereGeometry args={[0.11, 16, 12]} />
+        <meshStandardMaterial color="#f4efe6" roughness={0.4} />
+      </mesh>
+      <Tag position={[0.15, 0.48, 0]}>MA⁺</Tag>
+    </group>
+  );
+}
+
+/** 2.1 — three pictures of the same cage: the mineral, the formula, then the halogen swap. */
 function OriginScene({ step }: { step: number }) {
-  const oxide = step === 0;
-  const organic = step >= 2;
+  const b = step < 2 ? "#8aa0b4" : "#c5ccd6";
+  const x = step < 2 ? "#e15b4c" : "#6d4bd6";
+  const aLabel = step === 0 ? "Ca" : step === 1 ? "A" : "";
+  const bLabel = step === 0 ? "Ti" : step === 1 ? "B" : "Pb";
+  const xLabel = step === 0 ? "O" : step === 1 ? "X = O" : "I / Br / Cl";
   return (
     <group>
-      <UnitCell
-        a={oxide ? "#f4efe6" : organic ? "#3cba84" : "#79b0ff"}
-        b={oxide ? "#8aa0b4" : "#c5ccd6"}
-        x={oxide ? "#e15b4c" : "#6d4bd6"}
-        aLabel={oxide ? "Ca" : organic ? "MA⁺ / FA⁺ / Cs⁺" : "A"}
-        bLabel={oxide ? "Ti" : "Pb"}
-        xLabel={oxide ? "O" : "I / Br / Cl"}
-        organic={organic}
-      />
-      <Tag position={[0, 2.15, 0]} accent>
-        {oxide ? "CaTiO₃ · 1839" : step === 1 ? "Perovskite halide" : "Lai hữu cơ – vô cơ"}
+      <group scale={0.92}>
+        <lineSegments geometry={CELL_EDGES}>
+          <lineBasicMaterial color="#d5dde6" transparent opacity={0.8} />
+        </lineSegments>
+        <OctaMesh color={x} opacity={0.2} />
+        {CORNERS.map((p, i) =>
+          step >= 2 && i === 7 ? null : (
+            <Ion key={`a${i}`} position={p} color="#f4efe6" radius={0.16} label={i === 7 ? aLabel : undefined} />
+          ),
+        )}
+        {step >= 2 ? (
+          <Pop>
+            <MaCorner />
+          </Pop>
+        ) : null}
+        <Ion position={[0, 0, 0]} color={b} radius={0.28} label={bLabel} />
+        {FACES.map((p, i) => (
+          <Ion key={`x${i}`} position={p} color={x} radius={0.16} label={i === 4 ? xLabel : undefined} />
+        ))}
+        {FACES.map((p, i) => (
+          <Seg key={`bond${i}`} a={[0, 0, 0]} b={p} color={x} radius={0.028} />
+        ))}
+      </group>
+      <Tag position={[0, 1.85, 0]} accent>
+        {step === 0 ? "CaTiO₃" : step === 1 ? "ABX₃" : "MAPbI₃"}
+      </Tag>
+      <Tag position={[0, -1.72, 0]}>
+        {step === 0 ? "khoáng · 1839 · một chất" : step === 1 ? "cùng ô ấy · X vẫn là oxy" : "halide · A có thể là phân tử"}
       </Tag>
     </group>
   );

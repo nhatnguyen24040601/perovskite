@@ -354,15 +354,21 @@ export const lessons: Lesson[] = [
     steps: [
       {
         title: "1839, dãy Ural",
-        body: "Gustav Rose tìm thấy khoáng CaTiO₃ và đặt tên theo Lev Perovski. Về sau perovskite là tên của một kiểu sắp xếp nguyên tử, không phải một chất duy nhất.",
+        body: "Năm 1839, ở dãy Ural, Gustav Rose tìm thấy khoáng CaTiO₃ và đặt tên theo Lev Perovski. Trên hình mới chỉ có một chất: Ca ngồi góc ô, Ti ngồi tâm, O nằm giữa mỗi mặt.",
+        caption:
+          "Một ô lập phương. Quả cầu nhạt ở góc là Ca, quả cầu xám ở tâm là Ti, quả cầu đỏ giữa các mặt là O. Công thức trên đỉnh là CaTiO₃. Dòng dưới: khoáng · 1839 · một chất. Chưa viết ABX₃, chưa có halogen.",
       },
       {
         title: "Công thức ABX₃",
-        body: "Hợp chất nào có dạng ABX₃ và cách xếp ion giống CaTiO₃ đều gọi là perovskite. X là oxy thì đó là perovskite oxit, dùng làm tụ điện, vật liệu áp điện.",
+        body: "Giữ nguyên ô đó và đổi tên các chỗ. A là ion ở góc, B là ion ở tâm, X là ion ở giữa mặt. Hợp chất nào xếp giống CaTiO₃ đều gọi là perovskite — tên của một kiểu sắp xếp, không phải một chất. Ở bước này X vẫn là oxy, nên đây là perovskite oxit, dùng làm tụ điện và vật liệu áp điện.",
+        caption:
+          "Cùng các quả cầu của bước trước, màu không đổi. Nhãn trên ion đổi thành A, B và X = O. Công thức trên đỉnh thành ABX₃. Dòng dưới: cùng ô ấy · X vẫn là oxy. Chưa đổi sang iod, brom hay clo.",
       },
       {
         title: "Đổi oxy lấy halogen",
-        body: "Khi X là iod, brom hoặc clo, ta có perovskite halide — nhân vật chính. Nếu A là phân tử hữu cơ như methylammonium, vật liệu là perovskite lai hữu cơ–vô cơ.",
+        body: "Giữ khung, đổi chỗ X. Oxy ra, halogen vào: iod, brom hoặc clo. B thường là chì. Nếu A là phân tử hữu cơ như methylammonium, vật liệu là perovskite lai hữu cơ–vô cơ. Ví dụ trên hình là MAPbI₃ — nhân vật chính của bài.",
+        caption:
+          "Quả cầu đỏ thành quả cầu tím, nhãn I / Br / Cl. Tâm đổi từ Ti thành Pb. Một góc không còn là quả cầu Ca: đó là phân tử xanh MA⁺. Công thức trên đỉnh là MAPbI₃. Dòng dưới: halide · A có thể là phân tử.",
       },
     ],
   },

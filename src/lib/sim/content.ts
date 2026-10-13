@@ -140,24 +140,23 @@ export const lessons: Lesson[] = [
     scene: "photon",
     cam: "wide",
     controls: ["wavelength"],
-    tune: [{ wavelength: 500 }, { wavelength: 700 }, { wavelength: 1100 }, { wavelength: 550 }],
+    tune: [{ wavelength: 500 }, { wavelength: 700 }, { wavelength: 1100 }],
     legend: [{ swatch: "sun", label: "Photon" }],
     steps: [
       {
         title: "Sóng, và cũng là hạt",
         body: "Ánh sáng là dòng các hạt năng lượng gọi là photon. Năng lượng mỗi photon phụ thuộc màu, tức bước sóng: xanh tím mang nhiều năng lượng hơn đỏ.",
+        caption: "Hai sóng cùng kiểu. Sóng đỏ dài, mỗi photon mang ít năng lượng. Sóng xanh tím ngắn, mỗi photon mang nhiều năng lượng hơn.",
       },
       {
         title: "Công thức tiện dụng",
         body: "E (eV) ≈ 1240 / λ (nm). Ánh sáng lục 500 nm ≈ 2,48 eV. Đỏ 700 nm ≈ 1,77 eV. Hồng ngoại gần 1100 nm ≈ 1,13 eV.",
+        caption: "Khoảng cách giữa hai đỉnh kề nhau là bước sóng λ. Cột bên phải là năng lượng E ≈ 1240/λ.",
       },
       {
         title: "Phổ mặt trời trải rất rộng",
         body: "Phổ mặt trời đi từ tử ngoại, qua vùng nhìn thấy, tới hồng ngoại. Gần một nửa năng lượng nằm ở hồng ngoại — nơi nhiều vật liệu hấp thụ bỏ qua.",
-      },
-      {
-        title: "Tự kéo bước sóng",
-        body: "Thanh trượt đổi màu và năng lượng của photon. So sánh một gói xanh với một gói hồng ngoại trước khi sang vùng cấm.",
+        caption: "Phổ điện từ xếp theo năng lượng tăng: radio, vi sóng, hồng ngoại, nhìn thấy, tử ngoại, tia X, tia gamma. Gạch vàng là nắng tới mặt đất. Gần nửa năng lượng nắng nằm ở hồng ngoại.",
       },
     ],
   },

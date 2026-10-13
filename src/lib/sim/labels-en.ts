@@ -234,4 +234,30 @@ export const LABELS_EN: Record<string, string> = {
   "Vùng cấm": "Bandgap",
   "Vùng cấm thẳng / gián tiếp": "Direct / Indirect Bandgap",
   "Vùng dẫn / vùng hóa trị": "Conduction / Valence Band",
+  "Vi sóng": "Microwave",
+  "Hồng ngoại": "Infrared",
+  "Nhìn thấy": "Visible",
+  "Tử ngoại": "Ultraviolet",
+  "Tia gamma": "Gamma ray",
+  "≈ một nửa nắng": "≈ half the sunlight",
+  "nắng tới mặt đất": "sunlight at the ground",
+  "năng lượng thấp": "low energy",
+  "năng lượng cao →": "high energy →",
+  "đỏ · ít năng lượng": "red · less energy",
+  "xanh tím · nhiều năng lượng": "violet · more energy",
+  "sóng": "wave",
+  "hạt": "particle",
+  "bị hấp thụ": "absorbed",
+  "đi xuyên": "passes through",
+  "thành nhiệt": "becomes heat",
+  "lỗ trống sang HTL": "hole into the HTL",
+  "điện tử sang ETL": "electron into the ETL",
+  "Hai sóng cùng kiểu. Sóng đỏ dài, mỗi photon mang ít năng lượng. Sóng xanh tím ngắn, mỗi photon mang nhiều năng lượng hơn.":
+    "Two waves of the same kind. The red wave is long, so each photon carries little energy. The violet wave is short, so each photon carries more.",
+  "Khoảng cách giữa hai đỉnh kề nhau là bước sóng λ. Cột bên phải là năng lượng E ≈ 1240/λ.":
+    "The distance between neighboring crests is the wavelength λ. The bar on the right is the energy E ≈ 1240/λ.",
+  "Phổ điện từ xếp theo năng lượng tăng: radio, vi sóng, hồng ngoại, nhìn thấy, tử ngoại, tia X, tia gamma. Gạch vàng là nắng tới mặt đất. Gần nửa năng lượng nắng nằm ở hồng ngoại.":
+    "The electromagnetic spectrum in order of rising energy: radio, microwave, infrared, visible, ultraviolet, X-ray, gamma ray. The gold bar is sunlight at the ground. Nearly half of that sunlight is infrared.",
+  "Sóng đậm theo thanh trượt. Hai sóng mờ là mốc lục 500 nm và hồng ngoại 1100 nm.":
+    "The bright wave follows the slider. The faint waves are the 500 nm green and 1100 nm infrared markers.",
 };

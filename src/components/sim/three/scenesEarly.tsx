@@ -260,44 +260,193 @@ function FoundationScene({ step }: { step: number }) {
   );
 }
 
-function PhotonScene({ step }: { step: number }) {
-  const nm = useSim((s) => s.wavelength);
-  const color = wavelengthHex(nm);
-  const e = photonEnergy(nm);
-  const bars = useMemo(
-    () =>
-      Array.from({ length: 28 }, (_, i) => {
-        const w = 320 + (i / 27) * 880;
-        return { w, c: wavelengthHex(w), x: -3.2 + (i / 27) * 6.4 };
-      }),
-    [],
+function SineWave({
+  length,
+  cycles,
+  amplitude,
+  color,
+  radius = 0.03,
+  opacity = 1,
+}: {
+  length: number;
+  cycles: number;
+  amplitude: number;
+  color: string;
+  radius?: number;
+  opacity?: number;
+}) {
+  const geo = useMemo(() => {
+    const n = Math.max(32, Math.round(cycles * 28));
+    const pts: THREE.Vector3[] = [];
+    for (let i = 0; i <= n; i++) {
+      const u = i / n;
+      pts.push(new THREE.Vector3((u - 0.5) * length, Math.sin(u * cycles * Math.PI * 2) * amplitude, 0));
+    }
+    return new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), n, radius, 5, false);
+  }, [length, cycles, amplitude, radius]);
+  return (
+    <mesh geometry={geo}>
+      <meshStandardMaterial
+        color={color}
+        emissive={color}
+        emissiveIntensity={0.4}
+        transparent={opacity < 1}
+        opacity={opacity}
+      />
+    </mesh>
   );
-  const x = -3.2 + ((nm - 320) / 880) * 6.4;
+}
+
+function RidingPhoton({
+  length,
+  cycles,
+  amplitude,
+  color,
+  speed = 0.22,
+  radius = 0.11,
+}: {
+  length: number;
+  cycles: number;
+  amplitude: number;
+  color: string;
+  speed?: number;
+  radius?: number;
+}) {
+  const ref = useRef<THREE.Mesh>(null);
+  useFrame(({ clock }) => {
+    const u = (clock.elapsedTime * speed) % 1;
+    ref.current?.position.set((u - 0.5) * length, Math.sin(u * cycles * Math.PI * 2) * amplitude, 0.14);
+  });
+  return (
+    <mesh ref={ref}>
+      <sphereGeometry args={[radius, 18, 14]} />
+      <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.95} />
+    </mesh>
+  );
+}
+
+function WaveParticle() {
   return (
     <group>
-      {bars.map((b) => (
-        <mesh key={b.w} position={[b.x, -0.7, 0]}>
-          <boxGeometry args={[0.2, 0.7 + (b.w < 780 && b.w > 400 ? 0.8 : 0.25), 0.2]} />
-          <meshStandardMaterial color={b.c} emissive={b.c} emissiveIntensity={0.35} />
-        </mesh>
-      ))}
-      <Tag position={[-3.2, -1.45, 0]}>UV</Tag>
-      <Tag position={[0, -1.45, 0]}>nhìn thấy</Tag>
-      <Tag position={[3.1, -1.45, 0]}>IR</Tag>
-      <mesh position={[x, 0.85, 0.4]}>
-        <sphereGeometry args={[0.28, 24, 18]} />
-        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.9} />
-      </mesh>
-      <Tag position={[x, 1.45, 0.4]} accent>
-        {nm.toFixed(0)} nm · {e.toFixed(2)} eV
-      </Tag>
-      {step >= 2 ? (
-        <Pop>
-          <Tag position={[0, 2.05, 0]}>Gần nửa năng lượng nằm ở hồng ngoại</Tag>
-        </Pop>
-      ) : null}
+      <group position={[0, 0.85, 0]}>
+        <SineWave length={4.6} cycles={1.6} amplitude={0.32} color="#e05a48" />
+        <RidingPhoton length={4.6} cycles={1.6} amplitude={0.32} color="#e05a48" radius={0.14} speed={0.16} />
+        <Tag position={[-2.6, 0.7, 0]}>sóng</Tag>
+        <Tag position={[2.55, 0.55, 0]}>đỏ · ít năng lượng</Tag>
+      </group>
+      <group position={[0, -0.85, 0]}>
+        <SineWave length={4.6} cycles={6.5} amplitude={0.2} color="#7b4de0" radius={0.025} />
+        <RidingPhoton length={4.6} cycles={6.5} amplitude={0.2} color="#b9a0ff" radius={0.09} speed={0.28} />
+        <Tag position={[-2.6, 0.5, 0]}>hạt</Tag>
+        <Tag position={[2.55, 0.48, 0]}>xanh tím · nhiều năng lượng</Tag>
+      </group>
     </group>
   );
+}
+
+function FormulaWave({ nm }: { nm: number }) {
+  const color = wavelengthHex(nm);
+  const e = photonEnergy(nm);
+  const cycles = Math.max(1.15, 7.2 * (480 / nm));
+  const length = 4.8;
+  const amplitude = 0.34;
+  const crest = Math.round(0.45 * cycles - 0.25);
+  const uA = (crest + 0.25) / cycles;
+  const uB = uA + 1 / cycles;
+  const xA = (uA - 0.5) * length;
+  const xB = (uB - 0.5) * length;
+  const span = Math.abs(xB - xA);
+  const h = Math.min(2.1, e * 0.52);
+  return (
+    <group>
+      <group position={[-0.55, 0.15, 0]}>
+        <SineWave length={length} cycles={cycles} amplitude={amplitude} color={color} />
+        <RidingPhoton length={length} cycles={cycles} amplitude={amplitude} color={color} />
+        <mesh position={[(xA + xB) / 2, amplitude + 0.22, 0]}>
+          <boxGeometry args={[Math.max(0.12, span), 0.018, 0.018]} />
+          <meshStandardMaterial color="#f4efe6" />
+        </mesh>
+        <Tag position={[(xA + xB) / 2, amplitude + 0.55, 0]}>λ</Tag>
+      </group>
+      <mesh position={[3.15, -1.05 + h / 2, 0]}>
+        <boxGeometry args={[0.32, h, 0.32]} />
+        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.55} />
+      </mesh>
+      <Tag position={[3.15, -1.05 + h + 0.32, 0]} accent>
+        {e.toFixed(2)} eV
+      </Tag>
+      <Tag position={[3.15, -1.4, 0]}>{nm.toFixed(0)} nm</Tag>
+    </group>
+  );
+}
+
+const SPECTRUM: { name: string; color: string; cycles: number; solar: boolean; rainbow?: boolean }[] = [
+  { name: "Radio", color: "#8d6b4f", cycles: 0.65, solar: false },
+  { name: "Vi sóng", color: "#d4893a", cycles: 1.1, solar: false },
+  { name: "Hồng ngoại", color: "#d23b32", cycles: 1.8, solar: true },
+  { name: "Nhìn thấy", color: "#e6c15a", cycles: 2.6, solar: true, rainbow: true },
+  { name: "Tử ngoại", color: "#7a45d6", cycles: 3.6, solar: true },
+  { name: "Tia X", color: "#9fd4ea", cycles: 5, solar: false },
+  { name: "Tia gamma", color: "#f4efe6", cycles: 6.5, solar: false },
+];
+
+function EmSpectrum({ nm }: { nm: number }) {
+  const x0 = -3.36;
+  const dx = 1.12;
+  const hot = nm > 780 ? 2 : nm >= 380 ? 3 : 4;
+  return (
+    <group>
+      {SPECTRUM.map((band, i) => {
+        const x = x0 + i * dx;
+        const on = i === hot;
+        return (
+          <group key={band.name} position={[x, 0, 0]}>
+            <mesh position={[0, -0.35, 0]}>
+              <boxGeometry args={[0.92, on ? 0.16 : 0.08, 0.55]} />
+              <meshStandardMaterial
+                color={band.solar ? "#e4a23a" : "#1e2832"}
+                emissive={band.solar ? "#e4a23a" : "#000"}
+                emissiveIntensity={band.solar ? 0.25 : 0}
+              />
+            </mesh>
+            {band.rainbow ? (
+              <group position={[0, -0.15, 0.32]}>
+                {[450, 490, 530, 580, 630].map((w, k) => (
+                  <mesh key={w} position={[-0.32 + k * 0.16, 0, 0]}>
+                    <boxGeometry args={[0.14, 0.28, 0.08]} />
+                    <meshStandardMaterial color={wavelengthHex(w)} emissive={wavelengthHex(w)} emissiveIntensity={0.35} />
+                  </mesh>
+                ))}
+              </group>
+            ) : null}
+            <group position={[0, 0.58, 0]}>
+              <SineWave length={0.9} cycles={band.cycles} amplitude={0.26} color={band.color} radius={0.026} />
+            </group>
+            <Tag position={[0, on ? 1.22 : 1.05, 0]} accent={on}>
+              {band.name}
+            </Tag>
+          </group>
+        );
+      })}
+      <mesh position={[x0 + 3 * dx, -0.72, 0]}>
+        <boxGeometry args={[dx * 2 + 0.55, 0.035, 0.16]} />
+        <meshStandardMaterial color="#e4a23a" emissive="#e4a23a" emissiveIntensity={0.45} />
+      </mesh>
+      <Tag position={[x0 + 2 * dx, 1.62, 0]} accent>
+        ≈ một nửa nắng
+      </Tag>
+      <Tag position={[x0 + 3 * dx, -1.15, 0]}>nắng tới mặt đất</Tag>
+      <Tag position={[x0, -1.55, 0]}>năng lượng thấp</Tag>
+      <Tag position={[x0 + 6 * dx, -1.55, 0]}>năng lượng cao →</Tag>
+    </group>
+  );
+}
+
+function PhotonScene({ step }: { step: number }) {
+  const nm = useSim((s) => s.wavelength);
+  if (step <= 0) return <WaveParticle />;
+  if (step === 1) return <FormulaWave nm={nm} />;
+  return <EmSpectrum nm={nm} />;
 }
 
 function BandBuilding({
@@ -359,65 +508,95 @@ function BandsScene({ step }: { step: number }) {
   );
 }
 
-function CellScene({ step }: { step: number }) {
+function CellStack() {
   return (
     <group>
-      <Slab position={[0, -1.15, 0]} size={[2.3, 0.14, 1.35]} color="#d5e2ea" />
-      <Tag position={[1.45, -1.15, 0]}>ITO</Tag>
-      <Slab position={[0, -0.9, 0]} size={[2.2, 0.22, 1.25]} color="#c46a45" />
-      <Tag position={[1.45, -0.9, 0]}>HTL</Tag>
-      <Slab position={[0, -0.25, 0]} size={[2.1, 0.85, 1.15]} color="#2a2140" emissive={0.18} />
-      <Tag position={[1.55, -0.25, 0]}>hấp thụ</Tag>
-      <Slab position={[0, 0.42, 0]} size={[2.2, 0.2, 1.25]} color="#4d86d6" />
-      <Tag position={[1.45, 0.42, 0]}>ETL</Tag>
-      <Slab position={[0, 0.68, 0]} size={[2.3, 0.12, 1.35]} color="#e0b15a" />
-      <Tag position={[1.5, 0.68, 0]}>kim loại</Tag>
-      <FlowDots
-        count={5}
-        color="#e4a23a"
-        speed={step === 0 ? 0.22 : 0.12}
-        path={(t) => {
-          const y = -1.8 + t * 2.5;
-          const pass = t > 0.55 && Math.floor(t * 20) % 2 === 0 && step === 0;
-          return [pass ? 0.35 : -0.25, Math.min(y, step === 0 && !pass ? -0.1 : y), 0.2];
-        }}
-      />
-      {step >= 1 ? (
-        <Pop>
-          <group position={[-2.6, 0, 0]}>
-            <Slab position={[0, -0.45, 0]} size={[1.3, 0.22, 0.2]} color="#c46a45" />
-            <Slab position={[0, 0.55, 0]} size={[1.3, 0.22, 0.2]} color="#4d86d6" />
-            <FlowDots count={1} color="#79b0ff" speed={0.3} path={(t) => [0.2, -0.3 + t * 0.8, 0.2]} />
-            <Tag position={[0, 1.05, 0]}>e⁻ lên vùng dẫn</Tag>
-            <Tag position={[0, -0.85, 0]}>lỗ trống ở lại</Tag>
-          </group>
-        </Pop>
+      <Slab position={[0, 1.05, 0]} size={[2.4, 0.1, 1.4]} color="#d5e2ea" opacity={0.55} />
+      <Tag position={[1.55, 1.05, 0]}>ITO</Tag>
+      <Slab position={[0, 0.78, 0]} size={[2.25, 0.22, 1.3]} color="#c46a45" />
+      <Tag position={[1.55, 0.78, 0]}>HTL</Tag>
+      <Slab position={[0, 0.05, 0]} size={[2.15, 0.95, 1.2]} color="#2a2140" emissive={0.16} />
+      <Tag position={[1.55, 0.05, 0]}>hấp thụ</Tag>
+      <Slab position={[0, -0.58, 0]} size={[2.25, 0.2, 1.3]} color="#4d86d6" />
+      <Tag position={[1.55, -0.58, 0]}>ETL</Tag>
+      <Slab position={[0, -0.86, 0]} size={[2.4, 0.12, 1.4]} color="#e0b15a" />
+      <Tag position={[1.55, -0.86, 0]}>kim loại</Tag>
+    </group>
+  );
+}
+
+function CellScene({ step }: { step: number }) {
+  const bulb = useRef<THREE.Mesh>(null);
+  useFrame(({ clock }) => {
+    const mat = bulb.current?.material;
+    if (mat && "emissiveIntensity" in mat) {
+      (mat as THREE.MeshStandardMaterial).emissiveIntensity = 0.7 + Math.sin(clock.elapsedTime * 3) * 0.25;
+    }
+  });
+  return (
+    <group>
+      <CellStack />
+      {step === 0 ? (
+        <group>
+          <FlowDots count={3} color="#7b4de0" speed={0.28} path={(t) => [-0.35, t < 0.78 ? 2.15 - t * 2.5 : 0.2, 0.4]} />
+          <FlowDots count={3} color="#d23b32" speed={0.28} path={(t) => [0.4, 2.15 - t * 3.5, 0.4]} />
+          <Tag position={[-1.7, 0.35, 0]}>bị hấp thụ</Tag>
+          <Tag position={[0.4, -1.35, 0]}>đi xuyên</Tag>
+        </group>
       ) : null}
-      {step >= 2 ? (
-        <Pop>
-          <FlowDots count={3} color="#79b0ff" speed={0.25} path={(t) => [0.15, -0.2 + t * 0.85, 0.35]} />
-          <FlowDots count={3} color="#e08a55" speed={0.25} path={(t) => [-0.15, -0.15 - t * 0.7, 0.35]} />
-          <mesh position={[0, -0.2, 0.5]}>
-            <sphereGeometry args={[0.08, 12, 10]} />
-            <meshBasicMaterial color="#f4efe6" transparent opacity={0.35} />
+      {step === 1 ? (
+        <group>
+          <FlowDots count={1} color="#e4a23a" speed={0.22} path={(t) => [0, t < 0.4 ? 2.1 - t * 4.6 : 0.25, 0.45]} />
+          <FlowDots count={1} color="#79b0ff" speed={0.22} path={(t) => [0.2, t < 0.4 ? 0.15 : 0.15 + ((t - 0.4) / 0.6) * 0.7, 0.45]} />
+          <mesh position={[-0.25, 0.02, 0.45]}>
+            <sphereGeometry args={[0.09, 14, 12]} />
+            <meshStandardMaterial color="#e08a55" emissive="#e08a55" emissiveIntensity={0.7} />
           </mesh>
-          <Tag position={[0, 1.15, 0]}>tách trước khi tái hợp</Tag>
-        </Pop>
+          <Tag position={[-1.55, 0.95, 0]}>e⁻ lên vùng dẫn</Tag>
+          <Tag position={[-1.55, -0.25, 0]}>lỗ trống ở lại</Tag>
+          <Tag position={[1.15, 0.45, 0]}>thành nhiệt</Tag>
+        </group>
       ) : null}
-      {step >= 3 ? (
-        <Pop>
-          <mesh position={[2.3, -0.2, 0]}>
-            <sphereGeometry args={[0.28, 20, 16]} />
-            <meshStandardMaterial color="#e4a23a" emissive="#e4a23a" emissiveIntensity={1.1} />
+      {step === 2 ? (
+        <group>
+          <FlowDots count={3} color="#e08a55" speed={0.24} path={(t) => [-0.2, 0.15 + t * 0.62, 0.4]} />
+          <FlowDots count={3} color="#79b0ff" speed={0.24} path={(t) => [0.2, 0.1 - t * 0.68, 0.4]} />
+          <Tag position={[-1.7, 0.85, 0]}>lỗ trống sang HTL</Tag>
+          <Tag position={[-1.7, -0.65, 0]}>điện tử sang ETL</Tag>
+          <Tag position={[0, 1.45, 0]}>tách trước khi tái hợp</Tag>
+        </group>
+      ) : null}
+      {step === 3 ? (
+        <group>
+          <mesh position={[1.7, 1.05, 0.2]}>
+            <boxGeometry args={[1.1, 0.03, 0.03]} />
+            <meshStandardMaterial color="#d7dde6" metalness={0.7} roughness={0.25} />
           </mesh>
-          <Tag position={[2.3, 0.35, 0]}>mạch ngoài</Tag>
+          <mesh position={[2.22, 0.15, 0.2]}>
+            <boxGeometry args={[0.03, 1.85, 0.03]} />
+            <meshStandardMaterial color="#d7dde6" metalness={0.7} roughness={0.25} />
+          </mesh>
+          <mesh position={[1.7, -0.86, 0.2]}>
+            <boxGeometry args={[1.1, 0.03, 0.03]} />
+            <meshStandardMaterial color="#d7dde6" metalness={0.7} roughness={0.25} />
+          </mesh>
+          <mesh ref={bulb} position={[2.22, 0.15, 0.35]}>
+            <sphereGeometry args={[0.22, 20, 16]} />
+            <meshStandardMaterial color="#fff6e4" emissive="#e4a23a" emissiveIntensity={0.9} />
+          </mesh>
           <FlowDots
-            count={4}
+            count={6}
             color="#79b0ff"
-            speed={0.2}
-            path={(t) => [1.15 + Math.sin(t * Math.PI) * 1.15, 0.68 - t * 1.83, 0.8]}
+            speed={0.22}
+            path={(t) => {
+              if (t < 0.25) return [1.15 + (t / 0.25) * 1.05, -0.86, 0.35];
+              if (t < 0.55) return [2.22, -0.86 + ((t - 0.25) / 0.3) * 1.9, 0.35];
+              if (t < 0.8) return [2.22 - ((t - 0.55) / 0.25) * 1.05, 1.05, 0.35];
+              return [1.15, 1.05 - ((t - 0.8) / 0.2) * 0.2, 0.35];
+            }}
           />
-        </Pop>
+          <Tag position={[2.22, 0.7, 0.35]}>mạch ngoài</Tag>
+        </group>
       ) : null}
     </group>
   );

@@ -3,49 +3,184 @@ import { useMemo, useRef } from "react";
 import * as THREE from "three";
 import { ivCurve, photonEnergy, sqEfficiency, wavelengthHex } from "@/lib/sim/physics";
 import { useSim } from "@/lib/sim/store";
-import { FlowDots, Ion, Molecule, OctaMesh, Pop, Slab, Tag, UnitCell } from "./kit";
+import { FlowDots, Ion, Molecule, OctaMesh, Pop, SPHERE, Slab, Tag, UnitCell } from "./kit";
 import { PlotFrame, Polyline } from "./plot";
 
-function SunScene({ step }: { step: number }) {
-  const ref = useRef<THREE.Group>(null);
-  useFrame((_, dt) => {
-    if (ref.current) ref.current.rotation.y += Math.min(dt, 0.05) * 0.15;
-  });
+function SunGlyph() {
   return (
-    <group ref={ref}>
-      <mesh position={[0, 1.5, -1.2]}>
-        <sphereGeometry args={[0.72, 32, 24]} />
-        <meshStandardMaterial color="#e4a23a" emissive="#e4a23a" emissiveIntensity={0.85} />
+    <group position={[-1.35, 2.15, 0.15]}>
+      <mesh>
+        <sphereGeometry args={[0.34, 36, 28]} />
+        <meshStandardMaterial color="#ffe1a3" emissive="#e4a23a" emissiveIntensity={1.3} roughness={0.4} />
       </mesh>
-      <Tag position={[0, 2.45, -1.2]} accent>
+      <mesh>
+        <sphereGeometry args={[0.52, 28, 20]} />
+        <meshBasicMaterial color="#e4a23a" transparent opacity={0.18} depthWrite={false} />
+      </mesh>
+      <mesh>
+        <sphereGeometry args={[0.72, 22, 16]} />
+        <meshBasicMaterial color="#f0c27a" transparent opacity={0.07} depthWrite={false} />
+      </mesh>
+      <Tag position={[0.05, 0.88, 0.15]} accent>
         ≈ 1000 W/m²
       </Tag>
-      {Array.from({ length: 7 }).map((_, i) => (
-        <mesh key={i} position={[-1.5 + i * 0.5, 0.55, -0.2]} rotation={[0.2, 0, 0]}>
-          <cylinderGeometry args={[0.02, 0.02, 1.3, 6]} />
-          <meshStandardMaterial color="#e4a23a" emissive="#e4a23a" emissiveIntensity={0.4} />
-        </mesh>
+    </group>
+  );
+}
+
+/** Parallel bundle. At the ground, sunlight arrives as a beam, not a fan from a nearby ball. */
+function SunBeam() {
+  const photons = useRef<THREE.InstancedMesh>(null);
+  const dummy = useMemo(() => new THREE.Object3D(), []);
+  const dir = useMemo(() => new THREE.Vector3(0.22, -1, -0.08).normalize(), []);
+  const side = useMemo(() => new THREE.Vector3(1, 0.22, 0).normalize(), []);
+  const lift = useMemo(() => new THREE.Vector3().crossVectors(dir, side).normalize(), [dir, side]);
+  const origin = useMemo(() => new THREE.Vector3(-0.15, 1.72, 0.2), []);
+  const count = 20;
+  const length = 1.62;
+
+  useFrame(({ clock }) => {
+    const mesh = photons.current;
+    if (!mesh) return;
+    for (let i = 0; i < count; i++) {
+      const col = i % 5;
+      const row = Math.floor(i / 5);
+      const t = (clock.elapsedTime * 0.32 + i * 0.13) % 1;
+      const p = origin
+        .clone()
+        .addScaledVector(side, (col - 2) * 0.28)
+        .addScaledVector(lift, (row - 1.5) * 0.26)
+        .addScaledVector(dir, t * length);
+      dummy.position.copy(p);
+      dummy.scale.setScalar(0.055);
+      dummy.updateMatrix();
+      mesh.setMatrixAt(i, dummy.matrix);
+    }
+    mesh.instanceMatrix.needsUpdate = true;
+  });
+
+  const shaft = useMemo(() => {
+    const q = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+    const mid = origin.clone().addScaledVector(dir, length * 0.46);
+    return { q, mid };
+  }, [dir, origin]);
+
+  return (
+    <group>
+      {[-0.5, -0.17, 0.17, 0.5].map((offset, i) => {
+        const p = shaft.mid.clone().addScaledVector(side, offset).addScaledVector(lift, i % 2 === 0 ? 0.16 : -0.16);
+        return (
+          <mesh key={offset} position={p} quaternion={shaft.q}>
+            <cylinderGeometry args={[0.012, 0.012, length * 0.92, 6]} />
+            <meshBasicMaterial color="#f0d090" transparent opacity={0.28} depthWrite={false} />
+          </mesh>
+        );
+      })}
+      <instancedMesh ref={photons} args={[SPHERE, undefined, count]}>
+        <meshStandardMaterial color="#ffe7b8" emissive="#e4a23a" emissiveIntensity={1} />
+      </instancedMesh>
+    </group>
+  );
+}
+
+function MiniModule({ step }: { step: number }) {
+  const bulb = useRef<THREE.Mesh>(null);
+  const cells: [number, number][] = [
+    [-0.58, -0.58],
+    [0.58, -0.58],
+    [-0.58, 0.58],
+    [0.58, 0.58],
+  ];
+  useFrame(({ clock }) => {
+    const mat = bulb.current?.material;
+    if (mat && "emissiveIntensity" in mat) {
+      (mat as THREE.MeshStandardMaterial).emissiveIntensity = 0.7 + Math.sin(clock.elapsedTime * 3) * 0.25;
+    }
+  });
+  return (
+    <group position={[0.05, -0.12, 0]} rotation={[0.28, -0.35, 0]}>
+      <mesh position={[0, -0.08, 0]}>
+        <boxGeometry args={[2.55, 0.1, 2.55]} />
+        <meshStandardMaterial color="#c5ced6" metalness={0.78} roughness={0.26} />
+      </mesh>
+      <mesh position={[0, -0.01, 0]}>
+        <boxGeometry args={[2.32, 0.045, 2.32]} />
+        <meshStandardMaterial color="#e7edf1" roughness={0.72} />
+      </mesh>
+      {cells.map(([x, z]) => (
+        <group key={`${x}${z}`} position={[x, 0.04, z]}>
+          <mesh>
+            <boxGeometry args={[1.02, 0.04, 1.02]} />
+            <meshStandardMaterial color="#1b6398" emissive="#123e66" emissiveIntensity={0.28} metalness={0.22} roughness={0.24} />
+          </mesh>
+          {[-0.34, -0.11, 0.11, 0.34].map((fx) => (
+            <mesh key={fx} position={[fx, 0.03, 0]}>
+              <boxGeometry args={[0.04, 0.016, 0.92]} />
+              <meshStandardMaterial color="#f4f7f8" metalness={0.84} roughness={0.18} />
+            </mesh>
+          ))}
+          <mesh position={[0, 0.038, 0]}>
+            <boxGeometry args={[0.92, 0.014, 0.07]} />
+            <meshStandardMaterial color="#f7f8f8" metalness={0.8} roughness={0.2} />
+          </mesh>
+        </group>
       ))}
-      <Slab position={[0, -0.55, 0.4]} size={[2.4, 0.08, 1.4]} color="#241c33" emissive={0.15} />
-      <Slab position={[0, -0.68, 0.4]} size={[2.6, 0.12, 1.55]} color="#9eb4c6" />
-      <Tag position={[0, -0.95, 0.4]}>Pin mặt trời</Tag>
+      <mesh position={[0, 0.09, 0]}>
+        <boxGeometry args={[2.32, 0.03, 2.32]} />
+        <meshStandardMaterial color="#d5e6f2" transparent opacity={0.18} roughness={0.04} metalness={0} />
+      </mesh>
+      <Tag position={[0, -0.15, 1.55]}>Pin mặt trời</Tag>
       {step >= 1 ? (
         <Pop>
-          <Tag position={[2.1, 0.2, 0.2]}>Không máy · không nhiên liệu</Tag>
-        </Pop>
-      ) : null}
-      {step >= 2 ? (
-        <Pop>
-          <group position={[-2.3, 0.3, 0.6]}>
-            <Slab position={[0, 0.55, 0]} size={[1.1, 0.35, 0.08]} color="#1e2832" />
-            <Tag position={[0, 0.55, 0.2]}>Kiến thức nền</Tag>
-            <Slab position={[0, 0, 0]} size={[1.1, 0.35, 0.08]} color="#3a2a22" />
-            <Tag position={[0, 0, 0.2]}>Lưu ý</Tag>
-            <Slab position={[0, -0.55, 0]} size={[1.1, 0.35, 0.08]} color="#243028" />
-            <Tag position={[0, -0.55, 0.2]}>Từng bước</Tag>
+          <mesh position={[1.55, 0.08, 0.58]}>
+            <boxGeometry args={[0.85, 0.02, 0.06]} />
+            <meshStandardMaterial color="#e8eef2" metalness={0.8} roughness={0.22} />
+          </mesh>
+          <mesh position={[1.95, 0.22, 0.58]} rotation={[0, 0, Math.PI / 2]}>
+            <cylinderGeometry args={[0.02, 0.02, 0.32, 8]} />
+            <meshStandardMaterial color="#d7dde6" metalness={0.7} roughness={0.28} />
+          </mesh>
+          <group position={[1.95, 0.48, 0.58]}>
+            <mesh ref={bulb}>
+              <sphereGeometry args={[0.18, 24, 18]} />
+              <meshStandardMaterial color="#fff6e4" emissive="#e4a23a" emissiveIntensity={0.85} transparent opacity={0.94} roughness={0.12} />
+            </mesh>
+            <mesh>
+              <sphereGeometry args={[0.045, 12, 10]} />
+              <meshStandardMaterial color="#fff1cc" emissive="#ffd27a" emissiveIntensity={1.5} />
+            </mesh>
+            <mesh position={[0, -0.2, 0]}>
+              <cylinderGeometry args={[0.06, 0.08, 0.08, 12]} />
+              <meshStandardMaterial color="#8d98a3" metalness={0.5} roughness={0.4} />
+            </mesh>
           </group>
+          <FlowDots
+            count={6}
+            color="#79b0ff"
+            speed={0.4}
+            path={(t) => [1.15 + t * 0.8, 0.08 + t * 0.28, 0.58]}
+          />
+          <Tag position={[1.95, 0.88, 0.58]}>Không máy · không nhiên liệu</Tag>
         </Pop>
       ) : null}
+    </group>
+  );
+}
+
+function SunScene({ step }: { step: number }) {
+  return (
+    <group>
+      <SunGlyph />
+      <SunBeam />
+      <MiniModule step={step} />
+      <mesh position={[0.05, -1.05, 0]}>
+        <cylinderGeometry args={[0.07, 0.09, 0.7, 12]} />
+        <meshStandardMaterial color="#5c6b78" metalness={0.35} roughness={0.45} />
+      </mesh>
+      <mesh position={[0.05, -1.42, 0]}>
+        <cylinderGeometry args={[0.55, 0.55, 0.05, 24]} />
+        <meshStandardMaterial color="#24303a" metalness={0.2} roughness={0.6} />
+      </mesh>
     </group>
   );
 }

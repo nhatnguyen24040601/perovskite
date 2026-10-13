@@ -53,7 +53,7 @@ export type Lesson = {
   section: string;
   title: string;
   scene: string;
-  cam: "default" | "crystal" | "wide" | "plot" | "stack";
+  cam: "default" | "crystal" | "wide" | "plot" | "stack" | "module";
   legend?: { swatch: Swatch; label: string }[];
   controls?: ControlKind[];
   tune?: Tune[];
@@ -84,7 +84,7 @@ export const lessons: Lesson[] = [
     section: "Mở đầu",
     title: "Nắng 1000 W/m² — điểm xuất phát",
     scene: "sun",
-    cam: "wide",
+    cam: "module",
     legend: [
       { swatch: "sun", label: "Photon mặt trời" },
       { swatch: "iodine", label: "Tấm pin" },
@@ -97,13 +97,6 @@ export const lessons: Lesson[] = [
       {
         title: "Không máy, không nhiên liệu",
         body: "Pin mặt trời (solar cell) không cần bộ phận chuyển động và không đốt nhiên liệu. Muốn hiểu vì sao perovskite được chú ý, trước hết phải thấy pin đòi hỏi gì ở vật liệu hấp thụ.",
-      },
-      {
-        title: "Cách đọc phòng thí nghiệm này",
-        body: "Mỗi mục đi từ trực giác, tới khái niệm, rồi con số. Bật «Giải thích từng bước» để đọc lời dẫn; tắt đi để chỉ xem mô hình. Kéo để xoay, cuộn để phóng.",
-        note: base(
-          "Hộp này là kiến thức nền — ion, electron-vôn, vùng năng lượng. Hộp cam là chỗ số liệu cần dè chừng. Số trong ngoặc vuông trỏ tới phụ lục tài liệu.",
-        ),
       },
     ],
   },

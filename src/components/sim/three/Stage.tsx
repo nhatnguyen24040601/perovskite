@@ -15,6 +15,7 @@ const CAM: Record<string, [number, number, number]> = {
   wide: [6.4, 3.2, 7.2],
   plot: [0.2, 1.5, 7.4],
   stack: [4.6, 1.8, 6.1],
+  module: [2.4, 3.15, 4.35],
 };
 
 const SCENES = { ...earlyScenes, ...crystalScenes, ...lateScenes };

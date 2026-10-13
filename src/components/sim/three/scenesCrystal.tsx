@@ -1,13 +1,10 @@
-import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
+import { useMemo } from "react";
 import * as THREE from "three";
 import { GLOSSARY } from "@/lib/sim/content";
 import {
   egFromHalide,
   egHex,
-  phaseFromTemp,
   tolerance,
-  WELL_EG,
   ION,
 } from "@/lib/sim/physics";
 import { useSim } from "@/lib/sim/store";
@@ -152,17 +149,19 @@ function OctaIons({
   );
 }
 
-/** Two corner-sharing octahedra. A, when present, sits in the cavity in front of the shared iodide — not on the Pb site. */
+/** Two corner-sharing octahedra. A, when present, sits in the cavity — not on the Pb site. */
 function SharePair({
   a,
   aLabel = "A",
   showPb = false,
   showShared = false,
+  cavity = [0, 0.02, 0.98],
 }: {
   a?: { color: string; radius: number };
   aLabel?: string;
   showPb?: boolean;
   showShared?: boolean;
+  cavity?: [number, number, number];
 }) {
   const s = 0.72;
   return (
@@ -171,9 +170,9 @@ function SharePair({
       <OctaIons center={[0.78, 0, 0]} scale={s} skip={[-1, 0, 0]} />
       <Ion position={[0, 0, 0]} color="#6d4bd6" radius={0.16} label={showShared ? "I⁻ chung" : undefined} />
       {a ? (
-        <group position={[0, 0.02, 0.98]}>
+        <group position={cavity}>
           <mesh>
-            <sphereGeometry args={[0.24, 14, 10]} />
+            <sphereGeometry args={[0.22, 14, 10]} />
             <meshBasicMaterial color="#d5dde6" wireframe />
           </mesh>
           <Ion position={[0, 0, 0]} color={a.color} radius={a.radius} label={aLabel} />
@@ -229,7 +228,156 @@ function tToX(value: number): number {
   return ((clamped - 0.8) / 0.22) * 4.2 - 2.1;
 }
 
-function ToleranceScene({ step }: { step: number }) {
+const DIRS: [number, number, number][] = [
+  [1, 0, 0],
+  [-1, 0, 0],
+  [0, 1, 0],
+  [0, -1, 0],
+  [0, 0, 1],
+  [0, 0, -1],
+];
+
+function PlacedOcta({
+  center,
+  reach,
+  rotZ = 0,
+  color = "#6d4bd6",
+  skip = [],
+  ionR = 0.07,
+  pbLabel,
+}: {
+  center: [number, number, number];
+  reach: number;
+  rotZ?: number;
+  color?: string;
+  skip?: number[];
+  ionR?: number;
+  pbLabel?: string;
+}) {
+  return (
+    <group position={center} rotation={[0, 0, rotZ]}>
+      <OctaMesh color={color} scale={reach} opacity={0.24} />
+      <Ion position={[0, 0, 0]} color="#c5ccd6" radius={Math.min(0.12, reach * 0.26)} label={pbLabel} />
+      {DIRS.map((d, i) => {
+        if (skip.includes(i)) return null;
+        const at: [number, number, number] = [d[0] * reach, d[1] * reach, d[2] * reach];
+        return <Ion key={i} position={at} color="#6d4bd6" radius={ionR} />;
+      })}
+    </group>
+  );
+}
+
+/** Corner-sharing pair. The grey ring is the A cavity; one iodide is shared. */
+function FitPair({
+  color,
+  radius,
+  label,
+  hole,
+  speck = false,
+}: {
+  color: string;
+  radius: number;
+  label: string;
+  hole: number;
+  speck?: boolean;
+}) {
+  const s = 0.68;
+  return (
+    <group>
+      <PlacedOcta center={[-s, 0, 0]} reach={s} skip={[0]} ionR={0.075} />
+      <PlacedOcta center={[s, 0, 0]} reach={s} skip={[1]} ionR={0.075} />
+      <Ion position={[0, 0, 0]} color="#6d4bd6" radius={0.15} accent />
+      <Seg a={[-s, 0, 0]} b={[0, 0, 0]} color="#e6c15a" radius={0.028} />
+      <Seg a={[s, 0, 0]} b={[0, 0, 0]} color="#e6c15a" radius={0.028} />
+      <group position={[0, 0.55, 0.16]}>
+        <mesh>
+          <torusGeometry args={[hole, 0.018, 10, 40]} />
+          <meshBasicMaterial color="#d5dde6" />
+        </mesh>
+        <Ion position={[0, 0, 0]} color={color} radius={radius} label={label} accent />
+        {speck ? <Ion position={[0.32, -0.04, 0.16]} color="#79b0ff" radius={0.07} label="Cs" /> : null}
+      </group>
+    </group>
+  );
+}
+
+/** Edge-sharing dimer: exactly two iodides, joined by a gold rod. */
+function EdgeShare() {
+  const R = 0.42;
+  const c1: [number, number, number] = [-R / 2, -R / 2, 0];
+  const c2: [number, number, number] = [R / 2, R / 2, 0];
+  const iA: [number, number, number] = [R / 2, -R / 2, 0];
+  const iB: [number, number, number] = [-R / 2, R / 2, 0];
+  return (
+    <group>
+      <PlacedOcta center={c1} reach={R} skip={[0, 2]} ionR={0.065} />
+      <PlacedOcta center={c2} reach={R} rotZ={Math.PI} skip={[0, 2]} ionR={0.065} />
+      <Ion position={iA} color="#6d4bd6" radius={0.12} accent />
+      <Ion position={iB} color="#6d4bd6" radius={0.12} accent />
+      <Seg a={iA} b={iB} color="#e6c15a" radius={0.04} />
+      <Tag position={[0, 0.62, 0]}>2 I · một cạnh</Tag>
+    </group>
+  );
+}
+
+/** Face-sharing dimer: exactly three iodides, the gold triangle is that face. */
+function FaceShare() {
+  const R = 0.5;
+  const c2: [number, number, number] = [(2 * R) / 3, (2 * R) / 3, (2 * R) / 3];
+  const mid: [number, number, number] = [c2[0] / 2, c2[1] / 2, c2[2] / 2];
+  const shared: [number, number, number][] = [
+    [R, 0, 0],
+    [0, R, 0],
+    [0, 0, R],
+  ];
+  const far = shared.map(
+    (p) => [2 * c2[0] - p[0], 2 * c2[1] - p[1], 2 * c2[2] - p[2]] as [number, number, number],
+  );
+  const back: [number, number, number][] = [
+    [-R, 0, 0],
+    [0, -R, 0],
+    [0, 0, -R],
+  ];
+  const face = useMemo(() => {
+    const g = new THREE.BufferGeometry();
+    g.setAttribute("position", new THREE.BufferAttribute(new Float32Array([R, 0, 0, 0, R, 0, 0, 0, R]), 3));
+    g.computeVertexNormals();
+    return g;
+  }, []);
+  const verts = [...shared, ...far];
+  const edges: [number, number][] = [];
+  for (let i = 0; i < verts.length; i++) {
+    for (let j = i + 1; j < verts.length; j++) {
+      const opposite = (i < 3 && j === i + 3) || (j < 3 && i === j + 3);
+      if (!opposite) edges.push([i, j]);
+    }
+  }
+  return (
+    <group position={[-mid[0], -mid[1], -mid[2]]}>
+      <OctaMesh color="#6d4bd6" scale={R} opacity={0.22} />
+      <Ion position={[0, 0, 0]} color="#c5ccd6" radius={0.1} />
+      <Ion position={c2} color="#c5ccd6" radius={0.1} />
+      {back.map((p, i) => (
+        <Ion key={`b${i}`} position={p} color="#6d4bd6" radius={0.065} />
+      ))}
+      {far.map((p, i) => (
+        <Ion key={`f${i}`} position={p} color="#6d4bd6" radius={0.065} />
+      ))}
+      {shared.map((p, i) => (
+        <Ion key={`s${i}`} position={p} color="#6d4bd6" radius={0.12} accent />
+      ))}
+      {edges.map(([i, j], k) => (
+        <Seg key={`e${k}`} a={verts[i]!} b={verts[j]!} color="#6d4bd6" radius={0.012} />
+      ))}
+      <mesh geometry={face}>
+        <meshBasicMaterial color="#e6c15a" side={THREE.DoubleSide} transparent opacity={0.88} />
+      </mesh>
+      <Tag position={[mid[0], mid[1] + 0.78, mid[2]]}>3 I · một mặt</Tag>
+    </group>
+  );
+}
+
+function ToleranceScene(_: { step: number }) {
   const cation = useSim((s) => s.cation);
   const mixCs = useSim((s) => s.mixCs);
   const rA = cation === "Cs" ? ION.cs : cation === "MA" ? ION.ma : ION.fa;
@@ -239,33 +387,31 @@ function ToleranceScene({ step }: { step: number }) {
   const large = t > 0.97 && !mixCs;
   const name = mixCs ? "FA + 5% Cs" : cation === "Cs" ? "CsPbI₃" : cation === "MA" ? "MAPbI₃" : "FAPbI₃";
   const color = mixCs ? "#e6c15a" : cation === "Cs" ? "#79b0ff" : cation === "MA" ? "#3cba84" : "#e6c15a";
-  const radius = 0.12 + (used - ION.cs) * 0.26;
+  const hole = 0.21;
+  const drawn = mixCs ? 0.16 : cation === "Cs" ? 0.1 : cation === "MA" ? 0.26 : 0.38;
   const x = tToX(t);
   const safeL = tToX(0.88);
   const safeR = tToX(0.985);
-  const screenOnly = step >= 5;
+  const side = small || large;
   return (
     <group>
-      <group position={small || large ? [-0.95, 0.22, 0] : [0, 0.22, 0]} scale={0.9}>
-        <SharePair a={{ color, radius: mixCs ? 0.18 : radius }} aLabel={mixCs ? "FA" : "A"} />
-        {mixCs ? <Ion position={[0.62, 0.02, 1.2]} color="#79b0ff" radius={0.1} /> : null}
+      <group position={side ? [-1.28, 0.22, 0] : [0, 0.16, 0]} scale={side ? 0.82 : 1.05}>
+        <FitPair
+          color={color}
+          radius={drawn}
+          label={mixCs ? "FA" : cation}
+          hole={hole}
+          speck={mixCs}
+        />
       </group>
       {small ? (
-        <group position={[1.85, 0.2, 0]}>
-          <OctaMesh color="#e6c15a" scale={0.4} />
-          <group position={[0.36, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
-            <OctaMesh color="#e6c15a" scale={0.4} />
-          </group>
-          <Tag position={[0.2, 0.85, 0]}>chung cạnh</Tag>
+        <group position={[1.42, 0.16, 0]} scale={0.95}>
+          <EdgeShare />
         </group>
       ) : null}
       {large ? (
-        <group position={[1.9, 0.05, 0]}>
-          <OctaMesh color="#e6c15a" scale={0.4} />
-          <group position={[0.2, 0.2, 0.2]}>
-            <OctaMesh color="#e08a55" scale={0.4} />
-          </group>
-          <Tag position={[0.15, 1.05, 0]}>chung mặt</Tag>
+        <group position={[1.48, 0.08, 0]} scale={0.86}>
+          <FaceShare />
         </group>
       ) : null}
       <mesh position={[0, -1.22, 0]}>
@@ -274,7 +420,7 @@ function ToleranceScene({ step }: { step: number }) {
       </mesh>
       <mesh position={[(safeL + safeR) / 2, -1.22, 0]}>
         <boxGeometry args={[safeR - safeL, 0.14, 0.12]} />
-        <meshStandardMaterial color={screenOnly ? "#5c6b73" : "#8fd0a8"} />
+        <meshStandardMaterial color="#8fd0a8" />
       </mesh>
       <mesh position={[x, -1.22, 0.12]}>
         <sphereGeometry args={[0.11, 14, 12]} />
@@ -284,186 +430,269 @@ function ToleranceScene({ step }: { step: number }) {
         {name} · t ≈ {t.toFixed(2)}
       </Tag>
       <Tag position={[0, -1.68, 0]}>
-        {screenOnly
-          ? "t chỉ sàng lọc · không bảo đảm bền"
-          : mixCs
-            ? "thêm chấm lam · về vùng an toàn"
-            : small
-              ? "A hơi nhỏ · dễ sụp"
-              : large
-                ? "A hơi lớn · dễ sang lục giác"
-                : "A vừa hốc · vùng an toàn"}
+        {mixCs
+          ? "thêm Cs · lại chạm 1 iod"
+          : small
+            ? "A nhỏ · bên phải chạm 2 iod"
+            : large
+              ? "A tràn · bên phải chạm 3 iod"
+              : "chạm đúng 1 iod · vừa hốc"}
       </Tag>
     </group>
   );
 }
 
-function TiltPair({
-  position,
-  tilt,
-  axes,
-  color = "#6d4bd6",
-}: {
-  position: [number, number, number];
-  tilt: number;
-  axes: 0 | 1 | 3;
-  color?: string;
-}) {
-  const left = useRef<THREE.Group>(null);
-  const right = useRef<THREE.Group>(null);
-  const ang = useRef(0);
-  useFrame((_, dt) => {
-    ang.current += (tilt - ang.current) * (1 - Math.exp(-4 * Math.min(dt, 0.05)));
-    if (left.current) {
-      left.current.rotation.z = ang.current;
-      left.current.rotation.x = axes === 3 ? ang.current * 0.8 : 0;
-    }
-    if (right.current) {
-      right.current.rotation.z = -ang.current;
-      right.current.rotation.y = axes === 3 ? ang.current : 0;
-    }
-  });
+function bendAngle(bend: number, half: number): number {
+  const mag2 = half * half + bend * bend;
+  const cos = Math.max(-1, Math.min(1, (bend * bend - half * half) / mag2));
+  return Math.round((Math.acos(cos) * 180) / Math.PI);
+}
+
+function Dashed({ a, b }: { a: [number, number, number]; b: [number, number, number] }) {
+  const parts = 4;
   return (
-    <group position={position}>
-      <group ref={left} position={[-0.62, 0, 0]}>
-        <OctaMesh color={color} scale={0.55} />
-        <Ion position={[0, 0, 0]} color="#c5ccd6" radius={0.12} />
-        <Seg a={[0, 0, 0]} b={[0.62, 0, 0]} color="#e6c15a" radius={0.03} />
-      </group>
-      <group ref={right} position={[0.62, 0, 0]}>
-        <OctaMesh color={color} scale={0.55} />
-        <Ion position={[0, 0, 0]} color="#c5ccd6" radius={0.12} />
-        <Seg a={[0, 0, 0]} b={[-0.62, 0, 0]} color="#e6c15a" radius={0.03} />
-      </group>
-      <Ion position={[0, 0, 0]} color="#6d4bd6" radius={0.11} />
+    <group>
+      {Array.from({ length: parts }).map((_, i) => {
+        const t0 = i / parts;
+        const t1 = t0 + 0.42 / parts;
+        const p0: [number, number, number] = [
+          a[0] + (b[0] - a[0]) * t0,
+          a[1] + (b[1] - a[1]) * t0,
+          -0.02,
+        ];
+        const p1: [number, number, number] = [
+          a[0] + (b[0] - a[0]) * t1,
+          a[1] + (b[1] - a[1]) * t1,
+          -0.02,
+        ];
+        return <Seg key={i} a={p0} b={p1} color="#8b97a3" radius={0.012} />;
+      })}
     </group>
   );
 }
 
-function bondAngle(tilt: number): number {
-  return Math.round(180 - (2 * tilt * 180) / Math.PI);
+/** Pb ions stay fixed. The bridging iodide moves off the Pb–Pb line, and both bonds meet at that iodide. */
+function AnglePair({
+  position,
+  bend,
+  half,
+  showA = false,
+  labelIons = false,
+}: {
+  position: [number, number, number];
+  bend: number;
+  half: number;
+  showA?: boolean;
+  labelIons?: boolean;
+}) {
+  const reach = Math.hypot(half, bend);
+  const left: [number, number, number] = [-half, 0, 0];
+  const right: [number, number, number] = [half, 0, 0];
+  const iPos: [number, number, number] = [0, bend, 0];
+  const aimL = Math.atan2(bend, half);
+  const aimR = Math.atan2(bend, -half);
+  let a0 = Math.atan2(-bend, -half);
+  const a1 = Math.atan2(-bend, half);
+  if (a0 > a1) a0 -= Math.PI * 2;
+  const arcR = Math.min(0.28, half * 0.42);
+  const arc: [number, number, number][] = [];
+  const steps = 8;
+  for (let i = 0; i <= steps; i++) {
+    const ang = a0 + ((a1 - a0) * i) / steps;
+    arc.push([Math.cos(ang) * arcR, bend + Math.sin(ang) * arcR, 0.03]);
+  }
+  return (
+    <group position={position}>
+      {bend > 0.04 ? <Dashed a={left} b={right} /> : null}
+      <PlacedOcta center={left} reach={reach} rotZ={aimL} skip={[0]} ionR={0.055} pbLabel={labelIons ? "Pb" : undefined} />
+      <PlacedOcta center={right} reach={reach} rotZ={aimR} skip={[0]} ionR={0.055} pbLabel={labelIons ? "Pb" : undefined} />
+      <Ion position={iPos} color="#6d4bd6" radius={0.11} accent />
+      <Seg a={left} b={iPos} color="#e6c15a" radius={0.03} />
+      <Seg a={right} b={iPos} color="#e6c15a" radius={0.03} />
+      {bend > 0.05
+        ? arc.slice(0, -1).map((p, i) => (
+            <Seg key={i} a={p} b={arc[i + 1]!} color="#e6c15a" radius={0.012} />
+          ))
+        : null}
+      {showA ? <Ion position={[0.46, 0.08, 0.52]} color="#79b0ff" radius={0.12} label="A" /> : null}
+    </group>
+  );
 }
 
 function PhasesScene({ step }: { step: number }) {
-  const temp = useSim((s) => s.temp);
-  const phase = phaseFromTemp(temp);
-  if (step >= 4) {
+  if (step >= 2) {
+    const half = 0.58;
+    const csBend = 0.34;
+    const faBend = 0.1;
     return (
       <group>
-        <TiltPair position={[-1.35, 0.05, 0]} tilt={0.62} axes={3} />
-        <Tag position={[-1.35, 1.25, 0]}>Cs · Eg ≈ 1,73 eV</Tag>
-        <TiltPair position={[1.45, 0.05, 0]} tilt={0.08} axes={1} color="#8a74e0" />
-        <Tag position={[1.45, 1.25, 0]}>FA · Eg ≈ 1,48 eV</Tag>
-        <Tag position={[0, 1.82, 0]} accent>
-          nghiêng nhiều thì Eg rộng
+        <AnglePair position={[-1.5, 0.05, 0]} bend={csBend} half={half} />
+        <Tag position={[-1.5, 1.28, 0]}>
+          Cs · {bendAngle(csBend, half)}° · Eg 1,73
         </Tag>
-        <Tag position={[0, -1.6, 0]}>A nhỏ nghiêng nhiều · A lớn gần 180°</Tag>
+        <AnglePair position={[1.5, 0.05, 0]} bend={faBend} half={half} />
+        <Tag position={[1.5, 1.28, 0]}>
+          FA · {bendAngle(faBend, half)}° · Eg 1,48
+        </Tag>
+        <Tag position={[0, 1.78, 0]} accent>
+          lệch nhiều thì Eg rộng
+        </Tag>
+        <Tag position={[0, -1.58, 0]}>A không tạo Eg · A chỉ đẩy iod</Tag>
       </group>
     );
   }
-  const teaching = step === 0;
-  const tilt = teaching ? 0.48 : phase.tilt;
-  const axes = teaching ? 1 : phase.axes;
-  const angle = bondAngle(tilt);
-  const name = teaching ? "A nhỏ · khung khom" : phase.name;
-  const line = teaching
-    ? "góc Pb–I–Pb lệch khỏi 180°"
-    : step === 3
-      ? "nghiêng vẽ phóng đại cho dễ thấy"
-      : phase.range;
+  if (step === 1) {
+    const half = 0.58;
+    const room = 0.32;
+    return (
+      <group>
+        <AnglePair position={[-1.5, 0.05, 0]} bend={0} half={half} />
+        <Tag position={[-1.5, 1.28, 0]}>nóng · {bendAngle(0, half)}°</Tag>
+        <AnglePair position={[1.5, 0.05, 0]} bend={room} half={half} />
+        <Tag position={[1.5, 1.28, 0]}>phòng · {bendAngle(room, half)}°</Tag>
+        <Tag position={[0, 1.78, 0]} accent>
+          cùng khung · nóng thì thẳng
+        </Tag>
+        <Tag position={[0, -1.58, 0]}>trên ≈ 54 °C thẳng · phòng thì iod lệch</Tag>
+      </group>
+    );
+  }
+  const half = 0.78;
+  const bend = 0.46;
   return (
     <group>
-      <TiltPair position={[0, 0.05, 0]} tilt={tilt} axes={axes} />
-      {teaching ? <Ion position={[0, 0.15, 0.9]} color="#79b0ff" radius={0.14} label="A" /> : null}
+      <AnglePair position={[0, 0.02, 0]} bend={bend} half={half} showA labelIons />
       <Tag position={[0, 1.72, 0]} accent>
-        {name}
+        A nhỏ đẩy iod lên
       </Tag>
-      <Tag position={[0, 1.22, 0]}>Pb–I–Pb ≈ {angle}°</Tag>
-      <Tag position={[0, -1.6, 0]}>{line}</Tag>
+      <Tag position={[0, 1.22, 0]}>Pb–I–Pb ≈ {bendAngle(bend, half)}°</Tag>
+      <Tag position={[0, -1.58, 0]}>hai chì đứng yên · iod rời đường thẳng</Tag>
+    </group>
+  );
+}
+
+function Arrow({ a, b, color = "#e4a23a" }: { a: [number, number, number]; b: [number, number, number]; color?: string }) {
+  const geo = useMemo(() => {
+    const A = new THREE.Vector3(...a);
+    const B = new THREE.Vector3(...b);
+    const dir = B.clone().sub(A);
+    const len = Math.max(0.001, dir.length());
+    const n = dir.clone().normalize();
+    const q = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), n);
+    const head = 0.16;
+    return {
+      q,
+      shaftLen: Math.max(0.05, len - head),
+      shaftMid: A.clone().add(n.clone().multiplyScalar((len - head) / 2)),
+      headPos: A.clone().add(n.clone().multiplyScalar(len - head / 2)),
+    };
+  }, [a, b]);
+  return (
+    <group>
+      <mesh position={geo.shaftMid} quaternion={geo.q}>
+        <cylinderGeometry args={[0.03, 0.03, geo.shaftLen, 8]} />
+        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.5} />
+      </mesh>
+      <mesh position={geo.headPos} quaternion={geo.q}>
+        <coneGeometry args={[0.085, 0.16, 10]} />
+        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.55} />
+      </mesh>
+    </group>
+  );
+}
+
+function NoShake({ position }: { position: [number, number, number] }) {
+  const pts = useMemo(() => {
+    const out: [number, number, number][] = [];
+    for (let i = 0; i <= 7; i++) {
+      const t = i / 7;
+      out.push([
+        position[0] + (t - 0.5) * 0.58,
+        position[1] + Math.sin(t * Math.PI * 2) * 0.12,
+        position[2],
+      ]);
+    }
+    return out;
+  }, [position]);
+  return (
+    <group>
+      {pts.slice(0, -1).map((p, i) => (
+        <Seg key={i} a={p} b={pts[i + 1]!} color="#9aa6b4" radius={0.016} />
+      ))}
+      <Seg
+        a={[position[0] - 0.2, position[1] - 0.18, 0.05]}
+        b={[position[0] + 0.2, position[1] + 0.18, 0.05]}
+        color="#e15b4c"
+        radius={0.02}
+      />
     </group>
   );
 }
 
 function OrbitalsScene({ step }: { step: number }) {
-  const drop = step >= 4 ? 0.42 : 0;
-  const gap = 1.45 - drop;
+  const s = 0.7;
+  const octaX = -1.85;
+  const barX = 0.72;
+  const barW = 1.85;
+  const lowY = -0.58;
+  const highY = 0.72;
+  const iAt: [number, number, number] = [octaX + s, 0.05, 0];
+  const pbAt: [number, number, number] = [octaX, 0.05, 0];
+  const lowL: [number, number, number] = [barX - barW / 2, lowY, 0];
+  const highL: [number, number, number] = [barX - barW / 2, highY, 0];
   return (
     <group>
-      <group position={[-2.05, 0.05, 0]}>
-        <OctaMesh color="#6d4bd6" scale={0.48} />
-        <Ion position={[0, 0, 0]} color="#c5ccd6" radius={0.12} label="Pb²⁺" />
-        <Ion position={[0.48, 0, 0]} color="#6d4bd6" radius={0.09} label="I⁻" />
-        <Tag position={[0, -0.85, 0]}>PbI₆</Tag>
+      <group position={[octaX, 0.05, 0]}>
+        <OctaMesh color="#6d4bd6" scale={s} opacity={0.22} />
+        <Ion position={[0, 0, 0]} color="#4d86d6" radius={0.16} label="Pb" accent />
+        <Ion position={[s, 0, 0]} color="#c46a45" radius={0.13} label="I" accent />
+        {DIRS.map((d, i) => {
+          if (d[0] === 1 && d[1] === 0 && d[2] === 0) return null;
+          const at: [number, number, number] = [d[0] * s, d[1] * s, d[2] * s];
+          return <Ion key={i} position={at} color="#6d4bd6" radius={0.09} />;
+        })}
+        {DIRS.map((d, i) => {
+          if (d[0] === 1 && d[1] === 0 && d[2] === 0) return null;
+          const at: [number, number, number] = [d[0] * s, d[1] * s, d[2] * s];
+          return <Seg key={`b${i}`} a={[0, 0, 0]} b={at} color="#6d4bd6" radius={0.02} />;
+        })}
+        <Seg a={[0, 0, 0]} b={[s, 0, 0]} color="#c46a45" radius={0.028} />
       </group>
-      <group position={[0.55, 0, 0]}>
-        <Slab position={[0, -0.72, 0]} size={[2.5, 0.22, 0.85]} color="#c46a45" />
-        <Tag position={[0, -1.12, 0]}>hóa trị · I 5p + Pb 6s</Tag>
-        <Slab position={[0, 0.72 - drop, 0]} size={[2.5, 0.22, 0.85]} color="#4d86d6" />
-        <Tag position={[0, 1.12 - drop, 0]}>{step >= 4 ? "dẫn · Pb 6p bị kéo xuống" : "dẫn · Pb 6p"}</Tag>
+      <Seg a={iAt} b={lowL} color="#c46a45" radius={0.02} />
+      <Seg a={pbAt} b={highL} color="#4d86d6" radius={0.02} />
+      <group position={[barX, 0, 0]}>
+        <Slab position={[0, lowY, 0]} size={[barW, 0.2, 0.7]} color="#c46a45" />
+        <Tag position={[0, lowY - 0.38, 0]}>hóa trị · lỗ ở I</Tag>
+        <Slab position={[0, highY, 0]} size={[barW, 0.2, 0.7]} color="#4d86d6" />
+        <Tag position={[0, highY + 0.38, 0]}>dẫn · điện tử lên Pb</Tag>
+        <Tag position={[-0.55, (lowY + highY) / 2, 0]} accent>
+          Eg
+        </Tag>
         {step >= 1 ? (
-          <Pop>
-            <mesh position={[0.15, (0.72 - drop - 0.72) / 2, 0.2]}>
-              <cylinderGeometry args={[0.03, 0.03, Math.max(0.35, gap - 0.28), 8]} />
-              <meshStandardMaterial color="#e4a23a" emissive="#e4a23a" emissiveIntensity={0.55} />
-            </mesh>
-            <Tag position={[1.15, 0.05 - drop * 0.5, 0]}>nhảy thẳng</Tag>
-          </Pop>
-        ) : null}
-        {step >= 2 ? (
           <group>
-            <mesh position={[-0.85, 0.72 - drop, 0.35]}>
-              <sphereGeometry args={[0.09, 14, 12]} />
-              <meshStandardMaterial color="#79b0ff" emissive="#79b0ff" emissiveIntensity={0.7} />
+            <Arrow a={[-0.02, lowY + 0.18, 0.28]} b={[-0.02, highY - 0.18, 0.28]} />
+            <Ion position={[-0.7, highY, 0.4]} color="#79b0ff" radius={0.08} label="e⁻" />
+            <mesh position={[-0.7, lowY, 0.42]}>
+              <torusGeometry args={[0.1, 0.022, 8, 20]} />
+              <meshStandardMaterial color="#c46a45" emissive="#c46a45" emissiveIntensity={0.4} />
             </mesh>
-            <mesh position={[-0.85, -0.72, 0.35]}>
-              <sphereGeometry args={[0.09, 14, 12]} />
-              <meshStandardMaterial color="#e08a55" emissive="#e08a55" emissiveIntensity={0.55} />
-            </mesh>
-            {step < 4 ? <Tag position={[-0.85, 1.12, 0]}>cả hai đều nhẹ</Tag> : null}
-          </group>
-        ) : null}
-        {step >= 3 ? (
-          <group>
-            <mesh position={[0.85, -0.42, 0.35]}>
-              <sphereGeometry args={[0.08, 12, 10]} />
-              <meshStandardMaterial color="#8fd0a8" emissive="#8fd0a8" emissiveIntensity={0.55} />
-            </mesh>
-            <Tag position={[0.85, -0.15, 0]}>bẫy nông</Tag>
+            <NoShake position={[0.58, 0.16, 0.3]} />
+            <Tag position={[0.58, -0.22, 0.3]}>không cần lắc</Tag>
           </group>
         ) : null}
       </group>
-      <Tag position={[0.4, -1.62, 0]} accent>
-        {step === 0
-          ? "đỉnh hóa trị không phải từ chì"
-          : step === 1
-            ? "không cần dao động mạng"
-            : step === 2
-              ? "nên điện tích đi xa"
-              : step === 3
-                ? "khuyết tật dễ gặp chỉ sát mép"
-                : "bỏ spin–quỹ đạo thì đoán Eg sai"}
+      <Tag position={[0.15, -1.58, 0]} accent>
+        {step === 0 ? "lỗ trống ở iod · điện tử sẽ lên chì" : "nhảy thẳng · không mượn dao động mạng"}
       </Tag>
     </group>
   );
 }
-
-const MIX_A: { color: string; label?: string }[] = [
-  { color: "#3cba84" },
-  { color: "#3cba84" },
-  { color: "#3cba84" },
-  { color: "#e6c15a", label: "FA" },
-  { color: "#3cba84" },
-  { color: "#3cba84" },
-  { color: "#79b0ff", label: "Cs" },
-  { color: "#3cba84", label: "MA" },
-];
-
 function AlloyScene({ step }: { step: number }) {
   const br = useSim((s) => s.br);
   const sn = useSim((s) => s.sn);
   const light = useSim((s) => s.light);
-  const eg = egFromHalide(step >= 4 ? 0 : br, step === 5 ? sn : 0);
-  if (step === 3) {
+  const eg = egFromHalide(step === 0 || step === 1 ? br : 0, step === 3 ? sn : 0);
+  if (step === 2) {
     return (
       <group>
         {light ? (
@@ -494,25 +723,22 @@ function AlloyScene({ step }: { step: number }) {
       </group>
     );
   }
-  const xColor = step >= 4 ? "#6d4bd6" : egHex(egFromHalide(br, 0));
-  const xLabel = step === 5 ? "X" : step >= 2 ? "X = Br" : br > 8 ? "X = I/Br" : "X = I";
+  const xColor = step >= 2 ? "#6d4bd6" : egHex(egFromHalide(br, 0));
+  const xLabel = step === 0 ? "X = I" : step === 1 ? (br >= 95 ? "X = Br" : br > 8 ? "X = I/Br" : "X = I") : "X";
   return (
     <group>
       <UnitCell
         a="#3cba84"
-        b={step === 5 ? "#d2a36a" : "#c5ccd6"}
+        b={step === 3 ? "#d2a36a" : "#c5ccd6"}
         x={xColor}
-        aLabel={step === 4 ? undefined : undefined}
-        bLabel={step === 5 ? "Sn/Pb" : undefined}
-        xLabel={step === 4 ? "X" : xLabel}
-        highlight={step === 5 ? "B" : step === 4 ? "A" : "X"}
-        solo={step !== 4}
+        bLabel={step === 3 ? "Sn/Pb" : undefined}
+        xLabel={xLabel}
+        highlight={step === 3 ? "B" : "X"}
+        solo
         showOcta
-        cornerColors={step === 4 ? MIX_A.map((c) => c.color) : undefined}
-        cornerLabels={step === 4 ? MIX_A.map((c) => c.label) : undefined}
       />
       <Tag position={[0, 1.85, 0]} accent>
-        {step === 5 ? "trộn ở vị trí B" : step === 4 ? "trộn ở vị trí A" : step >= 2 ? "thuần brom" : "trộn ở vị trí X"}
+        {step === 3 ? "trộn ở vị trí B" : step === 1 ? "thêm brom" : "trộn ở vị trí X"}
       </Tag>
       <Tag position={[0, -1.65, 0]}>Eg {eg.toFixed(2)} eV</Tag>
     </group>
@@ -520,26 +746,7 @@ function AlloyScene({ step }: { step: number }) {
 }
 
 function NanoScene({ step }: { step: number }) {
-  const nWell = useSim((s) => s.nWell);
   if (step === 0) {
-    return (
-      <group>
-        <group position={[-1.35, 0.1, 0]}>
-          <OctaMesh color="#6d4bd6" scale={0.55} />
-          <Ion position={[0, 0, 0]} color="#c5ccd6" radius={0.12} />
-          <Tag position={[0, 0.85, 0]}>viên gạch · vài nm</Tag>
-        </group>
-        <group position={[1.15, 0.1, 0]}>
-          <Slab position={[0, 0, 0]} size={[1.7, 0.22, 1.05]} color="#241c38" />
-          <Tag position={[0, 0.55, 0]}>màng · 0,5 µm</Tag>
-        </group>
-        <Tag position={[0, -1.4, 0]} accent>
-          cùng vật liệu · khác thước
-        </Tag>
-      </group>
-    );
-  }
-  if (step === 1) {
     return (
       <group>
         {[-1.05, 0, 1.05].map((x) =>
@@ -567,7 +774,7 @@ function NanoScene({ step }: { step: number }) {
       </group>
     );
   }
-  if (step === 2) {
+  if (step === 1) {
     return (
       <group>
         {Array.from({ length: 7 }).map((_, i) => {
@@ -589,32 +796,15 @@ function NanoScene({ step }: { step: number }) {
       </group>
     );
   }
-  if (step === 4) {
-    return (
-      <group>
-        <Slab position={[0, -0.12, 0]} size={[2.4, 0.55, 1.25]} color="#241c38" />
-        <Tag position={[0, -0.12, 0.75]}>màng 3D</Tag>
-        <Slab position={[0, 0.28, 0]} size={[2.4, 0.07, 1.25]} color="#3cba84" emissive={0.25} />
-        <Tag position={[0, 0.7, 0]} accent>
-          áo 2D rất mỏng
-        </Tag>
-        <Tag position={[0, -1.15, 0]}>điện tích khó xuyên lớp hữu cơ</Tag>
-      </group>
-    );
-  }
-  const n = nWell >= 90 ? 4 : Math.max(1, Math.min(4, nWell));
-  const eg = WELL_EG[nWell] ?? 1.52;
   return (
     <group>
-      <Slab position={[0, -0.72, 0]} size={[2.5, 0.07, 1.2]} color="#3cba84" />
-      {Array.from({ length: n }).map((_, i) => (
-        <Slab key={i} position={[0, -0.5 + i * 0.32, 0]} size={[2.1, 0.14, 1.05]} color="#6d4bd6" emissive={0.15} />
-      ))}
-      <Slab position={[0, -0.5 + n * 0.32, 0]} size={[2.5, 0.07, 1.2]} color="#3cba84" />
-      <Tag position={[0, 1.45, 0]} accent>
-        {nWell >= 90 ? "n = ∞ · 3D" : `n = ${n}`} · Eg {eg.toFixed(2)} eV
+      <Slab position={[0, -0.12, 0]} size={[2.4, 0.55, 1.25]} color="#241c38" />
+      <Tag position={[0, -0.12, 0.75]}>màng 3D</Tag>
+      <Slab position={[0, 0.28, 0]} size={[2.4, 0.07, 1.25]} color="#3cba84" emissive={0.25} />
+      <Tag position={[0, 0.7, 0]} accent>
+        áo 2D rất mỏng
       </Tag>
-      <Tag position={[0, -1.35, 0]}>lớp lục cắt khung thành giếng</Tag>
+      <Tag position={[0, -1.15, 0]}>điện tích khó xuyên lớp hữu cơ</Tag>
     </group>
   );
 }

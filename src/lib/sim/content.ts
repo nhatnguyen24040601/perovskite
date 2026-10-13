@@ -387,19 +387,27 @@ export const lessons: Lesson[] = [
     steps: [
       {
         title: "B ngồi tâm bát diện",
-        body: "Cation kim loại B, thường Pb²⁺, đôi khi Sn²⁺ hoặc Ge²⁺, quyết định chủ yếu vùng dẫn. Chì cho hiệu suất cao nhất nhưng độc.",
+        body: "Quả cầu xám ở giữa lớn lên, các quả khác mờ đi. Đó là B, thường là Pb²⁺. Điện tử chạy ở vùng dẫn, và vùng dẫn này chủ yếu do B quyết định. Chì cho hiệu suất cao nhất, nhưng độc.",
+        caption:
+          "Cùng ô halide của bài 2.1, thêm khối bát diện mờ. Chỉ quả xám B ở tâm được phóng to. Dòng dưới: B quyết định vùng dẫn.",
       },
       {
         title: "X là đỉnh bát diện",
-        body: "Anion halide quyết định chủ yếu vùng hóa trị. Iod cho vùng cấm nhỏ; brom và clo làm vùng cấm lớn hơn, màu sáng hơn.",
+        body: "Giờ quả cầu tím lớn lên, quả xám thu nhỏ. Đó là X: I⁻, Br⁻ hoặc Cl⁻. Lỗ trống ở lại vùng hóa trị, và vùng hóa trị chủ yếu do X quyết định. Iod cho vùng cấm nhỏ; brom và clo làm vùng cấm lớn hơn.",
+        caption:
+          "B thu nhỏ và mờ đi. X tím ở các mặt được phóng to. Dòng dưới đổi thành: X quyết định vùng hóa trị.",
       },
       {
         title: "A lấp khoảng trống",
-        body: "MA⁺ = CH₃NH₃⁺, FA⁺ = HC(NH₂)₂⁺, hoặc Cs⁺. A không tạo vùng cấm trực tiếp; nó làm khung nghiêng và qua đó đổi Eg.",
+        body: "Quả cầu lục ở góc lớn lên. Đó là A: MA⁺, FA⁺ hoặc Cs⁺. A không tạo vùng cấm trực tiếp. Nó chỉ làm cả khung nghiêng, và khung nghiêng thì vùng cấm đổi — bài 2.5 vẽ độ nghiêng ấy.",
+        caption:
+          "X thu nhỏ. A lục ở góc ô được phóng to. A ngồi ở góc, không ngồi ở tâm Pb. Dòng dưới: A đổi Eg gián tiếp, qua độ nghiêng của khung.",
       },
       {
         title: "Điện tích phải về không",
-        body: "A(+1) + B(+2) + 3×X(−1) = 0. Ví dụ quen nhất là MAPbI₃, tức CH₃NH₃PbI₃. Bấm vào từng ion trên mô hình để khóa camera vào nó.",
+        body: "Nhãn đổi thành điện tích và mọi quả cầu trở lại cùng cỡ. A mang +1, B mang +2, ba X mỗi ion mang −1. Cộng lại bằng 0, nên ô này không tích điện. Ví dụ quen là MAPbI₃, tức CH₃NH₃PbI₃.",
+        caption:
+          "Không còn quả nào được phóng to. Nhãn là A +1, B +2 và X −1. Dòng dưới: A+1 + B+2 + 3×(X−1) = 0.",
       },
     ],
   },
@@ -418,19 +426,27 @@ export const lessons: Lesson[] = [
     steps: [
       {
         title: "Bước 1 — Viên gạch bát diện",
-        body: "Một ion Pb²⁺ được sáu ion I⁻ bao theo sáu hướng. Nối sáu iod được khối tám mặt: bát diện (octahedron) PbI₆.",
+        body: "Tách riêng phần giữa ô vừa rồi. Một Pb²⁺ xám được sáu I⁻ tím bao theo sáu hướng. Nối sáu iod được khối tám mặt: bát diện PbI₆. Đây là viên gạch của mọi bước sau.",
+        caption:
+          "Chỉ một khối tám mặt. Tâm xám là Pb²⁺. Sáu đỉnh tím là I⁻. Chưa có khối thứ hai, chưa có A, chưa có ô lập phương.",
       },
       {
         title: "Bước 2 — Nối góc",
-        body: "Các bát diện dùng chung đỉnh (corner-sharing). Mỗi iod là đỉnh chung của hai bát diện kề nhau. Lặp theo ba chiều thành một khung giàn.",
+        body: "Thêm đúng một viên gạch nữa. Hai khối chạm nhau tại một I tím. Một iod thuộc hai bát diện: đó là nối góc. Lặp theo ba chiều sẽ thành khung giàn.",
+        caption:
+          "Xuất hiện khối thứ hai. Giữa hai khối là một I⁻ ghi «chung». Mỗi khối vẫn một Pb. Đó là nối góc, chưa phải nối cạnh hay nối mặt.",
       },
       {
         title: "Bước 3 — Thả cation A vào hốc",
-        body: "Giữa tám bát diện có một hốc lớn. MA⁺ và FA⁺ là phân tử, có thể xoay tương đối tự do trong hốc. Cs⁺ là ion đơn, không xoay như một phân tử.",
+        body: "Quả cầu vàng rơi vào vòng tròn trống cạnh I chung. Vòng ấy là hốc, nằm giữa các bát diện, không phải tâm Pb. MA⁺ và FA⁺ là phân tử, có thể xoay trong hốc. Cs⁺ là một ion đơn, không xoay như phân tử.",
+        caption:
+          "Một vòng xuất hiện cạnh I chung, quả cầu vàng A nằm trong vòng ấy. Tâm mỗi khối vẫn là Pb. A không thay chỗ Pb.",
       },
       {
         title: "Bước 4 — Đếm ra ABX₃",
-        body: "Trong một ô cơ sở: A ở 8 góc, mỗi góc chia cho 8 ô nên 8×1/8 = 1. B ở tâm = 1. X ở 6 tâm mặt, mỗi mặt chia 2 ô nên 6×1/2 = 3. Cộng lại là ABX₃.",
+        body: "Gói các viên gạch ấy vào một ô lập phương để đếm. Khối tím ở giữa chính là bát diện vừa nãy. A ở 8 góc, mỗi góc chia 8 ô nên 8×1/8 = 1. B ở tâm = 1. X ở 6 mặt, mỗi mặt chia 2 ô nên 6×1/2 = 3. Cộng lại là ABX₃.",
+        caption:
+          "Hai khối được thay bằng một ô. Bát diện tím nằm trong ô. Nhãn góc A ×1/8, tâm B ×1, mặt X ×1/2. Dòng trên là phép đếm ra ABX₃.",
       },
     ],
   },
@@ -443,7 +459,7 @@ export const lessons: Lesson[] = [
     cam: "default",
     controls: ["cation"],
     tune: [
-      { cation: "Cs", mixCs: false },
+      { cation: "MA", mixCs: false },
       { cation: "Cs", mixCs: false },
       { cation: "MA", mixCs: false },
       { cation: "FA", mixCs: false },
@@ -453,27 +469,39 @@ export const lessons: Lesson[] = [
     steps: [
       {
         title: "Ion A có vừa hốc không?",
-        body: "Không phải bộ ba A, B, X nào cũng thành perovskite 3D. Năm 1926 Goldschmidt đề xuất hệ số dung hạn t = (rA + rX) / [√2 (rB + rX)] [20]. t = 1 là vừa khít. Perovskite 3D thường nằm khoảng 0,8 đến 1,0.",
+        body: "Cùng hai bát diện và vòng hốc của bài 2.3. Chấm vàng trên thanh là hệ số Goldschmidt t = (rA + rX) / [√2 (rB + rX)] [20]. t gần 1 thì A vừa hốc. Đoạn xanh là chỗ perovskite 3D thường đứng được, khoảng 0,8 đến 1,0. Bước này A là MA, quả lục vừa vòng.",
+        caption:
+          "Hai bát diện và vòng hốc như bài 2.3. A là MA, quả lục vừa vòng. Chấm vàng nằm trong đoạn xanh. Chưa có khối sụp.",
       },
       {
         title: "CsPbI₃, t ≈ 0,85",
-        body: "Cs hơi nhỏ. Khung dễ sụp thành pha delta màu vàng, các bát diện dùng chung cạnh (edge-sharing), hấp thụ kém. Bán kính Shannon: Pb²⁺ 1,19 Å, I⁻ 2,20 Å, Cs⁺ 1,88 Å [64].",
+        body: "Đổi A thành Cs⁺. Quả cầu nhỏ hơn vòng, chấm vàng trượt sang trái. Khung dễ sụp thành pha delta màu vàng: các bát diện dùng chung cạnh, hấp thụ kém. Bán kính Shannon: Pb²⁺ 1,19 Å, I⁻ 2,20 Å, Cs⁺ 1,88 Å [64].",
+        caption:
+          "A đổi thành quả cầu lam nhỏ, không đầy vòng hốc. Chấm vàng sang trái, ra ngoài đoạn xanh. Bên phải xuất hiện hai khối vàng dùng chung một cạnh.",
       },
       {
         title: "MAPbI₃, t ≈ 0,91",
-        body: "Nằm giữa vùng an toàn. Về mặt hình học, đây là perovskite 3D dễ chịu. Bán kính hiệu dụng MA⁺ ≈ 2,17 Å [65].",
+        body: "Đổi lại MA⁺. Quả cầu vừa vòng, khối vàng biến mất, chấm về trong đoạn xanh. Bán kính hiệu dụng MA⁺ ≈ 2,17 Å [65]. Về hình học, đây là perovskite 3D dễ chịu.",
+        caption:
+          "Quả lam biến mất. A lại là quả lục MA, vừa vòng hốc. Khối vàng chung cạnh biến mất. Chấm vàng nằm trong đoạn xanh.",
       },
       {
         title: "FAPbI₃, t ≈ 0,99",
-        body: "FA hơi lớn (≈ 2,53 Å). Ở nhiệt độ phòng dễ chuyển sang pha lục giác màu vàng, các bát diện dùng chung mặt (face-sharing).",
+        body: "Đổi A thành FA⁺. Quả cầu lớn hơn vòng và tràn ra ngoài, chấm nằm sát mép phải đoạn xanh. Ở nhiệt độ phòng FAPbI₃ dễ sang pha lục giác màu vàng: các bát diện dùng chung mặt. FA⁺ ≈ 2,53 Å.",
+        caption:
+          "A đổi thành quả vàng lớn, tràn khỏi vòng hốc. Chấm nằm sát mép phải đoạn xanh. Bên phải, hai khối chồng lên nhau và dùng chung một mặt.",
       },
       {
         title: "Trộn khoảng 5% Cs",
-        body: "Pha FA với một ít Cs kéo kích thước trung bình về vùng an toàn. FA₀.₉₅Cs₀.₀₅PbI₃ là lõi của nhiều pin trên 27% [39].",
+        body: "Giữ FA và thêm khoảng 5% Cs. Một chấm lam hiện cạnh A: đó là phần Cs. Khối chung mặt biến mất, chấm vàng về trong đoạn xanh. Hình vẽ thu quả A lại cho dễ thấy — trong tinh thể thật 5% chỉ kéo t từ khoảng 0,99 về khoảng 0,98. FA₀.₉₅Cs₀.₀₅PbI₃ là lõi của nhiều pin trên 27% [39].",
+        caption:
+          "Khối chung mặt biến mất. Quả A được vẽ nhỏ lại cho dễ thấy, và cạnh nó có một chấm lam — đó là 5% Cs. Chấm vàng trên thanh trở vào trong đoạn xanh.",
       },
       {
         title: "t chỉ là sàng lọc gần đúng",
-        body: "Bán kính hiệu dụng của ion hữu cơ là ước lượng. Bartel và cộng sự (2019) thấy ngưỡng t chỉ đoán đúng khoảng 74% trường hợp; hệ số τ của họ đúng khoảng 92% [21].",
+        body: "Hình hốc không đổi. Đoạn xanh chuyển thành xám: t chỉ là sàng lọc hình học, không phải lời hứa pin bền. Bartel và cộng sự (2019) thấy ngưỡng t đúng khoảng 74% trường hợp; hệ số τ của họ đúng khoảng 92% [21].",
+        caption:
+          "Hốc và A giữ nguyên như bước trước. Đoạn xanh trên thanh chuyển thành xám. Dòng dưới: t chỉ sàng lọc, không bảo đảm bền.",
         note: warn("Đừng coi t = 0,91 là một lời đảm bảo bền ngoài trời. Nó chỉ nói hình học có chịu không."),
       },
     ],
@@ -486,23 +514,37 @@ export const lessons: Lesson[] = [
     scene: "phases",
     cam: "default",
     controls: ["temperature"],
-    tune: [{ temp: 70 }, { temp: 25 }, { temp: -130 }, { temp: 25 }],
+    tune: [{ temp: 25 }, { temp: 70 }, { temp: 25 }, { temp: -130 }, { temp: 25 }],
     steps: [
       {
         title: "A nhỏ thì khung khom lại",
-        body: "Khi ion A hơi nhỏ so với hốc, các bát diện xoay và nghiêng (octahedral tilting) để ôm lấy A. Góc liên kết Pb–I–Pb lệch khỏi 180°.",
+        body: "Khi A hơi nhỏ so với hốc, các bát diện xoay để ôm lấy A. Nhìn thanh vàng: nó gãy tại I tím, không còn là một đường thẳng. Góc ấy là Pb–I–Pb. Hình gập mạnh hơn tinh thể thật để mắt thấy được.",
+        caption:
+          "Hai bát diện nghiêng ngược nhau. Thanh vàng từ mỗi Pb tới I chung bị gãy. Quả cầu lam phía trước là A nhỏ. Dòng dưới: góc Pb–I–Pb lệch khỏi 180°.",
       },
       {
-        title: "MAPbI₃ có ba pha theo nhiệt độ",
-        body: "Trên khoảng 54 °C: lập phương, không nghiêng, Pb–I–Pb = 180°. Từ khoảng −111 °C đến 54 °C: tứ phương, bát diện kề xoay ngược quanh một trục — đây là nhiệt độ phòng. Dưới khoảng −111 °C: trực thoi, nghiêng cả ba trục [67].",
+        title: "Nóng — lập phương, thẳng",
+        body: "Trên khoảng 54 °C, hai khối thẳng hàng và thanh vàng thành một đường: Pb–I–Pb = 180°. Pha này gọi là lập phương. MAPbI₃ chỉ ở pha này khi nóng hơn khoảng 54 °C [67].",
+        caption:
+          "Độ nghiêng biến mất. Hai khối thẳng hàng, thanh vàng là một đường. Nhãn đổi thành lập phương. Dòng dưới: trên khoảng 54 °C. Quả cầu A của bước trước không còn.",
       },
       {
-        title: "Kéo xuống trực thoi",
-        body: "Thanh nhiệt độ đi từ pha bạn đang sống (tứ phương) xuống pha lạnh. Mô hình phóng đại góc nghiêng để mắt thấy được; trong tinh thể thật độ nghiêng nhỏ hơn hình vẽ.",
+        title: "Phòng — tứ phương, nghiêng một trục",
+        body: "Ở khoảng 25 °C, thanh vàng gãy quanh một trục: hai bát diện kề xoay ngược nhau. Đây là pha tứ phương — pha của MAPbI₃ trong pin đang chạy, từ khoảng −111 °C đến 54 °C [67].",
+        caption:
+          "Thanh vàng gãy lại, nhưng chỉ quanh một trục. Nhãn đổi từ lập phương thành tứ phương. Đây là pha nhiệt độ phòng, khác đường thẳng của bước trước.",
+      },
+      {
+        title: "Lạnh — trực thoi, nghiêng ba trục",
+        body: "Dưới khoảng −111 °C, các khối nghiêng cả theo trục đứng lẫn trục còn lại. Đó là pha trực thoi. Góc trên hình lớn hơn trong tinh thể thật; hình phóng đại để thấy hướng nghiêng [67].",
+        caption:
+          "Các khối nghiêng thêm theo trục thứ hai và thứ ba, không chỉ một trục như bước trước. Nhãn: trực thoi. Dòng dưới nhắc hình phóng đại.",
       },
       {
         title: "Nghiêng nhiều thì vùng cấm rộng",
-        body: "Góc càng lệch 180°, quỹ đạo của Pb và I càng chồng lấp kém, Eg càng rộng [68]. CsPbI₃ (A nhỏ, nghiêng nhiều) có Eg ≈ 1,73 eV. FAPbI₃ (A lớn, ít nghiêng) chỉ ≈ 1,48 eV. A điều khiển Eg gián tiếp qua hình học khung.",
+        body: "Đặt hai khung cạnh nhau. Cs nhỏ nên nghiêng nhiều, Eg ≈ 1,73 eV. FA lớn nên gần thẳng, Eg ≈ 1,48 eV. Góc càng lệch 180°, quỹ đạo Pb và I càng chồng kém, Eg càng rộng [68]. A đổi vùng cấm gián tiếp qua hình học này.",
+        caption:
+          "Một khung thành hai khung. Trái là Cs, thanh vàng gãy nhiều, Eg ≈ 1,73 eV. Phải là FA, gần thẳng, Eg ≈ 1,48 eV.",
       },
     ],
   },
@@ -520,23 +562,33 @@ export const lessons: Lesson[] = [
     steps: [
       {
         title: "Cấu hình đảo ngược",
-        body: "Ở perovskite chì iod, đỉnh vùng hóa trị đến từ quỹ đạo 5p của iod trộn với 6s của chì — cặp điện tử 6s² đơn độc (lone pair). Đáy vùng dẫn chủ yếu là quỹ đạo 6p của chì [16].",
+        body: "Hai thanh bên phải là hai mức năng lượng, không phải hai lớp của pin. Thanh đồng là vùng hóa trị: iod 5p trộn với cặp điện tử 6s của chì. Thanh lam là vùng dẫn: chủ yếu chì 6p. Khoảng trống là Eg [16]. Khối nhỏ bên trái là bát diện PbI₆, để nhớ quỹ đạo ấy thuộc ion nào.",
+        caption:
+          "Bên trái là bát diện PbI₆, tâm Pb, một đỉnh I. Bên phải, thanh đồng là vùng hóa trị I 5p + Pb 6s, thanh lam là vùng dẫn Pb 6p. Chưa có mũi tên.",
       },
       {
         title: "Vùng cấm thẳng",
-        body: "Điện tử nhảy lên vùng dẫn không cần mượn dao động mạng. Đó là vùng cấm thẳng (direct bandgap), nên hấp thụ rất mạnh — ngược với silicon.",
+        body: "Thêm một mũi tên vàng đi thẳng từ thanh dưới lên thanh trên. Điện tử không cần mượn dao động của mạng. Đó là vùng cấm thẳng, nên perovskite hấp thụ mạnh — ngược với silicon.",
+        caption:
+          "Bát diện và hai thanh giữ nguyên. Thêm mũi tên vàng nối thẳng thanh dưới với thanh trên. Nhãn: nhảy thẳng.",
       },
       {
         title: "Khối lượng hiệu dụng nhỏ",
-        body: "Cả điện tử và lỗ trống đều «nhẹ», di chuyển dễ. Đây là một nửa lý do điện tích đi được rất xa ở chương 3.",
+        body: "Thêm quả lam trên thanh dẫn: điện tử. Thêm quả cam trên thanh hóa trị: lỗ trống. Cả hai đều nhẹ nên đi được xa. Chương 3 dùng ý này.",
+        caption:
+          "Mũi tên giữ nguyên. Thêm quả lam trên thanh dẫn và quả cam trên thanh hóa trị. Nhãn: cả hai đều nhẹ.",
       },
       {
         title: "Khuyết tật phổ biến chỉ nông",
-        body: "Các khuyết tật dễ hình thành thường chỉ tạo mức nông, sát mép vùng. Phần dung thứ khuyết tật được kể kỹ ở mục 3.4.",
+        body: "Thêm một chấm lục sát mép thanh dưới, không nằm giữa khoảng trống. Khuyết tật dễ gặp chỉ nông như thế, chưa cắt mũi tên. Mục 3.4 kể kỹ.",
+        caption:
+          "Giữ điện tử, lỗ trống và mũi tên. Thêm chấm lục sát mép thanh dưới. Nhãn: bẫy nông. Chấm không nằm giữa Eg.",
       },
       {
         title: "Spin–quỹ đạo hạ đáy vùng dẫn",
-        body: "Chì nặng nên tương tác spin–quỹ đạo (spin–orbit coupling) mạnh, kéo đáy vùng dẫn xuống đáng kể. Mô phỏng mà bỏ hiệu ứng này sẽ đoán Eg sai.",
+        body: "Hạ thanh lam xuống. Khoảng Eg hẹp lại và mũi tên ngắn lại. Chì nặng nên spin–quỹ đạo kéo đáy vùng dẫn xuống. Bỏ hiệu ứng này thì tính Eg sẽ sai.",
+        caption:
+          "Thanh lam hạ thấp, mũi tên ngắn lại, quả điện tử đi xuống cùng thanh ấy. Nhãn trên thanh: dẫn · Pb 6p bị kéo xuống. Chấm lục vẫn ở sát mép dưới.",
         note: base("Mục này nâng cao hơn các mục trước. Bạn có thể xem chuyển động rồi đọc lại."),
       },
     ],
@@ -555,7 +607,7 @@ export const lessons: Lesson[] = [
       { br: 100, sn: 0, light: false },
       { br: 40, sn: 0, light: true },
       { br: 0, sn: 0, light: false },
-      { br: 0, sn: 50, light: false },
+      { br: 0, sn: 90, light: false },
     ],
     legend: [
       { swatch: "iodine", label: "Giàu iod" },
@@ -565,28 +617,40 @@ export const lessons: Lesson[] = [
     steps: [
       {
         title: "Trộn ở vị trí X",
-        body: "Tăng tỉ lệ brom làm mạng co lại. Eg đi từ khoảng 1,57 eV (thuần iod) tới ≈ 2,3 eV (thuần brom). Màu chuyển từ nâu đen sang cam [18].",
+        body: "Giữ đúng ô ABX₃, chỉ nhìn vị trí X. Bước này X là iod, màu tím, Eg khoảng 1,57 eV. Tăng brom thì mạng co lại và Eg tăng. Đây là núm vặn ở vị trí X.",
+        caption:
+          "Ô quen thuộc, có bát diện bên trong. X tím được phóng to, nhãn X = I. Số Eg ở dưới khoảng 1,57 eV. Tâm vẫn là chì.",
       },
       {
         title: "Kéo thanh brom",
-        body: "Mô hình đổi màu theo tỉ lệ Br. Đây là núm vặn thô nhất: cùng một khung tinh thể, chỉ đổi halogen là đổi màu và đổi Eg liên tục.",
+        body: "Brom đang ở khoảng giữa. Cùng một ô, chỉ màu của X và của khối bát diện đổi, Eg cao hơn 1,57 eV. Cùng khung tinh thể, đổi halogen là đổi màu và đổi Eg liên tục [18].",
+        caption:
+          "Cùng ô ấy. X và khối tím ngả cam, nhãn đổi thành X = I/Br. Eg cao hơn bước trước. Tâm vẫn là chì.",
       },
       {
         title: "Thuần brom",
-        body: "Eg lớn hợp đèn và lớp màu, nhưng hấp thụ ít photon đỏ hơn. Pin một lớp thường không muốn Eg quá cao.",
+        body: "Brom kéo hết. X thành màu cam, Eg khoảng 2,3 eV, màu sáng hơn. Eg lớn hợp đèn và lớp màu, nhưng nuốt ít photon đỏ. Pin một lớp thường không muốn Eg cao thế.",
+        caption:
+          "Nhãn X đổi thành X = Br. Khối có màu cam. Eg khoảng 2,3 eV. Ô không đổi hình, chỉ đổi halogen.",
       },
       {
         title: "Hiệu ứng Hoke",
-        body: "Khi chiếu sáng, perovskite trộn I/Br có thể tự tách pha: iod gom thành vùng giàu iod, Eg thấp hơn. Điện tích dồn về đó, ánh sáng phát ra lệch về ≈ 1,68 eV, điện áp bị kéo xuống. Tắt đèn, ion trộn lại — hiện tượng thuận nghịch [24].",
+        body: "Bật đèn thì ô trộn I/Br tách thành hai khối: khối tím giàu iod, Eg thấp hơn, và khối cam giàu brom. Điện tích dồn về phía iod, điện áp bị kéo xuống. Tắt đèn, hai khối nhập lại. Hiệu ứng Hoke là thuận nghịch [24].",
+        caption:
+          "Ô một khối biến thành hai khối khi đèn bật. Trái tím, giàu I, Eg thấp. Phải cam, giàu Br. Tắt đèn thì nhập lại thành một khối.",
         note: warn("Bài học thực hành: pin một lớp nên dùng thuần iod. Khi cần Eg cao, giữ brom vừa phải và ổn định giao diện."),
       },
       {
         title: "Trộn ở vị trí A",
-        body: "Trộn ba cation Cs/MA/FA giúp màng bền hơn và lặp lại tốt. Saliba và Grätzel đạt 21,1% năm 2016 với triple cation [22].",
+        body: "Trở lại một ô iod. Lần này các góc A không còn cùng một màu: quả lam là Cs, quả lục là MA, quả vàng là FA. Trộn ba cation này giúp màng bền và lặp lại tốt. Saliba và Grätzel đạt 21,1% năm 2016 [22].",
+        caption:
+          "Hai khối của bước đèn nhập lại thành một ô iod. Ba góc được tô khác nhau: Cs lam, MA lục, FA vàng. Dòng trên: trộn ở vị trí A.",
       },
       {
         title: "Trộn Sn/Pb ở vị trí B",
-        body: "Thay một phần chì bằng thiếc kéo Eg xuống ≈ 1,2–1,3 eV — hợp làm lớp dưới của tandem toàn perovskite. Thiếc có bài toán oxy hóa riêng, xem mục chì.",
+        body: "Giữ ô, chỉ đổi tâm. Quả xám chì thành màu thiếc, nhãn Sn/Pb, và được phóng to. Eg trên hình xuống khoảng 1,3 eV, hợp làm lớp dưới của tandem. Thiếc có bài toán oxy hóa riêng, xem ở phần chì.",
+        caption:
+          "Ba quả A thu về một màu. Tâm đổi từ xám chì sang màu thiếc và lớn lên, nhãn Sn/Pb. Eg thấp hơn ô thuần iod.",
       },
     ],
   },
@@ -598,27 +662,37 @@ export const lessons: Lesson[] = [
     scene: "nano",
     cam: "default",
     controls: ["nwell"],
-    tune: [{ nWell: 99 }, { nWell: 99 }, { nWell: 1 }, { nWell: 2 }, { nWell: 99 }],
+    tune: [{ nWell: 99 }, { nWell: 99 }, { nWell: 1 }, { nWell: 1 }, { nWell: 99 }],
     steps: [
       {
         title: "Vài nanomét quyết định pin",
-        body: "Một nanomét là một phần tỷ mét. Perovskite được gọi là vật liệu nano vì những gì xảy ra từ vài nm đến vài trăm nm quyết định pin tốt hay xấu.",
+        body: "Bên trái là viên gạch PbI₆, cỡ vài nanomét. Bên phải là lớp hấp thụ của pin, dày khoảng 0,5 µm — lớn hơn hàng trăm lần. Pin tốt hay xấu được quyết định trong khoảng giữa hai thước ấy.",
+        caption:
+          "Trái: một bát diện, nhãn viên gạch · vài nm. Phải: một lát màng, nhãn màng · 0,5 µm. Dòng dưới: cùng vật liệu, khác thước.",
       },
       {
         title: "Màng đa tinh thể",
-        body: "Lớp hấp thụ trong pin dày khoảng 0,5 µm, hạt tinh thể vài trăm nm. Ranh giới hạt và bề mặt là nơi khuyết tật tập trung.",
+        body: "Phóng vào lát màng ấy. Nó không phải một tinh thể liền, mà là nhiều hạt đặt cạnh nhau. Vạch cam là ranh giới hạt — chỗ khuyết tật hay tụ. Một bát diện nhỏ nằm trong một hạt: viên gạch vẫn ở đó.",
+        caption:
+          "Lát màng của bước trước vỡ thành các hạt. Vạch cam xuất hiện giữa các hạt. Trong một hạt có một bát diện nhỏ. Dòng trên: màng đa tinh thể.",
       },
       {
         title: "Chấm lượng tử",
-        body: "Nano tinh thể cỡ 5–15 nm, bọc bởi phối tử hữu cơ. Chúng phát sáng rất mạnh, màu tùy thành phần, khoảng 410–700 nm [45]. Dùng cho màn hình và LED.",
+        body: "Tách các hạt thành những tinh thể rời, cỡ 5–15 nm. Mỗi tinh thể là một bát diện, que xanh là phối tử hữu cơ bọc ngoài. Đó là chấm lượng tử, phát sáng mạnh, dùng cho LED và màn hình [45].",
+        caption:
+          "Các hạt dính nhau biến thành những bát diện rời. Mỗi khối có một que xanh. Dòng trên: chấm lượng tử. Không còn vạch cam.",
       },
       {
         title: "Giếng lượng tử 2D",
-        body: "Perovskite Ruddlesden–Popper: ion hữu cơ lớn như butylammonium cắt khung 3D thành lớp. Điện tử bị nhốt trong lớp vô cơ — giếng lượng tử. n = 1 cho 2,43 eV, n = 2 cho 2,17 eV, 3D (n = ∞) ≈ 1,5 eV [69].",
+        body: "Cắt khung 3D thành từng lớp. Lớp lục là ion hữu cơ lớn, nó nhốt điện tử trong lớp tím: một giếng lượng tử. n = 1 thì Eg khoảng 2,43 eV. Kéo n để thêm lớp tím, Eg giảm. n rất lớn thì gần khung 3D, Eg khoảng 1,5 eV [69].",
+        caption:
+          "Các chấm rời xếp lại thành những lát tím nằm ngang, lát lục chắn giữa. Bước này n = 1, Eg khoảng 2,43 eV. Kéo thanh n để thêm lát tím.",
       },
       {
         title: "Chỉ nên mặc một lớp áo mỏng",
-        body: "Lớp 2D bền với nước nên dùng làm áo bảo vệ bề mặt. Điện tích khó xuyên lớp hữu cơ, nên áo phải thật mỏng.",
+        body: "Ghép các lát tím lại thành một khối 3D. Chỉ để lại một lát lục rất mỏng trên mặt — áo 2D, chịu nước. Điện tích khó xuyên lớp hữu cơ ấy, nên áo phải mỏng.",
+        caption:
+          "Các lát tím dính lại thành một khối đậm, nhãn màng 3D. Chỉ còn một lát lục mỏng trên mặt. Dòng dưới: điện tích khó xuyên lớp hữu cơ.",
       },
     ],
   },
@@ -628,23 +702,31 @@ export const lessons: Lesson[] = [
     section: "2.9",
     title: "Bảng tính chất sẽ dùng lại ở các chương sau",
     scene: "props",
-    cam: "crystal",
+    cam: "default",
     steps: [
       {
         title: "Vùng cấm chỉnh được",
-        body: "Khoảng 1,48 eV với FAPbI₃, 1,57 eV với MAPbI₃, tới 2,3 eV với MAPbBr₃.",
+        body: "Ô ABX₃ đứng yên bên trái — mọi số ở mục này là của chính khung ấy. Bên phải là vùng cấm: từ khoảng 1,48 eV với FAPbI₃, 1,57 eV với MAPbI₃, tới khoảng 2,3 eV với MAPbBr₃.",
+        caption:
+          "Ô giữ nguyên bên trái. Bên phải xuất hiện hai thanh, khoảng giữa ghi Eg. Dòng dưới: 1,48 eV FAPbI₃ đến 2,3 eV MAPbBr₃.",
       },
       {
         title: "Hấp thụ nông, bờ rất dốc",
-        body: "Độ sâu hấp thụ vùng nhìn thấy chỉ khoảng 100 nm, nên lớp mỏng là đủ. Năng lượng Urbach ≈ 15 meV [13]: bờ hấp thụ dốc, ít mất điện áp.",
+        body: "Hai thanh Eg được thay bằng một mũi tên ngắn cắm vào mặt lát. Ánh sáng nhìn thấy chỉ đi sâu khoảng 100 nm, nên lớp mỏng là đủ. Năng lượng Urbach ≈ 15 meV [13]: bờ hấp thụ rất dốc, ít mất điện áp.",
+        caption:
+          "Ô vẫn bên trái. Hai thanh Eg biến mất. Bên phải là một mũi tên ngắn dừng ở mặt lát, nhãn khoảng 100 nm.",
       },
       {
         title: "Exciton yếu, điện tích đi xa",
-        body: "Năng lượng liên kết exciton chỉ vài meV ở nhiệt độ phòng [14]. Độ dài khuếch tán ≈ 0,1–1 µm trong màng, và hơn 10 µm tới hơn 175 µm trong đơn tinh thể [9][11].",
+        body: "Mũi tên ngắn được thay bằng điện tử và lỗ trống, với một đường đi dài. Exciton chỉ vài meV ở nhiệt độ phòng [14], nên cặp tự tách. Độ dài khuếch tán khoảng 0,1–1 µm trong màng, và hơn 10 µm tới hơn 175 µm trong đơn tinh thể [9][11].",
+        caption:
+          "Mũi tên ngắn biến mất. Bên phải có quả lam và quả cam, cùng một đường đi dài. Dòng dưới: exciton vài meV, điện tích đi rất xa.",
       },
       {
         title: "Ion iod cũng đi được — và đó là vấn đề",
-        body: "Năng lượng hoạt hóa di chuyển của ion iod ≈ 0,6 eV [25]. Ion dễ nhảy nên vật liệu kém bền. Nhiệt độ xử lý chỉ 100–150 °C, nên chế tạo rẻ.",
+        body: "Đường đi dài biến mất. Một I⁻ tím nhảy sang một chỗ trống cạnh nó. Năng lượng cho cú nhảy ấy khoảng 0,6 eV [25], nên ion đi được và pin kém bền. Cùng mạng mềm ấy cho phép làm màng ở 100–150 °C.",
+        caption:
+          "Điện tử và lỗ trống biến mất. Một I⁻ tím rời vị trí, nhãn nhảy. Dòng dưới gồm cả hai mặt: khoảng 0,6 eV, và làm được ở 100–150 °C.",
         note: warn("Cùng một mạng ion «mềm» tạo ra cả ưu điểm lẫn nhược điểm. Đừng tách hai chuyện này ra."),
       },
     ],

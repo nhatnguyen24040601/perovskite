@@ -1,5 +1,5 @@
 import { useFrame } from "@react-three/fiber";
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, type ReactNode } from "react";
 import * as THREE from "three";
 import { ivCurve, photonEnergy, sqEfficiency, wavelengthHex } from "@/lib/sim/physics";
 import { useSim } from "@/lib/sim/store";
@@ -489,14 +489,180 @@ function BandBuilding({
   );
 }
 
+const EV = 0.38;
+const PHOTON_EV = 1.5;
+
+function PhotonRuler() {
+  const h = PHOTON_EV * EV;
+  return (
+    <group position={[-0.78, 0, 0.06]}>
+      <mesh position={[0, h / 2, 0]}>
+        <boxGeometry args={[0.045, h, 0.045]} />
+        <meshStandardMaterial color="#e4a23a" emissive="#e4a23a" emissiveIntensity={0.9} />
+      </mesh>
+      <mesh position={[0, h, 0]}>
+        <sphereGeometry args={[0.07, 14, 12]} />
+        <meshStandardMaterial color="#ffe1a3" emissive="#e4a23a" emissiveIntensity={1.05} />
+      </mesh>
+    </group>
+  );
+}
+
+function EnergyAxis() {
+  const top = 5 * EV;
+  return (
+    <group position={[-2.32, 0, 0]}>
+      <mesh position={[0, top / 2, 0]}>
+        <boxGeometry args={[0.016, top, 0.016]} />
+        <meshStandardMaterial color="#8ea0b0" />
+      </mesh>
+      {[0, 1, 2, 3, 4, 5].map((ev) => (
+        <group key={ev} position={[0, ev * EV, 0]}>
+          <mesh>
+            <boxGeometry args={[0.16, 0.012, 0.012]} />
+            <meshStandardMaterial color={ev === 4 ? "#e15b4c" : "#8ea0b0"} />
+          </mesh>
+          <Tag position={[0.38, 0, 0]}>{String(ev)}</Tag>
+        </group>
+      ))}
+      <mesh position={[0.02, PHOTON_EV * EV, 0.02]}>
+        <boxGeometry args={[0.22, 0.028, 0.02]} />
+        <meshStandardMaterial color="#e4a23a" emissive="#e4a23a" emissiveIntensity={0.85} />
+      </mesh>
+    </group>
+  );
+}
+
+function GapColumn({
+  kind,
+  position,
+}: {
+  kind: "metal" | "semi" | "insulator";
+  position: [number, number, number];
+}) {
+  const mover = useRef<THREE.Mesh>(null);
+  const drifters = useRef<THREE.Group>(null);
+  const name = kind === "metal" ? "kim loại" : kind === "semi" ? "bán dẫn" : "cách điện";
+  const egLabel = kind === "metal" ? "Eg = 0" : kind === "semi" ? "Eg ≈ 1,5 eV" : "Eg ≈ 5 eV";
+  const note = kind === "metal" ? "đã tự do" : kind === "semi" ? "mọi pin dùng đây" : "không với tới";
+  const bandW = 1.16;
+  const bandD = 0.48;
+  const bandT = 0.22;
+
+  useFrame(({ clock }) => {
+    const time = clock.elapsedTime;
+    if (kind === "metal" && drifters.current) {
+      drifters.current.children.forEach((child, i) => {
+        const span = 0.92;
+        const x = -0.46 + ((time * 0.22 + i * 0.28) % span);
+        child.position.x = x;
+        child.position.y = -0.06 + Math.sin(time * 1.4 + i) * 0.04;
+      });
+    }
+    if (!mover.current || kind === "metal") return;
+    if (kind === "semi") {
+      const t = (time * 0.28) % 1;
+      const climb = t < 0.14 ? t / 0.14 : 1;
+      const top = PHOTON_EV * EV + bandT * 0.45;
+      mover.current.position.y = -0.04 + climb * (top + 0.04);
+      mover.current.position.x = 0.12 + (climb > 0.98 ? Math.sin(time * 2.1) * 0.18 : 0);
+    } else {
+      const t = (time % 3.2) / 3.2;
+      const h = t < 0.16 ? t / 0.16 : t < 0.7 ? 1 : Math.max(0, 1 - (t - 0.7) / 0.3);
+      mover.current.position.y = -0.04 + h * PHOTON_EV * EV;
+      mover.current.position.x = 0.12;
+    }
+  });
+
+  return (
+    <group position={position}>
+      {kind === "metal" ? (
+        <>
+          <Slab position={[0, -0.16, 0]} size={[bandW, 0.36, bandD]} color="#c46a45" opacity={0.9} />
+          <Slab position={[0, -0.02, 0.06]} size={[bandW, 0.36, bandD * 0.92]} color="#4d86d6" opacity={0.78} />
+          <Tag position={[0.72, -0.04, 0.4]} accent>
+            {egLabel}
+          </Tag>
+        </>
+      ) : (
+        <>
+          <Slab position={[0, -bandT / 2, 0]} size={[bandW, bandT, bandD]} color="#c46a45" />
+          <Slab
+            position={[0, (kind === "semi" ? PHOTON_EV : 5) * EV + bandT / 2, 0]}
+            size={[bandW, bandT, bandD]}
+            color="#4d86d6"
+          />
+          {kind === "semi" ? (
+            <mesh position={[0, (PHOTON_EV * EV) / 2, -0.05]}>
+              <boxGeometry args={[bandW - 0.08, PHOTON_EV * EV, 0.02]} />
+              <meshBasicMaterial color="#8fd0a8" transparent opacity={0.2} depthWrite={false} />
+            </mesh>
+          ) : (
+            <mesh position={[0, 4 * EV, 0.08]}>
+              <boxGeometry args={[bandW + 0.28, 0.018, 0.018]} />
+              <meshStandardMaterial color="#e15b4c" emissive="#e15b4c" emissiveIntensity={0.45} />
+            </mesh>
+          )}
+          <Tag position={[0.78, (kind === "semi" ? 0.75 : 4.45) * EV, 0.35]} accent>
+            {egLabel}
+          </Tag>
+          {kind === "insulator" ? <Tag position={[-0.78, 4 * EV, 0.35]}>≈ 4 eV</Tag> : null}
+          {kind === "semi" ? <Tag position={[-1.15, PHOTON_EV * EV, 0.4]}>photon</Tag> : null}
+        </>
+      )}
+      <PhotonRuler />
+      {kind === "metal" ? (
+        <group ref={drifters}>
+          {[0, 1, 2, 3].map((i) => (
+            <mesh key={i} position={[0, -0.06, 0.28]}>
+              <sphereGeometry args={[0.065, 12, 10]} />
+              <meshStandardMaterial color="#79b0ff" emissive="#79b0ff" emissiveIntensity={0.65} />
+            </mesh>
+          ))}
+        </group>
+      ) : (
+        <>
+          {Array.from({ length: 4 }).map((_, i) => (
+            <mesh key={i} position={[-0.4 + i * 0.22, -0.08, 0.24]}>
+              <sphereGeometry args={[0.055, 12, 10]} />
+              <meshStandardMaterial color="#79b0ff" emissive="#79b0ff" emissiveIntensity={0.35} />
+            </mesh>
+          ))}
+          <mesh ref={mover} position={[0.12, -0.04, 0.32]}>
+            <sphereGeometry args={[0.075, 14, 12]} />
+            <meshStandardMaterial color="#e4a23a" emissive="#e4a23a" emissiveIntensity={0.9} />
+          </mesh>
+        </>
+      )}
+      <Tag position={[0, -0.62, 0]}>{name}</Tag>
+      <Tag position={[0, -0.92, 0]}>{note}</Tag>
+    </group>
+  );
+}
+
+function FaceOn({ children }: { children: ReactNode }) {
+  const ref = useRef<THREE.Group>(null);
+  useFrame(({ camera }) => {
+    const g = ref.current;
+    if (!g) return;
+    g.rotation.y = Math.atan2(camera.position.x - g.position.x, camera.position.z - g.position.z);
+  });
+  return (
+    <group ref={ref} position={[0.2, -0.78, 0]}>
+      {children}
+    </group>
+  );
+}
+
 function BandsScene({ step }: { step: number }) {
   if (step >= 4) {
     return (
-      <group>
-        <BandBuilding gap={0.02} label="kim loại" position={[-2.4, -0.2, 0]} />
-        <BandBuilding gap={0.7} label="bán dẫn" position={[0.3, -0.2, 0]} jump />
-        <BandBuilding gap={1.7} label="cách điện" position={[3.1, -0.2, 0]} />
-      </group>
+      <FaceOn>
+        <EnergyAxis />
+        <GapColumn kind="metal" position={[-1.15, 0, 0]} />
+        <GapColumn kind="semi" position={[0.7, 0, 0]} />
+        <GapColumn kind="insulator" position={[2.5, 0, 0]} />
+      </FaceOn>
     );
   }
   return (

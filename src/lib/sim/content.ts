@@ -192,6 +192,8 @@ export const lessons: Lesson[] = [
       {
         title: "Kim loại, cách điện, bán dẫn",
         body: "Kim loại không có vùng cấm. Chất cách điện có Eg trên khoảng 4 eV, ánh sáng thường không đủ kích thích. Bán dẫn có Eg khoảng 0,5–3 eV, đúng cỡ photon mặt trời. Mọi pin mặt trời đều dùng chất bán dẫn.",
+        caption:
+          "Thước chung: mỗi vạch 1 eV, cột vàng là cùng một photon mặt trời cao đúng 1,5 eV. Kim loại: hai vùng chồng nhau, Eg = 0, điện tử đã tự do. Bán dẫn: Eg ≈ 1,5 eV, nằm trong khoảng 0,5–3 eV, đúng bằng photon nên điện tử lên tới vùng dẫn — pin mặt trời dùng chất này. Cách điện: vùng dẫn bắt đầu khoảng 5 eV, trên vạch 4 eV; photon dừng ở 1,5 eV và điện tử rơi lại.",
       },
     ],
   },

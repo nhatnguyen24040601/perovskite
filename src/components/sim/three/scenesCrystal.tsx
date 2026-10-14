@@ -245,6 +245,8 @@ function PlacedOcta({
   skip = [],
   ionR = 0.07,
   pbLabel,
+  meshOpacity = 0.24,
+  hideIons = false,
 }: {
   center: [number, number, number];
   reach: number;
@@ -253,16 +255,20 @@ function PlacedOcta({
   skip?: number[];
   ionR?: number;
   pbLabel?: string;
+  meshOpacity?: number;
+  hideIons?: boolean;
 }) {
   return (
     <group position={center} rotation={[0, 0, rotZ]}>
-      <OctaMesh color={color} scale={reach} opacity={0.24} />
+      <OctaMesh color={color} scale={reach} opacity={meshOpacity} />
       <Ion position={[0, 0, 0]} color="#c5ccd6" radius={Math.min(0.12, reach * 0.26)} label={pbLabel} />
-      {DIRS.map((d, i) => {
-        if (skip.includes(i)) return null;
-        const at: [number, number, number] = [d[0] * reach, d[1] * reach, d[2] * reach];
-        return <Ion key={i} position={at} color="#6d4bd6" radius={ionR} />;
-      })}
+      {hideIons
+        ? null
+        : DIRS.map((d, i) => {
+            if (skip.includes(i)) return null;
+            const at: [number, number, number] = [d[0] * reach, d[1] * reach, d[2] * reach];
+            return <Ion key={i} position={at} color="#6d4bd6" radius={ionR} />;
+          })}
     </group>
   );
 }
@@ -471,6 +477,106 @@ function Dashed({ a, b }: { a: [number, number, number]; b: [number, number, num
   );
 }
 
+/** Pb 6s (round) and I 5p (along the bond). They overlap only when Pb–I–Pb is nearly straight. */
+function BondLobes({
+  a,
+  b,
+  meet,
+  named = false,
+}: {
+  a: [number, number, number];
+  b: [number, number, number];
+  meet: boolean;
+  named?: boolean;
+}) {
+  const A = new THREE.Vector3(...a);
+  const B = new THREE.Vector3(...b);
+  const dir = B.clone().sub(A);
+  const len = Math.max(0.001, dir.length());
+  const n = dir.clone().normalize();
+  const q = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), n);
+  const sPos = A.clone().add(n.clone().multiplyScalar(len * (meet ? 0.4 : 0.26)));
+  const pPos = B.clone().add(n.clone().multiplyScalar(-len * (meet ? 0.4 : 0.24)));
+  return (
+    <group>
+      <mesh position={sPos}>
+        <sphereGeometry args={[meet ? 0.14 : 0.1, 16, 12]} />
+        <meshStandardMaterial color="#9eb6d6" emissive="#9eb6d6" emissiveIntensity={0.5} transparent opacity={0.92} />
+      </mesh>
+      <mesh position={pPos} quaternion={q} scale={[0.08, meet ? 0.2 : 0.1, 0.08]}>
+        <sphereGeometry args={[1, 16, 12]} />
+        <meshStandardMaterial color="#c46a45" emissive="#c46a45" emissiveIntensity={0.55} transparent opacity={0.92} />
+      </mesh>
+      {meet ? (
+        <mesh position={A.clone().lerp(B, 0.5)}>
+          <sphereGeometry args={[0.05, 12, 10]} />
+          <meshStandardMaterial color="#f4efe6" emissive="#f4efe6" emissiveIntensity={0.9} />
+        </mesh>
+      ) : null}
+      {named ? (
+        <>
+          <Tag position={[sPos.x, sPos.y + 0.24, sPos.z]}>Pb 6s</Tag>
+          <Tag position={[pPos.x + 0.02, pPos.y - 0.22, pPos.z]}>I 5p</Tag>
+        </>
+      ) : null}
+    </group>
+  );
+}
+
+/** Valence bar drops when the bridge bends. The Pb 6p bar stays put. */
+function GapSketch({
+  position,
+  drop,
+  mark,
+  side = -1,
+  quiet = false,
+}: {
+  position: [number, number, number];
+  drop: number;
+  mark: string;
+  side?: number;
+  quiet?: boolean;
+}) {
+  const cbm = 0.2;
+  const vbm = 0.2 - 0.32 - drop;
+  return (
+    <group position={position}>
+      <Slab position={[0, cbm, 0]} size={[0.78, 0.07, 0.07]} color="#4d86d6" emissive={0.45} />
+      {quiet ? null : <Tag position={[0, cbm + 0.2, 0]}>Pb 6p</Tag>}
+      <Slab position={[0, vbm, 0]} size={[0.78, 0.07, 0.07]} color="#c46a45" emissive={0.45} />
+      {quiet ? null : <Tag position={[0, vbm - 0.2, 0]}>{drop > 0.08 ? "đỉnh hạ" : "đỉnh cao"}</Tag>}
+      <Tag position={[side * 0.62, (cbm + vbm) / 2, 0]} accent>
+        {mark}
+      </Tag>
+    </group>
+  );
+}
+
+/** The I–Pb–I angle inside one octahedron — not the bridge angle. */
+function NotThisAngle() {
+  const R = 0.4;
+  const arc: [number, number, number][] = [];
+  for (let i = 0; i <= 6; i++) {
+    const a = (i / 6) * (Math.PI / 2);
+    arc.push([Math.cos(a) * 0.2, Math.sin(a) * 0.2, 0.03]);
+  }
+  return (
+    <group position={[0, -0.95, 0]} scale={0.9}>
+      <OctaMesh color="#6d4bd6" scale={R} opacity={0.14} />
+      <Ion position={[0, 0, 0]} color="#c5ccd6" radius={0.09} />
+      <Ion position={[R, 0, 0]} color="#6d4bd6" radius={0.07} />
+      <Ion position={[0, R, 0]} color="#6d4bd6" radius={0.07} />
+      <Seg a={[0, 0, 0]} b={[R, 0, 0]} color="#8b97a3" radius={0.016} />
+      <Seg a={[0, 0, 0]} b={[0, R, 0]} color="#8b97a3" radius={0.016} />
+      {arc.slice(0, -1).map((p, i) => (
+        <Seg key={i} a={p} b={arc[i + 1]!} color="#8b97a3" radius={0.01} />
+      ))}
+      <Seg a={[0.02, 0.02, 0.05]} b={[0.22, 0.2, 0.05]} color="#e15b4c" radius={0.016} />
+      <Tag position={[0.35, -0.38, 0]}>I–Pb–I · không phải góc này</Tag>
+    </group>
+  );
+}
+
 /** Pb ions stay fixed. The bridging iodide moves off the Pb–Pb line, and both bonds meet at that iodide. */
 function AnglePair({
   position,
@@ -478,12 +584,22 @@ function AnglePair({
   half,
   showA = false,
   labelIons = false,
+  ghost = false,
+  lobes = false,
+  guide = false,
+  pbTags = false,
+  nameLobes = false,
 }: {
   position: [number, number, number];
   bend: number;
   half: number;
   showA?: boolean;
   labelIons?: boolean;
+  ghost?: boolean;
+  lobes?: boolean;
+  guide?: boolean;
+  pbTags?: boolean;
+  nameLobes?: boolean;
 }) {
   const reach = Math.hypot(half, bend);
   const left: [number, number, number] = [-half, 0, 0];
@@ -501,72 +617,132 @@ function AnglePair({
     const ang = a0 + ((a1 - a0) * i) / steps;
     arc.push([Math.cos(ang) * arcR, bend + Math.sin(ang) * arcR, 0.03]);
   }
+  const showGhost = ghost && bend > 0.04;
+  const meet = bend < 0.16;
   return (
     <group position={position}>
       {bend > 0.04 ? <Dashed a={left} b={right} /> : null}
-      <PlacedOcta center={left} reach={reach} rotZ={aimL} skip={[0]} ionR={0.055} pbLabel={labelIons ? "Pb" : undefined} />
-      <PlacedOcta center={right} reach={reach} rotZ={aimR} skip={[0]} ionR={0.055} pbLabel={labelIons ? "Pb" : undefined} />
-      <Ion position={iPos} color="#6d4bd6" radius={0.11} accent />
+      <PlacedOcta
+        center={left}
+        reach={reach}
+        rotZ={aimL}
+        skip={[0]}
+        ionR={0.055}
+        pbLabel={labelIons && !pbTags ? "Pb²⁺" : undefined}
+        meshOpacity={lobes ? 0.12 : 0.24}
+        hideIons={lobes}
+      />
+      <PlacedOcta
+        center={right}
+        reach={reach}
+        rotZ={aimR}
+        skip={[0]}
+        ionR={0.055}
+        pbLabel={labelIons && !pbTags ? "Pb²⁺" : undefined}
+        meshOpacity={lobes ? 0.12 : 0.24}
+        hideIons={lobes}
+      />
+      {showGhost ? <Ion position={[0, 0, 0]} color="#b7c3d1" radius={0.08} opacity={0.4} /> : null}
+      <Ion
+        position={iPos}
+        color="#6d4bd6"
+        radius={0.11}
+        accent
+        label={labelIons && bend > 0.08 ? "I⁻" : undefined}
+      />
+      {labelIons && bend <= 0.08 ? <Tag position={[0, 0.48, 0]}>I⁻</Tag> : null}
       <Seg a={left} b={iPos} color="#e6c15a" radius={0.03} />
       <Seg a={right} b={iPos} color="#e6c15a" radius={0.03} />
+      {lobes ? <BondLobes a={left} b={iPos} meet={meet} named={nameLobes} /> : null}
       {bend > 0.05
-        ? arc.slice(0, -1).map((p, i) => (
-            <Seg key={i} a={p} b={arc[i + 1]!} color="#e6c15a" radius={0.012} />
-          ))
+        ? arc.slice(0, -1).map((p, i) => <Seg key={i} a={p} b={arc[i + 1]!} color="#e6c15a" radius={0.012} />)
         : null}
-      {showA ? <Ion position={[0.46, 0.08, 0.52]} color="#79b0ff" radius={0.12} label="A" /> : null}
+      {showA ? <Ion position={[1.42, -0.42, 0.15]} color="#79b0ff" radius={0.13} accent /> : null}
+      {pbTags ? (
+        <>
+          <Tag position={[-half, 0.5, 0]}>Pb²⁺</Tag>
+          <Tag position={[half, 0.5, 0]}>Pb²⁺</Tag>
+        </>
+      ) : null}
+      {showGhost && !guide ? <Tag position={[-0.62, -0.5, 0]}>vị trí 180°</Tag> : null}
     </group>
   );
 }
 
 function PhasesScene({ step }: { step: number }) {
   if (step >= 2) {
-    const half = 0.58;
-    const csBend = 0.34;
-    const faBend = 0.1;
+    const half = 0.4;
+    const faBend = 0.08;
+    const csBend = 0.3;
     return (
       <group>
-        <AnglePair position={[-1.5, 0.05, 0]} bend={csBend} half={half} />
-        <Tag position={[-1.5, 1.28, 0]}>
-          Cs · {bendAngle(csBend, half)}° · Eg 1,73
+        <AnglePair position={[-1.4, 0.72, 0]} bend={faBend} half={half} />
+        <Tag position={[-1.4, 1.42, 0]}>
+          FA⁺ · {bendAngle(faBend, half)}°
         </Tag>
-        <AnglePair position={[1.5, 0.05, 0]} bend={faBend} half={half} />
-        <Tag position={[1.5, 1.28, 0]}>
-          FA · {bendAngle(faBend, half)}° · Eg 1,48
+        <GapSketch position={[-1.4, -0.15, 0]} drop={0} mark="1,48 eV" side={-1} quiet />
+        <group position={[-1.4, -1.05, 0]}>
+          <Slab position={[0.2, 0, 0]} size={[0.5, 0.26, 0.18]} color="#3a2a55" />
+          <Arrow a={[-0.85, 0, 0.2]} b={[-0.08, 0, 0.2]} color="#e15b4c" />
+          <mesh position={[-0.85, 0, 0.2]}>
+            <sphereGeometry args={[0.06, 12, 10]} />
+            <meshStandardMaterial color="#e15b4c" emissive="#e15b4c" emissiveIntensity={0.85} />
+          </mesh>
+          <Tag position={[0.2, -0.36, 0]}>đỏ bị nuốt</Tag>
+        </group>
+        <AnglePair position={[1.4, 0.62, 0]} bend={csBend} half={half} />
+        <Tag position={[1.4, 1.48, 0]}>
+          Cs⁺ · {bendAngle(csBend, half)}°
         </Tag>
-        <Tag position={[0, 1.78, 0]} accent>
-          lệch nhiều thì Eg rộng
+        <GapSketch position={[1.4, -0.15, 0]} drop={0.38} mark="1,73 eV" side={1} quiet />
+        <group position={[1.4, -1.05, 0]}>
+          <Slab position={[0, 0, 0]} size={[0.5, 0.26, 0.18]} color="#3a2a55" />
+          <Arrow a={[-0.85, 0, 0.22]} b={[0.9, 0, 0.22]} color="#e15b4c" />
+          <mesh position={[-0.85, 0, 0.22]}>
+            <sphereGeometry args={[0.06, 12, 10]} />
+            <meshStandardMaterial color="#e15b4c" emissive="#e15b4c" emissiveIntensity={0.85} />
+          </mesh>
+          <Tag position={[0, -0.36, 0]}>đi xuyên · lớp trên</Tag>
+        </group>
+        <Tag position={[0, 1.88, 0]} accent>
+          Eg hẹp nuốt ánh sáng đỏ
         </Tag>
-        <Tag position={[0, -1.58, 0]}>A không tạo Eg · A chỉ đẩy iod</Tag>
       </group>
     );
   }
   if (step === 1) {
-    const half = 0.58;
-    const room = 0.32;
+    const half = 0.5;
+    const bent = 0.36;
     return (
       <group>
-        <AnglePair position={[-1.5, 0.05, 0]} bend={0} half={half} />
-        <Tag position={[-1.5, 1.28, 0]}>nóng · {bendAngle(0, half)}°</Tag>
-        <AnglePair position={[1.5, 0.05, 0]} bend={room} half={half} />
-        <Tag position={[1.5, 1.28, 0]}>phòng · {bendAngle(room, half)}°</Tag>
-        <Tag position={[0, 1.78, 0]} accent>
-          cùng khung · nóng thì thẳng
+        <AnglePair position={[-1.35, 0.48, 0]} bend={0} half={half} lobes nameLobes />
+        <Tag position={[-1.35, 1.32, 0]}>180° · chồng lấp</Tag>
+        <GapSketch position={[-1.35, -0.72, 0]} drop={0} mark="Eg hẹp" side={-1} />
+        <AnglePair position={[1.4, 0.42, 0]} bend={bent} half={half} lobes />
+        <Tag position={[1.4, 1.32, 0]}>
+          góc nhỏ · {bendAngle(bent, half)}°
         </Tag>
-        <Tag position={[0, -1.58, 0]}>trên ≈ 54 °C thẳng · phòng thì iod lệch</Tag>
+        <GapSketch position={[1.4, -0.72, 0]} drop={0.4} mark="Eg rộng" side={1} />
+        <Tag position={[0, 1.82, 0]} accent>
+          tương tác yếu thì đỉnh hóa trị hạ xuống
+        </Tag>
       </group>
     );
   }
-  const half = 0.78;
-  const bend = 0.46;
+  const half = 0.62;
+  const bend = 0.34;
   return (
     <group>
-      <AnglePair position={[0, 0.02, 0]} bend={bend} half={half} showA labelIons />
-      <Tag position={[0, 1.72, 0]} accent>
-        A nhỏ đẩy iod lên
+      <AnglePair position={[-1.45, 0.28, 0]} bend={0} half={half} labelIons pbTags />
+      <Tag position={[-1.45, 1.35, 0]}>thẳng · 180°</Tag>
+      <AnglePair position={[1.45, 0.22, 0]} bend={bend} half={half} labelIons pbTags ghost />
+      <Tag position={[1.45, 1.42, 0]}>
+        gập · {bendAngle(bend, half)}°
       </Tag>
-      <Tag position={[0, 1.22, 0]}>Pb–I–Pb ≈ {bendAngle(bend, half)}°</Tag>
-      <Tag position={[0, -1.58, 0]}>hai chì đứng yên · iod rời đường thẳng</Tag>
+      <NotThisAngle />
+      <Tag position={[0, 1.85, 0]} accent>
+        góc Pb–I–Pb · giữa hai khối
+      </Tag>
     </group>
   );
 }

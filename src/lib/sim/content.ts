@@ -512,27 +512,31 @@ export const lessons: Lesson[] = [
     cam: "default",
     steps: [
       {
-        title: "Góc liên kết Pb–I–Pb lệch 180°",
-        body: "Ở bài 2.4, cation A quá nhỏ thì khung đổi kiểu nối. Khi A chỉ hơi nhỏ, bát diện vẫn nối góc, nhưng I⁻ cầu nối bị đẩy ra khỏi trục Pb–Pb. Góc Pb–I–Pb vì thế nhỏ hơn 180°, và độ lệch này làm đổi vùng cấm Eg.",
+        title: "Đây là góc giữa hai khối",
+        body: "Một iod có thể làm cầu nối giữa hai chì. Gần thẳng thì Pb–I–Pb gần 180°. Khi iod rời khỏi đường nối hai chì, góc nhỏ hơn 180°. Góc này nằm giữa hai khối. Góc I–Pb–I bên trong một khối là góc khác, không dùng ở bài này.",
         caption:
-          "Hai quả chì xám đứng nguyên chỗ. Iod tím nằm phía trên đường đứt. Hai thanh vàng từ hai chì gặp nhau đúng tại iod. Quả lam phía trước là A nhỏ. Nhãn ghi góc nhỏ hơn 180°.",
-        note: base("Hình cố ý đẩy iod mạnh hơn tinh thể thật, để mắt thấy nó rời đường thẳng. Trong tinh thể góc chỉ lệch một ít."),
-      },
-      {
-        title: "Pha lập phương và pha tứ phương",
-        body: "Trên khoảng 54 °C, khung ở pha lập phương: I⁻ nằm trên trục Pb–Pb, góc 180°. Ở nhiệt độ phòng, khung ở pha tứ phương: I⁻ lệch trên một trục. Pin hoạt động ở pha tứ phương.",
-        caption:
-          "Hai khung cạnh nhau, không còn quả A. Trái, iod nằm đúng trên đường nối hai chì, góc 180°, nhãn nóng. Phải, iod lệch lên, góc gãy, nhãn phòng.",
+          "Trái: hai Pb²⁺ và I⁻ nằm trên một đường, góc 180°. Phải: I⁻ thật nằm phía trên đường đứt, quả iod mờ trên đường là vị trí 180°, hai thanh vàng gặp nhau tại I⁻ ấy. Phía dưới, một khối riêng có góc xám tại chì bị gạch đỏ: đó là góc I–Pb–I trong một khối.",
         note: base(
-          "Pha thẳng gọi là lập phương, pha ở nhiệt độ phòng gọi là tứ phương, từ khoảng −111 °C đến 54 °C [67]. Dưới khoảng −111 °C còn pha trực thoi, nghiêng cả ba trục. Pin không chạy ở nhiệt độ ấy, nên pha này không vẽ trên hình.",
+          "Hình đẩy iod xa hơn tinh thể thật để thấy chỗ gập. A hơi nhỏ so với hốc thì iod bị đẩy, nhưng các khối vẫn nối góc như bài 2.4. Góc thẳng là pha lập phương, trên khoảng 54 °C. Pin chạy ở nhiệt độ phòng, pha tứ phương, góc đã lệch một trục [67]. Quả mờ không phải ion thứ hai.",
         ),
       },
       {
-        title: "Độ nghiêng của khung đổi Eg",
-        body: "Cs⁺ nhỏ làm góc Pb–I–Pb lệch mạnh, Eg của CsPbI₃ khoảng 1,73 eV. FA⁺ lớn giữ góc gần 180°, Eg của FAPbI₃ khoảng 1,48 eV. Cation A không lập vùng cấm; nó đổi độ xen phủ giữa Pb 6p và I 5p. Bài 2.6 cho thấy chuyển mức ấy là chuyển mức thẳng.",
+        title: "Vì sao góc đổi vùng cấm?",
+        body: "Orbital là vùng electron quanh nguyên tử. Góc gần 180° thì Pb 6s và I 5p chồng lên nhau tốt, tương tác mạnh. Tương tác này có tính phản liên kết, nên đẩy đỉnh vùng hóa trị lên và vùng cấm hẹp lại. Góc nhỏ đi thì chồng lấp kém, đỉnh hóa trị hạ xuống, khoảng cách tới đáy vùng dẫn rộng ra.",
         caption:
-          "Trái là Cs: iod lệch xa đường thẳng, góc nhỏ, nhãn Eg 1,73. Phải là FA: iod gần thẳng, góc gần 180°, nhãn Eg 1,48.",
-        note: base("Góc càng lệch 180°, quỹ đạo của Pb và I càng chồng lấp kém, Eg càng rộng [68]."),
+          "Trái: góc 180°, quả tròn lam Pb 6s chạm thùy đồng I 5p, có chấm sáng ở chỗ chồng. Cột dưới hẹp, thanh đồng ở cao, thanh lam Pb 6p ở trên. Phải: iod lệch, hai thùy tách nhau, thanh đồng hạ xuống, cột rộng hơn. Thanh lam hai bên cùng độ cao.",
+        note: base(
+          "Đỉnh vùng hóa trị chủ yếu là I 5p trộn với Pb 6s [16]. Đáy vùng dẫn chủ yếu là Pb 6p, vẽ đứng yên để thấy mức bị hạ là đỉnh hóa trị. Cột là sơ đồ, không phải phổ đo. Bài 2.6 nói tiếp vì sao bước nhảy này là thẳng.",
+        ),
+      },
+      {
+        title: "Pin dùng góc này thế nào?",
+        body: "Vùng cấm hẹp, như FAPbI₃ khoảng 1,48 eV, nuốt được photon đỏ và hồng ngoại gần. Vùng cấm rộng, như CsPbI₃ khoảng 1,73 eV, bỏ nhiều photon ấy, nhưng có thể cho điện áp cao hơn nên hợp làm lớp trên của pin hai lớp. Góc không phải yếu tố duy nhất: mạng co lại thì liên kết ngắn hơn, tương tác có thể mạnh lên và vùng cấm giảm. Hai hiệu ứng có thể ngược nhau.",
+        caption:
+          "Trái: FA⁺, iod gần trục, cột hẹp ghi 1,48 eV, mũi tên đỏ dừng tại lớp tối. Phải: Cs⁺, iod lệch xa trục, cột rộng ghi 1,73 eV, mũi tên đỏ đi xuyên lớp tối, nhãn lớp trên. Hình không vẽ độ dài liên kết.",
+        note: warn(
+          "1,48 eV và 1,73 eV là số liệu [68], không đọc từ góc vẽ. Hình phóng đại độ lệch. Eg rộng hơn không có nghĩa pin một lớp tốt hơn: nó bỏ bớt photon năng lượng thấp. Lớp trên của pin hai lớp thì Eg rộng lại có ích.",
+        ),
       },
     ],
   },

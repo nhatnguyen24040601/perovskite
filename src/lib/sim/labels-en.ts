@@ -469,4 +469,9 @@ export const LABELS_EN: Record<string, string> = {
   "1,73 eV": "1.73 eV",
   "FA⁺ · ": "FA⁺ · ",
   "Cs⁺ · ": "Cs⁺ · ",
+  "180° · chồng lấp mạnh": "180° · strong overlap",
+  "phản liên kết": "antibonding",
+  "bị đẩy lên": "pushed up",
+  "mức 180°": "the 180° level",
+  "đáy vùng dẫn đứng yên · chỉ đỉnh hóa trị hạ": "the conduction bottom stays put · only the valence top drops",
 };

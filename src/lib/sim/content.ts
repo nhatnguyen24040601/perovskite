@@ -522,11 +522,11 @@ export const lessons: Lesson[] = [
       },
       {
         title: "Vì sao góc đổi vùng cấm?",
-        body: "Orbital là vùng electron quanh nguyên tử. Góc gần 180° thì Pb 6s và I 5p chồng lên nhau tốt, tương tác mạnh. Tương tác này có tính phản liên kết, nên đẩy đỉnh vùng hóa trị lên và vùng cấm hẹp lại. Góc nhỏ đi thì chồng lấp kém, đỉnh hóa trị hạ xuống, khoảng cách tới đáy vùng dẫn rộng ra.",
+        body: "Giữ các yếu tố khác gần như nhau. Góc gần 180° thì Pb 6s và I 5p chồng lấp mạnh, tương tác thuận lợi, vùng cấm thường hẹp hơn. Đỉnh vùng hóa trị là tổ hợp phản liên kết của Pb 6s với I 5p, nên tương tác mạnh đẩy mức này lên cao. Bát diện nghiêng, góc nhỏ, tương tác yếu, đỉnh ấy không còn bị đẩy cao: nó hạ xuống và khoảng cách tới đáy vùng dẫn tăng lên.",
         caption:
-          "Trái: góc 180°, quả tròn lam Pb 6s chạm thùy đồng I 5p, có chấm sáng ở chỗ chồng. Cột dưới hẹp, thanh đồng ở cao, thanh lam Pb 6p ở trên. Phải: iod lệch, hai thùy tách nhau, thanh đồng hạ xuống, cột rộng hơn. Thanh lam hai bên cùng độ cao.",
+          "Trái: Pb–I–Pb thẳng. Quả xám là Pb²⁺, lớp lam trong là Pb 6s, hai thùy đồng từ iod là I 5p và chạm lớp lam, có chấm sáng. Cột dưới: thanh lam Pb 6p, thanh đồng sát bên dưới ghi phản liên kết, mũi tên vàng đẩy thanh đồng từ mức thấp lên, nhãn Eg hẹp. Phải: iod rời đường đứt, thùy đồng ngắn không chạm Pb 6s, góc nhỏ hơn. Thanh lam cùng một đường đứt với bên trái. Thanh đồng mờ là mức 180°, thanh đồng đặc nằm thấp hơn, mũi tên đỏ chỉ xuống, nhãn Eg rộng.",
         note: base(
-          "Đỉnh vùng hóa trị chủ yếu là I 5p trộn với Pb 6s [16]. Đáy vùng dẫn chủ yếu là Pb 6p, vẽ đứng yên để thấy mức bị hạ là đỉnh hóa trị. Cột là sơ đồ, không phải phổ đo. Bài 2.6 nói tiếp vì sao bước nhảy này là thẳng.",
+          "Phản liên kết nghĩa là tổ hợp Pb 6s–I 5p nằm cao hơn mức khi hai orbital không tương tác [16]. Đáy vùng dẫn, chủ yếu Pb 6p, được vẽ đứng yên để thấy phần rộng thêm của Eg đến từ đỉnh hóa trị hạ xuống. Cột là sơ đồ, không phải phổ đo. Hình phóng đại độ lệch.",
         ),
       },
       {

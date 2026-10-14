@@ -552,7 +552,156 @@ function GapSketch({
   );
 }
 
-/** The I–Pb–I angle inside one octahedron — not the bridge angle. */
+/** I 5p lobe from the iodide toward one lead. Short when the bridge is bent. */
+function PLobe({
+  from,
+  to,
+  frac,
+}: {
+  from: [number, number, number];
+  to: [number, number, number];
+  frac: number;
+}) {
+  const A = new THREE.Vector3(...from);
+  const B = new THREE.Vector3(...to);
+  const dir = B.clone().sub(A);
+  const len = Math.max(0.001, dir.length());
+  const n = dir.normalize();
+  const q = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), n);
+  const lobe = len * frac;
+  const mid = A.clone().add(n.clone().multiplyScalar(lobe * 0.5));
+  return (
+    <mesh position={mid} quaternion={q} scale={[0.085, Math.max(0.06, lobe * 0.5), 0.085]}>
+      <sphereGeometry args={[1, 16, 12]} />
+      <meshStandardMaterial color="#c46a45" emissive="#c46a45" emissiveIntensity={0.55} transparent opacity={0.9} />
+    </mesh>
+  );
+}
+
+/** Three ions of one Pb–I–Pb bridge, with Pb 6s clouds and I 5p lobes. */
+function BridgeOrbitals({
+  position,
+  bend,
+  half,
+  named = false,
+}: {
+  position: [number, number, number];
+  bend: number;
+  half: number;
+  named?: boolean;
+}) {
+  const left: [number, number, number] = [-half, 0, 0];
+  const right: [number, number, number] = [half, 0, 0];
+  const iPos: [number, number, number] = [0, bend, 0];
+  const meet = bend < 0.1;
+  const sR = meet ? 0.22 : 0.12;
+  const frac = meet ? 0.72 : 0.26;
+  const cloud = (at: [number, number, number]) => (
+    <mesh position={at}>
+      <sphereGeometry args={[sR, 18, 14]} />
+      <meshStandardMaterial color="#9eb6d6" emissive="#9eb6d6" emissiveIntensity={0.4} transparent opacity={0.42} />
+    </mesh>
+  );
+  let a0 = Math.atan2(-bend, -half);
+  const a1 = Math.atan2(-bend, half);
+  if (a0 > a1) a0 -= Math.PI * 2;
+  const arcR = 0.22;
+  const arc: [number, number, number][] = [];
+  for (let i = 0; i <= 7; i++) {
+    const ang = a0 + ((a1 - a0) * i) / 7;
+    arc.push([Math.cos(ang) * arcR, bend + Math.sin(ang) * arcR, 0.04]);
+  }
+  const bead = (to: [number, number, number]) => {
+    const p: [number, number, number] = [
+      iPos[0] + (to[0] - iPos[0]) * 0.42,
+      iPos[1] + (to[1] - iPos[1]) * 0.42,
+      0.05,
+    ];
+    return (
+      <mesh position={p}>
+        <sphereGeometry args={[0.045, 12, 10]} />
+        <meshStandardMaterial color="#f4efe6" emissive="#f4efe6" emissiveIntensity={0.95} />
+      </mesh>
+    );
+  };
+  return (
+    <group position={position}>
+      {bend > 0.04 ? <Dashed a={left} b={right} /> : null}
+      {bend > 0.04 ? <Ion position={[0, 0, -0.02]} color="#b7c3d1" radius={0.07} opacity={0.4} /> : null}
+      <Seg a={left} b={iPos} color="#e6c15a" radius={0.022} />
+      <Seg a={right} b={iPos} color="#e6c15a" radius={0.022} />
+      {cloud(left)}
+      {cloud(right)}
+      <PLobe from={iPos} to={left} frac={frac} />
+      <PLobe from={iPos} to={right} frac={frac} />
+      {meet ? bead(left) : null}
+      {meet ? bead(right) : null}
+      <Ion position={left} color="#c5ccd6" radius={0.09} />
+      <Ion position={right} color="#c5ccd6" radius={0.09} />
+      <Ion position={iPos} color="#6d4bd6" radius={0.09} accent />
+      {bend > 0.05
+        ? arc.slice(0, -1).map((p, i) => <Seg key={i} a={p} b={arc[i + 1]!} color="#e6c15a" radius={0.012} />)
+        : null}
+      {named ? (
+        <>
+          <Tag position={[-half - 0.02, -0.34, 0]}>Pb 6s</Tag>
+          <Tag position={[half + 0.02, -0.34, 0]}>Pb 6s</Tag>
+          <Tag position={[0.46, 0.05, 0]}>I 5p</Tag>
+        </>
+      ) : null}
+      {bend > 0.04 ? <Tag position={[-0.62, -0.08, 0]}>vị trí 180°</Tag> : null}
+    </group>
+  );
+}
+
+/** Same Pb 6p height on both sides. The copper valence bar is pushed up only when the bridge is straight. */
+function AntibondStep() {
+  const half = 0.48;
+  const bent = 0.42;
+  const leftX = -1.15;
+  const rightX = 1.2;
+  const bridgeY = 0.78;
+  const cbmY = -0.28;
+  const highY = -0.62;
+  const lowY = -1.18;
+  const bar = 0.72;
+  return (
+    <group>
+      <BridgeOrbitals position={[leftX, bridgeY, 0]} bend={0} half={half} named />
+      <Tag position={[leftX, 1.42, 0]}>180° · chồng lấp mạnh</Tag>
+      <BridgeOrbitals position={[rightX, bridgeY - 0.06, 0]} bend={bent} half={half} />
+      <Tag position={[rightX, 1.48, 0]}>
+        góc nhỏ · {bendAngle(bent, half)}°
+      </Tag>
+
+      <Slab position={[leftX, cbmY, 0]} size={[bar, 0.07, 0.07]} color="#4d86d6" emissive={0.5} />
+      <Slab position={[rightX, cbmY, 0]} size={[bar, 0.07, 0.07]} color="#4d86d6" emissive={0.5} />
+      <Dashed a={[leftX + bar / 2, cbmY, 0]} b={[rightX - bar / 2, cbmY, 0]} />
+      <Tag position={[leftX, cbmY + 0.24, 0]}>Pb 6p</Tag>
+      <Tag position={[rightX, cbmY + 0.24, 0]}>Pb 6p</Tag>
+
+      <Slab position={[leftX, highY, 0]} size={[bar, 0.07, 0.07]} color="#c46a45" emissive={0.5} />
+      <Tag position={[leftX + 0.58, highY - 0.22, 0]}>phản liên kết</Tag>
+      <Arrow a={[leftX - 0.58, lowY + 0.04, 0.08]} b={[leftX - 0.58, highY - 0.06, 0.08]} color="#e6c15a" />
+      <Tag position={[leftX - 1.12, lowY - 0.02, 0]}>bị đẩy lên</Tag>
+      <Tag position={[leftX + 0.62, (cbmY + highY) / 2, 0]} accent>
+        Eg hẹp
+      </Tag>
+
+      <Slab position={[rightX, highY, 0]} size={[bar, 0.07, 0.07]} color="#c46a45" opacity={0.28} emissive={0.15} />
+      <Tag position={[rightX + 0.58, highY, 0]}>mức 180°</Tag>
+      <Arrow a={[rightX - 0.55, highY - 0.08, 0.08]} b={[rightX - 0.55, lowY + 0.1, 0.08]} color="#e15b4c" />
+      <Slab position={[rightX, lowY, 0]} size={[bar, 0.07, 0.07]} color="#c46a45" emissive={0.5} />
+      <Tag position={[rightX, lowY - 0.22, 0]}>đỉnh hạ</Tag>
+      <Tag position={[rightX + 0.92, (highY + lowY) / 2 - 0.08, 0]} accent>
+        Eg rộng
+      </Tag>
+      <Tag position={[0, 1.82, 0]} accent>
+        tương tác yếu thì đỉnh hóa trị hạ xuống
+      </Tag>
+    </group>
+  );
+}
 function NotThisAngle() {
   const R = 0.4;
   const arc: [number, number, number][] = [];
@@ -710,25 +859,7 @@ function PhasesScene({ step }: { step: number }) {
       </group>
     );
   }
-  if (step === 1) {
-    const half = 0.5;
-    const bent = 0.36;
-    return (
-      <group>
-        <AnglePair position={[-1.35, 0.48, 0]} bend={0} half={half} lobes nameLobes />
-        <Tag position={[-1.35, 1.32, 0]}>180° · chồng lấp</Tag>
-        <GapSketch position={[-1.35, -0.72, 0]} drop={0} mark="Eg hẹp" side={-1} />
-        <AnglePair position={[1.4, 0.42, 0]} bend={bent} half={half} lobes />
-        <Tag position={[1.4, 1.32, 0]}>
-          góc nhỏ · {bendAngle(bent, half)}°
-        </Tag>
-        <GapSketch position={[1.4, -0.72, 0]} drop={0.4} mark="Eg rộng" side={1} />
-        <Tag position={[0, 1.82, 0]} accent>
-          tương tác yếu thì đỉnh hóa trị hạ xuống
-        </Tag>
-      </group>
-    );
-  }
+  if (step === 1) return <AntibondStep />;
   const half = 0.62;
   const bend = 0.34;
   return (

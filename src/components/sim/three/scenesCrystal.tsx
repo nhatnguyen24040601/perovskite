@@ -1,4 +1,5 @@
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
+import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { GLOSSARY } from "@/lib/sim/content";
 import {
@@ -936,60 +937,430 @@ function NoShake({ position }: { position: [number, number, number] }) {
   );
 }
 
-function OrbitalsScene({ step }: { step: number }) {
-  const s = 0.7;
-  const octaX = -1.85;
-  const barX = 0.72;
-  const barW = 1.85;
-  const lowY = -0.58;
-  const highY = 0.72;
-  const iAt: [number, number, number] = [octaX + s, 0.05, 0];
-  const pbAt: [number, number, number] = [octaX, 0.05, 0];
-  const lowL: [number, number, number] = [barX - barW / 2, lowY, 0];
-  const highL: [number, number, number] = [barX - barW / 2, highY, 0];
+type P3 = [number, number, number];
+
+function buildNet(n: number, spacing: number) {
+  const half = (n - 1) / 2;
+  const pbs: P3[] = [];
+  const iods: P3[] = [];
+  const bonds: P3[] = [];
+  for (let x = 0; x < n; x++) {
+    for (let y = 0; y < n; y++) {
+      for (let z = 0; z < n; z++) {
+        pbs.push([(x - half) * spacing, (y - half) * spacing, (z - half) * spacing]);
+      }
+    }
+  }
+  for (let axis = 0; axis < 3; axis++) {
+    for (let a = 0; a <= n; a++) {
+      for (let b = 0; b < n; b++) {
+        for (let c = 0; c < n; c++) {
+          const p: P3 = [0, 0, 0];
+          p[axis] = (a - half - 0.5) * spacing;
+          p[(axis + 1) % 3] = (b - half) * spacing;
+          p[(axis + 2) % 3] = (c - half) * spacing;
+          iods.push(p);
+        }
+      }
+    }
+  }
+  for (const p of pbs) {
+    for (const d of DIRS) {
+      bonds.push(p, [p[0] + d[0] * spacing * 0.5, p[1] + d[1] * spacing * 0.5, p[2] + d[2] * spacing * 0.5]);
+    }
+  }
+  return { pbs, iods, bonds };
+}
+
+function NetLines({ bonds }: { bonds: P3[] }) {
+  const geo = useMemo(() => {
+    const g = new THREE.BufferGeometry();
+    const arr = new Float32Array(bonds.length * 3);
+    bonds.forEach((p, i) => {
+      arr[i * 3] = p[0];
+      arr[i * 3 + 1] = p[1];
+      arr[i * 3 + 2] = p[2];
+    });
+    g.setAttribute("position", new THREE.BufferAttribute(arr, 3));
+    return g;
+  }, [bonds]);
+  return (
+    <lineSegments geometry={geo}>
+      <lineBasicMaterial color="#7d72b8" />
+    </lineSegments>
+  );
+}
+
+function PbINet({
+  n = 3,
+  spacing = 0.4,
+  pbR = 0.055,
+  iR = 0.04,
+  pick = false,
+}: {
+  n?: number;
+  spacing?: number;
+  pbR?: number;
+  iR?: number;
+  pick?: boolean;
+}) {
+  const data = useMemo(() => buildNet(n, spacing), [n, spacing]);
+  const say = (text: string) => () => useSim.getState().patch({ inspect: text });
   return (
     <group>
-      <group position={[octaX, 0.05, 0]}>
-        <OctaMesh color="#6d4bd6" scale={s} opacity={0.22} />
-        <Ion position={[0, 0, 0]} color="#4d86d6" radius={0.16} label="Pb" accent />
-        <Ion position={[s, 0, 0]} color="#c46a45" radius={0.13} label="I" accent />
-        {DIRS.map((d, i) => {
-          if (d[0] === 1 && d[1] === 0 && d[2] === 0) return null;
-          const at: [number, number, number] = [d[0] * s, d[1] * s, d[2] * s];
-          return <Ion key={i} position={at} color="#6d4bd6" radius={0.09} />;
-        })}
-        {DIRS.map((d, i) => {
-          if (d[0] === 1 && d[1] === 0 && d[2] === 0) return null;
-          const at: [number, number, number] = [d[0] * s, d[1] * s, d[2] * s];
-          return <Seg key={`b${i}`} a={[0, 0, 0]} b={at} color="#6d4bd6" radius={0.02} />;
-        })}
-        <Seg a={[0, 0, 0]} b={[s, 0, 0]} color="#c46a45" radius={0.028} />
+      <NetLines bonds={data.bonds} />
+      {data.pbs.map((p, i) => (
+        <Ion
+          key={`p${i}`}
+          position={p}
+          color="#c5ccd6"
+          radius={pbR}
+          onPick={pick ? say("Pb²⁺ · một ion trong mạng, không phải cả vùng dẫn") : undefined}
+        />
+      ))}
+      {data.iods.map((p, i) => (
+        <Ion
+          key={`i${i}`}
+          position={p}
+          color="#6d4bd6"
+          radius={iR}
+          onPick={pick ? say("I⁻ · một ion trong mạng, không phải cả vùng hóa trị") : undefined}
+        />
+      ))}
+    </group>
+  );
+}
+
+function OneOcta() {
+  const s = 0.72;
+  const say = (text: string) => () => useSim.getState().patch({ inspect: text });
+  return (
+    <group>
+      <OctaMesh color="#6d4bd6" scale={s} opacity={0.18} />
+      <Ion
+        position={[0, 0, 0]}
+        color="#c5ccd6"
+        radius={0.15}
+        label="Pb²⁺"
+        accent
+        onPick={say("Pb²⁺ · một ion trong mạng, không phải cả vùng dẫn")}
+      />
+      {DIRS.map((d, i) => (
+        <group key={i}>
+          <Seg a={[0, 0, 0]} b={[d[0] * s, d[1] * s, d[2] * s]} color="#6d4bd6" radius={0.018} />
+          <Ion
+            position={[d[0] * s, d[1] * s, d[2] * s]}
+            color="#6d4bd6"
+            radius={0.1}
+            label={i === 0 ? "I⁻" : undefined}
+            onPick={say("I⁻ · một ion trong mạng, không phải cả vùng hóa trị")}
+          />
+        </group>
+      ))}
+    </group>
+  );
+}
+
+function Chain({ pts, color, radius = 0.012 }: { pts: P3[]; color: string; radius?: number }) {
+  return (
+    <group>
+      {pts.slice(0, -1).map((p, i) => (
+        <Seg key={i} a={p} b={pts[i + 1]!} color={color} radius={radius} />
+      ))}
+    </group>
+  );
+}
+
+function bow(k0: number, y0: number, a: number, x0: number, x1: number, n = 16): P3[] {
+  const pts: P3[] = [];
+  for (let i = 0; i <= n; i++) {
+    const x = x0 + ((x1 - x0) * i) / n;
+    const dk = x - k0;
+    pts.push([x, y0 + a * dk * dk, 0]);
+  }
+  return pts;
+}
+
+function EKFrame({ w = 0.62, h = 0.72 }: { w?: number; h?: number }) {
+  return (
+    <group>
+      <Seg a={[-w, -h, 0]} b={[w + 0.12, -h, 0]} color="#8b97a3" radius={0.01} />
+      <Seg a={[-w, -h, 0]} b={[-w, h + 0.12, 0]} color="#8b97a3" radius={0.01} />
+      <Tag position={[w + 0.28, -h, 0]}>k</Tag>
+      <Tag position={[-w - 0.22, h - 0.02, 0]}>E</Tag>
+    </group>
+  );
+}
+
+function DirectChart() {
+  const eRef = useRef<THREE.Group>(null);
+  const hRef = useRef<THREE.Group>(null);
+  const pRef = useRef<THREE.Group>(null);
+  useFrame(({ clock }) => {
+    const t = (clock.elapsedTime % 5) / 5;
+    const approach = Math.min(1, t / 0.3);
+    const rise = t < 0.32 ? 0 : t < 0.74 ? (t - 0.32) / 0.42 : 1;
+    pRef.current?.position.set(-1.05 + approach * 0.85, 0.22, 0.12);
+    if (eRef.current) eRef.current.position.y = -0.02 + rise * 0.5;
+    if (hRef.current) hRef.current.visible = rise > 0.12;
+  });
+  return (
+    <group>
+      <EKFrame />
+      <Chain pts={bow(0, -0.02, -1.15, -0.55, 0.55)} color="#c46a45" />
+      <Chain pts={bow(0, 0.5, 1.15, -0.55, 0.55)} color="#4d86d6" />
+      <Seg a={[0, -0.55, -0.02]} b={[0, 0.62, -0.02]} color="#e6c15a" radius={0.008} />
+      <Arrow a={[0, 0.02, 0.06]} b={[0, 0.42, 0.06]} color="#f4efe6" />
+      <group ref={pRef}>
+        <mesh>
+          <sphereGeometry args={[0.055, 12, 10]} />
+          <meshStandardMaterial color="#e6c15a" emissive="#e6c15a" emissiveIntensity={0.85} />
+        </mesh>
       </group>
-      <Seg a={iAt} b={lowL} color="#c46a45" radius={0.02} />
-      <Seg a={pbAt} b={highL} color="#4d86d6" radius={0.02} />
-      <group position={[barX, 0, 0]}>
-        <Slab position={[0, lowY, 0]} size={[barW, 0.2, 0.7]} color="#c46a45" />
-        <Tag position={[0, lowY - 0.38, 0]}>hóa trị · lỗ ở I</Tag>
-        <Slab position={[0, highY, 0]} size={[barW, 0.2, 0.7]} color="#4d86d6" />
-        <Tag position={[0, highY + 0.38, 0]}>dẫn · điện tử lên Pb</Tag>
-        <Tag position={[-0.55, (lowY + highY) / 2, 0]} accent>
-          Eg
+      <group ref={eRef} position={[0.12, -0.02, 0.1]}>
+        <mesh>
+          <sphereGeometry args={[0.06, 14, 12]} />
+          <meshStandardMaterial color="#4d86d6" emissive="#4d86d6" emissiveIntensity={0.75} />
+        </mesh>
+      </group>
+      <group ref={hRef} position={[-0.12, -0.02, 0.1]} visible={false}>
+        <mesh>
+          <torusGeometry args={[0.07, 0.016, 8, 18]} />
+          <meshStandardMaterial color="#e07a32" emissive="#e07a32" emissiveIntensity={0.5} />
+        </mesh>
+      </group>
+      <Tag position={[0.34, 0.72, 0]}>Cùng k</Tag>
+    </group>
+  );
+}
+
+function IndirectMarks() {
+  const wave: P3[] = [];
+  for (let i = 0; i <= 8; i++) {
+    const t = i / 8;
+    wave.push([-0.28 + t * 0.6, 0.18 + Math.sin(t * Math.PI * 2) * 0.05, 0.04]);
+  }
+  return (
+    <group>
+      <Arrow a={[-0.28, -0.05, 0.06]} b={[-0.28, 0.22, 0.06]} color="#e6c15a" />
+      <Chain pts={wave} color="#9aa6b4" radius={0.012} />
+      <Tag position={[-0.72, -0.22, 0]}>photon</Tag>
+      <Tag position={[0.5, 0.02, 0]}>phonon</Tag>
+    </group>
+  );
+}
+
+function WaveIon({ at, color, radius, amp }: { at: P3; color: string; radius: number; amp: number }) {
+  const ref = useRef<THREE.Group>(null);
+  useFrame(({ clock }) => {
+    const w = Math.sin(clock.elapsedTime * 2.6 + at[0] * 5) * amp;
+    ref.current?.position.set(at[0] + w, at[1], at[2]);
+  });
+  return (
+    <group ref={ref}>
+      <Ion position={[0, 0, 0]} color={color} radius={radius} />
+    </group>
+  );
+}
+
+function PhononSheet() {
+  const spacing = 0.42;
+  const data = useMemo(() => {
+    const half = 1;
+    const pbs: P3[] = [];
+    const iods: P3[] = [];
+    const bonds: P3[] = [];
+    for (let x = 0; x < 3; x++) {
+      for (let y = 0; y < 3; y++) {
+        pbs.push([(x - half) * spacing, (y - half) * spacing, 0]);
+      }
+    }
+    for (let a = 0; a <= 3; a++) {
+      for (let b = 0; b < 3; b++) {
+        iods.push([(a - half - 0.5) * spacing, (b - half) * spacing, 0]);
+        iods.push([(b - half) * spacing, (a - half - 0.5) * spacing, 0]);
+      }
+    }
+    for (const p of pbs) {
+      for (const d of [
+        [1, 0],
+        [-1, 0],
+        [0, 1],
+        [0, -1],
+      ] as const) {
+        bonds.push(p, [p[0] + d[0] * spacing * 0.5, p[1] + d[1] * spacing * 0.5, 0]);
+      }
+    }
+    return { pbs, iods, bonds };
+  }, []);
+  return (
+    <group>
+      <NetLines bonds={data.bonds} />
+      {data.pbs.map((p, i) => (
+        <WaveIon key={`p${i}`} at={p} color="#c5ccd6" radius={0.06} amp={0.045} />
+      ))}
+      {data.iods.map((p, i) => (
+        <WaveIon key={`i${i}`} at={p} color="#6d4bd6" radius={0.042} amp={0.045} />
+      ))}
+    </group>
+  );
+}
+
+function StackDrift() {
+  const eRef = useRef<THREE.Group>(null);
+  const hRef = useRef<THREE.Group>(null);
+  const pRef = useRef<THREE.Group>(null);
+  useFrame(({ clock }) => {
+    const t = (clock.elapsedTime % 4.5) / 4.5;
+    const u = t < 0.18 ? 0 : t < 0.78 ? (t - 0.18) / 0.6 : 1;
+    const light = Math.min(1, t / 0.22);
+    pRef.current?.position.set(-0.95 + light * 0.7, 0.02, 0.35);
+    if (eRef.current) eRef.current.position.y = 0.02 - u * 0.62;
+    if (hRef.current) hRef.current.position.y = 0.02 + u * 0.62;
+  });
+  return (
+    <group>
+      <group ref={pRef}>
+        <mesh>
+          <sphereGeometry args={[0.06, 12, 10]} />
+          <meshStandardMaterial color="#e6c15a" emissive="#e6c15a" emissiveIntensity={0.9} />
+        </mesh>
+      </group>
+      <group ref={eRef} position={[0.28, 0.02, 0.32]}>
+        <mesh>
+          <sphereGeometry args={[0.07, 14, 12]} />
+          <meshStandardMaterial color="#4d86d6" emissive="#4d86d6" emissiveIntensity={0.75} />
+        </mesh>
+      </group>
+      <group ref={hRef} position={[-0.28, 0.02, 0.32]}>
+        <mesh>
+          <torusGeometry args={[0.075, 0.016, 8, 18]} />
+          <meshStandardMaterial color="#e07a32" emissive="#e07a32" emissiveIntensity={0.5} />
+        </mesh>
+      </group>
+    </group>
+  );
+}
+
+function Schematic() {
+  return <Tag position={[-1.85, 1.62, 0]}>Minh họa giản lược</Tag>;
+}
+
+function OrbitalsScene({ step }: { step: number }) {
+  if (step <= 0) {
+    return (
+      <group>
+        <Schematic />
+        <group position={[-1.2, 0.05, 0]}>
+          <OneOcta />
+          <Tag position={[0, 1.08, 0]}>khối xây dựng</Tag>
+          <Tag position={[0, -1.15, 0]}>8 mặt tam giác</Tag>
+        </group>
+        <group position={[1.05, 0.02, 0]}>
+          <PbINet spacing={0.44} pbR={0.055} iR={0.04} pick />
+          <Tag position={[0.22, 0.16, 0.5]}>cùng một I⁻</Tag>
+          <Tag position={[0, -0.78, 0]}>mạng 3×3×3</Tag>
+        </group>
+        <Tag position={[0.15, 1.62, 0]} accent>
+          vùng năng lượng thuộc cả mạng
         </Tag>
-        {step >= 1 ? (
-          <group>
-            <Arrow a={[-0.02, lowY + 0.18, 0.28]} b={[-0.02, highY - 0.18, 0.28]} />
-            <Ion position={[-0.7, highY, 0.4]} color="#79b0ff" radius={0.08} label="e⁻" />
-            <mesh position={[-0.7, lowY, 0.42]}>
-              <torusGeometry args={[0.1, 0.022, 8, 20]} />
-              <meshStandardMaterial color="#c46a45" emissive="#c46a45" emissiveIntensity={0.4} />
-            </mesh>
-            <NoShake position={[0.58, 0.16, 0.3]} />
-            <Tag position={[0.58, -0.22, 0.3]}>không cần lắc</Tag>
-          </group>
-        ) : null}
+        <Tag position={[0, -1.52, 0]}>ion A đã ẩn</Tag>
       </group>
-      <Tag position={[0.15, -1.58, 0]} accent>
-        {step === 0 ? "lỗ trống ở iod · điện tử sẽ lên chì" : "nhảy thẳng · không mượn dao động mạng"}
+    );
+  }
+  if (step === 1) {
+    return (
+      <group>
+        <Schematic />
+        <group position={[-1.55, 0.05, 0]} scale={0.95}>
+          <PbINet spacing={0.36} pbR={0.05} iR={0.034} pick />
+          <Tag position={[0, -1.15, 0]}>không gian tinh thể</Tag>
+        </group>
+        <group position={[0.95, 0.05, 0]}>
+          <Slab position={[0, -0.55, 0]} size={[1.7, 0.16, 0.2]} color="#c46a45" emissive={0.25} />
+          <Slab position={[0, 0.62, 0]} size={[1.7, 0.16, 0.2]} color="#4d86d6" emissive={0.25} />
+          {[-0.55, -0.2, 0.15, 0.5].map((x) => (
+            <mesh key={x} position={[x, -0.55, 0.18]}>
+              <sphereGeometry args={[0.055, 12, 10]} />
+              <meshStandardMaterial color="#4d86d6" emissive="#4d86d6" emissiveIntensity={0.7} />
+            </mesh>
+          ))}
+          <Tag position={[-1.05, -0.28, 0]}>VBM</Tag>
+          <Tag position={[-1.05, 0.38, 0]}>CBM</Tag>
+          <Tag position={[0.85, 0.05, 0]} accent>
+            Eg
+          </Tag>
+          <Tag position={[0, 0.95, 0]}>vùng dẫn</Tag>
+          <Tag position={[0, -0.88, 0]}>vùng hóa trị</Tag>
+        </group>
+        <Tag position={[0.35, 1.62, 0]} accent>
+          năng lượng tối thiểu giữa hai mép
+        </Tag>
+        <Tag position={[0, -1.52, 0]}>độ cao là năng lượng · không phải chỗ trong tinh thể</Tag>
+      </group>
+    );
+  }
+  if (step === 2) {
+    return (
+      <group>
+        <Schematic />
+        <group position={[-1.7, 0.15, 0]} scale={0.72}>
+          <PbINet spacing={0.4} pbR={0.055} iR={0.04} />
+          <Tag position={[0, -1.35, 0]}>không gian tinh thể</Tag>
+        </group>
+        <group position={[0.7, 0.05, 0]}>
+          <DirectChart />
+          <Tag position={[0, -1.15, 0]}>biểu đồ E–k</Tag>
+        </group>
+        <Tag position={[0.4, 1.62, 0]} accent>
+          mũi tên đứng là trên biểu đồ, không phải đường bay
+        </Tag>
+      </group>
+    );
+  }
+  if (step === 3) {
+    return (
+      <group>
+        <Schematic />
+        <group position={[-1.15, 0.45, 0]} scale={0.82}>
+          <EKFrame w={0.55} h={0.58} />
+          <Chain pts={bow(0, -0.05, -1.2, -0.48, 0.48)} color="#c46a45" />
+          <Chain pts={bow(0, 0.42, 1.2, -0.48, 0.48)} color="#4d86d6" />
+          <Arrow a={[0, 0.02, 0.05]} b={[0, 0.34, 0.05]} color="#f4efe6" />
+        </group>
+        <Tag position={[-1.15, 1.38, 0]}>trực tiếp</Tag>
+        <group position={[1.2, 0.45, 0]} scale={0.82}>
+          <EKFrame w={0.55} h={0.58} />
+          <Chain pts={bow(-0.26, -0.05, -1.35, -0.48, 0.48)} color="#c46a45" />
+          <Chain pts={bow(0.28, 0.42, 1.35, -0.48, 0.48)} color="#4d86d6" />
+          <IndirectMarks />
+        </group>
+        <Tag position={[1.2, 1.38, 0]}>gián tiếp</Tag>
+        <group position={[0, -1.05, 0]} scale={0.85}>
+          <PhononSheet />
+        </group>
+        <Tag position={[0, -1.58, 0]}>phonon · dao động quanh vị trí cân bằng</Tag>
+      </group>
+    );
+  }
+  return (
+    <group>
+      <Schematic />
+      <group position={[-1.55, 0.1, 0]} scale={0.8}>
+        <PbINet spacing={0.4} pbR={0.055} iR={0.04} />
+        <Tag position={[0, -1.2, 0]}>mạng Pb–I</Tag>
+      </group>
+      <group position={[0.85, 0.05, 0]}>
+        <Slab position={[0, 0.7, 0]} size={[1.45, 0.24, 0.7]} color="#c46a45" emissive={0.2} />
+        <Slab position={[0, 0.02, 0]} size={[1.45, 0.7, 0.7]} color="#3a2a55" />
+        <Slab position={[0, -0.68, 0]} size={[1.45, 0.24, 0.7]} color="#4d86d6" emissive={0.25} />
+        <Tag position={[1.15, 0.7, 0]}>chọn lọc lỗ</Tag>
+        <Tag position={[1.15, 0.02, 0]}>perovskite</Tag>
+        <Tag position={[1.15, -0.68, 0]}>chọn lọc e⁻</Tag>
+        <StackDrift />
+      </group>
+      <Tag position={[0.35, 1.62, 0]} accent>
+        trực tiếp = cùng k, không phải cùng một đường
       </Tag>
     </group>
   );

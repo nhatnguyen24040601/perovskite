@@ -544,30 +544,60 @@ export const lessons: Lesson[] = [
     id: "orbitals",
     chapter: "c2",
     section: "2.6",
-    title: "Vùng cấm thẳng của bát diện PbI₆",
+    title: "Vùng cấm trực tiếp của mạng Pb–I",
     scene: "orbitals",
     cam: "default",
     legend: [
-      { swatch: "htl", label: "Đỉnh vùng hóa trị · I 5p + Pb 6s" },
-      { swatch: "electron", label: "Đáy vùng dẫn · Pb 6p" },
+      { swatch: "lead", label: "Pb²⁺ · màu trên hình" },
+      { swatch: "iodine", label: "I⁻ · màu trên hình" },
+      { swatch: "electron", label: "electron" },
+      { swatch: "hole", label: "lỗ trống" },
+      { swatch: "sun", label: "photon" },
     ],
     steps: [
       {
-        title: "Vùng hóa trị ở I, vùng dẫn ở Pb",
-        body: "Bài 2.5 cho thấy góc Pb–I–Pb đổi bề rộng Eg. Đỉnh vùng hóa trị nằm chủ yếu trên I⁻, nên lỗ trống ở lại iod. Đáy vùng dẫn nằm trên Pb²⁺, nên điện tử bị kích thích lên chì. Hai thanh là hai mức của bát diện PbI₆, không phải hai lớp của pin.",
+        title: "Từ một bát diện tới cả mạng",
+        body: "Pb²⁺ nằm giữa sáu I⁻. Khối ấy có tám mặt tam giác, nên là bát diện, không phải khối lập phương. Khi nhiều bát diện nối đỉnh, các trạng thái electron tương tác và tạo thành những vùng năng lượng của cả vật liệu. Vùng ấy không thuộc riêng một nguyên tử Pb hay một nguyên tử I.",
         caption:
-          "Bát diện bên trái có một iod màu đồng và chì màu lam, các iod khác vẫn tím. Thanh đồng nối iod với thanh dưới. Thanh lam nối chì với thanh trên. Chưa có mũi tên.",
+          "Trái: một Pb²⁺ xám ở tâm, sáu I⁻ tím theo sáu hướng, lưới tím là tám mặt tam giác, nhãn khối xây dựng. Phải: mạng 3×3×3. Iod ở chỗ hai khối chạm nhau là cùng một quả, không vẽ hai quả chồng. Ion A được ẩn. Góc trên có nhãn Minh họa giản lược.",
         note: base(
-          "Đỉnh vùng hóa trị chủ yếu là iod 5p trộn với cặp điện tử 6s của chì. Đáy vùng dẫn chủ yếu là chì 6p [16]. Khối bên trái nhắc quỹ đạo ấy thuộc bát diện PbI₆.",
+          "Đây là phần khung Pb–I của perovskite ABX₃. Ion A đã được ẩn. Màu xám và tím chỉ để phân biệt nguyên tử trên hình, không phải màu thật của chì và iod. Bấm một quả để xem nó chỉ là một ion trong mạng.",
         ),
       },
       {
-        title: "Chuyển mức thẳng, không cần phonon",
-        body: "Mũi tên nối thẳng đỉnh vùng hóa trị với đáy vùng dẫn. Đây là chuyển mức thẳng: điện tử không cần mượn phonon. Silicon có vùng cấm gián tiếp nên phải mượn dao động mạng; perovskite thì không. Nhờ đó lớp hấp thụ mỏng vẫn có hệ số hấp thụ cao. Bài 2.7 chỉnh Eg bằng cách thay X hoặc B.",
+        title: "Hai vùng năng lượng của mạng",
+        body: "Bên trái vẫn là mạng, trong không gian của tinh thể. Bên phải là biểu đồ năng lượng: vùng hóa trị ở dưới, vùng dẫn ở trên. Electron cần nhận đủ năng lượng để lên vùng dẫn. Năng lượng tối thiểu giữa hai mép gọi là bandgap, ký hiệu Eg. Hình không ghi một số Eg, vì số ấy phụ thuộc thành phần và pha.",
         caption:
-          "Giữ bát diện và hai thanh. Thêm mũi tên vàng thẳng giữa hai thanh, một chấm lam trên thanh trên và một vòng đồng trên thanh dưới. Bên cạnh mũi tên là đường lượn xám bị gạch đỏ, nhãn không cần lắc.",
+          "Trái là mạng Pb–I. Phải là hai thanh. Thanh dưới có các chấm lam, nhãn VBM ở mép trên của thanh ấy. Thanh trên trống, nhãn CBM ở mép dưới. Khoảng giữa ghi Eg, không có số. Dòng dưới nhắc độ cao là năng lượng.",
         note: base(
-          "Chì nặng nên spin–quỹ đạo kéo đáy vùng dẫn xuống. Bỏ hiệu ứng này thì tính Eg sẽ sai. Điện tử và lỗ trống đều nhẹ — chuyện ấy ở chương 3. Khuyết tật thường gặp chỉ nông, kể ở mục 3.4.",
+          "Độ cao trên biểu đồ là năng lượng, không phải chỗ electron ngồi trong tinh thể. Nếu nói quỹ đạo: đỉnh vùng hóa trị có đóng góp lớn từ I 5p và Pb 6s, đáy vùng dẫn chủ yếu mang tính Pb 6p [16]. Đó là đặc tính của cả mạng, không phải của một nguyên tử.",
+        ),
+      },
+      {
+        title: "Hai mép vùng nằm cùng k",
+        body: "Trục đứng là năng lượng E, trục ngang là k — động lượng của tinh thể. Đỉnh vùng hóa trị và đáy vùng dẫn nằm cùng một giá trị k. Photon vàng đủ năng lượng thì electron chuyển lên theo mũi tên thẳng đứng trên biểu đồ, và để lại một lỗ trống. Không cần phonon để bù động lượng.",
+        caption:
+          "Trái, mạng nhỏ, nhãn không gian tinh thể. Phải, biểu đồ E–k: đường đồng là đỉnh cong của vùng hóa trị, đường lam là đáy cong của vùng dẫn, hai mép cùng một vạch đứt. Photon vàng đi vào. Mũi tên đứng nối hai mép. Chấm lam lên đường dẫn, vòng cam ở lại đường hóa trị. Nhãn Cùng k.",
+        note: base(
+          "Hai đường cong chỉ vẽ quanh mép vùng, không phải kết quả tính toán. Mũi tên thẳng đứng là chuyển tiếp trên biểu đồ, không phải đường bay của electron trong vật liệu. Góc Pb–I–Pb ở bài 2.5 đổi bề rộng vùng cấm. Góc ấy không phải điều kiện để vùng cấm là trực tiếp.",
+        ),
+      },
+      {
+        title: "Gián tiếp thì cần thêm phonon",
+        body: "Biểu đồ trái vẫn là trực tiếp: hai mép cùng k. Biểu đồ phải là gián tiếp: đỉnh vùng hóa trị và đáy vùng dẫn ở hai giá trị k khác nhau. Photon lo phần năng lượng. Phonon — dao động của mạng — lo phần chênh k. Hai ký hiệu đứng riêng, không vẽ thành một mũi tên chéo.",
+        caption:
+          "Trái: hai mép cùng k, một mũi tên đứng. Phải: đỉnh và đáy lệch nhau trên trục k. Vạch vàng đứng là photon. Nét sóng ngang là phonon. Không có mũi tên chéo. Phía dưới, một lớp mạng dao động quanh chỗ đứng, không thêm nguyên tử mới.",
+        note: base(
+          "Đây là minh họa cơ chế chuyển tiếp, không phải hai vật liệu có cùng cấu trúc nguyên tử. Dao động nhỏ là phonon. Minh họa giản lược.",
+        ),
+      },
+      {
+        title: "Màng mỏng hấp thụ, rồi phải thu điện tích",
+        body: "Vùng cấm trực tiếp giúp mạng Pb–I hấp thụ ánh sáng mạnh ngay trong một màng mỏng. Ánh sáng tạo electron và lỗ trống trong lớp perovskite. Electron được thu về lớp chọn lọc electron, lỗ trống về lớp chọn lọc lỗ trống. Nếu chúng gặp lại nhau trước khi tới lớp ấy thì không thành dòng điện.",
+        caption:
+          "Trái là mạng Pb–I. Phải là ba lớp: chọn lọc lỗ trống, perovskite, chọn lọc electron. Ánh sáng vàng chiếu vào lớp giữa. Chấm lam đi xuống lớp chọn lọc electron, vòng cam đi lên lớp chọn lọc lỗ trống. Chuyển động là sơ đồ, không chạy dọc liên kết Pb–I.",
+        note: base(
+          "Trực tiếp nghĩa là cùng k trên biểu đồ E–k, không phải cùng một đường trong không gian tinh thể. Hình không ghi số Eg.",
         ),
       },
     ],
@@ -594,7 +624,7 @@ export const lessons: Lesson[] = [
     steps: [
       {
         title: "X = I⁻, Eg khoảng 1,57 eV",
-        body: "Bài 2.6 đặt đỉnh vùng hóa trị trên halogen và đáy vùng dẫn trên kim loại B. Cation A đã được chọn ở bài 2.4, nên bài này giữ A và đổi X hoặc B. Với X = I⁻, Eg khoảng 1,57 eV, nằm trong cửa sổ của pin một lớp.",
+        body: "Bài 2.6 cho thấy vùng cấm của mạng Pb–I là trực tiếp: hai mép vùng nằm cùng một giá trị k. Cation A đã được chọn ở bài 2.4, nên bài này giữ A và đổi X hoặc B. Với X = I⁻, Eg khoảng 1,57 eV, nằm trong cửa sổ của pin một lớp.",
         caption:
           "Ô quen thuộc, có bát diện bên trong. X tím được phóng to, nhãn X = I. Eg ở dưới khoảng 1,57 eV. Tâm vẫn là chì.",
       },
@@ -671,7 +701,7 @@ export const lessons: Lesson[] = [
       },
       {
         title: "Độ sâu hấp thụ khoảng 100 nm",
-        body: "Thông số thứ hai là độ sâu hấp thụ của ánh sáng nhìn thấy, khoảng 100 nm. Đó là hệ quả của chuyển mức thẳng ở bài 2.6: không cần phonon, hệ số hấp thụ cao. Lớp hấp thụ vì thế chỉ cần dày cỡ 0,5 µm.",
+        body: "Thông số thứ hai là độ sâu hấp thụ của ánh sáng nhìn thấy, khoảng 100 nm. Đó là hệ quả của vùng cấm trực tiếp ở bài 2.6: hai mép cùng k, không cần phonon, hệ số hấp thụ cao. Lớp hấp thụ vì thế chỉ cần dày cỡ 0,5 µm.",
         caption: "Ô vẫn bên trái. Hai thanh biến mất. Bên phải là một mũi tên ngắn dừng ở mặt lát, nhãn khoảng 100 nm.",
         note: base("Độ sâu hấp thụ vùng nhìn thấy khoảng 100 nm. Năng lượng Urbach ≈ 15 meV [13]: bờ hấp thụ rất dốc, ít mất điện áp."),
       },

@@ -209,7 +209,6 @@ const antiLab: Photo = {
 
 const lab = [cell, dark, color];
 const make = [spin, drop, waferSpin, vac];
-const nano = [dots, dots2, peled];
 const big = [module, minis, flex, sem];
 const sun = [line, si, module];
 
@@ -229,9 +228,6 @@ export const PHOTO_SETS: Record<string, Photo[]> = {
   tolerance: [dark, cell],
   phases: [dark, cell],
   orbitals: [sem, dark],
-  alloy: [dots, dark, cell],
-  nano: [...nano, sem],
-  props: [sem, dark],
   race: [module, cell, minis],
   absorb: [sem, color, dark],
   diffusion: [sem, cell],

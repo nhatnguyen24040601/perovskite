@@ -577,148 +577,27 @@ export const lessons: Lesson[] = [
         title: "Hai mép vùng nằm cùng k",
         body: "Trục đứng là năng lượng E, trục ngang là k — động lượng của tinh thể. Đỉnh vùng hóa trị và đáy vùng dẫn nằm cùng một giá trị k. Photon vàng đủ năng lượng thì electron chuyển lên theo mũi tên thẳng đứng trên biểu đồ, và để lại một lỗ trống. Không cần phonon để bù động lượng.",
         caption:
-          "Trái, mạng nhỏ, nhãn không gian tinh thể. Phải, biểu đồ E–k: đường đồng là đỉnh cong của vùng hóa trị, đường lam là đáy cong của vùng dẫn, hai mép cùng một vạch đứt. Photon vàng đi vào. Mũi tên đứng nối hai mép. Chấm lam lên đường dẫn, vòng cam ở lại đường hóa trị. Nhãn Cùng k.",
+          "Trái, một mạng nhỏ, nhãn không gian tinh thể. Phải là một bảng tối, không phải tinh thể: trục đứng E, trục ngang k. Đường đồng có đỉnh, ghi VBM. Đường lam có đáy, ghi CBM. Hai mép nằm trên cùng một vạch đứt xám, nhãn Cùng k. Quả vàng đi từ trái vào khe là photon. Mũi tên trắng đứng nối đúng hai mép ấy. Chấm lam đi lên dọc mũi tên, vẫn trên vạch đứt. Vòng cam rỗng ở lại tại VBM.",
         note: base(
           "Hai đường cong chỉ vẽ quanh mép vùng, không phải kết quả tính toán. Mũi tên thẳng đứng là chuyển tiếp trên biểu đồ, không phải đường bay của electron trong vật liệu. Góc Pb–I–Pb ở bài 2.5 đổi bề rộng vùng cấm. Góc ấy không phải điều kiện để vùng cấm là trực tiếp.",
         ),
       },
       {
         title: "Gián tiếp thì cần thêm phonon",
-        body: "Biểu đồ trái vẫn là trực tiếp: hai mép cùng k. Biểu đồ phải là gián tiếp: đỉnh vùng hóa trị và đáy vùng dẫn ở hai giá trị k khác nhau. Photon lo phần năng lượng. Phonon — dao động của mạng — lo phần chênh k. Hai ký hiệu đứng riêng, không vẽ thành một mũi tên chéo.",
+        body: "Bảng trái là trực tiếp: đỉnh vùng hóa trị và đáy vùng dẫn cùng một giá trị k, mũi tên trắng đứng nối hai mép. Bảng phải là gián tiếp: đỉnh và đáy ở hai giá trị k khác nhau. Photon chỉ đưa năng lượng và giữ nguyên k của đỉnh, nên mũi tên vàng không chạm đường dẫn. Phonon mới đổi k. Không có mũi tên chéo từ đỉnh sang đáy.",
         caption:
-          "Trái: hai mép cùng k, một mũi tên đứng. Phải: đỉnh và đáy lệch nhau trên trục k. Vạch vàng đứng là photon. Nét sóng ngang là phonon. Không có mũi tên chéo. Phía dưới, một lớp mạng dao động quanh chỗ đứng, không thêm nguyên tử mới.",
+          "Hai bảng tối. Trái, nhãn trực tiếp: đường đồng và đường lam gặp nhau trên một vạch đứt xám, mũi tên trắng đứng, nhãn cùng k. Phải, nhãn gián tiếp: đỉnh đồng nằm bên trái, đáy lam nằm bên phải. Quả vàng và mũi tên vàng ngắn đứng tại đỉnh, nhãn photon, không chạm đường lam. Nét sóng xám nằm trên trục k, nhãn phonon · Δk, chỉ nối hai giá trị k. Phía dưới, một lớp mạng Pb–I dao động quanh chỗ đứng, không thêm nguyên tử.",
         note: base(
           "Đây là minh họa cơ chế chuyển tiếp, không phải hai vật liệu có cùng cấu trúc nguyên tử. Dao động nhỏ là phonon. Minh họa giản lược.",
         ),
       },
       {
         title: "Màng mỏng hấp thụ, rồi phải thu điện tích",
-        body: "Vùng cấm trực tiếp giúp mạng Pb–I hấp thụ ánh sáng mạnh ngay trong một màng mỏng. Ánh sáng tạo electron và lỗ trống trong lớp perovskite. Electron được thu về lớp chọn lọc electron, lỗ trống về lớp chọn lọc lỗ trống. Nếu chúng gặp lại nhau trước khi tới lớp ấy thì không thành dòng điện.",
+        body: "Vùng cấm trực tiếp giúp mạng Pb–I hấp thụ ánh sáng mạnh ngay trong một màng mỏng. Photon vàng đi vào lớp perovskite rồi tắt. Ngay chỗ ấy sinh một electron và một lỗ trống. Electron được thu xuống lớp chọn lọc electron, lỗ trống lên lớp chọn lọc lỗ trống. Nếu chúng gặp lại nhau trước khi tới lớp ấy thì không thành dòng điện.",
         caption:
-          "Trái là mạng Pb–I. Phải là ba lớp: chọn lọc lỗ trống, perovskite, chọn lọc electron. Ánh sáng vàng chiếu vào lớp giữa. Chấm lam đi xuống lớp chọn lọc electron, vòng cam đi lên lớp chọn lọc lỗ trống. Chuyển động là sơ đồ, không chạy dọc liên kết Pb–I.",
+          "Trái là một bát diện PbI₆, nhãn khối trong màng. Phải là ba lớp. Lớp trên đồng, nhãn chọn lọc lỗ trống. Lớp giữa nhìn thấy các ion Pb xám và I tím, nhãn perovskite. Lớp dưới lam, nhãn chọn lọc electron. Quả vàng đi vào lớp giữa rồi tắt. Chấm lam và vòng cam sinh ra tại chỗ ấy. Chấm lam xuống lớp dưới, vòng cam lên lớp trên. Chúng đi phía trước mạng, không chạy dọc liên kết.",
         note: base(
           "Trực tiếp nghĩa là cùng k trên biểu đồ E–k, không phải cùng một đường trong không gian tinh thể. Hình không ghi số Eg.",
-        ),
-      },
-    ],
-  },
-  {
-    id: "alloy",
-    chapter: "c2",
-    section: "2.7",
-    title: "Hợp kim trên vị trí X và vị trí B",
-    scene: "alloy",
-    cam: "crystal",
-    controls: ["bromide", "sn", "light"],
-    tune: [
-      { br: 0, sn: 0, light: false },
-      { br: 100, sn: 0, light: false },
-      { br: 40, sn: 0, light: true },
-      { br: 0, sn: 90, light: false },
-    ],
-    legend: [
-      { swatch: "iodine", label: "Giàu iod" },
-      { swatch: "br", label: "Giàu brom" },
-      { swatch: "tin", label: "Thiếc trên vị trí B" },
-    ],
-    steps: [
-      {
-        title: "X = I⁻, Eg khoảng 1,57 eV",
-        body: "Bài 2.6 cho thấy vùng cấm của mạng Pb–I là trực tiếp: hai mép vùng nằm cùng một giá trị k. Cation A đã được chọn ở bài 2.4, nên bài này giữ A và đổi X hoặc B. Với X = I⁻, Eg khoảng 1,57 eV, nằm trong cửa sổ của pin một lớp.",
-        caption:
-          "Ô quen thuộc, có bát diện bên trong. X tím được phóng to, nhãn X = I. Eg ở dưới khoảng 1,57 eV. Tâm vẫn là chì.",
-      },
-      {
-        title: "Thay I⁻ bằng Br⁻ làm Eg tăng",
-        body: "Thay I⁻ bằng Br⁻ làm mạng co và Eg tăng tới khoảng 2,3 eV. Eg cao phù hợp vật liệu phát quang, nhưng pin một lớp mất các photon có năng lượng thấp hơn Eg. Vị trí X là nút chỉnh vùng cấm.",
-        caption:
-          "Cùng ô ấy. Nhãn đổi thành X = Br, khối có màu cam. Eg khoảng 2,3 eV. Tâm vẫn là chì.",
-        note: base(
-          "Tăng brom làm mạng co lại. Eg đi liên tục từ khoảng 1,57 eV khi thuần iod tới khoảng 2,3 eV khi thuần brom, màu từ nâu đen sang cam [18]. Kéo thanh brom để xem khoảng giữa.",
-        ),
-      },
-      {
-        title: "Ánh sáng tách hỗn hợp I⁻/Br⁻",
-        body: "Dưới chiếu sáng, hợp kim I/Br tách thành miền giàu I⁻ và miền giàu Br⁻. Điện tích dồn về miền có Eg thấp hơn, nên Voc giảm. Hiệu ứng Hoke thuận nghịch; pin một lớp vì thế dùng halide thuần I⁻.",
-        caption:
-          "Ô một khối biến thành hai khối khi đèn bật. Trái tím, giàu I. Phải cam, giàu Br. Tắt đèn thì nhập lại thành một khối.",
-        note: warn(
-          "Đây là hiệu ứng Hoke, thuận nghịch [24]. Ánh sáng phát ra có thể lệch về khoảng 1,68 eV. Pin một lớp nên dùng thuần iod. Khi cần Eg cao, giữ brom vừa phải.",
-        ),
-      },
-      {
-        title: "Thay một phần Pb²⁺ bằng Sn²⁺",
-        body: "Thay một phần Pb²⁺ trên vị trí B bằng Sn²⁺ kéo Eg xuống khoảng 1,2–1,3 eV. Eg thấp này hợp lớp dưới của pin tandem, hấp thụ photon mà lớp trên truyền qua. Bài 2.8 chuyển từ ô mạng sang hình thái của lớp hấp thụ.",
-        caption:
-          "Tâm đổi từ xám chì sang màu thiếc, nhãn Sn/Pb. X trở lại màu iod. Eg thấp hơn ô thuần iod.",
-        note: base("Thay một phần chì bằng thiếc kéo Eg xuống khoảng 1,2–1,3 eV. Thiếc dễ bị oxy hóa. Bài toán ấy nằm ở phần chì."),
-      },
-    ],
-  },
-  {
-    id: "nano",
-    chapter: "c2",
-    section: "2.8",
-    title: "Màng đa tinh thể, chấm lượng tử và lớp 2D",
-    scene: "nano",
-    cam: "default",
-    steps: [
-      {
-        title: "Lớp hấp thụ là màng đa tinh thể",
-        body: "Các bài trước mô tả một ô mạng ABX₃. Trong pin, vật liệu ấy là màng đa tinh thể dày khoảng 0,5 µm. Vạch cam là ranh giới hạt; khuyết tật thường tập trung tại đó. Lớp hấp thụ chính là màng này.",
-        caption: "Nhiều hạt tím đặt cạnh nhau. Vạch cam nằm giữa các hạt. Trong một hạt có một bát diện nhỏ.",
-        note: base("Lớp hấp thụ dày khoảng 0,5 µm. Hạt tinh thể cỡ vài trăm nm."),
-      },
-      {
-        title: "Chấm lượng tử không phải lớp hấp thụ",
-        body: "Khi tinh thể thu xuống cỡ 5–15 nm và được bọc phối tử, sản phẩm là chấm lượng tử. Cùng họ ABX₃, nhưng dùng cho LED và màn hình, không phải lớp hấp thụ của pin.",
-        caption: "Những bát diện rời, tím hoặc cam. Mỗi khối có một que xanh. Không còn vạch cam của màng.",
-        note: base("Tinh thể cỡ 5–15 nm, phát sáng mạnh, màu tùy thành phần, khoảng 410–700 nm [45]."),
-      },
-      {
-        title: "Lớp phủ perovskite 2D giữ thật mỏng",
-        body: "Màng 3D được phủ thêm một lớp perovskite 2D rất mỏng. Lớp cation hữu cơ ấy cản ẩm, nhưng điện tích khó xuyên qua nếu lớp dày. Lớp 2D chỉ thụ động hóa bề mặt màng, không thay lớp hấp thụ. Bài 2.9 gom bốn thông số mà chương 3 sẽ dùng.",
-        caption: "Một khối tím đậm, nhãn màng 3D. Một lát lục mỏng nằm trên mặt. Dòng dưới: điện tích khó xuyên lớp hữu cơ.",
-        note: base(
-          "Nếu cắt khung thành nhiều lớp hữu cơ — một giếng lượng tử — thì n = 1 cho khoảng 2,43 eV, còn khung 3D khoảng 1,5 eV [69]. Trên pin chỉ nên để một áo mỏng, không phải cả một giếng.",
-        ),
-      },
-    ],
-  },
-  {
-    id: "props",
-    chapter: "c2",
-    section: "2.9",
-    title: "Bốn thông số chuyển sang chương 3",
-    scene: "props",
-    cam: "default",
-    steps: [
-      {
-        title: "Eg chọn lớp hấp thụ",
-        body: "Thông số thứ nhất là Eg, do góc Pb–I–Pb ở bài 2.5 và do X, B ở bài 2.7. Eg đi từ khoảng 1,48 eV với FAPbI₃ tới khoảng 2,3 eV với MAPbBr₃. Chương 3 dùng khoảng này để giải thích vì sao perovskite hợp một lớp hấp thụ.",
-        caption: "Ô giữ nguyên bên trái. Bên phải là hai thanh, khoảng giữa ghi Eg. Dòng dưới ghi khoảng từ FAPbI₃ đến MAPbBr₃.",
-        note: base("Khoảng 1,48 eV với FAPbI₃, 1,57 eV với MAPbI₃, tới khoảng 2,3 eV với MAPbBr₃."),
-      },
-      {
-        title: "Độ sâu hấp thụ khoảng 100 nm",
-        body: "Thông số thứ hai là độ sâu hấp thụ của ánh sáng nhìn thấy, khoảng 100 nm. Đó là hệ quả của vùng cấm trực tiếp ở bài 2.6: hai mép cùng k, không cần phonon, hệ số hấp thụ cao. Lớp hấp thụ vì thế chỉ cần dày cỡ 0,5 µm.",
-        caption: "Ô vẫn bên trái. Hai thanh biến mất. Bên phải là một mũi tên ngắn dừng ở mặt lát, nhãn khoảng 100 nm.",
-        note: base("Độ sâu hấp thụ vùng nhìn thấy khoảng 100 nm. Năng lượng Urbach ≈ 15 meV [13]: bờ hấp thụ rất dốc, ít mất điện áp."),
-      },
-      {
-        title: "Độ dài khuếch tán lớn hơn bề dày lớp",
-        body: "Thông số thứ ba là độ dài khuếch tán. Exciton chỉ vài meV, nên điện tử và lỗ trống tự tách rồi khuếch tán xa hơn bề dày màng. Chúng tới điện cực trước khi tái hợp. Chương 3 dùng quãng đường này để giải thích dòng quang.",
-        caption: "Mũi tên ngắn biến mất. Bên phải có quả lam và quả cam, cùng một đường đi dài.",
-        note: base(
-          "Exciton chỉ vài meV ở nhiệt độ phòng [14]. Độ dài khuếch tán khoảng 0,1–1 µm trong màng, và hơn 10 µm tới hơn 175 µm trong đơn tinh thể [9][11].",
-        ),
-      },
-      {
-        title: "Ion I⁻ di chuyển trong mạng mềm",
-        body: "Thông số thứ tư là sự di chuyển của ion I⁻ trong mạng mềm, hàng rào khoảng 0,6 eV. Nhờ mạng mềm, màng đa tinh thể ở bài 2.8 kết tinh ở 100–150 °C. Cùng cơ chế ấy làm pin kém bền, và chương 3 quay lại mặt hại này.",
-        caption: "Điện tử và lỗ trống biến mất. Một I⁻ tím rời vị trí, nhãn nhảy. Dòng dưới ghi cả cú nhảy lẫn nhiệt độ làm màng.",
-        note: warn(
-          "Năng lượng cho cú nhảy của ion iod khoảng 0,6 eV [25]. Màng làm được ở 100–150 °C. Cùng một mạng mềm, đừng tách mặt lợi và mặt hại.",
         ),
       },
     ],
@@ -1627,7 +1506,7 @@ export const chapters: Chapter[] = [
     id: "c2",
     num: "2",
     title: "Khung ABX₃",
-    lessonIds: ["origin", "parts", "build", "tolerance", "phases", "orbitals", "alloy", "nano", "props"],
+    lessonIds: ["origin", "parts", "build", "tolerance", "phases", "orbitals"],
   },
   {
     id: "c3",

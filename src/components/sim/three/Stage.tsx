@@ -8,6 +8,7 @@ import { useSim } from "@/lib/sim/store";
 import { crystalScenes } from "./scenesCrystal";
 import { earlyScenes } from "./scenesEarly";
 import { lateScenes } from "./scenesLate";
+import { RaceDiagram } from "../RaceDiagram";
 
 const CAM: Record<string, [number, number, number]> = {
   default: [4.4, 2.5, 5.2],
@@ -51,6 +52,13 @@ export function Stage() {
   const [ready, setReady] = useState(false);
   useEffect(() => setReady(true), []);
   if (!ready) return <div className="stage-wait">{ui(locale, "building")}</div>;
+  if (lesson.scene === "race") {
+    return (
+      <div className="race-diagram">
+        <RaceDiagram step={step} />
+      </div>
+    );
+  }
   return (
     <Canvas
       camera={{ position: CAM[lesson.cam] ?? CAM.default, fov: 42 }}

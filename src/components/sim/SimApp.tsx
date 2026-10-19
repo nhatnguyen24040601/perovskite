@@ -123,6 +123,10 @@ export function SimApp() {
   }, []);
 
   useEffect(() => {
+    if (step >= lesson.steps.length) setStep(0);
+  }, [step, lesson.steps.length, setStep]);
+
+  useEffect(() => {
     if (!playing) return;
     const id = window.setInterval(() => useSim.getState().next(), 8000);
     return () => window.clearInterval(id);

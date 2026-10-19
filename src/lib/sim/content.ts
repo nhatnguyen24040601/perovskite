@@ -611,25 +611,11 @@ export const lessons: Lesson[] = [
     cam: "plot",
     steps: [
       {
-        title: "2009, Miyasaka",
-        body: "Nhóm Miyasaka ở Nhật lần đầu dùng perovskite trong pin và chỉ đạt 3,8% [7]. Silicon đã mất hơn 50 năm cho một quãng đường tương tự.",
-        caption: "Mốc 3,8% năm 2009. Đường cam là một lớp. Đường lục ngang là mức 33,7%.",
-      },
-      {
-        title: "Đường một lớp",
-        body: "Trong khoảng 17 năm, pin một lớp leo tới 27,3% trên biểu đồ NREL 2026 được tài liệu dẫn [1]. Đường vẽ ở đây là minh họa các mốc tài liệu nêu, không phải từng điểm gốc.",
-        caption: "Đường cam nối các mốc tài liệu nêu cho pin một lớp, tới 27,3%. Không phải số đo gốc từng năm.",
-        note: warn("Số thị trường và thông cáo công ty ở chương 4 cần đối chiếu biểu đồ gốc tại nrel.gov trước khi trích dẫn."),
-      },
-      {
-        title: "Tandem vượt trần một lớp",
-        body: "Tandem perovskite/silicon được tài liệu ghi 35% [1]. Nó được phép vượt 33,7% vì không còn là pin một lớp.",
-        caption: "Đường lam là tandem và được phép vượt 33,7% vì không còn là pin một lớp.",
-      },
-      {
         title: "Sáu lý do phía sau tốc độ ấy",
-        body: "Hấp thụ mạnh, điện tích đi xa, exciton tự tách, dung thứ khuyết tật, chỉnh Eg dễ, chế tạo rẻ. Các mục sau lần lượt mở từng lý do.",
-        caption: "Sáu lý do mở ở mục 3.1 đến 3.6. Hình chỉ giữ các đường để thấy chỗ đứng.",
+        body: "Năm 2009, nhóm Miyasaka đạt 3,8% [7]. Đường cam một lớp leo tới 27,3%. Đường lam tandem tới 35% và được vượt 33,7% vì không còn là pin một lớp [1]. Đường vẽ là các mốc tài liệu nêu, không phải số đo gốc từng năm. Sáu lý do: hấp thụ mạnh, điện tích đi xa, exciton tự tách, dung thứ khuyết tật, chỉnh Eg dễ, chế tạo rẻ. Các mục sau lần lượt mở từng lý do.",
+        caption:
+          "Hai đường và mức 33,7% giữ nguyên. Phía dưới sáu nhãn: 3.1 hấp thụ mạnh, 3.2 điện tích đi xa, 3.3 exciton tự tách, 3.4 dung thứ khuyết tật, 3.5 chỉnh Eg, 3.6 chế tạo rẻ.",
+        note: warn("Số thị trường và thông cáo công ty ở chương 4 cần đối chiếu biểu đồ gốc tại nrel.gov trước khi trích dẫn."),
       },
     ],
   },

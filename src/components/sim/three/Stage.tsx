@@ -4,11 +4,15 @@ import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { ui } from "@/lib/sim/i18n";
 import { getLesson } from "@/lib/sim/content";
+import { storyOf } from "@/lib/sim/story";
 import { useSim } from "@/lib/sim/store";
 import { crystalScenes } from "./scenesCrystal";
 import { earlyScenes } from "./scenesEarly";
 import { lateScenes } from "./scenesLate";
 import { RaceDiagram } from "../RaceDiagram";
+import { StoryRig, poseFor } from "./story/camera";
+import { storyScenes } from "./story";
+import { LabelList, LabelProjector } from "./story/labels";
 
 const CAM: Record<string, [number, number, number]> = {
   default: [4.4, 2.5, 5.2],
@@ -19,7 +23,7 @@ const CAM: Record<string, [number, number, number]> = {
   module: [2.4, 3.15, 4.35],
 };
 
-const SCENES = { ...earlyScenes, ...crystalScenes, ...lateScenes };
+const SCENES = { ...earlyScenes, ...crystalScenes, ...lateScenes, ...storyScenes };
 
 function CameraRig({ cam }: { cam: string }) {
   const { camera, controls } = useThree();
@@ -47,7 +51,9 @@ export function Stage() {
   const step = useSim((s) => s.step);
   const replay = useSim((s) => s.replay);
   const autoRotate = useSim((s) => s.autoRotate);
+  const camLevel = useSim((s) => s.camLevel);
   const lesson = getLesson(lessonId);
+  const storyCam = lesson.story ? (camLevel ? String(camLevel) : (storyOf(lesson.id)?.steps[step]?.cam ?? "1")) : "";
   const locale = useSim((s) => s.locale);
   const [ready, setReady] = useState(false);
   useEffect(() => setReady(true), []);
@@ -59,9 +65,11 @@ export function Stage() {
       </div>
     );
   }
+  const startPose = lesson.story ? poseFor(lesson.scene, storyCam) : null;
   return (
+    <>
     <Canvas
-      camera={{ position: CAM[lesson.cam] ?? CAM.default, fov: 42 }}
+      camera={{ position: startPose?.pos ?? CAM[lesson.cam] ?? CAM.default, fov: 42 }}
       dpr={[1, 1.6]}
       gl={{ antialias: true }}
     >
@@ -83,9 +91,20 @@ export function Stage() {
         position={[0, -1.65, 0]}
         infiniteGrid
       />
-      <OrbitControls makeDefault enableDamping dampingFactor={0.08} autoRotate={autoRotate} autoRotateSpeed={0.45} maxDistance={16} minDistance={1.6} />
-      <CameraRig cam={lesson.cam} />
+      <OrbitControls
+        makeDefault
+        enableDamping
+        dampingFactor={0.08}
+        autoRotate={autoRotate && !lesson.story}
+        autoRotateSpeed={0.45}
+        maxDistance={lesson.story ? 14 : 16}
+        minDistance={lesson.story ? 0.5 : 1.6}
+      />
+      {lesson.story ? <StoryRig scene={lesson.scene} cam={storyCam} /> : <CameraRig cam={lesson.cam} />}
       <World key={`${lesson.scene}-${replay}`} scene={lesson.scene} step={step} />
+      {lesson.story ? <LabelProjector /> : null}
     </Canvas>
+    {lesson.story ? <LabelList /> : null}
+    </>
   );
 }

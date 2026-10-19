@@ -3,6 +3,7 @@ import { LABELS_EN } from "./labels-en";
 import { FAB_EN } from "./fab-en";
 import { EXTRA_EN } from "./extra-en";
 import { BODY_EN } from "./body-en";
+import { STORY_EN } from "./story";
 
 const UI = {
   vi: {
@@ -453,7 +454,7 @@ const PHRASE: Record<string, string> = {
 
 export function tr(locale: Locale, text: string): string {
   if (locale === "vi" || !text) return text;
-  return PHRASE[text] ?? LABELS_EN[text] ?? FAB_EN[text] ?? EXTRA_EN[text] ?? BODY_EN[text] ?? text;
+  return STORY_EN[text] ?? PHRASE[text] ?? LABELS_EN[text] ?? FAB_EN[text] ?? EXTRA_EN[text] ?? BODY_EN[text] ?? text;
 }
 
 export const HELP: Record<Locale, string[]> = {
@@ -464,6 +465,7 @@ export const HELP: Record<Locale, string[]> = {
     "Số trong ngoặc [n] là nguồn. Rê chuột hoặc chạm vào số để xem trích dẫn đầy đủ.",
     "Cỡ chữ đổi nhãn trên mô hình, chữ trong biểu đồ và chữ trong bảng. «Trình chiếu» phóng toàn màn hình và giấu mục lục. Nút mục lục và nút giải thích thu hoặc mở hai cột hai bên.",
     "Hộp tím là kiến thức nền, hộp cam là chỗ cần dè số liệu, hộp xanh là giả thuyết chương 5 — chưa phải pin đã làm ra.",
+    "Mục 3.1–3.6 có mô hình tương tác: chọn tầm nhìn 1·2·3 (pin, lớp perovskite, nguyên tử), bật hoặc tắt nhãn, chạy chậm. Khi trình chiếu: ← → đổi bước, Space phát hoặc dừng, R đặt lại.",
   ],
   en: [
     "The left column is one path: light into electricity, the ABX₃ frame, why it suits a cell, fabrication methods, the proposed improvement, then the conclusions.",
@@ -472,6 +474,7 @@ export const HELP: Record<Locale, string[]> = {
     "A number in brackets [n] is a source. Hover or tap it to read the full citation.",
     "Text size changes the 3D labels, the chart labels and the tables. “Present” goes fullscreen and hides the contents. The contents and notes buttons collapse or open the side panels.",
     "A purple box is background, an orange box flags a number to treat carefully, a green box is the chapter 5 hypothesis — not a cell that has been built.",
+    "Sections 3.1–3.6 have interactive models: pick view 1·2·3 (cell, perovskite layer, atoms), switch labels on or off, slow the motion. In presentation mode: ← → change step, Space plays or pauses, R resets.",
   ],
 };
 

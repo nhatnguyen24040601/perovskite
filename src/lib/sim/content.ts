@@ -1,3 +1,4 @@
+import { NOTE_INFO, STORIES, type StorySpec } from "./story";
 import type { Tune } from "./types";
 
 export type NoteKind = "base" | "warn" | "idea";
@@ -10,6 +11,8 @@ export type Step = {
   /** Full figure caption for the 3D view, chart, or table on this step. */
   caption?: string;
   note?: { kind: NoteKind; title: string; text: string };
+  /** One short "why it matters" sentence (story lessons). */
+  why?: string;
 };
 
 export type Swatch =
@@ -57,6 +60,8 @@ export type Lesson = {
   legend?: { swatch: Swatch; label: string }[];
   controls?: ControlKind[];
   tune?: Tune[];
+  /** Interactive 3D story (sections 3.1 – 3.6): drives the story clock, camera and toolbar. */
+  story?: boolean;
   steps: Step[];
 };
 
@@ -77,7 +82,7 @@ const idea = (text: string): Step["note"] => ({
   text,
 });
 
-export const lessons: Lesson[] = [
+const sourceLessons: Lesson[] = [
   {
     id: "intro",
     chapter: "c0",
@@ -1498,7 +1503,7 @@ export const chapters: Chapter[] = [
     id: "c3",
     num: "3",
     title: "Vì sao hợp làm pin",
-    lessonIds: ["race", "absorb", "diffusion", "exciton", "defects", "tune", "ink", "plqy", "compare", "enemies"],
+    lessonIds: ["race", "absorb", "diffusion", "exciton", "defects", "tune", "ink", "recap", "plqy", "compare", "enemies"],
   },
   {
     id: "c4",
@@ -1679,6 +1684,37 @@ export const QUIZ: {
     why: "Tài liệu gán kẻ thù số 5 cho lớp 2D, rào ALD, và việc giảm chỗ trống. UV kính nhắm kẻ thù khác.",
   },
 ];
+
+function storyLesson(spec: StorySpec): Lesson {
+  return {
+    id: spec.id,
+    chapter: "c3",
+    section: spec.section,
+    title: spec.title,
+    scene: spec.scene,
+    cam: "default",
+    legend: spec.legend.length > 0 ? spec.legend : undefined,
+    story: true,
+    tune: spec.tune,
+    steps: spec.steps.map((s) => ({
+      title: s.title,
+      body: s.body,
+      why: s.why,
+      note: s.info ? { kind: NOTE_INFO.kind, title: NOTE_INFO.title, text: s.info } : undefined,
+    })),
+  };
+}
+
+/** Sections 3.1 – 3.6 (and the recap) are rebuilt from the story data; everything else is unchanged. */
+export const lessons: Lesson[] = sourceLessons.flatMap((lesson) => {
+  const spec = STORIES.find((s) => s.id === lesson.id);
+  return spec ? [storyLesson(spec)] : [lesson];
+});
+{
+  const recap = STORIES.find((s) => s.id === "recap");
+  const at = lessons.findIndex((l) => l.id === "ink");
+  if (recap && at >= 0) lessons.splice(at + 1, 0, storyLesson(recap));
+}
 
 function glossaryLesson(): Lesson {
   return {

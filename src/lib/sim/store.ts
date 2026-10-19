@@ -3,6 +3,9 @@ import { getLesson, lessonIndex, lessons, nextLessonId, prevLessonId } from "./c
 import type { Architecture, Cation } from "./types";
 
 export type Locale = "vi" | "en";
+export type AbsorbMode = "auto" | "thin" | "thick";
+export type DefectMode = "real" | "perfect";
+export type Coating = "spin" | "slot" | "inkjet";
 
 type SimState = {
   lessonId: string;
@@ -40,6 +43,19 @@ type SimState = {
   textScale: number;
   presenting: boolean;
   photos: boolean;
+  /** Story lessons (3.1 – 3.6): scientific labels on or off. */
+  labels: boolean;
+  /** Story lessons: slow animations for the classroom. */
+  slow: boolean;
+  /** Story lessons: move on to the next step by itself when a step finishes. */
+  auto: boolean;
+  /** Story lessons: camera level chosen by the viewer (0 = the step decides). */
+  camLevel: 0 | 1 | 2 | 3;
+  /** The viewer moved the I/Br slider, so the demo sweep must stop writing to it. */
+  brLock: boolean;
+  absorbMode: AbsorbMode;
+  defectMode: DefectMode;
+  coating: Coating;
   setLesson: (id: string) => void;
   setStep: (n: number) => void;
   next: () => void;
@@ -56,6 +72,11 @@ type SimState = {
   setTextScale: (n: number) => void;
   togglePresent: () => void;
   togglePhotos: () => void;
+  toggleLabels: () => void;
+  toggleSlow: () => void;
+  toggleAuto: () => void;
+  /** Back to the first step with every story option at its starting value. */
+  resetStory: () => void;
 };
 
 export const useSim = create<SimState>((set, get) => ({
@@ -94,12 +115,24 @@ export const useSim = create<SimState>((set, get) => ({
   textScale: 1,
   presenting: false,
   photos: false,
+  labels: true,
+  slow: false,
+  auto: false,
+  camLevel: 0,
+  brLock: false,
+  absorbMode: "auto",
+  defectMode: "real",
+  coating: "spin",
   setLesson: (id) => {
     const lesson = getLesson(id);
     set((s) => ({
       lessonId: lesson.id,
       step: 0,
-      playing: false,
+      playing: lesson.story === true,
+      camLevel: 0,
+      brLock: false,
+      absorbMode: "auto",
+      defectMode: "real",
       inspect: null,
       query: "",
       explain: lesson.id === "glossary" || lesson.id === "refs" || lesson.id === "quiz" ? true : s.explain,
@@ -111,7 +144,8 @@ export const useSim = create<SimState>((set, get) => ({
   setStep: (n) => {
     const lesson = getLesson(get().lessonId);
     const step = Math.max(0, Math.min(lesson.steps.length - 1, n));
-    set({ step, inspect: null });
+    // Choosing a step in a story lesson always plays it, so the presenter sees the motion.
+    set(lesson.story ? { step, inspect: null, camLevel: 0, brLock: false, playing: true } : { step, inspect: null });
     const tune = lesson.tune?.[step];
     if (tune) set(tune);
   },
@@ -153,6 +187,24 @@ export const useSim = create<SimState>((set, get) => ({
   setTextScale: (n) => set({ textScale: Math.min(1.45, Math.max(0.85, n)) }),
   togglePresent: () => set((s) => ({ presenting: !s.presenting })),
   togglePhotos: () => set((s) => ({ photos: !s.photos })),
+  toggleLabels: () => set((s) => ({ labels: !s.labels })),
+  toggleSlow: () => set((s) => ({ slow: !s.slow })),
+  toggleAuto: () => set((s) => ({ auto: !s.auto })),
+  resetStory: () => {
+    const lesson = getLesson(get().lessonId);
+    set((s) => ({
+      step: 0,
+      playing: true,
+      camLevel: 0,
+      brLock: false,
+      absorbMode: "auto",
+      defectMode: "real",
+      replay: s.replay + 1,
+      inspect: null,
+    }));
+    const tune = lesson.tune?.[0];
+    if (tune) set(tune);
+  },
 }));
 
 export function progressLabel(): string {

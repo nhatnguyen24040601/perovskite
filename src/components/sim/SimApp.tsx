@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { chapters, getLesson, GLOSSARY, lessons, QUIZ } from "@/lib/sim/content";
 import { GLOSS_EN, HELP, QUIZ_EN, TABLES, tr, ui } from "@/lib/sim/i18n";
 import { photoAlt, photosFor, type Photo } from "@/lib/sim/media";
+import { storyOf } from "@/lib/sim/story";
 import {
   diffusionUm,
   egFromHalide,
@@ -18,6 +19,7 @@ import { useSim, type Locale } from "@/lib/sim/store";
 import type { Cation } from "@/lib/sim/types";
 import type { ControlKind } from "@/lib/sim/content";
 import { RichText } from "./RichText";
+import { StoryOverlay } from "./StoryOverlay";
 import { Stage } from "./three/Stage";
 
 const FOCUS_SWATCH: Record<string, "fa" | "lead" | "iodine" | "electron" | "sun" | "warn" | "br"> = {
@@ -60,6 +62,7 @@ export function SimApp() {
   const togglePresent = useSim((s) => s.togglePresent);
   const togglePhotos = useSim((s) => s.togglePhotos);
   const lesson = getLesson(lessonId);
+  const story = lesson.story ? storyOf(lesson.id) : undefined;
   const current = lesson.steps[step] ?? lesson.steps[0]!;
   const setLesson = useSim((s) => s.setLesson);
   const setStep = useSim((s) => s.setStep);
@@ -71,6 +74,7 @@ export function SimApp() {
   const toggleRotate = useSim((s) => s.toggleRotate);
   const autoRotate = useSim((s) => s.autoRotate);
   const bumpReplay = useSim((s) => s.bumpReplay);
+  const resetStory = useSim((s) => s.resetStory);
   const toggleHelp = useSim((s) => s.toggleHelp);
   const answerQuiz = useSim((s) => s.answerQuiz);
 
@@ -127,10 +131,11 @@ export function SimApp() {
   }, [step, lesson.steps.length, setStep]);
 
   useEffect(() => {
-    if (!playing) return;
+    // Story lessons run their own clock: Play only freezes or unfreezes the animation.
+    if (!playing || lesson.story) return;
     const id = window.setInterval(() => useSim.getState().next(), 8000);
     return () => window.clearInterval(id);
-  }, [playing, lessonId, step]);
+  }, [playing, lessonId, step, lesson.story]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -141,6 +146,10 @@ export function SimApp() {
       if (e.key === " ") {
         e.preventDefault();
         togglePlay();
+      }
+      if (e.key === "r" || e.key === "R") {
+        if (useSim.getState().lessonId && getLesson(useSim.getState().lessonId).story) useSim.getState().resetStory();
+        else useSim.getState().bumpReplay();
       }
       if (e.key === "e" || e.key === "E") toggleExplain();
       if (e.key === "[") useSim.getState().toggleNav();
@@ -188,7 +197,13 @@ export function SimApp() {
   const table = TABLES[lesson.id];
   const figure = current.caption ? tr(locale, current.caption) : table?.caption[locale];
   const gloss = lesson.id === "glossary" ? GLOSSARY[step] : undefined;
-  const appClass = ["app", explain ? "" : "explain-off", navOpen ? "" : "nav-off", presenting ? "presenting" : ""]
+  const appClass = [
+    "app",
+    explain ? "" : "explain-off",
+    navOpen ? "" : "nav-off",
+    presenting ? "presenting" : "",
+    lesson.story ? "story-lesson" : "",
+  ]
     .filter(Boolean)
     .join(" ");
 
@@ -205,7 +220,7 @@ export function SimApp() {
         <div className="top-title">
           <span className="kicker">{tr(locale, lesson.section)}</span>
           <h1>{tr(locale, lesson.title)}</h1>
-          <p className="journey">{ui(locale, "journey")}</p>
+          <p className="journey">{story ? tr(locale, story.sentence) : ui(locale, "journey")}</p>
         </div>
         <div className="top-actions">
           <div className="seg" role="group" aria-label={ui(locale, "lang")}>
@@ -307,18 +322,22 @@ export function SimApp() {
         <div className="stage">
           <Stage />
         </div>
-        <div className="stage-caption">
-          <span>
-            {ui(locale, "step")} {step + 1}/{lesson.steps.length}
-            {inspect ? ` · ${tr(locale, inspect)}` : ""}
-          </span>
-          <strong>{tr(locale, current.title)}</strong>
-          {figure ? (
-            <em className="figure-cap">
-              <RichText text={figure} />
-            </em>
-          ) : null}
-        </div>
+        {lesson.story ? (
+          <StoryOverlay lessonId={lessonId} />
+        ) : (
+          <div className="stage-caption">
+            <span>
+              {ui(locale, "step")} {step + 1}/{lesson.steps.length}
+              {inspect ? ` · ${tr(locale, inspect)}` : ""}
+            </span>
+            <strong>{tr(locale, current.title)}</strong>
+            {figure ? (
+              <em className="figure-cap">
+                <RichText text={figure} />
+              </em>
+            ) : null}
+          </div>
+        )}
         {lesson.legend ? (
           <div className="legend">
             {lesson.legend.map((item) => (
@@ -340,12 +359,20 @@ export function SimApp() {
         <button type="button" className="btn btn-icon" onClick={togglePlay} aria-label={playing ? ui(locale, "pause") : ui(locale, "play")}>
           {playing ? <Pause size={18} /> : <Play size={18} />}
         </button>
-        <button type="button" className="btn btn-icon" onClick={bumpReplay} aria-label={ui(locale, "replay")}>
+        <button
+          type="button"
+          className="btn btn-icon"
+          onClick={lesson.story ? resetStory : bumpReplay}
+          aria-label={lesson.story ? "Reset" : ui(locale, "replay")}
+          title={lesson.story ? "Reset (R)" : undefined}
+        >
           <RotateCcw size={16} />
         </button>
-        <button type="button" className={autoRotate ? "btn on" : "btn"} onClick={toggleRotate}>
-          {ui(locale, "rotate")}
-        </button>
+        {lesson.story ? null : (
+          <button type="button" className={autoRotate ? "btn on" : "btn"} onClick={toggleRotate}>
+            {ui(locale, "rotate")}
+          </button>
+        )}
         <span className="step-count">
           {step + 1}/{lesson.steps.length}
         </span>
@@ -417,6 +444,12 @@ export function SimApp() {
                 <span className="kicker">{ui(locale, "more")}</span>
                 <RichText text={tr(locale, current.more)} />
               </p>
+            ) : null}
+            {current.why ? (
+              <div className="callout idea">
+                <span className="call-label">{story ? tr(locale, "Vì sao quan trọng") : ""}</span>
+                <RichText text={tr(locale, current.why)} />
+              </div>
             ) : null}
             {current.note ? (
               <div className={`callout ${current.note.kind === "base" ? "" : current.note.kind}`}>

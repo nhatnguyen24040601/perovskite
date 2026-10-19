@@ -1154,3 +1154,477 @@
     transition: none;
   }
 }
+
+/* ── Sections 3.1 – 3.6: interactive 3D stories ── */
+
+.story-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px;
+  gap: 8px;
+}
+
+.story-card {
+  align-self: flex-start;
+  max-width: min(440px, 56%);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: color-mix(in srgb, var(--color-ink) 82%, transparent);
+  border: 1px solid var(--color-line);
+  border-radius: 14px;
+  padding: 10px 14px 12px;
+  backdrop-filter: blur(6px);
+  animation: story-in 0.4s ease both;
+}
+
+.story-card strong {
+  font-size: calc(17px * var(--type, 1));
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.story-card p {
+  font-size: calc(14px * var(--type, 1));
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--color-fg) 92%, var(--color-muted));
+}
+
+.story-card .story-why {
+  color: var(--color-good);
+  font-size: calc(12.5px * var(--type, 1));
+}
+
+.story-kicker {
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.story-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.story-info,
+.story-final {
+  max-width: min(720px, 100%);
+  border-radius: 12px;
+  padding: 8px 14px;
+  background: color-mix(in srgb, var(--color-ink) 88%, transparent);
+  border: 1px solid var(--color-line);
+  font-size: calc(13.5px * var(--type, 1));
+  line-height: 1.45;
+  animation: story-in 0.4s ease both;
+}
+
+.story-info {
+  border-left: 3px solid var(--color-warn);
+  align-self: flex-start;
+}
+
+.story-final {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  text-align: center;
+  border-color: var(--color-accent);
+}
+
+.story-final strong {
+  font-size: calc(17px * var(--type, 1));
+  color: var(--color-accent);
+  letter-spacing: -0.01em;
+}
+
+.story-final span {
+  color: var(--color-muted);
+  font-size: calc(12.5px * var(--type, 1));
+}
+
+.story-bar {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+}
+
+.story-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px 8px;
+  padding: 5px 8px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--color-ink) 86%, transparent);
+  border: 1px solid var(--color-line);
+  font-size: calc(12px * var(--type, 1));
+}
+
+.story-bar .btn {
+  min-height: 30px;
+  padding: 0 10px;
+  font-size: calc(12px * var(--type, 1));
+  gap: 5px;
+}
+
+.story-bar .seg .btn {
+  min-height: 30px;
+}
+
+.story-cap {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--color-muted);
+}
+
+.story-slider input[type="range"] {
+  width: min(280px, 36vw);
+  accent-color: var(--color-accent);
+}
+
+.story-eg {
+  font-family: var(--font-mono);
+  color: var(--color-accent);
+}
+
+.story-chain {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+}
+
+.story-chain ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 0;
+}
+
+.story-chain li {
+  position: relative;
+  padding: 5px 10px;
+  border: 1px solid var(--color-line);
+  background: color-mix(in srgb, var(--color-ink) 82%, transparent);
+  color: var(--color-muted);
+  border-radius: 999px;
+  font-size: calc(11.5px * var(--type, 1));
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-right: 18px;
+  transition: all 0.3s;
+}
+
+.story-chain ol li:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  right: -16px;
+  top: 50%;
+  transform: translateY(-52%);
+  color: var(--color-muted);
+}
+
+.story-chain li.seen {
+  color: var(--color-fg);
+  border-color: color-mix(in srgb, var(--color-accent) 50%, var(--color-line));
+}
+
+.story-chain li.on {
+  color: var(--color-accent-fg);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.story-badges {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+
+.story-badges li {
+  font-size: calc(11.5px * var(--type, 1));
+  color: var(--color-fg);
+  background: color-mix(in srgb, var(--color-surface) 88%, transparent);
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  padding: 3px 9px;
+}
+
+.story-present-title,
+.story-keys,
+.story-exit {
+  display: none;
+}
+
+.story-tag {
+  /* opacity only: the element is positioned by an inline transform that an animation would override */
+  animation: tag-in 0.35s ease both;
+}
+
+@keyframes tag-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.story-tag small {
+  display: block;
+  font-size: 0.78em;
+  font-weight: 400;
+  color: var(--color-muted);
+  margin-top: 1px;
+}
+
+.story-tag.tag-layer {
+  padding: 2px 6px;
+  color: var(--color-muted);
+  background: color-mix(in srgb, var(--color-ink) 70%, transparent);
+}
+
+.story-tag.tag-tiny {
+  font-size: 11px;
+  color: var(--color-muted);
+  padding: 1px 5px;
+}
+
+.story-tag.tag-particle {
+  font-weight: 600;
+  border-color: color-mix(in srgb, var(--color-fg) 40%, var(--color-line));
+}
+
+.story-tag.tag-good {
+  border-color: var(--color-good);
+  color: var(--color-good);
+  font-weight: 600;
+}
+
+.story-tag.tag-bad {
+  border-color: var(--color-warn);
+  color: var(--color-warn);
+  font-weight: 600;
+}
+
+.story-tag.tag-iodide {
+  border-color: #7a56e0;
+}
+
+.story-tag.tag-bromide {
+  border-color: #e8892f;
+}
+
+@keyframes story-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* presentation mode: the model fills the screen, one sentence at a time */
+.app.presenting.story-lesson,
+.app.presenting.story-lesson.explain-off,
+.app.presenting.story-lesson.nav-off {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "stage"
+    "play";
+}
+
+.app.presenting.story-lesson .topbar,
+.app.presenting.story-lesson .nav,
+.app.presenting.story-lesson .panel,
+.app.presenting.story-lesson .legend,
+.app.presenting.story-lesson .story-bar,
+.app.presenting.story-lesson .story-info,
+.app.presenting.story-lesson .story-kicker,
+.app.presenting.story-lesson .story-card strong {
+  display: none;
+}
+
+.app.presenting.story-lesson .playback {
+  opacity: 0.45;
+  transition: opacity 0.2s;
+}
+
+.app.presenting.story-lesson .playback:hover,
+.app.presenting.story-lesson .playback:focus-within {
+  opacity: 1;
+}
+
+.app.presenting.story-lesson .story-layer {
+  padding: 16px 20px;
+}
+
+.app.presenting.story-lesson .story-card {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  align-self: auto;
+  max-width: min(980px, calc(100% - 40px));
+  text-align: center;
+  padding: 14px 24px;
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--color-ink) 78%, transparent);
+  animation: none;
+}
+
+.app.presenting.story-lesson .story-card p {
+  font-size: clamp(20px, 2.5vw, 34px);
+  line-height: 1.35;
+  color: var(--color-fg);
+}
+
+.app.presenting.story-lesson .story-card .story-why {
+  font-size: clamp(14px, 1.5vw, 20px);
+}
+
+.app.presenting.story-lesson .story-stack {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  width: min(900px, calc(100% - 40px));
+}
+
+.app.presenting.story-lesson .story-final {
+  padding: 10px 20px;
+}
+
+.app.presenting.story-lesson .story-final strong {
+  font-size: clamp(18px, 2vw, 28px);
+}
+
+.app.presenting.story-lesson .story-present-title {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  position: absolute;
+  left: 20px;
+  top: 16px;
+  font-weight: 600;
+  font-size: clamp(14px, 1.4vw, 20px);
+  color: var(--color-muted);
+}
+
+.app.presenting.story-lesson .story-present-step {
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  color: var(--color-accent);
+}
+
+.app.presenting.story-lesson .story-keys {
+  display: block;
+  position: absolute;
+  right: 20px;
+  bottom: 12px;
+  margin: 0;
+  font-size: 11px;
+  color: var(--color-muted);
+  pointer-events: none;
+}
+
+.app.presenting.story-lesson .story-exit {
+  display: inline-flex;
+  position: absolute;
+  right: 20px;
+  top: 14px;
+  pointer-events: auto;
+  min-height: 30px;
+  padding: 0 12px;
+  font-size: 12px;
+}
+
+.app.presenting.story-lesson .story-chain {
+  position: absolute;
+  top: 56px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 760px) {
+  .story-layer {
+    padding: 6px;
+  }
+
+  /* the notes panel under the stage already shows the step text, so keep the model uncovered */
+  .story-card {
+    display: none;
+  }
+
+  .story-speed,
+  .story-auto,
+  .story-info {
+    display: none;
+  }
+
+  .app.presenting.story-lesson .story-card {
+    display: flex;
+  }
+
+  .story-row {
+    padding: 4px 6px;
+  }
+
+  .story-bar .btn {
+    padding: 0 8px;
+  }
+
+  .story-cap {
+    display: none;
+  }
+
+  .story-final strong {
+    font-size: calc(14px * var(--type, 1));
+  }
+
+  .story-final span {
+    display: none;
+  }
+}
+
+.story-labels {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.story-labels .float-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  will-change: transform;
+}

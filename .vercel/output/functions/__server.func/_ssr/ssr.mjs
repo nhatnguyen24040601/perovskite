@@ -1,5 +1,5 @@
 import { n as __exportAll } from "../_runtime.mjs";
-import { F as require_react, P as require_jsx_runtime } from "../_libs/@react-three/drei+[...].mjs";
+import { M as require_react, j as require_jsx_runtime } from "../_libs/@react-three/drei+[...].mjs";
 import { a as RouterProvider, n as defineHandlerCallback, t as renderRouterToStream } from "../_libs/@tanstack/react-router+[...].mjs";
 import { PassThrough, Readable } from "node:stream";
 import { AsyncLocalStorage } from "node:async_hooks";
@@ -3777,7 +3777,7 @@ var RawStream = class {
 * the dev styles URL for route-scoped CSS collection.
 */
 async function getStartManifest(matchedRoutes) {
-	const { tsrStartManifest } = await import("../_tanstack-start-manifest_v-C8DThSxj.mjs");
+	const { tsrStartManifest } = await import("../_tanstack-start-manifest_v-EWSdZEqe.mjs");
 	const startManifest = tsrStartManifest();
 	let routes = startManifest.routes;
 	routes[rootRouteId];
@@ -6253,7 +6253,7 @@ var getBaseManifest = getProdBaseManifest;
 var createEarlyHintsForRequest = createEarlyHintsCollector;
 async function loadEntries() {
 	const [routerEntry, startEntry, pluginAdapters] = await Promise.all([
-		import("./router-CjM0ARXL.mjs").then((n) => n.t),
+		import("./router-CcfbVc5n.mjs").then((n) => n.t),
 		import("./start-BrrddFlp.mjs"),
 		import("./empty-plugin-adapters-CGdePtpk.mjs")
 	]);

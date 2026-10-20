@@ -43,7 +43,6 @@ type SimState = {
   nWell: number;
   architecture: Architecture;
   inspect: string | null;
-  quiz: (number | null)[];
   locale: Locale;
   textScale: number;
   presenting: boolean;
@@ -83,7 +82,6 @@ type SimState = {
   bumpReplay: () => void;
   toggleHelp: () => void;
   patch: (p: Partial<SimState>) => void;
-  answerQuiz: (q: number, choice: number) => void;
   setLocale: (locale: Locale) => void;
   setTextScale: (n: number) => void;
   togglePresent: () => void;
@@ -126,7 +124,6 @@ export const useSim = create<SimState>((set, get) => ({
   nWell: 2,
   architecture: "pin",
   inspect: null,
-  quiz: [null, null, null, null, null, null],
   locale: "vi",
   textScale: 1,
   presenting: false,
@@ -165,7 +162,7 @@ export const useSim = create<SimState>((set, get) => ({
       temp: 25,
       inspect: null,
       query: "",
-      explain: lesson.id === "glossary" || lesson.id === "refs" || lesson.id === "quiz" ? true : s.explain,
+      explain: lesson.id === "glossary" || lesson.id === "refs" ? true : s.explain,
       visited: s.visited.includes(lesson.id) ? s.visited : [...s.visited, lesson.id],
     }));
     const tune = lesson.tune?.[0];
@@ -207,12 +204,6 @@ export const useSim = create<SimState>((set, get) => ({
   bumpReplay: () => set((s) => ({ replay: s.replay + 1 })),
   toggleHelp: () => set((s) => ({ help: !s.help })),
   patch: (p) => set(p),
-  answerQuiz: (q, choice) =>
-    set((s) => {
-      const quiz = s.quiz.slice();
-      quiz[q] = choice;
-      return { quiz };
-    }),
   setLocale: (locale) => set({ locale }),
   setTextScale: (n) => set({ textScale: Math.min(1.45, Math.max(0.85, n)) }),
   togglePresent: () => set((s) => ({ presenting: !s.presenting })),

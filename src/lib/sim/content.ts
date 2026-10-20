@@ -1,6 +1,10 @@
 import { NOTE_INFO, STORIES, type StorySpec } from "./story";
 import { C4_INTRO } from "./story4";
+import { L4 } from "./lead4";
+import { MK } from "./market4";
+import { C6 } from "./conclusion6";
 import "./story5";
+import { M5 } from "./materials5";
 import { SOURCES } from "./sources";
 import type { Tune } from "./types";
 
@@ -80,7 +84,7 @@ export type Lesson = {
   /** Interactive 3D story (sections 3.1 – 3.6 and 3.8): drives the story clock, camera and toolbar. */
   story?: boolean;
   /** Chapter 4: a full-page HTML screen instead of the 3D stage. */
-  page?: "landing" | "summary";
+  page?: "landing" | "materials" | "lead" | "market" | "conclusion";
   steps: Step[];
 };
 
@@ -839,96 +843,39 @@ const sourceLessons: Lesson[] = [
       },
     ],
   },
-  // Chapter 5 sections 5.1 – 5.4 are story lessons (story5.ts); these entries only keep their place in the order.
-  ...["pin", "stack", "why", "verify"].map(
-    (id, i): Lesson => ({
-      id,
-      chapter: "c5",
-      section: `5.${i + 1}`,
-      title: id,
-      scene: id,
-      cam: "default",
-      steps: [{ title: id, body: id }],
-    }),
+  // Chapter 5 sections 5.1 – 5.3 are story lessons (story5.ts); these entries only keep their place in the order.
+  ...["pin", "stack", "why"].map(
+    (id, i): Lesson =>
+      id === "why"
+        ? {
+            id,
+            chapter: "c5",
+            section: "5.3",
+            title: M5.lessonTitle,
+            scene: "page",
+            cam: "default",
+            page: "materials",
+            steps: [{ title: M5.lessonTitle, body: M5.lessonBody }],
+          }
+        : {
+            id,
+            chapter: "c5",
+            section: `5.${i + 1}`,
+            title: id,
+            scene: id,
+            cam: "default",
+            steps: [{ title: id, body: id }],
+          },
   ),
   {
     id: "finale",
     chapter: "c6",
     section: "6",
-    title: "Bảy kết luận của cả hành trình",
-    scene: "finale",
-    cam: "wide",
-    steps: [
-      {
-        title: "Kết luận 1 — Bốn bước biến ánh sáng thành điện",
-        body: "Photon rơi vào lớp tím. Điện tử đi lên vùng dẫn, lỗ trống ở lại, rồi hai hạt ra hai cửa. Không có máy quay, không đốt nhiên liệu.",
-        caption: "Hình: một photon, một lần tách, hai mũi tên ra mạch ngoài. Đây là cả pin mặt trời, thu gọn vào bốn động tác.",
-      },
-      {
-        title: "Kết luận 2 — ABX₃ là ba núm vặn trên một khung",
-        body: "A là cation lớn trong hốc, B là chì hoặc thiếc ở tâm bát diện, X là I, Br hoặc Cl ở đỉnh. Đổi một ion là đổi vùng cấm và độ bền.",
-        caption: "Hình: một ô mạng. Nhãn A, B, X là ba núm vặn, không phải ba chất rời nhau.",
-      },
-      {
-        title: "Kết luận 3 — Tổ hợp hiếm: 3,8% lên 27,3% rồi tandem",
-        body: "Vùng cấm thẳng, hấp thụ mạnh trong lớp mỏng cỡ 0,5 µm, điện tích đi được xa hơn bề dày lớp, và chế tạo dưới 150 °C. Vì vậy hiệu suất tài liệu dẫn đi từ 3,8% năm 2009 lên 27,3% một lớp, và tandem được ghi 35% [1][7].",
-        caption: "Hình: hai mốc trên cùng một cột thời gian. 27,3% là mức một lớp được tài liệu dẫn, không phải chiều cao của tandem.",
-      },
-      {
-        title: "Kết luận 4 — Mạng mềm là cả ưu điểm lẫn năm kẻ thù",
-        body: "Cùng liên kết yếu cho tinh thể tự vá và cho ion iod nhảy, cho ẩm, oxy, nhiệt và tia cực tím làm hỏng pin. Năm kẻ thù ấy không phải chuyện phụ của hiệu suất cao.",
-        caption: "Hình: tinh thể ở giữa, năm chấm cảnh báo quay quanh. Mỗi chấm là một kẻ thù đã gặp ở mục 3.8.",
-      },
-      {
-        title: "Kết luận 5 — Bảy cách chế tạo, một quy tắc mầm",
-        body: "Quay phủ, hai bước, chân không, kết tinh nhiệt độ ngược, chích nóng, dao gạt và phủ khe khác nhau ở chỗ ép mầm ra. Chúng giống nhau ở quy tắc: mầm phải xuất hiện cùng lúc, rồi lớn đều, nếu không thì thủng lỗ kim.",
-        caption: "Hình: nhiều mầm cùng cỡ bung ra, rồi khép thành một màng. Ảnh thực của từng cách nằm ở chương phương pháp chế tạo.",
-      },
-      {
-        title: "Kết luận 6 — Cải tiến là một chồng lớp được thiết kế",
-        body: "Chương 5 không bán một chất mới. Nó đi qua bốn bước: chọn kiến trúc p–i–n, giao cho mỗi lớp một vai trò chính, biện minh từng vật liệu bằng nhiều tiêu chí, rồi kiểm chứng độ bền. Chồng lớp kính / ITO / SAM / perovskite / C₆₀ / lớp đệm / kim loại chỉ là một ví dụ minh họa.",
-        caption: "Hình: chồng lớp ví dụ của chương 5. Lớp nào đặt ở đâu và vì sao là câu hỏi, không phải một công thức cố định. Độ dày vẽ không theo tỉ lệ thật.",
-      },
-      {
-        title: "Kết luận 7 — Việc còn lại là độ bền; đường gần là tandem",
-        body: "Số bền chỉ có nghĩa khi kèm điều kiện. ISOS là bộ quy trình nghiên cứu và báo cáo, không phải chứng nhận đạt/trượt và không hứa 25 năm. Con đường thương mại gần nhất vẫn là trải perovskite lên silicon có sẵn.",
-        caption: "Hình: lớp perovskite mỏng nằm trên lát silicon dày. Đồng hồ minh họa một phép thử độ bền, không phải số đo của một pin cụ thể.",
-      },
-    ],
-  },
-  {
-    id: "quiz",
-    chapter: "c6",
-    section: "Tự kiểm",
-    title: "Tự kiểm — sáu câu ôn cả hành trình",
-    scene: "quiz",
+    title: C6.title,
+    scene: "page",
     cam: "default",
-    steps: [
-      {
-        title: "Câu 1 · Photon 900 nm",
-        body: "Vì sao photon hồng ngoại 900 nm đi xuyên qua lớp MAPbI₃? Gợi ý của tài liệu: tính E = 1240/λ rồi so với 1,57 eV.",
-      },
-      {
-        title: "Câu 2 · Đếm trong ô lập phương",
-        body: "Đếm số ion A, B, X trong một ô cơ sở. Vì sao ion ở góc chỉ tính một phần tám?",
-      },
-      {
-        title: "Câu 3 · Hai pha vàng, hai lý do",
-        body: "CsPbI₃ và FAPbI₃ cùng dễ chuyển sang pha vàng, nhưng vì hai lý do ngược nhau. Giải bằng hệ số dung hạn.",
-      },
-      {
-        title: "Câu 4 · PLQY và Voc",
-        body: "Nếu PLQY giảm từ 1% xuống 0,01%, Voc giảm khoảng bao nhiêu?",
-      },
-      {
-        title: "Câu 5 · Vượt 33,7%",
-        body: "Vì sao pin tandem có thể vượt giới hạn Shockley–Queisser của pin một lớp?",
-      },
-      {
-        title: "Câu 6 · Chặn ion iod",
-        body: "Trong đề xuất chương 5, lớp nào chặn kẻ thù di chuyển ion, và bằng cách nào?",
-      },
-    ],
+    page: "conclusion",
+    steps: [{ title: C6.title, body: C6.lessonBody }],
   },
 ];
 
@@ -972,10 +919,10 @@ export const chapters: Chapter[] = [
     id: "c4",
     num: "4",
     title: "Phương pháp chế tạo",
-    lessonIds: ["c4home", "spin", "twostep", "vacuum", "crystal", "qdot", "market", "blade", "slot", "lead", "leadmit", "leadcmp", "c4sum"],
+    lessonIds: ["c4home", "spin", "vacuum", "blade", "market", "lead"],
   },
-  { id: "c5", num: "5", title: "Đề xuất cải tiến", lessonIds: ["pin", "stack", "why", "verify", "c5fin"] },
-  { id: "c6", num: "6", title: "Kết luận", lessonIds: ["finale", "quiz"] },
+  { id: "c5", num: "5", title: "Đề xuất cải tiến", lessonIds: ["pin", "stack", "why"] },
+  { id: "c6", num: "6", title: "Kết luận", lessonIds: ["finale"] },
   { id: "cA", num: "A", title: "Phụ lục", lessonIds: ["glossary", "refs"] },
 ];
 
@@ -1081,80 +1028,6 @@ for (const src of SOURCES) {
   REFS.push({ n: String(src.n), cite: `${src.by}. ${src.title}. ${src.date}. ${where}` });
 }
 
-export const QUIZ: {
-  prompt: string;
-  options: string[];
-  answer: number;
-  why: string;
-}[] = [
-  {
-    prompt: "Photon 900 nm gặp MAPbI₃ thì sao?",
-    options: [
-      "Bị phản xạ vì quá mạnh",
-      "E ≈ 1,38 eV, thấp hơn Eg ≈ 1,57 eV, nên đi xuyên",
-      "Bị hấp thụ hết vì nằm trong vùng nhìn thấy",
-      "Chỉ bị chặn nếu lớp dày hơn 180 µm",
-    ],
-    answer: 1,
-    why: "1240/900 ≈ 1,38 eV. MAPbI₃ có Eg khoảng 1,57 eV. Photon yếu hơn vùng cấm không tạo được cặp điện tích.",
-  },
-  {
-    prompt: "Trong một ô lập phương có bao nhiêu A, B, X?",
-    options: [
-      "8 A, 6 B, 1 X",
-      "1 A, 1 B, 3 X — góc chỉ tính 1/8 vì tám ô dùng chung",
-      "1 A, 3 B, 1 X",
-      "4 A, 4 B, 4 X",
-    ],
-    answer: 1,
-    why: "Góc thuộc về 8 ô, tâm mặt thuộc về 2 ô, tâm ô thuộc trọn về một ô. 8×1/8 + 1 + 6×1/2 = ABX₃.",
-  },
-  {
-    prompt: "Vì sao CsPbI₃ và FAPbI₃ đều dễ hóa vàng?",
-    options: [
-      "Cả hai đều có t ≈ 1,00",
-      "Cs quá nhỏ (t ≈ 0,85) nên sụp cạnh; FA quá lớn (t ≈ 0,99) nên chuyển lục giác dùng chung mặt",
-      "Cả hai đều mất chì khi gặp nước",
-      "Vì cùng vùng cấm 1,12 eV",
-    ],
-    answer: 1,
-    why: "Hai lý do ngược nhau quanh hốc trống: A nhỏ làm khung sụp, A lớn làm khung chuyển sang cách nối khác.",
-  },
-  {
-    prompt: "PLQY từ 1% xuống 0,01%. Voc đổi thế nào?",
-    options: [
-      "Tăng khoảng 60 mV",
-      "Giảm khoảng 120 mV",
-      "Không đổi vì Voc chỉ phụ thuộc Eg",
-      "Giảm một nửa",
-    ],
-    answer: 1,
-    why: "Hai lần chia mười. Mỗi lần khoảng 60 mV, vì (kT/q)·ln(10) ≈ 60 mV ở 300 K.",
-  },
-  {
-    prompt: "Tandem vượt 33,7% bằng cách nào?",
-    options: [
-      "Dùng lớp dày hơn silicon",
-      "Nhiều lớp có Eg khác nhau, mỗi lớp xử lý một phần phổ, nên không còn là pin một lớp",
-      "Bỏ tái hợp bằng cách tắt ánh sáng",
-      "Đo dưới phổ mạnh hơn AM1.5G nên trần đổi",
-    ],
-    answer: 1,
-    why: "Trần 33,7% là cho một vùng cấm. Xếp chồng các vùng cấm khác nhau né được đồng thời cả tổn thất nhiệt hóa và photon bỏ đi.",
-  },
-  {
-    prompt: "Vì sao không nên chọn một vật liệu chỉ vì hiệu suất ban đầu cao?",
-    options: [
-      "Vì hiệu suất ban đầu luôn là số sai",
-      "Vì vật liệu còn phải khớp vai trò, mức năng lượng, hợp với lớp kề và sống sót qua chế tạo và vận hành",
-      "Vì chỉ vật liệu rẻ nhất mới được dùng",
-      "Vì pin perovskite không cần lớp tiếp xúc",
-    ],
-    answer: 1,
-    why: "Mục 5.3: một vật liệu cải thiện một tính chất có thể gây vấn đề ở nơi khác (ví dụ một lớp thụ động hóa có lợi ở n–i–p nhưng có thể hại ở p–i–n [103]), nên cả chồng lớp phải được tối ưu cùng nhau.",
-  },
-];
-
 function storyLesson(spec: StorySpec): Lesson {
   return {
     id: spec.id,
@@ -1188,8 +1061,8 @@ export const lessons: Lesson[] = sourceLessons.flatMap((lesson) => {
   const degrade = STORIES.filter((s) => s.group === "degrade").map(storyLesson);
   const after = lessons.findIndex((l) => l.id === "compare");
   if (after >= 0) lessons.splice(after + 1, 0, ...degrade);
-  // Chapter 4: overview page, the nine sections in the order of the chapter, and the synthesis page
-  const ch4 = ["spin", "twostep", "vacuum", "crystal", "qdot", "market", "blade", "slot", "lead", "leadmit", "leadcmp"]
+  // Chapter 4: overview page, then its five sections in the order of the chapter
+  const ch4 = ["spin", "vacuum", "blade"]
     .map((id) => STORIES.find((s) => s.id === id))
     .filter((s): s is StorySpec => s !== undefined)
     .map(storyLesson);
@@ -1203,22 +1076,28 @@ export const lessons: Lesson[] = sourceLessons.flatMap((lesson) => {
     page: "landing",
     steps: [{ title: C4_INTRO.title, body: C4_INTRO.body }],
   };
-  const sum: Lesson = {
-    id: "c4sum",
+  const market: Lesson = {
+    id: "market",
     chapter: "c4",
-    section: "4.10",
-    title: C4_INTRO.sumTitle,
+    section: "4.4",
+    title: MK.lessonTitle,
     scene: "page",
     cam: "default",
-    page: "summary",
-    steps: [{ title: C4_INTRO.sumTitle, body: C4_INTRO.sumBody }],
+    page: "market",
+    steps: [{ title: MK.lessonTitle, body: MK.lessonBody }],
   };
-  // Chapter 5: the closing synthesis comes right after 5.4
-  const fin = STORIES.find((s) => s.id === "c5fin");
-  const afterVerify = lessons.findIndex((l) => l.id === "verify");
-  if (fin && afterVerify >= 0) lessons.splice(afterVerify + 1, 0, storyLesson(fin));
+  const lead: Lesson = {
+    id: "lead",
+    chapter: "c4",
+    section: "4.5",
+    title: L4.title,
+    scene: "page",
+    cam: "default",
+    page: "lead",
+    steps: [{ title: L4.title, body: L4.lessonBody }],
+  };
   const before = lessons.findIndex((l) => l.id === "pin");
-  lessons.splice(before >= 0 ? before : lessons.length, 0, home, ...ch4, sum);
+  lessons.splice(before >= 0 ? before : lessons.length, 0, home, ...ch4, market, lead);
 }
 
 function glossaryLesson(): Lesson {

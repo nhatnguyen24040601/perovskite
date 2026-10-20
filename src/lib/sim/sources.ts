@@ -633,6 +633,82 @@ export const SOURCES: Source[] = [
       "Abstract read through OpenAlex; the full text was not opened. Used only to say both architectures reach above 20%, not to rank them.",
     ),
   },
+  {
+    n: 111,
+    title: "Organometal Halide Perovskites as Visible-Light Sensitizers for Photovoltaic Cells",
+    by: "Akihiro Kojima, Kenjiro Teshima, Yasuo Shirai, Tsutomu Miyasaka",
+    date: "2009-04-14",
+    kind: "paper",
+    journal: "Journal of the American Chemical Society 131(17), 6050–6051",
+    evidence: "measured",
+    url: "https://doi.org/10.1021/ja809598r",
+    doi: "10.1021/ja809598r",
+    supports: t(
+      "Perovskite halide hữu cơ–vô cơ (trong đó có metylamoni chì iodua, MAPbI₃) được dùng làm chất hấp thụ ánh sáng trong pin mặt trời.",
+      "Organometal halide perovskites (among them methylammonium lead iodide, MAPbI₃) were used as light absorbers in a solar cell.",
+    ),
+    note: t(
+      "Metadata kiểm qua Crossref; chưa mở tóm tắt hay toàn văn. Ý trên dựa vào tiêu đề bài và hiểu biết nền về công trình này.",
+      "Metadata checked through Crossref; neither the abstract nor the full text was opened. The statement rests on the paper's title and background knowledge of this work.",
+    ),
+  },
+  {
+    n: 112,
+    title: "Cesium-containing triple cation perovskite solar cells: improved stability, reproducibility and high efficiency",
+    by: "Michael Saliba, Taisuke Matsui, Ji-Youn Seo, Konrad Domanski, Juan-Pablo Correa-Baena, Mohammad Khaja Nazeeruddin, Shaik M. Zakeeruddin, Wolfgang Tress, Antonio Abate, Anders Hagfeldt, Michael Grätzel",
+    date: "2016",
+    kind: "paper",
+    journal: "Energy & Environmental Science 9(6), 1989–1997",
+    evidence: "measured",
+    url: "https://doi.org/10.1039/C5EE03874J",
+    doi: "10.1039/C5EE03874J",
+    supports: t(
+      "Các pin perovskite tốt nhất dùng hỗn hợp cation (formamidini và metylamoni); thêm xesi cải thiện thành phần, theo tiêu đề là về độ bền, độ lặp lại và hiệu suất.",
+      "The best perovskite cells use a mixture of cations (formamidinium and methylammonium); adding cesium improves the composition — by the title, stability, reproducibility and efficiency.",
+    ),
+    note: t(
+      "Hai câu đầu của phần tóm tắt đọc qua Crossref; chưa mở toàn văn.",
+      "The first two sentences of the abstract were read through Crossref; the full text was not opened.",
+    ),
+  },
+  {
+    n: 113,
+    title: "Robust electron transport layers of SnO2 for efficient perovskite solar cells: recent advances and perspectives",
+    by: "Bin Du, Kun He, Gangqi Tian, Xiang Che, Lin Song",
+    date: "2023",
+    kind: "review",
+    journal: "Journal of Materials Chemistry C 11(40), 13625–13646",
+    evidence: "literature",
+    url: "https://doi.org/10.1039/D3TC02445H",
+    doi: "10.1039/D3TC02445H",
+    supports: t(
+      "SnO₂ được dùng làm lớp vận chuyển điện tử trong pin perovskite.",
+      "SnO₂ is used as an electron transport layer in perovskite solar cells.",
+    ),
+    note: t(
+      "Metadata và một dòng tóm tắt kiểm qua Crossref; chưa mở toàn văn.",
+      "Metadata and a one-line abstract checked through Crossref; the full text was not opened.",
+    ),
+  },
+  {
+    n: 114,
+    title: "Electrodeposition of SnO2 on FTO and its Application in Planar Heterojunction Perovskite Solar Cells as an Electron Transport Layer",
+    by: "Yohan Ko, Yeong Rim Kim, Haneol Jang, Chanyong Lee, Man Gu Kang, Yongseok Jun",
+    date: "2017-08-16",
+    kind: "paper",
+    journal: "Nanoscale Research Letters 12, 498",
+    evidence: "measured",
+    url: "https://doi.org/10.1186/s11671-017-2247-x",
+    doi: "10.1186/s11671-017-2247-x",
+    supports: t(
+      "FTO (oxit thiếc pha flo) được dùng làm đế dẫn điện trong suốt cho pin perovskite phẳng có lớp SnO₂.",
+      "FTO (fluorine-doped tin oxide) is used as the transparent conducting substrate of planar perovskite cells with an SnO₂ layer.",
+    ),
+    note: t(
+      "Metadata kiểm qua Crossref; đọc mô tả bài qua kết quả tìm kiếm, chưa mở toàn văn.",
+      "Metadata checked through Crossref; the paper's description was read in a search result, the full text was not opened.",
+    ),
+  },
 ];
 
 export function sourceOf(n: number): Source | undefined {

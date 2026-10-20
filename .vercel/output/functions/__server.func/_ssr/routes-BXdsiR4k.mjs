@@ -1,8 +1,8 @@
 import { i as __toESM } from "../_runtime.mjs";
-import { A as Vector3, C as Quaternion, D as SphereGeometry, E as ShaderMaterial, F as require_react, O as TorusGeometry, P as require_jsx_runtime, S as OctahedronGeometry, T as SRGBColorSpace, _ as Line, a as useFrame, b as MeshStandardMaterial, c as BufferAttribute, d as CatmullRomCurve3, f as Color, g as Float32BufferAttribute, h as Euler, i as Canvas, k as TubeGeometry, l as BufferGeometry, m as EdgesGeometry, n as OrbitControls, o as useThree, p as CylinderGeometry, r as Html, s as BoxGeometry, t as Grid, u as CanvasTexture, v as LineBasicMaterial, w as RepeatWrapping, x as Object3D, y as Matrix4 } from "../_libs/@react-three/drei+[...].mjs";
+import { C as ShaderMaterial, D as Vector3, E as TubeGeometry, M as require_react, S as SRGBColorSpace, T as TorusGeometry, _ as Matrix4, a as useFrame, b as Quaternion, c as BufferAttribute, d as CatmullRomCurve3, f as Color, g as Float32BufferAttribute, h as Euler, i as Canvas, j as require_jsx_runtime, l as BufferGeometry, m as EdgesGeometry, n as OrbitControls, o as useThree, p as CylinderGeometry, r as Html, s as BoxGeometry, t as Grid, u as CanvasTexture, v as Object3D, w as SphereGeometry, x as RepeatWrapping, y as OctahedronGeometry } from "../_libs/@react-three/drei+[...].mjs";
 import { S as ArrowLeft, _ as Crosshair, a as Play, b as ChevronLeft, c as Microscope, d as Image, f as Gauge, g as ExternalLink, h as EyeOff, i as RotateCcw, l as Maximize2, m as Eye, o as Pause, p as FastForward, r as Sparkles, s as Minimize2, t as X, u as Info, v as CircleHelp, x as BookOpen, y as ChevronRight } from "../_libs/lucide-react.mjs";
 import { t as create } from "../_libs/zustand.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-zlx104a-.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-BXdsiR4k.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var STORY_EN = {};
@@ -1240,10 +1240,10 @@ function su(locale, key) {
 * Chapter 4 · Perovskite fabrication, market readiness and lead safety.
 * Same engine as sections 3.1 – 3.8: every text is a Vietnamese / English pair written once with `t()`.
 *
-*   4.1 – 4.5   laboratory preparation and material growth
-*   4.6         market 2024 – 2026 (wide camera)
-*   4.7, 4.8    industrial coating and scale-up
-*   4.9 A–C     lead, alternatives and environmental safety
+*   4.1, 4.2    laboratory film deposition (spin coating, vacuum)
+*   4.3         industrial coating and scale-up (blade)
+*   4.4         market 2024 – 2026 (flat table page, market4.ts)
+*   4.5         lead and its alternatives (flat table page, lead4.ts)
 */
 var step$1 = (title, body, why, cam, dur, cite, extra) => ({
 	title,
@@ -1283,913 +1283,278 @@ var C4 = {
 	model: MODEL,
 	back: t("Quay lại tổng quan", "Back to overview")
 };
-var SPIN = {
-	id: "spin",
-	scene: "sSpin",
-	section: "4.1",
-	group: "fab",
-	microSwitch: true,
-	views: [
-		t("Thiết bị", "Equipment"),
-		t("Đế", "Substrate"),
-		t("Tinh thể", "Crystals")
-	],
-	title: t("4.1 Quay phủ", "4.1 Spin Coating"),
-	sentence: t("Quay phủ trải mực lỏng trên đế đang quay; dung môi bay đi và phần còn lại kết tinh thành màng.", "Spin coating spreads liquid ink across a rotating substrate. The solvent then evaporates, and the remaining material forms a crystalline film."),
-	final: t("Mực lỏng → màng ướt mỏng → màng tinh thể.", "Liquid ink → thin wet film → crystalline film."),
-	qa: {
-		q: t("Quay phủ làm gì với mực?", "What does spin coating do to the ink?"),
-		a: t("Trải thành màng mỏng, rồi dung môi bay để tinh thể hình thành.", "Spreads it thin; then the solvent leaves and crystals form.")
-	},
-	legend: [
-		{
-			swatch: "iodine",
-			label: t("Mực tiền chất", "Precursor ink")
-		},
-		{
-			swatch: "sun",
-			label: t("Hạt dung môi", "Solvent particles")
-		},
-		{
-			swatch: "perov",
-			label: t("Màng perovskite", "Perovskite film")
-		}
-	],
-	simple: t("Giống như nhỏ chất lỏng lên một cái đĩa rồi quay đĩa để trải chất lỏng thành lớp mỏng.", "Like putting liquid on a plate and spinning it to spread the liquid into a thin layer."),
-	options: "none",
-	controls: [slider("speed", t("Tốc độ quay", "Spin speed"), t("chậm", "slower"), t("nhanh", "faster"), .5, [
-		2,
-		3,
-		4
-	]), slider("time", t("Thời gian quay (minh họa)", "Spin time (illustrative)"), t("ngắn", "shorter"), t("dài", "longer"), .5, [3, 4])],
-	facts: {
-		inputs: t("Mực tiền chất: PbI₂ và muối hữu cơ (như MAI) hòa trong dung môi (như DMF/DMSO). “Tiền chất” là các nguyên liệu để tạo vật liệu cuối.", "Precursor ink: PbI₂ and an organic salt (such as MAI) dissolved in solvents (such as DMF/DMSO). “Precursors” are the ingredients used to make the final material."),
-		equipment: t("Máy quay phủ (mâm hút chân không, động cơ), pipet, bàn nhiệt.", "Spin coater (vacuum chuck, motor), pipette, hot plate."),
-		process: t("Lực ly tâm trải mực; dung môi bay; kết tinh.", "Centrifugal spreading, solvent evaporation, crystallization."),
-		result: t("Màng perovskite đa tinh thể dày vào cỡ vài trăm nanomet.", "A polycrystalline perovskite film on the order of a few hundred nanometres thick."),
-		pros: t("Dụng cụ đơn giản; phổ biến trong nghiên cứu; tiện thử nhiều công thức.", "Simple laboratory setup; widely used in research; convenient for testing formulations."),
-		cons: t("Phần mực thừa bị văng đi; khó giữ độ đồng đều khi đổi điều kiện và cỡ đế; dùng vật liệu hiệu quả và sản xuất liên tục cần cân nhắc thêm.", "Excess ink is thrown off; uniformity is harder to keep as conditions and substrate size change; high material use and continuous production need extra consideration."),
-		scale: t("Thường dùng cho mẫu nhỏ; lên diện tích lớn gặp thách thức thực tế nên có thêm các cách phủ khác (4.7, 4.8).", "Mostly used for small samples; larger areas bring practical challenges, which is why other coating methods exist (4.7, 4.8)."),
-		refs: [
-			81,
-			80,
-			47
-		]
-	},
-	steps: [
-		step$1(t("Đặt đế lên mâm", "Place the substrate"), t("“Đế” (substrate) là bề mặt để vật liệu hình thành trên đó. Ở đây là một tấm kính phẳng đặt trên mâm quay (chuck).", "A “substrate” is the surface on which the material is formed. Here it is a flat glass plate sitting on a rotating chuck."), t("Đế phẳng, sạch, nằm yên giữa mâm thì lớp mực mới trải đều.", "A flat, clean substrate centred on the chuck is what lets the ink spread evenly."), "1", 5, [81]),
-		step$1(t("Nhỏ mực tiền chất", "Dispense the precursor ink"), t("Pipet nhỏ một giọt dung dịch tiền chất perovskite gần tâm đế. Dung dịch chứa các nguyên liệu để tạo perovskite.", "A pipette releases a droplet of perovskite precursor solution near the centre. The liquid contains the ingredients needed to form perovskite."), t("Đủ mực thì phủ kín đế; thiếu thì màng bị thủng.", "Enough ink covers the whole substrate; too little leaves holes."), "2", 5, [81]),
-		step$1(t("Bắt đầu quay", "Start rotation"), t("Mâm quay nhanh dần. Mực chảy từ tâm ra rìa theo hướng bán kính; lớp lỏng trượt trên đế chứ không quay như một khối cứng. Kéo thanh trượt để đổi tốc độ.", "The chuck spins up. The liquid flows outward from the centre; it slides over the substrate instead of turning as a rigid block. Drag the slider to change the speed."), t("Chuyển động ly tâm biến một giọt thành lớp phủ rộng.", "Centrifugal motion turns one drop into a wide coating."), "2", 7, [81]),
-		step$1(t("Hình thành màng ướt", "Form the wet film"), t("Lớp lỏng mỏng dần và phần thừa văng khỏi mép. Quay nhanh hơn thường cho lớp mỏng hơn, nhưng độ dày và độ đồng đều còn phụ thuộc tính chất dung dịch, thời gian, nhiệt độ và môi trường.", "The liquid thins out and the excess is flung off the edge. Faster spinning usually gives a thinner layer, but thickness and uniformity also depend on the solution, the time, the temperature and the surroundings."), t("Tốc độ không phải biến duy nhất; mô hình chỉ minh họa xu hướng.", "Speed is not the only variable; the model only shows the trend."), "2", 8, [81], { info: t("Chỉ báo độ dày là minh họa khái niệm (dày hơn / mỏng hơn), không phải số đo.", "The thickness indicator is conceptual (thicker / thinner), not a measured value.") }),
-		step$1(t("Dung môi bay đi", "Remove the solvent"), t("Các hạt dung môi rời màng. Lớp ướt dần mất tính lỏng và trở nên đặc quánh.", "Solvent particles leave the film. The wet layer gradually loses its liquid character and thickens."), t("Khi dung môi hết, các ion tiền chất bị dồn lại và sẵn sàng kết tinh.", "As the solvent goes, the precursor ions crowd together, ready to crystallize."), "2", 6, [81, 47]),
-		step$1(t("Kết tinh", "Crystallize"), t("“Kết tinh” là các ion sắp xếp thành cấu trúc có trật tự. Màng ngả tối, hiện vân hạt tinh thể; mỗi hạt có mạng ABX₃ riêng và giữa các hạt có ranh giới.", "“Crystallization” is ions arranging into an ordered crystal structure. The film darkens and shows crystal grains; each grain has its own ABX₃ lattice, with boundaries between grains."), t("Hạt lớn, ít ranh giới thường giúp điện tích đi thông hơn.", "Larger grains with fewer boundaries generally let charges move more freely."), "3", 7, [47, 81]),
-		step$1(t("Kiểm tra màng hoàn thiện", "Inspect the final film"), t("Quay đế và xem mặt cắt: màng phủ kín đế nhưng mỏng hơn tấm kính rất nhiều.", "Rotate the substrate and view the cross-section: the film covers the substrate but is far thinner than the glass."), t("Một lớp mỏng cỡ vài trăm nanomet là đủ để hấp thụ ánh sáng.", "A layer a few hundred nanometres thick is enough to absorb sunlight."), "xs", 7, [81], { final: true })
-	]
-};
-var TWO = {
-	id: "twostep",
-	scene: "sTwo",
-	section: "4.2",
-	group: "fab",
-	microSwitch: true,
-	views: [
-		t("Thiết bị", "Equipment"),
-		t("Đế", "Substrate"),
-		t("Mặt cắt", "Cross-section")
-	],
-	title: t("4.2 Lắng đọng hai bước", "4.2 Two-Step Sequential Deposition"),
-	sentence: t("Phủ trước một tiền chất, rồi cho tiền chất thứ hai vào để hai thành phần phản ứng thành perovskite.", "First deposit one precursor layer. Then introduce the second precursor so that the two components react to form perovskite."),
-	final: t("Lớp PbI₂ + MAI → màng MAPbI₃.", "PbI₂ layer + MAI → MAPbI₃ film."),
-	qa: {
-		q: t("Lớp PbI₂ đã là perovskite chưa?", "Is the PbI₂ layer already perovskite?"),
-		a: t("Chưa. Nó chỉ thành perovskite sau khi phản ứng với MAI.", "No. It becomes perovskite only after it reacts with MAI.")
-	},
-	legend: [
-		{
-			swatch: "pbi2",
-			label: "PbI₂"
-		},
-		{
-			swatch: "ma",
-			label: "MAI"
-		},
-		{
-			swatch: "perov",
-			label: "MAPbI₃"
-		}
-	],
-	simple: t("Thay vì trộn mọi nguyên liệu rồi phủ một lần, ta phủ một nguyên liệu trước, rồi thêm nguyên liệu kia. Chúng phản ứng để tạo perovskite.", "Instead of mixing and depositing all ingredients at once, we deposit one ingredient first and add another afterward. They react to form perovskite."),
-	options: "none",
-	controls: [{
-		kind: "seg",
-		key: "focus",
-		label: t("Quan sát", "Examine"),
-		def: "all",
-		at: [
-			3,
-			4,
-			5
-		],
-		opts: [
-			{
-				v: "all",
-				label: t("Tất cả", "All")
-			},
-			{
-				v: "pbi2",
-				label: t("Tiền chất 1 (PbI₂)", "First precursor")
-			},
-			{
-				v: "mai",
-				label: t("Tiền chất 2 (MAI)", "Second precursor")
-			},
-			{
-				v: "zone",
-				label: t("Vùng phản ứng", "Reaction region")
-			},
-			{
-				v: "perov",
-				label: t("Perovskite cuối", "Final perovskite")
-			}
-		]
-	}, {
-		kind: "seg",
-		key: "ba",
-		label: t("Trước / Sau", "Before / After"),
-		def: "auto",
-		at: [5],
-		opts: [
-			{
-				v: "auto",
-				label: t("Tự động", "Auto")
-			},
-			{
-				v: "before",
-				label: t("Trước: PbI₂", "Before: PbI₂")
-			},
-			{
-				v: "after",
-				label: t("Sau: perovskite", "After: perovskite")
-			}
-		]
-	}],
-	facts: {
-		inputs: t("Ví dụ minh họa MAPbI₃: PbI₂ (tiền chất 1), MAI (tiền chất 2). Công thức thật thay đổi theo thành phần và quy trình.", "Illustrative MAPbI₃ route: PbI₂ (first precursor), MAI (second precursor). Real recipes vary with composition and process."),
-		equipment: t("Máy quay phủ hoặc bể nhúng, pipet, bàn nhiệt.", "Spin coater or dip bath, pipette, hot plate."),
-		process: t("Lắng đọng lớp PbI₂; ion hữu cơ khuếch tán vào và phản ứng; kết tinh.", "Deposit a PbI₂ layer; organic ions diffuse in and react; crystallize."),
-		result: t("Màng MAPbI₃ đa tinh thể.", "A polycrystalline MAPbI₃ film."),
-		pros: t("Có thêm chỗ để điều khiển mức chuyển hóa và sự hình thành tinh thể.", "Gives extra control over conversion and crystal formation."),
-		cons: t("Chuyển hóa chưa hết, tiền chất còn dư, thời gian xử lý và độ đồng đều cần kiểm soát. Không phải lúc nào cũng tốt hơn một bước.", "Incomplete conversion, residual precursor, processing time and uniformity need control. It is not universally better than one-step deposition."),
-		scale: t("Phù hợp cả quay phủ lẫn phủ diện rộng nếu kiểm soát tốt bước phản ứng.", "Can pair with spin or large-area coating if the reaction step is well controlled."),
-		refs: [46, 81]
-	},
-	steps: [
-		step$1(t("Chuẩn bị đế", "Prepare the substrate"), t("Một đế sạch nằm trên bệ phủ. Mọi lớp sau đều bám lên mặt này.", "A clean substrate sits on the coating stage. Every later layer builds on this surface."), t("Bề mặt sạch giúp các lớp sau bám đều.", "A clean surface helps later layers stick evenly."), "1", 4.5, [46]),
-		step$1(t("Phủ tiền chất thứ nhất", "Deposit the first precursor"), t("Dung dịch PbI₂ được phủ thành lớp mỏng màu vàng. Lớp trung gian này là “lớp tiền chất PbI₂”, chưa phải perovskite.", "A PbI₂ solution is deposited as a thin yellow layer. This intermediate is the “PbI₂ precursor layer”, not finished perovskite."), t("Lớp này là khung chì halide mà perovskite sẽ lớn lên từ đó.", "This layer is the lead-halide scaffold the perovskite grows from."), "2", 6, [46]),
-		step$1(t("Đưa tiền chất thứ hai vào", "Introduce the second precursor"), t("Một dung dịch MAI (muối hữu cơ) được phủ lên trên hoặc nhúng vào. Nó là dung dịch riêng, khác lớp PbI₂ bên dưới.", "A solution of MAI (an organic salt) is applied on top or the sample is dipped. It is a separate solution, distinct from the PbI₂ layer below."), t("Đây là thành phần còn thiếu để PbI₂ thành ABX₃.", "This is the missing component that turns PbI₂ into ABX₃."), "2", 6, [46]),
-		step$1(t("Khuếch tán và phản ứng", "Diffusion and reaction"), t("Phóng vào mặt cắt: ion MA⁺ và I⁻ đi vào lớp PbI₂ và phản ứng. Màu đổi dần từ vàng sang đen, từ trên xuống, không đổi tức thì. Có thể tạm dừng và chọn từng phần để xem.", "Zoom into the cross-section: MA⁺ and I⁻ enter the PbI₂ layer and react. The colour changes gradually from yellow to dark, from the top down, not instantly. Pause and pick any part to examine."), t("Phản ứng chạy hết chiều dày hay không quyết định màng còn PbI₂ dư hay không.", "Whether the reaction runs through the full thickness decides whether PbI₂ is left over."), "xs", 9, [46]),
-		step$1(t("Perovskite hình thành", "Perovskite forms"), t("Lớp trung gian chuyển thành màng MAPbI₃ tinh thể. Phương trình rút gọn: PbI₂ + MAI → MAPbI₃.", "The intermediate turns into a crystalline MAPbI₃ film. Simplified equation: PbI₂ + MAI → MAPbI₃."), t("Đây chỉ là ví dụ đơn giản; công thức thật còn nhiều cation và halide khác.", "This is a simplified example; real recipes use more cations and halides."), "3", 7, [46, 81], { info: t("Phương trình rút gọn, dùng để minh họa.", "Simplified equation, for illustration.") }),
-		step$1(t("Kiểm tra và so sánh", "Final inspection"), t("So sánh lớp PbI₂ ban đầu với màng perovskite sau phản ứng bằng nút Trước / Sau.", "Compare the initial PbI₂ layer with the reacted perovskite film using the Before / After control."), t("Thấy rõ vật liệu đã đổi: màu, cấu trúc và vai trò.", "You can see what changed: colour, structure and role."), "xs", 7, [46, 81], { final: true })
-	]
-};
-var VAC = {
-	id: "vacuum",
-	scene: "sVac",
-	section: "4.3",
-	group: "fab",
-	microSwitch: true,
-	views: [
-		t("Buồng", "Chamber"),
-		t("Đế", "Substrate"),
-		t("Mặt cắt", "Cross-section")
-	],
-	title: t("4.3 Lắng đọng chân không", "4.3 Vacuum Deposition"),
-	sentence: t("Lắng đọng chân không tạo màng từ hơi, thay vì trải mực lỏng lên đế.", "Vacuum deposition forms a film from vapor instead of spreading a liquid ink over the substrate."),
-	final: t("Hơi vật liệu → ngưng tụ trên đế → màng.", "Material vapor → condenses on the substrate → film."),
-	qa: {
-		q: t("Vì sao cần buồng chân không?", "Why a vacuum chamber?"),
-		a: t("Áp suất thấp để hơi vật liệu đi tới đế mà ít va chạm với không khí.", "Low pressure lets the vapor reach the substrate with few collisions with air.")
-	},
-	legend: [
-		{
-			swatch: "pbi2",
-			label: t("Hơi nguồn A (chì halide)", "Vapor from source A (lead halide)")
-		},
-		{
-			swatch: "ma",
-			label: t("Hơi nguồn B (muối hữu cơ)", "Vapor from source B (organic salt)")
-		},
-		{
-			swatch: "perov",
-			label: t("Màng", "Film")
-		}
-	],
-	simple: t("Hãy tưởng tượng biến một chất rắn thành hơi, rồi để hơi đó đậu xuống một bề mặt và xây thành màng mỏng.", "Imagine turning a solid material into vapor and letting that vapor deposit on a surface to build a thin film."),
-	options: "none",
-	controls: [
-		{
-			kind: "seg",
-			key: "mode",
-			label: t("Quy trình", "Process"),
-			def: "seq",
-			opts: [{
-				v: "seq",
-				label: t("Bay hơi tuần tự", "Sequential vapor deposition")
-			}, {
-				v: "co",
-				label: t("Đồng bay hơi", "Co-evaporation")
-			}]
-		},
-		{
-			kind: "seg",
-			key: "srcA",
-			label: t("Nguồn A (chì halide)", "Source A (lead halide)"),
-			def: "on",
-			at: [
-				2,
-				3,
-				4,
-				5,
-				6
-			],
-			opts: [{
-				v: "on",
-				label: t("Bật", "On")
-			}, {
-				v: "off",
-				label: t("Tắt", "Off")
-			}]
-		},
-		{
-			kind: "seg",
-			key: "srcB",
-			label: t("Nguồn B (muối hữu cơ)", "Source B (organic salt)"),
-			def: "on",
-			at: [
-				2,
-				3,
-				4,
-				5,
-				6
-			],
-			opts: [{
-				v: "on",
-				label: t("Bật", "On")
-			}, {
-				v: "off",
-				label: t("Tắt", "Off")
-			}]
-		},
-		slider("time", t("Thời gian lắng đọng (minh họa)", "Deposition time (illustrative)"), t("ngắn", "shorter"), t("dài", "longer"), .6, [4, 5])
-	],
-	facts: {
-		inputs: t("Chất rắn nguồn: chì halide (như PbI₂) và muối hữu cơ (như MAI hoặc FAI).", "Source solids: a lead halide (such as PbI₂) and an organic salt (such as MAI or FAI)."),
-		equipment: t("Buồng chân không, bơm, nguồn gia nhiệt (thuyền bay hơi), giá đỡ đế, đồng hồ áp suất.", "Vacuum chamber, pump, heated sources (evaporation boats), substrate holder, pressure gauge."),
-		process: t("Hơi bay từ nguồn nóng, đi qua buồng áp suất thấp, ngưng tụ hoặc phản ứng trên đế.", "Vapor leaves hot sources, crosses a low-pressure chamber, condenses or reacts on the substrate."),
-		result: t("Màng perovskite phủ đều cả trên bề mặt gồ ghề.", "A perovskite film that can follow even rough surfaces."),
-		pros: t("Kiểm soát độ dày tốt; có tiềm năng đồng đều; không dùng dung môi.", "Good thickness control; uniformity potential; no solvents."),
-		cons: t("Thiết bị phức tạp, cần chân không và năng lượng; không phải kỹ thuật chân không nào cũng dùng thiết bị hay điều kiện tiền chất giống nhau.", "Complex equipment, vacuum and energy needs; not every vacuum technique uses the same equipment or precursor conditions."),
-		scale: t("Ngành màn hình và bán dẫn đã quen thiết bị chân không khổ lớn, nhưng cần chứng minh cho perovskite.", "Display and semiconductor industries know large vacuum tools, but this still has to be shown for perovskite."),
-		refs: [
-			81,
-			80,
-			51
-		]
-	},
-	steps: [
-		step$1(t("Nạp đế vào buồng", "Load the substrate"), t("Đế được đặt vào giá đỡ trong buồng; cửa buồng đóng lại.", "The substrate is placed on the holder inside the chamber; the chamber door closes."), t("Buồng kín mới hút được chân không.", "Only a sealed chamber can be pumped down."), "1", 5, [81]),
-		step$1(t("Tạo chân không", "Establish the vacuum"), t("Bơm chạy và đồng hồ áp suất giảm. Nhiều quy trình lắng đọng chân không cần buồng áp suất thấp. Số trên đồng hồ chỉ để minh họa.", "The pump runs and the gauge falls. Many vacuum-deposition processes need a low-pressure chamber. The gauge readings are illustrative."), t("Ít phân tử khí hơn nghĩa là hơi vật liệu ít bị cản đường.", "Fewer gas molecules means the vapor is hindered less on its way."), "1", 6, [81]),
-		step$1(t("Tạo hơi", "Generate vapor"), t("Nguồn được gia nhiệt và các hạt vật liệu bắt đầu bay lên. Bật/tắt từng nguồn để thấy mỗi nguồn đóng góp gì.", "The sources are heated and material particles start to leave. Switch each source on or off to see what it contributes."), t("Mỗi nguồn cấp một thành phần; thiếu nguồn thì không ra đủ ABX₃.", "Each source supplies one ingredient; with one missing you do not get full ABX₃."), "1", 6, [81]),
-		step$1(t("Vận chuyển hơi", "Transport the vapor"), t("Hạt hơi bay thẳng qua buồng về phía đế đặt phía trên.", "Vapor particles travel in nearly straight lines across the chamber toward the substrate above."), t("Đường đi gần thẳng giúp hơi bám cả mặt gồ ghề.", "Straight paths let the vapor coat rough surfaces too."), "1", 6, [81]),
-		step$1(t("Màng hình thành", "Film formation"), t("Hạt đến đế thì ngưng tụ hoặc phản ứng và tạo màng dày dần. Tuần tự: lớp chì halide trước, rồi muối hữu cơ. Đồng bay hơi: cả hai cùng lúc.", "Particles reaching the substrate condense or react and the film grows. Sequential: lead-halide layer first, then organic salt. Co-evaporation: both together."), t("Hai quy trình khác nhau về thứ tự, nên không được vẽ thành một.", "The two processes differ in order, so they are shown separately."), "2", 8, [81]),
-		step$1(t("Hoàn tất lắng đọng", "Complete the deposition"), t("Màng liên tục dày thêm. Thanh chỉ báo độ dày chỉ là minh họa, không dựa trên tốc độ lắng đọng thật.", "A continuous film thickens. The thickness bar is illustrative, not based on real deposition rates."), t("Thời gian lắng đọng càng dài, màng càng dày.", "A longer deposition time builds a thicker film."), "2", 6, [81]),
-		step$1(t("Kiểm tra lớp thu được", "Inspect the resulting layer"), t("Camera tiến sát đế để xem mặt cắt: màng đồng đều bám trên đế.", "The camera moves toward the substrate for a cross-section: an even film on the substrate."), t("Cho thấy kết quả cuối của việc xây màng từ hơi.", "Shows the end result of building a film from vapor."), "xs", 7, [81, 51], { final: true })
-	]
-};
-var CRY = {
-	id: "crystal",
-	scene: "sCry",
-	section: "4.4",
-	group: "fab",
-	views: [
-		t("Bình", "Vessel"),
-		t("Tinh thể", "Crystal"),
-		t("Mạng tinh thể", "Lattice")
-	],
-	microSwitch: true,
-	title: t("4.4 Nuôi đơn tinh thể", "4.4 Single-Crystal Growth"),
-	sentence: t("Đơn tinh thể là một tinh thể liên tục, không phải màng gồm nhiều hạt tinh thể riêng.", "A single crystal is one continuous crystal, rather than a film made up of many separate crystalline grains."),
-	final: t("Một tinh thể trật tự liên tục.", "One continuous ordered crystal."),
-	qa: {
-		q: t("Đơn tinh thể khác màng ở đâu?", "How does a single crystal differ from a film?"),
-		a: t("Mô hình lý tưởng không có ranh giới hạt bên trong.", "In the idealized model it has no internal grain boundaries.")
-	},
-	legend: [{
-		swatch: "iodine",
-		label: t("Ion trong dung dịch", "Ions in solution")
-	}, {
-		swatch: "perov",
-		label: t("Tinh thể", "Crystal")
-	}],
-	simple: t("Nuôi đơn tinh thể giống như nuôi một tinh thể lớn có trật tự, thay vì ghép nhiều tinh thể nhỏ lại.", "Single-crystal growth is like growing one large, ordered crystal instead of joining many smaller crystals together."),
-	options: "none",
-	controls: [{
-		kind: "seg",
-		key: "mat",
-		label: t("Mô hình", "Model"),
-		def: "single",
-		at: [5, 6],
-		opts: [{
-			v: "single",
-			label: t("Đơn tinh thể", "Single crystal")
-		}, {
-			v: "poly",
-			label: t("Đa tinh thể", "Polycrystalline")
-		}]
-	}],
-	facts: {
-		inputs: t("Muối tiền chất (như PbI₂ và MAI) hòa trong dung môi.", "Precursor salts (such as PbI₂ and MAI) dissolved in a solvent."),
-		equipment: t("Bình nuôi trong suốt, bể điều nhiệt, nhíp, dụng cụ quan sát.", "Transparent growth vessel, temperature-controlled bath, tweezers, inspection tools."),
-		process: t("Dung dịch quá bão hòa → tạo mầm → ion bám vào mầm → tinh thể lớn dần.", "Supersaturated solution → nucleation → ions attach → the crystal grows."),
-		result: t("Tinh thể khối cỡ milimet đến lớn hơn.", "A bulk crystal of millimetre size or larger."),
-		pros: t("Giúp nghiên cứu tính chất vốn có và giảm ảnh hưởng ranh giới hạt.", "Helps study intrinsic properties and reduces grain-boundary effects."),
-		cons: t("Không tự giải quyết mọi khuyết tật hay độ bền; tinh thể khối không tương đương quy trình sản xuất module diện rộng đã thành thục.", "Does not automatically solve every defect or stability problem; bulk crystal growth is not an established large-area module process."),
-		scale: t("Chủ yếu dùng nghiên cứu và đầu dò; không phải tuyến sản xuất module.", "Mostly for research and detectors; not a module production line."),
-		refs: [
-			83,
-			49,
-			11
-		]
-	},
-	steps: [
-		step$1(t("Chuẩn bị dung dịch", "Prepare the precursor solution"), t("Các nguyên liệu được hòa tan trong bình. “Tiền chất” là nguyên liệu để tạo vật liệu cuối.", "The ingredients are dissolved in a vessel. “Precursors” are the ingredients used to make the final material."), t("Dung dịch trong, đồng nhất là điểm xuất phát.", "A clear, uniform solution is the starting point."), "1", 5, [83]),
-		step$1(t("Tạo điều kiện lớn", "Create growth conditions"), t("Mô hình chọn một cách: làm nguội chậm dung dịch quá bão hòa. Thực tế có nhiều cách nuôi tinh thể; đây chỉ là một ví dụ.", "The model shows one route: slow cooling of a supersaturated solution. Real single-crystal growth has several methods; this is one example."), t("Quá bão hòa nghĩa là dung dịch chứa nhiều chất tan hơn mức nó giữ ổn định.", "Supersaturated means the solution holds more dissolved material than it can keep stable."), "1", 6, [83, 49], { info: t("Một ví dụ về cách nuôi; không phải cách duy nhất.", "One example of a growth route; not the only one.") }),
-		step$1(t("Tạo mầm", "Nucleation"), t("Một mầm tinh thể nhỏ xuất hiện trong dung dịch. Vùng có trật tự đầu tiên nhỏ hơn rất nhiều so với tinh thể cuối.", "A small crystal nucleus forms. The first ordered region is far smaller than the final crystal."), t("Mầm là chỗ tinh thể bắt đầu; ít mầm thì cho tinh thể lớn.", "The nucleus is where the crystal begins; few nuclei favour one large crystal."), "2", 6, [83]),
-		step$1(t("Tinh thể lớn lên", "Crystal growth"), t("Ion trong dung dịch bám lên mặt tinh thể theo từng lớp; tinh thể nở dần.", "Ions from the solution attach to the crystal faces layer by layer; the crystal expands."), t("Mỗi ion bám đúng vị trí giữ cho mạng liên tục.", "Each ion landing in the right place keeps the lattice continuous."), "2", 8, [83]),
-		step$1(t("Lấy tinh thể ra", "Recover the crystal"), t("Dùng nhíp nhấc tinh thể ra khỏi dung dịch nuôi.", "Tweezers lift the crystal out of the growth solution."), t("Tinh thể thu được mới đo và dùng được.", "A recovered crystal can be measured and used."), "1", 6, [83]),
-		step$1(t("Quan sát cấu trúc", "Inspect the structure"), t("Phóng vào bên trong: mạng ABX₃ trật tự, liên tục, không bị cắt bởi ranh giới.", "Zoom in: an ordered ABX₃ lattice, continuous, not interrupted by boundaries."), t("Thấy tận mắt thế nào là một tinh thể liên tục.", "You can see what “one continuous crystal” means."), "3", 7, [83]),
-		step$1(t("So sánh với màng đa tinh thể", "Compare with a polycrystalline film"), t("Bên trái: màng đa tinh thể có nhiều hạt và ranh giới hạt. Bên phải: đơn tinh thể, trong mô hình lý tưởng không có ranh giới hạt bên trong. Chuyển qua lại bằng nút chọn mô hình.", "Left: a polycrystalline film with many grains and grain boundaries. Right: a single crystal, which in the idealized model has no internal grain boundaries. Use the model switch to flip between them."), t("Ranh giới hạt là nơi dễ có khuyết tật và rò điện tích.", "Grain boundaries are where defects and charge losses tend to occur."), "cmp", 9, [83, 11], { final: true })
-	]
-};
-var QD = {
-	id: "qdot",
-	scene: "sQd",
-	section: "4.5",
-	group: "fab",
-	views: [
-		t("Lọ", "Vial"),
-		t("Vùng phóng đại", "Magnified"),
-		t("Chấm lượng tử", "Dots")
-	],
-	microSwitch: true,
-	title: t("4.5 Chấm lượng tử perovskite", "4.5 Perovskite Quantum Dots"),
-	sentence: t("Chế tạo chấm lượng tử tạo ra các tinh thể perovskite cực nhỏ, có tính chất quang khác với perovskite khối.", "Quantum-dot fabrication creates tiny perovskite crystals. These nanocrystals can have optical properties different from bulk perovskite."),
-	final: t("Tổng hợp chấm là một giai đoạn; phủ màng chấm là giai đoạn khác.", "Synthesizing dots is one stage; depositing a dot film is another."),
-	qa: {
-		q: t("Chấm lượng tử có phải là màng perovskite thường?", "Is a quantum dot just a normal perovskite film?"),
-		a: t("Không. Đó là nano tinh thể riêng lẻ, sau đó có thể phủ thành màng.", "No. They are individual nanocrystals that can later be deposited into a film.")
-	},
-	legend: [{
-		swatch: "dot",
-		label: t("Chấm lượng tử", "Quantum dot")
-	}, {
-		swatch: "iodine",
-		label: t("Tiền chất", "Precursors")
-	}],
-	simple: t("Chấm lượng tử là nano tinh thể bán dẫn nhỏ đến mức kích thước của chúng ảnh hưởng đến cách hấp thụ và phát sáng.", "Quantum dots are semiconductor nanocrystals so small that their size can influence the way they absorb and emit light."),
-	options: "none",
-	controls: [slider("size", t("Kích thước chấm (minh họa)", "Dot size (conceptual)"), t("nhỏ hơn", "smaller"), t("lớn hơn", "larger"), .5, [3, 5])],
-	facts: {
-		inputs: t("Muối chì halide, muối cesium (như Cs-oleate), dung môi, phối tử (như oleic acid, oleylamine).", "A lead halide, a cesium salt (such as Cs-oleate), solvent and ligands (such as oleic acid and oleylamine)."),
-		equipment: t("Bình cầu, gia nhiệt, bơm tiêm, ly tâm; để làm màng: máy phủ.", "Flask, heater, syringe, centrifuge; for films: a coater."),
-		process: t("Mầm bùng phát → nano tinh thể lớn lên → dừng phản ứng → tinh chế → (tuỳ chọn) phủ màng.", "Burst nucleation → nanocrystal growth → quench → purification → (optionally) film deposition."),
-		result: t("Nano tinh thể riêng lẻ trong dung dịch (mực chấm lượng tử).", "Individual nanocrystals in a solution (a quantum-dot ink)."),
-		pros: t("Chỉnh được kích thước và thành phần; hữu ích cho ứng dụng quang học.", "Tunable size and composition; useful for optical applications."),
-		cons: t("Phối tử có thể cản vận chuyển điện tích; độ ổn định và sản xuất lặp lại còn là thách thức.", "Ligands can hinder charge transport; stability and reproducible manufacturing remain challenges."),
-		scale: t("Tổng hợp theo mẻ; sau đó mực có thể phủ bằng các cách ở 4.1, 4.7, 4.8.", "Synthesis is batch-based; the ink can then be coated with the methods of 4.1, 4.7 and 4.8."),
-		refs: [
-			84,
-			45,
-			73
-		]
-	},
-	steps: [
-		step$1(t("Chuẩn bị nguyên liệu", "Prepare precursor ingredients"), t("Một lọ chứa dung dịch tiền chất chì halide cùng phối tử; dung dịch cesium chuẩn bị riêng.", "A vial holds the lead-halide precursor solution with ligands; the cesium solution is prepared separately."), t("Hai dung dịch chỉ gặp nhau ở thời điểm ta chọn.", "The two solutions meet only at the moment we choose."), "1", 5, [84, 45]),
-		step$1(t("Kích hoạt tạo mầm", "Trigger nucleation"), t("Ví dụ: chích nhanh dung dịch cesium vào dung dịch chì đang nóng (chích nóng). Đây là một ví dụ về cách tổng hợp, không phải cách duy nhất.", "Example: rapidly inject the cesium solution into the hot lead solution (hot injection). This is one example of synthesis, not the only route."), t("Chích nhanh làm nhiều mầm xuất hiện gần như cùng lúc.", "A fast injection makes many nuclei appear almost together."), "1", 6, [45, 73], { info: t("Một ví dụ tổng hợp: chích nóng.", "One synthesis example: hot injection.") }),
-		step$1(t("Nano tinh thể hình thành", "Nanocrystals form"), t("Trong vùng phóng đại, các hạt tinh thể nhỏ xuất hiện. Hình phóng đại không đúng tỉ lệ so với lọ.", "In the magnified region, small crystalline particles appear. The magnified dots are not at their true size relative to the vial."), t("Đây là bước chấm lượng tử ra đời.", "This is the moment the quantum dots are born."), "2", 6, [84, 45]),
-		step$1(t("Điều khiển sự lớn lên", "Control particle growth"), t("Các chấm có nhiều kích cỡ. Điều kiện phản ứng và thành phần ảnh hưởng kích cỡ, độ đồng đều và tính chất vật liệu. Kéo thanh trượt để xem minh họa.", "Dots come in several sizes. Reaction conditions and composition affect size, distribution and material properties. Drag the slider for the illustration."), t("Kích cỡ đều thì màu phát sáng thuần hơn.", "A uniform size gives a purer emission colour."), "3", 7, [84, 73]),
-		step$1(t("Tách chấm", "Isolate the dots"), t("Tinh chế đơn giản hóa: thêm chất kết tủa, ly tâm, bỏ phần dung dịch, hòa lại chấm trong dung môi sạch.", "Simplified purification: add an antisolvent, centrifuge, discard the liquid, re-disperse the dots in clean solvent."), t("Loại bỏ nguyên liệu dư để còn lại mực chấm tinh khiết.", "Removes leftover ingredients, leaving a clean dot ink."), "1", 7, [84]),
-		step$1(t("Tính chất quang", "Optical properties"), t("Mỗi kích cỡ phát một màu khác nhau (minh họa khái niệm, chưa phải bộ số liệu thực nghiệm). Chấm nhỏ hơn thường phát sáng ở năng lượng cao hơn, nhưng thành phần cũng đổi màu.", "Each size glows a different colour (a conceptual illustration, not an experimental dataset). Smaller dots usually emit at higher energy, and composition also shifts the colour."), t("Màu có thể chỉnh bằng kích thước và thành phần.", "Colour can be tuned through size and composition."), "1", 7, [84, 45], { info: t("Phổ minh họa khái niệm, không tính theo mô hình lượng tử chính xác.", "The spectrum is a conceptual illustration, not an exact quantum-confinement calculation.") }),
-		step$1(t("Tạo màng chấm (tuỳ chọn)", "Optional film formation"), t("Mực chấm được phủ lên đế, dung môi bay đi, các chấm xếp thành màng. Tổng hợp chấm và phủ màng là hai giai đoạn khác nhau.", "The dot ink is coated onto a substrate, the solvent leaves, and the dots pack into a film. Synthesizing dots and depositing a film are different stages."), t("Chỉ sau giai đoạn này chấm mới thành lớp dùng được trong linh kiện.", "Only after this stage do the dots become a layer a device can use."), "1", 7, [84], { final: true })
-	]
-};
-var BLADE = {
-	id: "blade",
-	scene: "sBlade",
-	section: "4.7",
-	group: "fab",
-	microSwitch: true,
-	views: [
-		t("Thiết bị", "Equipment"),
-		t("Màng ướt", "Wet film"),
-		t("Tinh thể", "Crystals")
-	],
-	title: t("4.7 Phủ dao gạt", "4.7 Blade Coating"),
-	sentence: t("Phủ dao gạt dùng một lưỡi dao di chuyển để trải mực tiền chất lên đế.", "Blade coating uses a moving blade to spread precursor ink across a substrate."),
-	final: t("Lưỡi dao → màng ướt liên tục → sấy → màng tinh thể.", "Blade → continuous wet film → drying → crystalline film."),
-	qa: {
-		q: t("Khe dao ảnh hưởng gì?", "What does the blade gap affect?"),
-		a: t("Độ dày màng ướt, cùng với tốc độ, tính chất mực và sấy.", "The wet-film thickness, together with speed, ink properties and drying.")
-	},
-	legend: [
-		{
-			swatch: "iodine",
-			label: t("Mực", "Ink")
-		},
-		{
-			swatch: "sun",
-			label: t("Hạt dung môi", "Solvent particles")
-		},
-		{
-			swatch: "perov",
-			label: t("Màng perovskite", "Perovskite film")
-		}
-	],
-	simple: t("Giống như dùng dao gạt trải một lớp chất lỏng rồi để khô thành màng mỏng.", "Like spreading a layer of liquid with a blade or scraper, then drying it to create a thin film."),
-	options: "none",
-	controls: [slider("gap", t("Khe dao (minh họa)", "Blade gap (illustrative)"), t("hẹp", "narrow"), t("rộng", "wide"), .5, [
-		2,
-		3,
-		4,
-		6
-	]), slider("speed", t("Tốc độ dao", "Blade speed"), t("chậm", "slow"), t("nhanh", "fast"), .5, [2, 3])],
-	facts: {
-		inputs: t("Mực tiền chất perovskite trong dung môi.", "Perovskite precursor ink in solvent."),
-		equipment: t("Lưỡi dao gạt, bệ phẳng chuyển động hoặc dao chuyển động, bàn sấy.", "Coating blade, moving flat stage or moving blade, drying plate."),
-		process: t("Trải mực thành màng ướt; sấy; kết tinh.", "Spread ink into a wet film; dry; crystallize."),
-		result: t("Màng perovskite đa tinh thể trên diện tích lớn hơn quay phủ.", "A polycrystalline perovskite film over a larger area than spin coating."),
-		pros: t("Hợp phủ diện rộng; thiết bị khá đơn giản; có thể dùng mực hiệu quả hơn quay phủ.", "Suited to larger areas; fairly simple equipment; potentially better ink use than spin coating."),
-		cons: t("Chất lượng màng, hành vi sấy, độ đồng đều và điều kiện quy trình cần tối ưu; không tự động đồng đều hay sẵn sàng sản xuất ở mọi cấu hình.", "Film quality, drying behaviour, uniformity and process conditions need optimization; it is not automatically uniform or production-ready in every configuration."),
-		scale: t("Triển vọng mở rộng diện tích tốt hơn quay phủ; cần chứng minh năng suất cao.", "Better area scaling prospects than spin coating; high yield still needs demonstration."),
-		refs: [82, 50]
-	},
-	steps: [
-		step$1(t("Chuẩn bị đế", "Prepare the substrate"), t("Đế sạch được đặt dưới dụng cụ phủ.", "A clean substrate sits beneath the coating tool."), t("Đế phẳng, sạch giúp màng ướt không bị vỡ.", "A flat, clean substrate keeps the wet film from breaking."), "1", 4.5, [82]),
-		step$1(t("Nhỏ mực", "Apply the ink"), t("Mực lỏng được đặt thành một vệt phía trước lưỡi dao.", "Liquid ink is placed as a bead in front of the blade."), t("Vệt mực là kho cấp chất lỏng cho lớp phủ.", "The bead is the reservoir that feeds the coating."), "2", 5, [82]),
-		step$1(t("Di chuyển lưỡi dao", "Move the blade"), t("Lưỡi dao chạy dọc đế; mực trải thành lớp ướt liên tục phía sau lưỡi.", "The blade travels along the substrate; the ink spreads into a continuous wet coating behind it."), t("Chuyển động đều tạo một dải đều.", "Steady motion makes an even strip."), "2", 8, [82, 50]),
-		step$1(t("Xem độ dày màng", "Examine film thickness"), t("Phóng vào màng ướt. Khe dao, tốc độ, tính chất mực và điều kiện sấy đều có thể ảnh hưởng kết quả. Thử đổi khe dao.", "Zoom into the wet film. Blade gap, speed, ink properties and drying conditions can all influence the result. Try changing the gap."), t("Hiểu các biến số để chọn điều kiện phủ.", "Knowing the variables helps you choose the coating conditions."), "gap", 8, [82, 50], { info: t("Độ dày là loại khái niệm (mỏng / vừa / dày), không phải số đo.", "Thickness is shown as conceptual categories (thin / moderate / thick), not measured values.") }),
-		step$1(t("Sấy màng", "Dry the film"), t("Dung môi bay hơi và lớp ướt dần đặc lại.", "Solvent evaporates and the wet layer gradually thickens."), t("Tốc độ sấy ảnh hưởng đến cách tinh thể hình thành.", "Drying speed influences how the crystals form."), "2", 6, [82]),
-		step$1(t("Kết tinh perovskite", "Crystallize the perovskite"), t("Lớp phủ thành màng tinh thể mỏng, các hạt hiện ra.", "The coating becomes a thin crystalline film; grains appear."), t("Đây là lớp hấp thụ của pin.", "This is the absorber layer of the cell."), "3", 7, [82, 47]),
-		step$1(t("Kiểm tra lớp cuối", "Inspect the final layer"), t("Màng đồng đều là mục tiêu lý tưởng. Bấm khe dao rộng/hẹp để thấy đổi độ dày và lỗi phủ có thể xảy ra.", "A uniform film is the idealized target. Move the gap to see thickness variation and possible coating defects."), t("Lỗi phủ thấy ở đây có thể trở thành đường rò trong pin.", "Coating defects seen here can become leakage paths in a cell."), "xs", 8, [82], { final: true })
-	]
-};
-var SLOT = {
-	id: "slot",
-	scene: "sSlot",
-	section: "4.8",
-	group: "fab",
-	microSwitch: true,
-	views: [
-		t("Dây chuyền", "Line"),
-		t("Đầu phủ", "Die head"),
-		t("Tinh thể", "Crystals")
-	],
-	title: t("4.8 Phủ khe (slot-die)", "4.8 Slot-Die Coating"),
-	sentence: t("Phủ khe bơm mực qua một khe hẹp lên đế đang chạy, tạo lớp lỏng có kiểm soát.", "Slot-die coating meters precursor ink through a narrow slot and coats a moving substrate with a controlled liquid layer."),
-	final: t("Bơm → khe → cầu mực → màng ướt → sấy → kết tinh.", "Pump → slot → bead → wet film → drying → crystallization."),
-	qa: {
-		q: t("Phủ khe khác nhỏ mực từ ống thế nào?", "How is slot-die coating different from dripping ink from a tube?"),
-		a: t("Mực được bơm đo lường qua khe hẹp tạo cầu mực liên tục.", "The ink is metered through a narrow slot, forming a continuous coating bead.")
-	},
-	legend: [
-		{
-			swatch: "iodine",
-			label: t("Mực", "Ink")
-		},
-		{
-			swatch: "sun",
-			label: t("Hạt dung môi", "Solvent particles")
-		},
-		{
-			swatch: "perov",
-			label: t("Màng perovskite", "Perovskite film")
-		}
-	],
-	simple: t("Giống một chiếc máy in có kiểm soát: mực đi qua một khe hẹp và được phủ liên tục khi đế chuyển động.", "Similar to a controlled printer: ink passes through a narrow opening and is deposited continuously as the substrate moves."),
-	options: "none",
-	controls: [
-		slider("speed", t("Tốc độ đế", "Substrate speed"), t("chậm", "slow"), t("nhanh", "fast"), .5, [
-			3,
-			4,
-			5,
-			6
-		]),
-		slider("flow", t("Lưu lượng mực", "Ink flow"), t("thấp", "low"), t("cao", "high"), .5, [
-			2,
-			3,
-			4,
-			5,
-			6
-		]),
-		slider("gap", t("Khe đầu phủ – đế", "Die-to-substrate gap"), t("hẹp", "narrow"), t("rộng", "wide"), .5, [
-			2,
-			3,
-			4,
-			5,
-			6
-		])
-	],
-	facts: {
-		inputs: t("Mực tiền chất perovskite trong dung môi.", "Perovskite precursor ink in solvent."),
-		equipment: t("Bình chứa mực, bơm, ống dẫn, đầu phủ khe, đế chuyển động hoặc cuộn, vùng sấy.", "Ink reservoir, pump, feed line, slot-die head, moving or roll substrate, drying zone."),
-		process: t("Bơm đo lường mực qua khe; cầu mực nối đầu phủ với đế; sấy; kết tinh.", "Metered pumping through a slot; a bead bridges die and substrate; drying; crystallization."),
-		result: t("Màng perovskite đa tinh thể liên tục trên đế dài hoặc cuộn.", "A continuous polycrystalline perovskite film on a long or roll substrate."),
-		pros: t("Hợp phủ liên tục diện rộng; có thể cuộn-sang-cuộn; ít lãng phí mực.", "Suited to continuous large-area coating; roll-to-roll capable; little ink waste."),
-		cons: t("Cần dòng ổn định, kiểm soát cầu mực, điều kiện sấy, tính lưu biến của mực, lỗi và khả năng lặp lại quy trình.", "Needs flow stability, bead control, drying conditions, ink rheology, defect control and process reproducibility."),
-		scale: t("Tiềm năng mở rộng cao nhưng khác với sản xuất lớn đã chứng minh hiệu suất cao, năng suất cao.", "High scale-up potential, which is different from demonstrated high-yield large-scale manufacturing."),
-		refs: [82, 50]
-	},
-	steps: [
-		step$1(t("Chuẩn bị mực", "Prepare the ink"), t("Mực tiền chất nằm trong bình chứa của dây chuyền.", "The precursor ink sits in the reservoir of the line."), t("Mực ổn định, đồng nhất là điều kiện để phủ ổn định.", "Stable, uniform ink is needed for stable coating."), "tank", 4.5, [82]),
-		step$1(t("Bơm mực", "Pump the ink"), t("Bơm đẩy mực qua ống dẫn vào đầu phủ khe.", "The pump pushes ink through the feed line into the slot-die head."), t("Bơm cấp lưu lượng đo được thay vì để mực nhỏ giọt tùy ý.", "The pump gives a metered flow instead of ink dripping freely."), "tank", 7, [82]),
-		step$1(t("Tạo cầu mực", "Establish the coating bead"), t("Phóng vào khe hẹp giữa đầu phủ và đế: một cầu mực có kiểm soát nối hai bên.", "Zoom into the narrow gap between the die and substrate: a controlled liquid bead bridges them."), t("Cầu mực ổn định là trái tim của phủ khe.", "A stable bead is the heart of slot-die coating."), "2", 7, [82, 50]),
-		step$1(t("Đế chuyển động", "Move the substrate"), t("Đế chạy liên tục dưới đầu phủ; màng ướt hình thành phía sau đầu phủ. Thử đổi tốc độ, lưu lượng và khe.", "The substrate runs continuously beneath the die; the wet coating forms behind it. Try changing the speed, flow and gap."), t("Lưu lượng, tốc độ và khe cùng quyết định lớp phủ.", "Flow, speed and gap together shape the coating."), "mid", 9, [82, 50], { info: t("Chỉ báo là khái niệm (ổn định / thiếu / thừa), không phải độ dày đo được.", "The indicator is conceptual (stable / starved / flooded), not a measured thickness.") }),
-		step$1(t("Sấy màng ướt", "Dry the wet film"), t("Đế đi vào vùng sấy; dung môi bay hơi.", "The coated substrate enters the drying region; solvent evaporates."), t("Sấy đúng cách giữ màng đều khi tinh thể hình thành.", "Proper drying keeps the film even as crystals form."), "dry", 7, [82]),
-		step$1(t("Kết tinh perovskite", "Crystallize the perovskite"), t("Màng ướt thành lớp tinh thể perovskite.", "The wet film becomes a crystalline perovskite layer."), t("Đây là lớp hấp thụ ánh sáng của pin.", "This is the light-absorbing layer of the cell."), "3", 7, [82, 47]),
-		step$1(t("Nối với dây chuyền sản xuất", "Connect to industrial production"), t("Thu nhỏ để thấy cả dây chuyền cuộn-sang-cuộn: cuộn đế, con lăn, trạm phủ, trạm sấy. Khả năng mở rộng khác với sản xuất lớn đã chứng minh.", "Zoom out to the whole roll-to-roll line: the web substrate, rollers, coating station and drying station. Scale-up potential is not the same as demonstrated large-scale manufacturing."), t("Đây là lý do phủ khe được xem là hướng mở rộng.", "This is why slot-die coating is seen as a scale-up route."), "line", 9, [82, 50], { final: true })
-	]
-};
 registerStories([
-	SPIN,
-	TWO,
-	VAC,
-	CRY,
-	QD,
 	{
-		id: "market",
-		scene: "sMkt",
-		section: "4.6",
+		id: "spin",
+		scene: "sSpin",
+		section: "4.1",
 		group: "fab",
-		brief: true,
+		microSwitch: true,
 		views: [
-			t("Toàn cảnh", "Overview"),
-			t("Thiết bị", "Device"),
-			t("Chi tiết", "Detail")
+			t("Thiết bị", "Equipment"),
+			t("Đế", "Substrate"),
+			t("Tinh thể", "Crystals")
 		],
-		title: t("4.6 Thị trường 2024–2026 — đường gần nhất là tandem", "4.6 Market 2024–2026 — The Nearest Path Is Tandem"),
-		sentence: t("Từ kỷ lục trong phòng thí nghiệm đến những bước thương mại đầu tiên: tế bào, module, chứng nhận, thông cáo và dự báo là những thứ khác nhau.", "From laboratory records to early commercial steps: cells, modules, certifications, announcements and forecasts are different things."),
-		final: t("Tandem perovskite/silicon là hướng tăng hiệu suất module đầy hứa hẹn, nhưng thương mại hóa còn cần sản phẩm bền, sản xuất mở rộng được, kiểm tra đáng tin cậy và quản lý chì có trách nhiệm.", "Perovskite/silicon tandem technology offers a promising route to increase module efficiency, but successful commercialization also requires durable products, scalable manufacturing, reliable testing, and responsible lead management."),
+		title: t("4.1 Quay phủ", "4.1 Spin Coating"),
+		sentence: t("Quay phủ trải mực lỏng trên đế đang quay; dung môi bay đi và phần còn lại kết tinh thành màng.", "Spin coating spreads liquid ink across a rotating substrate. The solvent then evaporates, and the remaining material forms a crystalline film."),
+		final: t("Mực lỏng → màng ướt mỏng → màng tinh thể.", "Liquid ink → thin wet film → crystalline film."),
 		qa: {
-			q: t("Vì sao không so trực tiếp 35,2% và 29,4%?", "Why not compare 35.2% and 29.4% directly?"),
-			a: t("Một là tế bào 1 cm², một là module khoảng 1,7 m².", "One is a 1 cm² cell, the other a module of about 1.7 m².")
+			q: t("Quay phủ làm gì với mực?", "What does spin coating do to the ink?"),
+			a: t("Trải thành màng mỏng, rồi dung môi bay để tinh thể hình thành.", "Spreads it thin; then the solvent leaves and crystals form.")
 		},
 		legend: [
 			{
-				swatch: "br",
-				label: t("Lớp perovskite phía trên", "Perovskite top layer")
-			},
-			{
-				swatch: "etl",
-				label: t("Tế bào silicon phía dưới", "Silicon bottom cell")
+				swatch: "iodine",
+				label: t("Mực tiền chất", "Precursor ink")
 			},
 			{
 				swatch: "sun",
-				label: t("Ánh sáng mặt trời", "Sunlight")
+				label: t("Hạt dung môi", "Solvent particles")
+			},
+			{
+				swatch: "perov",
+				label: t("Màng perovskite", "Perovskite film")
 			}
 		],
+		simple: t("Giống như nhỏ chất lỏng lên một cái đĩa rồi quay đĩa để trải chất lỏng thành lớp mỏng.", "Like putting liquid on a plate and spinning it to spread the liquid into a thin layer."),
 		options: "none",
-		controls: [{
-			kind: "seg",
-			key: "scope",
-			label: t("Kết quả", "Results"),
-			def: "cell",
-			at: [3],
-			opts: [{
-				v: "cell",
-				label: t("Tế bào", "Cell results")
-			}, {
-				v: "module",
-				label: t("Module", "Module results")
-			}]
-		}],
+		controls: [slider("speed", t("Tốc độ quay", "Spin speed"), t("chậm", "slower"), t("nhanh", "faster"), .5, [
+			2,
+			3,
+			4
+		]), slider("time", t("Thời gian quay (minh họa)", "Spin time (illustrative)"), t("ngắn", "shorter"), t("dài", "longer"), .5, [3, 4])],
+		facts: {
+			inputs: t("Mực tiền chất: PbI₂ và muối hữu cơ (như MAI) hòa trong dung môi (như DMF/DMSO). “Tiền chất” là các nguyên liệu để tạo vật liệu cuối.", "Precursor ink: PbI₂ and an organic salt (such as MAI) dissolved in solvents (such as DMF/DMSO). “Precursors” are the ingredients used to make the final material."),
+			equipment: t("Máy quay phủ (mâm hút chân không, động cơ), pipet, bàn nhiệt.", "Spin coater (vacuum chuck, motor), pipette, hot plate."),
+			process: t("Lực ly tâm trải mực; dung môi bay; kết tinh.", "Centrifugal spreading, solvent evaporation, crystallization."),
+			result: t("Màng perovskite đa tinh thể dày vào cỡ vài trăm nanomet.", "A polycrystalline perovskite film on the order of a few hundred nanometres thick."),
+			pros: t("Dụng cụ đơn giản; phổ biến trong nghiên cứu; tiện thử nhiều công thức.", "Simple laboratory setup; widely used in research; convenient for testing formulations."),
+			cons: t("Phần mực thừa bị văng đi; khó giữ độ đồng đều khi đổi điều kiện và cỡ đế; dùng vật liệu hiệu quả và sản xuất liên tục cần cân nhắc thêm.", "Excess ink is thrown off; uniformity is harder to keep as conditions and substrate size change; high material use and continuous production need extra consideration."),
+			scale: t("Thường dùng cho mẫu nhỏ; lên diện tích lớn gặp thách thức thực tế nên có thêm các cách phủ khác (4.3).", "Mostly used for small samples; larger areas bring practical challenges, which is why other coating methods exist (4.3)."),
+			refs: [
+				81,
+				80,
+				47
+			]
+		},
 		steps: [
-			step$1(t("6/2024 · Oxford PV: module 26,9%", "June 2024 · Oxford PV: 26.9% module"), t("Module tandem perovskite-trên-silicon 60 tế bào cỡ dân dụng, hiệu suất module 26,9% trên diện tích chỉ định hơn 1,6 m², được Fraunhofer CalLab đo và chứng nhận độc lập. Nhìn một tế bào, rồi trở lại cả module: hiệu suất tế bào và module không phải một con số.", "A 60-cell residential-size perovskite-on-silicon tandem module: 26.9% module efficiency over a designated area just over 1.6 m², independently measured and certified by Fraunhofer CalLab. Look into one cell, then back to the whole module: cell and module efficiency are not the same number."), t("Đây là kết quả MODULE được chứng nhận độc lập, ngày 19/6/2024.", "A MODULE result, independently certified, dated 19 June 2024."), "w", 12, [85, 61]),
-			step$1(t("4/2025 · LONGi: tế bào 34,85%", "April 2025 · LONGi: 34.85% cell"), t("Tế bào tandem silicon/perovskite trong phòng thí nghiệm: ánh sáng đến lớp perovskite phía trên rồi đến tế bào silicon phía dưới. Hai lớp dùng phần khác nhau của phổ mặt trời nên lý thuyết có thể vượt hiệu suất của pin một lớp. LONGi nói kết quả được NREL chứng nhận.", "A laboratory silicon/perovskite tandem cell: sunlight reaches the perovskite top cell and then the silicon bottom cell. The two absorbers use different parts of the solar spectrum, so the theoretical efficiency can exceed a single-junction device. LONGi states NREL certified the result."), t("Đây là kết quả TẾ BÀO (công bố của công ty), không phải module.", "A CELL result (company announcement), not a module result."), "dev", 12, [86, 4]),
-			step$1(t("7/2025 · Caelux: lô kính đầu tiên", "July 2025 · Caelux: first glass shipment"), t("Caelux (8/7/2025) giao lô thương mại đầu tiên của Active Glass: kính phủ perovskite ghép với module silicon thành tandem lai. Kính đi qua trạm phủ, rồi vào dây chuyền lắp ráp. Một lô giao hàng không chứng minh sản xuất hàng loạt, hiệu suất module được chứng nhận hay độ bền ngoài trời.", "Caelux (8 July 2025) shipped the first commercial order of Active Glass: perovskite-coated glass paired with a silicon module as a hybrid tandem. The glass passes a coating station, then an assembly line. One shipment does not prove mass production, certified module efficiency or outdoor durability."), t("Một mốc giao hàng, không phải sản xuất đại trà.", "A shipment milestone, not mass manufacturing."), "line", 14, [87, 62]),
-			step$1(t("2026 · Mốc tham chiếu", "2026 · Current reference benchmarks"), t("Bảng hiệu suất Version 68: 28,0% cho tế bào perovskite chì halide nhỏ 0,05 cm²; 35,2% cho tế bào tandem Si/perovskite 1 cm²; 29,4% cho module tandem khoảng 1,7 m². Ba vật thể khác hẳn về cỡ. Chuyển giữa Tế bào và Module.", "Efficiency Tables Version 68: 28.0% for a small 0.05 cm² lead-halide perovskite cell; 35.2% for a 1 cm² perovskite/silicon tandem cell; 29.4% for a tandem module of about 1.7 m². Three very different objects. Switch between Cell and Module results."), t("Không so trực tiếp 29,4% (module) với 35,2% (tế bào 1 cm²).", "Do not compare 29.4% (module) directly with 35.2% (1 cm² cell)."), "bench", 14, [
-				2,
-				100,
-				89,
-				90
-			]),
-			step$1(t("7/2026 · LONGi công bố 35,5%", "July 2026 · LONGi announces 35.5%"), t("LONGi công bố 35,5% cho tế bào tandem silicon/perovskite (14/7/2026, đăng 15/7) và nói ESTI đã chứng nhận. Con số này sau thời điểm chốt dữ liệu của Version 68 nên chưa có trong bảng đó. Vắng trong bảng không có nghĩa là “chưa được chứng nhận”.", "LONGi announced 35.5% for a silicon/perovskite tandem cell (14 July 2026, published 15 July) and states ESTI certified it. It came after the Version 68 data cutoff, so it is not in that table. Being absent from the table does not mean “uncertified”."), t("Công bố của công ty ≠ chứng nhận ≠ có trong bảng tham chiếu.", "Company announcement ≠ certification ≠ inclusion in a reference table."), "cmp", 12, [
-				88,
-				5,
-				2
-			]),
-			step$1(t("Vì sao tandem là con đường công nghiệp gần nhất", "Why tandem is the nearest industrial path"), t("Thêm một lớp perovskite mỏng (hoặc kính phủ perovskite) lên silicon sẵn có: module silicon điển hình khoảng 22–24% so với mục tiêu tandem gần 30% (giá trị đại diện/mục tiêu, không phải đảm bảo). Rào cản: độ bền ngoài trời, độ ẩm, nhiệt, ánh sáng, UV, năng suất, phủ diện rộng, bọc kín, kiểm soát rò chì, tái chế, chi phí.", "Add a thin perovskite absorber (or perovskite-coated glass) onto existing silicon: typical silicon modules at about 22–24% versus a tandem target approaching 30% (representative/target values, not a guarantee). Hurdles: outdoor stability, moisture, heat, light, UV, yield, large-area coating, encapsulation, lead-leakage control, recycling, cost."), t("Dây chuyền silicon vẫn cần thiết bị, quy trình và kiểm chứng độ tin cậy mới.", "Silicon lines would still need new equipment, process changes and reliability validation."), "tandem", 16, [
-				91,
-				92,
-				63
-			], { final: true })
+			step$1(t("Đặt đế lên mâm", "Place the substrate"), t("“Đế” (substrate) là bề mặt để vật liệu hình thành trên đó. Ở đây là một tấm kính phẳng đặt trên mâm quay (chuck).", "A “substrate” is the surface on which the material is formed. Here it is a flat glass plate sitting on a rotating chuck."), t("Đế phẳng, sạch, nằm yên giữa mâm thì lớp mực mới trải đều.", "A flat, clean substrate centred on the chuck is what lets the ink spread evenly."), "1", 5, [81]),
+			step$1(t("Nhỏ mực tiền chất", "Dispense the precursor ink"), t("Pipet nhỏ một giọt dung dịch tiền chất perovskite gần tâm đế. Dung dịch chứa các nguyên liệu để tạo perovskite.", "A pipette releases a droplet of perovskite precursor solution near the centre. The liquid contains the ingredients needed to form perovskite."), t("Đủ mực thì phủ kín đế; thiếu thì màng bị thủng.", "Enough ink covers the whole substrate; too little leaves holes."), "2", 5, [81]),
+			step$1(t("Bắt đầu quay", "Start rotation"), t("Mâm quay nhanh dần. Mực chảy từ tâm ra rìa theo hướng bán kính; lớp lỏng trượt trên đế chứ không quay như một khối cứng. Kéo thanh trượt để đổi tốc độ.", "The chuck spins up. The liquid flows outward from the centre; it slides over the substrate instead of turning as a rigid block. Drag the slider to change the speed."), t("Chuyển động ly tâm biến một giọt thành lớp phủ rộng.", "Centrifugal motion turns one drop into a wide coating."), "2", 7, [81]),
+			step$1(t("Hình thành màng ướt", "Form the wet film"), t("Lớp lỏng mỏng dần và phần thừa văng khỏi mép. Quay nhanh hơn thường cho lớp mỏng hơn, nhưng độ dày và độ đồng đều còn phụ thuộc tính chất dung dịch, thời gian, nhiệt độ và môi trường.", "The liquid thins out and the excess is flung off the edge. Faster spinning usually gives a thinner layer, but thickness and uniformity also depend on the solution, the time, the temperature and the surroundings."), t("Tốc độ không phải biến duy nhất; mô hình chỉ minh họa xu hướng.", "Speed is not the only variable; the model only shows the trend."), "2", 8, [81], { info: t("Chỉ báo độ dày là minh họa khái niệm (dày hơn / mỏng hơn), không phải số đo.", "The thickness indicator is conceptual (thicker / thinner), not a measured value.") }),
+			step$1(t("Dung môi bay đi", "Remove the solvent"), t("Các hạt dung môi rời màng. Lớp ướt dần mất tính lỏng và trở nên đặc quánh.", "Solvent particles leave the film. The wet layer gradually loses its liquid character and thickens."), t("Khi dung môi hết, các ion tiền chất bị dồn lại và sẵn sàng kết tinh.", "As the solvent goes, the precursor ions crowd together, ready to crystallize."), "2", 6, [81, 47]),
+			step$1(t("Kết tinh", "Crystallize"), t("“Kết tinh” là các ion sắp xếp thành cấu trúc có trật tự. Màng ngả tối, hiện vân hạt tinh thể; mỗi hạt có mạng ABX₃ riêng và giữa các hạt có ranh giới.", "“Crystallization” is ions arranging into an ordered crystal structure. The film darkens and shows crystal grains; each grain has its own ABX₃ lattice, with boundaries between grains."), t("Hạt lớn, ít ranh giới thường giúp điện tích đi thông hơn.", "Larger grains with fewer boundaries generally let charges move more freely."), "3", 7, [47, 81]),
+			step$1(t("Kiểm tra màng hoàn thiện", "Inspect the final film"), t("Quay đế và xem mặt cắt: màng phủ kín đế nhưng mỏng hơn tấm kính rất nhiều.", "Rotate the substrate and view the cross-section: the film covers the substrate but is far thinner than the glass."), t("Một lớp mỏng cỡ vài trăm nanomet là đủ để hấp thụ ánh sáng.", "A layer a few hundred nanometres thick is enough to absorb sunlight."), "xs", 7, [81], { final: true })
 		]
 	},
-	BLADE,
-	SLOT,
 	{
-		id: "lead",
-		scene: "sLeadA",
-		section: "4.9 · A",
+		id: "vacuum",
+		scene: "sVac",
+		section: "4.2",
 		group: "fab",
+		microSwitch: true,
 		views: [
-			t("Toàn cảnh", "Overview"),
-			t("Mạng tinh thể", "Lattice"),
-			t("Nguyên tử", "Atoms")
+			t("Buồng", "Chamber"),
+			t("Đế", "Substrate"),
+			t("Mặt cắt", "Cross-section")
 		],
-		title: t("4.9 A · So sánh bốn họ vật liệu hấp thụ", "4.9 A · Four absorber families compared"),
-		sentence: t("Chì giúp perovskite đạt hiệu suất cao nhưng gây lo ngại; các lựa chọn thay thế cũng có đánh đổi.", "Lead helps perovskites reach high efficiency but raises concerns; each alternative has its own trade-offs."),
-		final: t("Không có lựa chọn nào thay thế chì mà không đánh đổi; cần xét hiệu suất, độ bền và vòng đời đầy đủ.", "No option replaces lead without trade-offs; efficiency, stability and the full life cycle must all be weighed."),
+		title: t("4.2 Lắng đọng chân không", "4.2 Vacuum Deposition"),
+		sentence: t("Lắng đọng chân không tạo màng từ hơi, thay vì trải mực lỏng lên đế.", "Vacuum deposition forms a film from vapor instead of spreading a liquid ink over the substrate."),
+		final: t("Hơi vật liệu → ngưng tụ trên đế → màng.", "Material vapor → condenses on the substrate → film."),
 		qa: {
-			q: t("Sn–Pb có phải không chì?", "Is mixed Sn–Pb lead-free?"),
-			a: t("Không. Nó giảm lượng chì nhưng vẫn chứa chì.", "No. It reduces lead but still contains lead.")
+			q: t("Vì sao cần buồng chân không?", "Why a vacuum chamber?"),
+			a: t("Áp suất thấp để hơi vật liệu đi tới đế mà ít va chạm với không khí.", "Low pressure lets the vapor reach the substrate with few collisions with air.")
 		},
 		legend: [
 			{
-				swatch: "lead",
-				label: t("Pb", "Pb")
+				swatch: "pbi2",
+				label: t("Hơi nguồn A (chì halide)", "Vapor from source A (lead halide)")
 			},
 			{
-				swatch: "tin",
-				label: t("Sn", "Sn")
+				swatch: "ma",
+				label: t("Hơi nguồn B (muối hữu cơ)", "Vapor from source B (organic salt)")
 			},
 			{
-				swatch: "iodine",
-				label: t("Halide", "Halide")
+				swatch: "perov",
+				label: t("Màng", "Film")
 			}
 		],
+		simple: t("Hãy tưởng tượng biến một chất rắn thành hơi, rồi để hơi đó đậu xuống một bề mặt và xây thành màng mỏng.", "Imagine turning a solid material into vapor and letting that vapor deposit on a surface to build a thin film."),
 		options: "none",
 		controls: [
 			{
 				kind: "seg",
-				key: "dmg",
-				label: t("Tình huống", "Scenario"),
-				def: "ok",
-				at: [1],
+				key: "mode",
+				label: t("Quy trình", "Process"),
+				def: "seq",
 				opts: [{
-					v: "ok",
-					label: t("Linh kiện nguyên vẹn", "Intact device")
+					v: "seq",
+					label: t("Bay hơi tuần tự", "Sequential vapor deposition")
 				}, {
-					v: "wet",
-					label: t("Hỏng + nước vào", "Damaged + water ingress")
+					v: "co",
+					label: t("Đồng bay hơi", "Co-evaporation")
 				}]
 			},
-			slider("ox", t("Mức oxy hóa Sn²⁺ → Sn⁴⁺ (sơ đồ)", "Sn²⁺ → Sn⁴⁺ oxidation (schematic)"), t("sạch", "clean"), t("oxy hóa nhiều", "more oxidized"), 0, [3]),
 			{
 				kind: "seg",
-				key: "pick",
-				label: t("Chọn họ vật liệu", "Pick a family"),
-				def: "pb",
-				at: [5],
-				opts: [
-					{
-						v: "pb",
-						label: "Pb"
-					},
-					{
-						v: "snpb",
-						label: "Sn–Pb"
-					},
-					{
-						v: "sn",
-						label: "Sn"
-					},
-					{
-						v: "dbl",
-						label: "Cs₂AgBiBr₆"
-					}
-				]
-			}
+				key: "srcA",
+				label: t("Nguồn A (chì halide)", "Source A (lead halide)"),
+				def: "on",
+				at: [
+					2,
+					3,
+					4,
+					5,
+					6
+				],
+				opts: [{
+					v: "on",
+					label: t("Bật", "On")
+				}, {
+					v: "off",
+					label: t("Tắt", "Off")
+				}]
+			},
+			{
+				kind: "seg",
+				key: "srcB",
+				label: t("Nguồn B (muối hữu cơ)", "Source B (organic salt)"),
+				def: "on",
+				at: [
+					2,
+					3,
+					4,
+					5,
+					6
+				],
+				opts: [{
+					v: "on",
+					label: t("Bật", "On")
+				}, {
+					v: "off",
+					label: t("Tắt", "Off")
+				}]
+			},
+			slider("time", t("Thời gian lắng đọng (minh họa)", "Deposition time (illustrative)"), t("ngắn", "shorter"), t("dài", "longer"), .6, [4, 5])
 		],
+		facts: {
+			inputs: t("Chất rắn nguồn: chì halide (như PbI₂) và muối hữu cơ (như MAI hoặc FAI).", "Source solids: a lead halide (such as PbI₂) and an organic salt (such as MAI or FAI)."),
+			equipment: t("Buồng chân không, bơm, nguồn gia nhiệt (thuyền bay hơi), giá đỡ đế, đồng hồ áp suất.", "Vacuum chamber, pump, heated sources (evaporation boats), substrate holder, pressure gauge."),
+			process: t("Hơi bay từ nguồn nóng, đi qua buồng áp suất thấp, ngưng tụ hoặc phản ứng trên đế.", "Vapor leaves hot sources, crosses a low-pressure chamber, condenses or reacts on the substrate."),
+			result: t("Màng perovskite phủ đều cả trên bề mặt gồ ghề.", "A perovskite film that can follow even rough surfaces."),
+			pros: t("Kiểm soát độ dày tốt; có tiềm năng đồng đều; không dùng dung môi.", "Good thickness control; uniformity potential; no solvents."),
+			cons: t("Thiết bị phức tạp, cần chân không và năng lượng; không phải kỹ thuật chân không nào cũng dùng thiết bị hay điều kiện tiền chất giống nhau.", "Complex equipment, vacuum and energy needs; not every vacuum technique uses the same equipment or precursor conditions."),
+			scale: t("Ngành màn hình và bán dẫn đã quen thiết bị chân không khổ lớn, nhưng cần chứng minh cho perovskite.", "Display and semiconductor industries know large vacuum tools, but this still has to be shown for perovskite."),
+			refs: [
+				81,
+				80,
+				51
+			]
+		},
 		steps: [
-			step$1(t("Bốn họ vật liệu", "Four families"), t("Bốn mạng tinh thể cạnh nhau: perovskite chì halide, hỗn hợp Sn–Pb, chỉ thiếc, và perovskite kép Cs₂AgBiBr₆. Màu cho thấy kim loại ở vị trí B.", "Four lattices side by side: lead-halide perovskite, mixed Sn–Pb, tin-only, and the double perovskite Cs₂AgBiBr₆. Colour shows the metal on the B-site."), t("Câu hỏi không chỉ là “có chì hay không” mà là cái giá của từng lựa chọn.", "The question is not only “lead or not” but what each choice costs."), "1", 8, [
-				96,
-				97,
-				98
-			]),
-			step$1(t("Perovskite chì halide", "Lead-halide perovskite"), t("Đã phát triển cao và đạt một số kỷ lục hiệu suất pin perovskite và tandem perovskite/silicon. Chì trong lớp hấp thụ có thể gây rủi ro sức khỏe và môi trường nếu linh kiện hỏng làm vật liệu chứa chì thoát ra, hoặc chất thải xử lý kém. Hiệu suất cao không thay thế đánh giá rò rỉ, tuổi thọ và tái chế. Thử tình huống “Hỏng + nước vào”.", "Highly developed, with some of the strongest perovskite-cell and perovskite/silicon tandem records. The lead in the absorber is a potential health and environmental risk if a damaged device lets lead-containing material escape or if waste is handled poorly. High efficiency does not remove the need for leakage, lifetime and recycling assessment. Try the “Damaged + water ingress” scenario."), t("Hiệu suất cao và rủi ro chì cùng tồn tại; cả hai phải được quản lý.", "High efficiency and lead risk exist together; both must be managed."), "pb", 10, [
-				93,
-				94,
-				2
-			], { info: t("⚠ Cảnh báo: cảnh “hỏng + nước vào” chỉ là minh họa khái niệm.", "⚠ Warning: the “damaged + water ingress” scene is a conceptual illustration.") }),
-			step$1(t("Hỗn hợp Sn–Pb", "Mixed Sn–Pb"), t("Một phần chì được thay bằng thiếc. Theo tài liệu dẫn, một số thành phần giảm khoảng 50–60% lượng chì so với thành phần toàn chì. Vật liệu này vẫn chứa chì, và Sn²⁺ có thể oxy hóa thành Sn⁴⁺ tạo thêm khuyết tật.", "Part of the lead is replaced by tin. In the cited literature, selected compositions have roughly 50–60% less lead than comparable all-lead ones. They still contain lead, and Sn²⁺ can oxidize into Sn⁴⁺, creating more defects."), t("Giảm chì không phải là không chì.", "Less lead is not no lead."), "snpb", 9, [96]),
-			step$1(t("Perovskite chỉ thiếc", "Tin-only perovskite"), t("Loại bỏ chì khỏi lớp hấp thụ. Nhưng Sn²⁺ dễ oxy hóa thành Sn⁴⁺, sinh khuyết tật, màng kém, vận hành kém ổn định. Kéo thanh trượt để xem sơ đồ oxy hóa: không phải mọi nguyên tử thiếc oxy hóa cùng lúc.", "Removes lead from the absorber. But Sn²⁺ oxidizes easily into Sn⁴⁺, producing defects, weaker films and less stable operation. Drag the slider for a schematic of oxidation: not every tin atom oxidizes at once."), t("Hướng nghiên cứu quan trọng, chưa phải vật liệu thay thế “lắp vào là chạy”.", "An important research direction, not a drop-in replacement."), "sn", 10, [97, 96], { info: t("Sơ đồ đơn giản hóa; hình phạt hiệu suất chỉ mang tính khái niệm.", "Simplified schematic; the performance penalty is conceptual.") }),
-			step$1(t("Perovskite kép Cs₂AgBiBr₆", "Double perovskite Cs₂AgBiBr₆"), t("Vô cơ, không chì: gồm cesium, bạc, bismuth và bromide. Bỏ chì loại bỏ đúng mối lo về chì nhưng không tự làm mọi thành phần vô hại với môi trường. Vùng cấm gián tiếp tương đối rộng hạn chế hấp thụ ánh sáng; hiệu suất pin nghiên cứu còn xa perovskite chì hàng đầu.", "All-inorganic and lead-free: cesium, silver, bismuth and bromide. Removing lead removes the specific lead concern but does not make every component environmentally free. A relatively wide indirect bandgap limits light harvesting; research-cell performance is far behind leading lead-halide perovskites."), t("Cấu trúc băng năng lượng khác nghĩa là bắt ánh sáng kém hơn.", "A different band structure means weaker light harvesting."), "dbl", 10, [98, 99]),
-			step$1(t("Bảng so sánh định tính", "Qualitative comparison"), t("Chọn một họ vật liệu để xem hàng của nó. Đây là bảng định tính, không thay cho chuẩn so sánh theo tài liệu.", "Pick a family to highlight its column. This table is qualitative, not a literature-backed benchmark."), t("So các chiều khác nhau thay vì chỉ một con số hiệu suất.", "Compare across several dimensions, not one efficiency number."), "1", 12, [
-				96,
-				97,
-				98,
-				99,
-				93
-			], { final: true })
+			step$1(t("Nạp đế vào buồng", "Load the substrate"), t("Đế được đặt vào giá đỡ trong buồng; cửa buồng đóng lại.", "The substrate is placed on the holder inside the chamber; the chamber door closes."), t("Buồng kín mới hút được chân không.", "Only a sealed chamber can be pumped down."), "1", 5, [81]),
+			step$1(t("Tạo chân không", "Establish the vacuum"), t("Bơm chạy và đồng hồ áp suất giảm. Nhiều quy trình lắng đọng chân không cần buồng áp suất thấp. Số trên đồng hồ chỉ để minh họa.", "The pump runs and the gauge falls. Many vacuum-deposition processes need a low-pressure chamber. The gauge readings are illustrative."), t("Ít phân tử khí hơn nghĩa là hơi vật liệu ít bị cản đường.", "Fewer gas molecules means the vapor is hindered less on its way."), "1", 6, [81]),
+			step$1(t("Tạo hơi", "Generate vapor"), t("Nguồn được gia nhiệt và các hạt vật liệu bắt đầu bay lên. Bật/tắt từng nguồn để thấy mỗi nguồn đóng góp gì.", "The sources are heated and material particles start to leave. Switch each source on or off to see what it contributes."), t("Mỗi nguồn cấp một thành phần; thiếu nguồn thì không ra đủ ABX₃.", "Each source supplies one ingredient; with one missing you do not get full ABX₃."), "1", 6, [81]),
+			step$1(t("Vận chuyển hơi", "Transport the vapor"), t("Hạt hơi bay thẳng qua buồng về phía đế đặt phía trên.", "Vapor particles travel in nearly straight lines across the chamber toward the substrate above."), t("Đường đi gần thẳng giúp hơi bám cả mặt gồ ghề.", "Straight paths let the vapor coat rough surfaces too."), "1", 6, [81]),
+			step$1(t("Màng hình thành", "Film formation"), t("Hạt đến đế thì ngưng tụ hoặc phản ứng và tạo màng dày dần. Tuần tự: lớp chì halide trước, rồi muối hữu cơ. Đồng bay hơi: cả hai cùng lúc.", "Particles reaching the substrate condense or react and the film grows. Sequential: lead-halide layer first, then organic salt. Co-evaporation: both together."), t("Hai quy trình khác nhau về thứ tự, nên không được vẽ thành một.", "The two processes differ in order, so they are shown separately."), "2", 8, [81]),
+			step$1(t("Hoàn tất lắng đọng", "Complete the deposition"), t("Màng liên tục dày thêm. Thanh chỉ báo độ dày chỉ là minh họa, không dựa trên tốc độ lắng đọng thật.", "A continuous film thickens. The thickness bar is illustrative, not based on real deposition rates."), t("Thời gian lắng đọng càng dài, màng càng dày.", "A longer deposition time builds a thicker film."), "2", 6, [81]),
+			step$1(t("Kiểm tra lớp thu được", "Inspect the resulting layer"), t("Camera tiến sát đế để xem mặt cắt: màng đồng đều bám trên đế.", "The camera moves toward the substrate for a cross-section: an even film on the substrate."), t("Cho thấy kết quả cuối của việc xây màng từ hơi.", "Shows the end result of building a film from vapor."), "xs", 7, [81, 51], { final: true })
 		]
 	},
 	{
-		id: "leadmit",
-		scene: "sLeadB",
-		section: "4.9 · B",
+		id: "blade",
+		scene: "sBlade",
+		section: "4.3",
 		group: "fab",
+		microSwitch: true,
 		views: [
-			t("Module", "Module"),
-			t("Lớp bảo vệ", "Protection"),
-			t("Chi tiết", "Detail")
+			t("Thiết bị", "Equipment"),
+			t("Màng ướt", "Wet film"),
+			t("Tinh thể", "Crystals")
 		],
-		title: t("4.9 B · Làm gì ngay bây giờ để giảm rủi ro chì", "4.9 B · What can be done now to reduce lead risk"),
-		sentence: t("Năm chiến lược bổ trợ nhau: bọc kín, giữ chì, thiết kế tự lành, kiểm soát nhà máy, thu gom và tái chế.", "Five complementary strategies: encapsulation, lead capture, self-healing designs, factory containment, and collection and recycling."),
-		final: t("Quản lý chì là vấn đề của cả hệ thống.", "Lead management is a system-level problem."),
+		title: t("4.3 Phủ dao gạt", "4.3 Blade Coating"),
+		sentence: t("Phủ dao gạt dùng một lưỡi dao di chuyển để trải mực tiền chất lên đế.", "Blade coating uses a moving blade to spread precursor ink across a substrate."),
+		final: t("Lưỡi dao → màng ướt liên tục → sấy → màng tinh thể.", "Blade → continuous wet film → drying → crystalline film."),
 		qa: {
-			q: t("Cố định chì có làm chì biến mất không?", "Does lead immobilization make the lead disappear?"),
-			a: t("Không. Nó giảm độ linh động và sự giải phóng, nhưng vẫn là vật liệu chứa chì.", "No. It reduces mobility and release, but it is still lead-containing material.")
+			q: t("Khe dao ảnh hưởng gì?", "What does the blade gap affect?"),
+			a: t("Độ dày màng ướt, cùng với tốc độ, tính chất mực và sấy.", "The wet-film thickness, together with speed, ink properties and drying.")
 		},
 		legend: [
 			{
-				swatch: "lead",
-				label: t("Chất chứa chì", "Lead-containing species")
+				swatch: "iodine",
+				label: t("Mực", "Ink")
 			},
 			{
-				swatch: "water",
-				label: t("Nước", "Water")
+				swatch: "sun",
+				label: t("Hạt dung môi", "Solvent particles")
 			},
 			{
-				swatch: "good",
-				label: t("Lớp giữ chì", "Lead-capture layer")
+				swatch: "perov",
+				label: t("Màng perovskite", "Perovskite film")
 			}
 		],
+		simple: t("Giống như dùng dao gạt trải một lớp chất lỏng rồi để khô thành màng mỏng.", "Like spreading a layer of liquid with a blade or scraper, then drying it to create a thin film."),
 		options: "none",
-		controls: [{
-			kind: "seg",
-			key: "prot",
-			label: t("Mức bảo vệ", "Protection level"),
-			def: "enc",
-			at: [1],
-			opts: [
-				{
-					v: "enc",
-					label: t("Bọc kín", "Encapsulation")
-				},
-				{
-					v: "cap",
-					label: t("+ Giữ chì", "+ Lead capture")
-				},
-				{
-					v: "heal",
-					label: t("+ Tự lành", "+ Self-healing")
-				}
-			]
-		}],
-		steps: [
-			step$1(t("Các lớp của module", "Layers of the module"), t("Kính trước, chất bọc (encapsulant), linh kiện chứa perovskite, lớp chắn hoặc kính sau, viền kín, và một lớp giữ chì tùy chọn.", "Front glass, encapsulant, the perovskite device, a rear barrier or glass, an edge seal, and an optional lead-sequestering layer."), t("Mỗi lớp là một rào chắn giữa chì và môi trường.", "Each layer is a barrier between the lead and the environment."), "1", 8, [94, 93]),
-			step$1(t("Chiến lược 1 · Bọc kín vật lý", "Strategy 1 · Physical encapsulation"), t("Kính, chất bọc và viền kín ngăn nước vào và vật liệu thoát ra. Mưa rơi bên ngoài nhưng không tới lớp hấp thụ. Rồi một vết nứt: độ nguyên vẹn và độ bền quyết định. Bọc kín tốt giảm khả năng phơi nhiễm, nhưng không đảm bảo không rò rỉ suốt đời mọi module.", "Glass, encapsulant and edge seals keep water out and material in. Rain falls outside but does not reach the absorber. Then a crack: integrity and durability decide. Good encapsulation lowers the chance of exposure but does not guarantee zero leakage over the life of every module."), t("Rào chắn chỉ tốt khi còn nguyên vẹn.", "A barrier only works while it stays intact."), "2", 12, [94, 95]),
-			step$1(t("Chiến lược 2 · Giữ và cố định chì", "Strategy 2 · Lead capture and immobilization"), t("Dù linh kiện hỏng, chất chứa chì có thể bị giữ hoặc cố định hóa học. Không có lớp giữ chì: nước vào, chì chứa trong chất lỏng di chuyển ra ngoài. Có lớp giữ chì: chúng tới lớp này và bị liên kết, giảm độ linh động. Đây là các cách đã công bố trong nghiên cứu (tạo phức, lớp giữ, hợp chất phosphate, hấp phụ), không phải tiêu chuẩn công nghiệp.", "Even if a device is damaged, lead-containing species can be captured or chemically immobilized. Without capture: water enters and lead-containing species move away. With capture: they reach the capture layer and are bound, reducing mobility. These are published research approaches (complexation, capture layers, phosphate-based management, adsorbents), not standard industrial practice."), t("Giữ lại không phải làm biến mất: chì vẫn cần được xử lý có trách nhiệm.", "Captured is not gone: the lead still has to be handled responsibly."), "cmp", 13, [93, 94], { info: t("Cố định chì giảm độ linh động và sự giải phóng của chất chứa chì; không loại bỏ mọi rủi ro liên quan đến chì.", "Lead immobilization reduces the mobility and release of lead-containing species; it does not remove all lead-related risk.") }),
-			step$1(t("Chiến lược 3 · Thiết kế chịu hỏng, tự lành", "Strategy 3 · Damage-resistant, self-healing designs"), t("Một vết nứt trong lớp bọc. Với polymer tự lành (minh họa khái niệm của một hướng đã công bố), lớp bọc có thể phục hồi một phần chức năng chắn. Không phải mọi lớp bọc đều lành mọi vết nứt thật.", "A crack in the encapsulating layer. With a self-healing polymer (a conceptual illustration of a published approach) the barrier can recover part of its protective function. Not every encapsulant heals every real crack."), t("Giảm lượng chì rò ra từ module hỏng là mục tiêu của hướng này.", "Cutting leakage from damaged modules is the goal of this approach."), "3", 11, [95], { info: t("Minh họa khái niệm của một hướng nghiên cứu đã công bố.", "Conceptual illustration of a published research approach.") }),
-			step$1(t("Chiến lược 4 · Kiểm soát chì trong nhà máy", "Strategy 4 · Factory containment and testing"), t("Cảnh nhà máy riêng: thu gom chất thải chứa chì, giữ vật liệu nhiễm trong thùng kín, xử lý nước thải thích hợp, dán nhãn và chuyển chất thải có kiểm soát. Kiểm soát chất thải nhà máy và phơi nhiễm của công nhân là việc khác với ngăn rò rỉ từ module hoàn chỉnh.", "A separate factory scene: collecting lead-containing process waste, containing contaminated materials, handling wastewater properly, labelling and controlled waste transfer. Controlling factory waste and worker exposure is separate from preventing leakage from a finished module."), t("Rủi ro chì bắt đầu từ nhà máy, không chỉ khi pin ra ngoài trời.", "Lead risk starts in the factory, not only when panels are outdoors."), "fact", 12, [94]),
-			step$1(t("Chiến lược 5 · Thu gom cuối đời và tái chế", "Strategy 5 · End-of-life collection and recycling"), t("Module cũ hoặc hỏng đi vào quy trình: thu gom → tháo dỡ có kiểm soát → thu hồi vật liệu dùng lại → phần chứa chì chuyển đi thu hồi/xử lý thích hợp. Tái chế được thiết kế tốt có thể thu hồi thành phần có giá trị và giảm rủi ro. Đập vỡ không kiểm soát, đổ bỏ hay xả vào nước thải thường không phải cách thải bỏ chấp nhận được.", "An old or damaged module enters the workflow: collection → controlled dismantling → recovery of reusable materials → the lead-containing fraction sent for appropriate recovery or handling. Properly engineered recycling can recover valuable parts and reduce risk. Uncontrolled breakage, dumping or discharge into ordinary wastewater is not acceptable disposal."), t("Vòng đời kết thúc có kế hoạch là một phần của an toàn.", "A planned end of life is part of safety."), "recy", 13, [94]),
-			step$1(t("Tổng hợp", "Putting it together"), t("Bọc kín, giữ chì, thiết kế tự lành, kiểm soát nhà máy, thu gom và tái chế bổ trợ cho nhau. Không biện pháp nào đứng một mình.", "Encapsulation, capture, self-healing, factory control, collection and recycling complement one another. No measure stands alone."), t("An toàn là kết quả của cả hệ thống.", "Safety comes from the whole system."), "1", 8, [94, 93], { final: true })
-		]
-	},
-	{
-		id: "leadcmp",
-		scene: "sLeadC",
-		section: "4.9 · C",
-		group: "fab",
-		views: [
-			t("Module", "Module"),
-			t("Bên trong", "Inside"),
-			t("Chi tiết", "Detail")
-		],
-		title: t("4.9 C · So sánh ba thiết kế bảo vệ", "4.9 C · Comparing three protection designs"),
-		sentence: t("Cùng một kịch bản mưa và hư hỏng, ba thiết kế phản ứng khác nhau.", "The same rain-and-damage scenario, three designs, three different outcomes."),
-		final: t("Quản lý chì là vấn đề của cả hệ thống: chọn thành phần, thiết kế bảo vệ, thử rò rỉ có kiểm chứng, kiểm soát nhà máy, thu gom và tái chế phải đi cùng nhau.", "Lead management is a system-level problem. Composition choices, protective design, validated leakage testing, factory controls, collection, and recycling work together."),
-		qa: {
-			q: t("Có thể nói “không rò rỉ” không?", "Can we say “zero leakage”?"),
-			a: t("Chỉ khi một thử nghiệm đã công bố chứng minh điều đó cho đúng thiết kế ấy.", "Only if a published test supports it for that exact design.")
+		controls: [slider("gap", t("Khe dao (minh họa)", "Blade gap (illustrative)"), t("hẹp", "narrow"), t("rộng", "wide"), .5, [
+			2,
+			3,
+			4,
+			6
+		]), slider("speed", t("Tốc độ dao", "Blade speed"), t("chậm", "slow"), t("nhanh", "fast"), .5, [2, 3])],
+		facts: {
+			inputs: t("Mực tiền chất perovskite trong dung môi.", "Perovskite precursor ink in solvent."),
+			equipment: t("Lưỡi dao gạt, bệ phẳng chuyển động hoặc dao chuyển động, bàn sấy.", "Coating blade, moving flat stage or moving blade, drying plate."),
+			process: t("Trải mực thành màng ướt; sấy; kết tinh.", "Spread ink into a wet film; dry; crystallize."),
+			result: t("Màng perovskite đa tinh thể trên diện tích lớn hơn quay phủ.", "A polycrystalline perovskite film over a larger area than spin coating."),
+			pros: t("Hợp phủ diện rộng; thiết bị khá đơn giản; có thể dùng mực hiệu quả hơn quay phủ.", "Suited to larger areas; fairly simple equipment; potentially better ink use than spin coating."),
+			cons: t("Chất lượng màng, hành vi sấy, độ đồng đều và điều kiện quy trình cần tối ưu; không tự động đồng đều hay sẵn sàng sản xuất ở mọi cấu hình.", "Film quality, drying behaviour, uniformity and process conditions need optimization; it is not automatically uniform or production-ready in every configuration."),
+			scale: t("Triển vọng mở rộng diện tích tốt hơn quay phủ; cần chứng minh năng suất cao.", "Better area scaling prospects than spin coating; high yield still needs demonstration."),
+			refs: [82, 50]
 		},
-		legend: [
-			{
-				swatch: "water",
-				label: t("Nước", "Water")
-			},
-			{
-				swatch: "lead",
-				label: t("Chất chứa chì", "Lead-containing species")
-			},
-			{
-				swatch: "good",
-				label: t("Lớp giữ chì", "Lead-capture layer")
-			}
-		],
-		options: "none",
-		controls: [{
-			kind: "seg",
-			key: "design",
-			label: t("Thiết kế", "Design"),
-			def: "1",
-			opts: [
-				{
-					v: "1",
-					label: t("1 · Bọc kín chuẩn", "1 · Standard encapsulation")
-				},
-				{
-					v: "2",
-					label: t("2 · + giữ chì", "2 · + lead capture")
-				},
-				{
-					v: "3",
-					label: t("3 · + giữ chì + kế hoạch cuối đời", "3 · + capture + end-of-life plan")
-				}
-			]
-		}],
 		steps: [
-			step$1(t("Mưa ngoài module", "Rain outside the module"), t("Mưa rơi lên module. Chọn thiết kế ở dưới để so sánh.", "Rain falls on the module. Choose a design below to compare."), t("Cùng một điều kiện cho cả ba thiết kế thì mới so sánh công bằng.", "Identical conditions are what make the comparison fair."), "1", 7, [94]),
-			step$1(t("Nước có tới lớp hấp thụ không?", "Does water reach the absorber?"), t("Quan sát viền và lớp bọc: với bọc kín nguyên vẹn, nước bị chặn.", "Watch the edge and encapsulant: with an intact encapsulation, water is blocked."), t("Bước đầu của mọi chuỗi rò rỉ là nước tới được lớp hấp thụ.", "The first link in any leakage chain is water reaching the absorber."), "2", 8, [94, 95]),
-			step$1(t("Khi module bị nứt", "When the module cracks"), t("Một vết nứt mở ra. Thiết kế 1: chất chứa chì có thể thoát. Thiết kế 2 và 3: lớp giữ chì liên kết chúng, giảm độ linh động.", "A crack opens. Design 1: lead-containing species can escape. Designs 2 and 3: the capture layer binds them, reducing their mobility."), t("Hỏng hóc là chuyện cần chuẩn bị, không phải chuyện hiếm đến mức bỏ qua.", "Damage is something to plan for, not too rare to consider."), "3", 11, [93, 94]),
-			step$1(t("Hết vòng đời", "At end of life"), t("Thiết kế 3 có kế hoạch thu gom và tái chế. Ở thiết kế 1–2, chì vẫn tồn tại và cần được xử lý có trách nhiệm; kế hoạch cuối đời là thứ phân biệt.", "Design 3 comes with a collection and recycling plan. In designs 1–2 the lead still exists and must be handled responsibly; the end-of-life plan makes the difference."), t("Giữ chì lại không có nghĩa là chì biến mất.", "Captured lead has not disappeared."), "1", 8, [94]),
-			step$1(t("So sánh định tính", "Qualitative comparison"), t("Bảng định tính cho cả ba thiết kế. Không có số phần trăm rò rỉ được bịa ra; số liệu chỉ nên dùng khi có thử nghiệm đã công bố cho đúng thiết kế.", "A qualitative table for all three designs. No leakage percentages are invented; numbers belong only where a published test covers that exact design."), t("Chỉ báo định tính tránh hứa quá mức.", "Qualitative indicators avoid over-promising."), "1", 12, [
-				93,
-				94,
-				95
-			], { final: true })
+			step$1(t("Chuẩn bị đế", "Prepare the substrate"), t("Đế sạch được đặt dưới dụng cụ phủ.", "A clean substrate sits beneath the coating tool."), t("Đế phẳng, sạch giúp màng ướt không bị vỡ.", "A flat, clean substrate keeps the wet film from breaking."), "1", 4.5, [82]),
+			step$1(t("Nhỏ mực", "Apply the ink"), t("Mực lỏng được đặt thành một vệt phía trước lưỡi dao.", "Liquid ink is placed as a bead in front of the blade."), t("Vệt mực là kho cấp chất lỏng cho lớp phủ.", "The bead is the reservoir that feeds the coating."), "2", 5, [82]),
+			step$1(t("Di chuyển lưỡi dao", "Move the blade"), t("Lưỡi dao chạy dọc đế; mực trải thành lớp ướt liên tục phía sau lưỡi.", "The blade travels along the substrate; the ink spreads into a continuous wet coating behind it."), t("Chuyển động đều tạo một dải đều.", "Steady motion makes an even strip."), "2", 8, [82, 50]),
+			step$1(t("Xem độ dày màng", "Examine film thickness"), t("Phóng vào màng ướt. Khe dao, tốc độ, tính chất mực và điều kiện sấy đều có thể ảnh hưởng kết quả. Thử đổi khe dao.", "Zoom into the wet film. Blade gap, speed, ink properties and drying conditions can all influence the result. Try changing the gap."), t("Hiểu các biến số để chọn điều kiện phủ.", "Knowing the variables helps you choose the coating conditions."), "gap", 8, [82, 50], { info: t("Độ dày là loại khái niệm (mỏng / vừa / dày), không phải số đo.", "Thickness is shown as conceptual categories (thin / moderate / thick), not measured values.") }),
+			step$1(t("Sấy màng", "Dry the film"), t("Dung môi bay hơi và lớp ướt dần đặc lại.", "Solvent evaporates and the wet layer gradually thickens."), t("Tốc độ sấy ảnh hưởng đến cách tinh thể hình thành.", "Drying speed influences how the crystals form."), "2", 6, [82]),
+			step$1(t("Kết tinh perovskite", "Crystallize the perovskite"), t("Lớp phủ thành màng tinh thể mỏng, các hạt hiện ra.", "The coating becomes a thin crystalline film; grains appear."), t("Đây là lớp hấp thụ của pin.", "This is the absorber layer of the cell."), "3", 7, [82, 47]),
+			step$1(t("Kiểm tra lớp cuối", "Inspect the final layer"), t("Màng đồng đều là mục tiêu lý tưởng. Bấm khe dao rộng/hẹp để thấy đổi độ dày và lỗi phủ có thể xảy ra.", "A uniform film is the idealized target. Move the gap to see thickness variation and possible coating defects."), t("Lỗi phủ thấy ở đây có thể trở thành đường rò trong pin.", "Coating defects seen here can become leakage paths in a cell."), "xs", 8, [82], { final: true })
 		]
 	}
 ]);
 var CATEGORY = {
 	film: t("Phủ màng", "Film deposition"),
-	crystal: t("Nuôi tinh thể", "Crystal growth"),
-	nano: t("Tổng hợp vật liệu nano", "Nanomaterial synthesis"),
 	scale: t("Mở rộng công nghiệp", "Industrial scale-up"),
 	market: t("Thị trường", "Market"),
 	safety: t("An toàn", "Safety")
 };
 var GROUPS = [
 	{
-		title: t("Chuẩn bị trong phòng thí nghiệm và nuôi vật liệu", "Laboratory preparation and material growth"),
-		cards: [
-			{
-				id: "spin",
-				num: "4.1",
-				icon: "🌀",
-				name: t("Quay phủ", "Spin coating"),
-				line: t("Trải chất lỏng bằng quay.", "Spread liquid by rotation."),
-				kind: CATEGORY.film
-			},
-			{
-				id: "twostep",
-				num: "4.2",
-				icon: "⚗️",
-				name: t("Hai bước", "Two-step deposition"),
-				line: t("Phủ tiền chất lần lượt rồi phản ứng.", "Sequential precursor coating and reaction."),
-				kind: CATEGORY.film
-			},
-			{
-				id: "vacuum",
-				num: "4.3",
-				icon: "🫧",
-				name: t("Chân không", "Vacuum deposition"),
-				line: t("Lắng đọng vật liệu từ hơi.", "Deposit material from vapor."),
-				kind: CATEGORY.film
-			},
-			{
-				id: "crystal",
-				num: "4.4",
-				icon: "💎",
-				name: t("Đơn tinh thể", "Single-crystal growth"),
-				line: t("Nuôi một tinh thể liên tục.", "Grow one continuous crystal."),
-				kind: CATEGORY.crystal
-			},
-			{
-				id: "qdot",
-				num: "4.5",
-				icon: "✨",
-				name: t("Chấm lượng tử", "Quantum dots"),
-				line: t("Tổng hợp nano tinh thể perovskite cực nhỏ.", "Synthesize tiny perovskite nanocrystals."),
-				kind: CATEGORY.nano
-			}
-		]
+		title: t("Chuẩn bị trong phòng thí nghiệm", "Laboratory preparation"),
+		cards: [{
+			id: "spin",
+			num: "4.1",
+			icon: "🌀",
+			name: t("Quay phủ", "Spin coating"),
+			line: t("Trải chất lỏng bằng quay.", "Spread liquid by rotation."),
+			kind: CATEGORY.film
+		}, {
+			id: "vacuum",
+			num: "4.2",
+			icon: "🫧",
+			name: t("Chân không", "Vacuum deposition"),
+			line: t("Lắng đọng vật liệu từ hơi.", "Deposit material from vapor."),
+			kind: CATEGORY.film
+		}]
 	},
 	{
 		title: t("Phủ công nghiệp và mở rộng", "Industrial coating and scale-up"),
 		cards: [{
 			id: "blade",
-			num: "4.7",
+			num: "4.3",
 			icon: "🔪",
 			name: t("Dao gạt", "Blade coating"),
 			line: t("Trải mực bằng lưỡi dao chuyển động.", "Spread ink with a moving blade."),
-			kind: CATEGORY.scale
-		}, {
-			id: "slot",
-			num: "4.8",
-			icon: "🏭",
-			name: t("Phủ khe", "Slot-die coating"),
-			line: t("Đẩy mực qua khe hẹp lên đế đang chạy.", "Meter ink through a narrow slot onto a moving substrate."),
 			kind: CATEGORY.scale
 		}]
 	},
@@ -2197,141 +1562,257 @@ var GROUPS = [
 		title: t("Thị trường và bền vững", "Market and sustainability"),
 		cards: [{
 			id: "market",
-			num: "4.6",
+			num: "4.4",
 			icon: "📈",
 			name: t("Thị trường 2024–2026", "Market 2024–2026"),
 			line: t("Đường gần nhất là tandem.", "The nearest path is tandem."),
 			kind: CATEGORY.market
 		}, {
 			id: "lead",
-			num: "4.9",
+			num: "4.5",
 			icon: "🛡️",
 			name: t("Chì và lựa chọn thay thế", "Lead, alternatives and safety"),
-			line: t("So vật liệu và giảm rủi ro chì.", "Compare absorbers and reduce lead risk."),
+			line: t("Bốn họ vật liệu, một bảng.", "Four families, one table."),
 			kind: CATEGORY.safety
 		}]
 	}
 ];
 var C4_INTRO = {
 	title: t("Chương 4 — Chế tạo, thị trường và an toàn chì", "Chapter 4 — Fabrication, market and lead safety"),
-	body: t("Chọn một phương pháp ở giữa màn hình. Mỗi phương pháp có mô hình 3D, từng bước, bảng thông tin và nguồn.", "Choose a method in the centre of the screen. Each has a 3D model, step-by-step explanation, a facts panel and sources."),
-	sumTitle: t("Tổng kết chương 4", "Chapter 4 synthesis"),
-	sumBody: t("Ba bảng: cách chế tạo, thương mại hóa và trách nhiệm môi trường.", "Three panels: how perovskite is made, how close it is to the market, and environmental responsibility.")
+	body: t("Chọn một mục ở giữa màn hình. Mỗi mục có mô hình 3D, từng bước, bảng thông tin và nguồn.", "Choose a section in the centre of the screen. Each has a 3D model, step-by-step explanation, a facts panel and sources.")
 };
 var LANDING = {
-	lead: t("Chọn một mục để học độc lập. Mỗi trang cho bạn thấy nguyên liệu, thiết bị, từng bước, vật liệu thu được và đánh đổi.", "Pick any section to learn on its own. Each page shows the materials, the equipment, every step, the resulting material and the trade-offs."),
-	distinct: t("Phân biệt quan trọng: màng mỏng, đơn tinh thể và chấm lượng tử không thay thế cho nhau.", "An important distinction: thin films, single crystals and quantum dots are not interchangeable."),
-	notes: [
-		t("Phủ màng (4.1–4.3, 4.7, 4.8) tạo một lớp perovskite mỏng trên đế.", "Film deposition (4.1–4.3, 4.7, 4.8) forms a thin perovskite layer on a substrate."),
-		t("Nuôi tinh thể (4.4) tạo ra một tinh thể khối, không phải màng.", "Crystal growth (4.4) produces a bulk crystal, not a film."),
-		t("Tổng hợp nano (4.5) tạo nano tinh thể riêng lẻ; chúng có thể được phủ thành màng ở giai đoạn sau.", "Nanomaterial synthesis (4.5) produces individual nanocrystals that may later be deposited into a film."),
-		t("Mở rộng công nghiệp (4.7, 4.8) là cách phủ màng ướt cho diện tích lớn.", "Industrial scale-up (4.7, 4.8) are wet-coating routes for larger areas.")
-	],
+	lead: t("Chọn một mục để học độc lập: cách chế tạo, mở rộng quy mô, thị trường và an toàn chì.", "Pick any section to learn on its own: how it is made, how it scales, the market and lead safety."),
 	open: t("Mở", "Open")
 };
-var SUMMARY = {
-	a: t("A · Perovskite có thể được chế tạo thế nào", "A · How perovskite can be fabricated"),
-	b: t("B · Công nghệ và thương mại hóa", "B · Technology and commercialization"),
-	c: t("C · Hiệu suất và trách nhiệm môi trường", "C · Efficiency and environmental responsibility"),
-	routes: [
-		{
-			id: "spin",
-			icon: "🌀",
-			name: t("Quay phủ", "Spin coating"),
-			line: t("Trải chất lỏng bằng quay.", "Spread liquid by rotation."),
-			kind: t("Phòng thí nghiệm", "Laboratory")
-		},
-		{
-			id: "twostep",
-			icon: "⚗️",
-			name: t("Hai bước", "Two-step deposition"),
-			line: t("Phủ tiền chất lần lượt rồi phản ứng.", "Sequential precursor coating and reaction."),
-			kind: t("Phòng thí nghiệm", "Laboratory")
-		},
-		{
-			id: "vacuum",
-			icon: "🫧",
-			name: t("Chân không", "Vacuum deposition"),
-			line: t("Lắng đọng vật liệu từ hơi.", "Deposit material from vapor."),
-			kind: t("Phòng thí nghiệm / công nghiệp", "Laboratory / industrial")
-		},
-		{
-			id: "crystal",
-			icon: "💎",
-			name: t("Đơn tinh thể", "Single-crystal growth"),
-			line: t("Nuôi một tinh thể liên tục.", "Grow one continuous crystal."),
-			kind: t("Nuôi vật liệu", "Material growth")
-		},
-		{
-			id: "qdot",
-			icon: "✨",
-			name: t("Chấm lượng tử", "Quantum dots"),
-			line: t("Tổng hợp nano tinh thể perovskite cực nhỏ.", "Synthesize tiny perovskite nanocrystals."),
-			kind: t("Nuôi vật liệu", "Material growth")
-		},
-		{
-			id: "blade",
-			icon: "🔪",
-			name: t("Dao gạt", "Blade coating"),
-			line: t("Trải mực bằng lưỡi dao chuyển động.", "Spread ink with a moving blade."),
-			kind: t("Phủ mở rộng", "Scalable coating")
-		},
-		{
-			id: "slot",
-			icon: "🏭",
-			name: t("Phủ khe", "Slot-die coating"),
-			line: t("Đẩy mực qua khe hẹp lên đế đang chạy.", "Meter ink through a narrow slot onto a moving substrate."),
-			kind: t("Phủ mở rộng", "Scalable coating")
-		}
+var L4_COLS = [
+	{
+		id: "pb",
+		name: t("Chì Pb", "Lead Pb"),
+		sub: "Pb"
+	},
+	{
+		id: "snpb",
+		name: t("Thiếc–chì", "Tin–lead"),
+		sub: "Sn–Pb"
+	},
+	{
+		id: "sn",
+		name: t("Chỉ thiếc", "Tin only"),
+		sub: "Sn"
+	},
+	{
+		id: "dbl",
+		name: t("Perovskite kép", "Double perovskite"),
+		sub: "Cs₂AgBiBr₆"
+	}
+];
+var L4_ROWS = [
+	{
+		dim: t("Có chì?", "Lead?"),
+		cells: [
+			{
+				text: t("Có", "Yes"),
+				tone: "bad"
+			},
+			{
+				text: t("Ít hơn", "Less"),
+				tone: "warn"
+			},
+			{
+				text: t("Không", "No"),
+				tone: "good"
+			},
+			{
+				text: t("Không", "No"),
+				tone: "good"
+			}
+		]
+	},
+	{
+		dim: t("Hiệu suất", "Efficiency"),
+		cells: [
+			{
+				text: t("Cao nhất", "Highest"),
+				tone: "good"
+			},
+			{
+				text: t("Tiềm năng cao", "High potential"),
+				tone: "good"
+			},
+			{
+				text: t("Đang phát triển", "Developing"),
+				tone: "warn"
+			},
+			{
+				text: t("Còn xa", "Far behind"),
+				tone: "bad"
+			}
+		]
+	},
+	{
+		dim: t("Vấn đề chính", "Main problem"),
+		cells: [
+			{
+				text: t("Rò rỉ chì", "Lead leakage"),
+				tone: "bad"
+			},
+			{
+				text: t("Sn bị oxy hóa", "Sn oxidizes"),
+				tone: "warn"
+			},
+			{
+				text: t("Sn bị oxy hóa", "Sn oxidizes"),
+				tone: "bad"
+			},
+			{
+				text: t("Hấp thụ yếu", "Weak absorption"),
+				tone: "bad"
+			}
+		]
+	}
+];
+/** sources behind the table */
+var L4_CITES = [
+	93,
+	94,
+	96,
+	97,
+	98,
+	99
+];
+var L4 = {
+	kicker: t("4.5", "4.5"),
+	title: t("Chì và các lựa chọn thay thế", "Lead and its alternatives"),
+	pick: t("Chọn một họ vật liệu", "Pick a family"),
+	conclude: t("Không lựa chọn nào bỏ chì mà không đánh đổi.", "No option drops lead without a trade-off."),
+	fine: t("So sánh định tính, không có số hiệu suất.", "Qualitative comparison, no efficiency numbers."),
+	sources: t("Nguồn", "Sources"),
+	lessonBody: t("Bốn họ vật liệu hấp thụ, một bảng so sánh.", "Four absorber families, one comparison table.")
+};
+var CELL$2 = t("Tế bào", "Cell");
+var MODULE = t("Module", "Module");
+var MK_ROWS = [
+	{
+		date: t("6/2024", "Jun 2024"),
+		who: "Oxford PV",
+		kind: MODULE,
+		result: ["26.9%", t("> 1,6 m²", "> 1.6 m²")],
+		status: t("Chứng nhận độc lập", "Independently certified"),
+		tone: "good"
+	},
+	{
+		date: t("4/2025", "Apr 2025"),
+		who: "LONGi",
+		kind: CELL$2,
+		result: ["34.85%"],
+		status: t("Công ty nói NREL chứng nhận", "Company says NREL certified"),
+		tone: "warn"
+	},
+	{
+		date: t("7/2025", "Jul 2025"),
+		who: "Caelux",
+		kind: t("Lô hàng", "Shipment"),
+		result: [t("Lô đầu tiên", "First order")],
+		status: t("Chưa phải sản xuất hàng loạt", "Not mass production"),
+		tone: "warn"
+	},
+	{
+		date: "2026",
+		who: t("Bảng hiệu suất v68", "Efficiency tables v68"),
+		kind: t("Tế bào · Module", "Cell · Module"),
+		result: [t("35.2% tế bào", "35.2% cell"), t("29.4% module", "29.4% module")],
+		status: t("Bảng tham chiếu", "Reference table"),
+		tone: "good"
+	},
+	{
+		date: t("7/2026", "Jul 2026"),
+		who: "LONGi",
+		kind: CELL$2,
+		result: ["35.5%"],
+		status: t("Công ty nói ESTI chứng nhận", "Company says ESTI certified"),
+		tone: "warn"
+	},
+	{
+		date: "→ 2035",
+		who: "IDTechEx",
+		kind: t("Dự báo", "Forecast"),
+		result: [t("≈ US$12 tỷ/năm", "≈ US$12B/yr")],
+		status: t("Dự báo, không phải số đã quan sát", "Forecast, not observed"),
+		tone: "bad"
+	}
+];
+/** sources behind the table */
+var MK_CITES = [
+	85,
+	86,
+	87,
+	2,
+	100,
+	88,
+	92
+];
+var MK = {
+	kicker: t("4.4", "4.4"),
+	title: t("Thị trường 2024–2026", "Market 2024–2026"),
+	head: [
+		t("Thời gian", "When"),
+		t("Ai", "Who"),
+		t("Loại", "Type"),
+		t("Kết quả", "Result"),
+		t("Mức kiểm chứng", "How solid")
 	],
-	noBest: t("Không có phương pháp nào là “tốt nhất” cho mọi mục đích.", "No method is universally “the best”."),
-	ladder: [
-		{
-			label: t("Tế bào perovskite nhỏ", "Small-area lab cell"),
-			val: "28.0%",
-			note: t("0,05 cm² · bảng Version 68", "0.05 cm² · Version 68 table"),
-			kind: "table"
-		},
-		{
-			label: t("Tế bào tandem", "Tandem cell"),
-			val: "35.2%",
-			note: t("1 cm² · bảng Version 68", "1 cm² · Version 68 table"),
-			kind: "table"
-		},
-		{
-			label: t("Tandem công bố của công ty", "Company-announced tandem cell"),
-			val: "35.5%",
-			note: t("LONGi, 7/2026 · công ty nói ESTI chứng nhận · chưa trong Version 68", "LONGi, Jul 2026 · company states ESTI certified · not in Version 68"),
-			kind: "company"
-		},
-		{
-			label: t("Module tandem cỡ lớn", "Large-area tandem module"),
-			val: "29.4%",
-			note: t("≈1,7 m² · bảng Version 68", "≈1.7 m² · Version 68 table"),
-			kind: "table"
-		},
-		{
-			label: t("Lô giao hàng thương mại đầu tiên", "Early commercial shipment"),
-			val: "—",
-			note: t("Caelux, 7/2025 · mốc giao hàng, không phải sản xuất hàng loạt", "Caelux, Jul 2025 · a shipment, not mass production"),
-			kind: "company"
-		},
-		{
-			label: t("Dự báo thị trường", "Market forecast"),
-			val: "≈US$12B",
-			note: t("IDTechEx, năm 2035 · dự báo, không phải doanh thu đã quan sát", "IDTechEx, by 2035 · forecast, not observed revenue"),
-			kind: "forecast"
-		}
-	],
-	bnote: t("Kết quả nghiên cứu, kết quả module, chứng nhận và triển khai thương mại là các sự thật khác nhau.", "Research results, module results, certification and commercial deployment are different facts."),
-	cItems: [
-		t("Perovskite chì dẫn đầu nhiều mốc hiệu suất nghiên cứu.", "Lead-based perovskites currently lead many high-efficiency research benchmarks."),
-		t("Sn–Pb giảm nhưng không loại bỏ chì.", "Mixed Sn–Pb materials reduce but do not eliminate lead content."),
-		t("Chỉ thiếc loại chì khỏi lớp hấp thụ nhưng gặp oxy hóa và độ ổn định.", "Tin-only materials remove Pb from the absorber but face oxidation and stability challenges."),
-		t("Cs₂AgBiBr₆ là ứng viên không chì với giới hạn quang điện lớn.", "Cs₂AgBiBr₆ is a lead-free research candidate with substantial photovoltaic limits."),
-		t("Bọc kín, cố định/giữ chì, thử rò rỉ chuẩn hóa, quản lý chất thải, thu gom và tái chế bổ trợ nhau.", "Encapsulation, immobilization/capture, standardized leakage testing, controlled waste management, collection and recycling are complementary.")
-	],
-	closing: t("Thành công thương mại không chỉ nhờ hiệu suất cao mà còn nhờ sản xuất diện tích lớn, hiệu năng đáng tin cậy, an toàn môi trường và quản lý cuối đời có trách nhiệm.", "Commercial success depends not only on high efficiency, but also on large-area manufacturing, reliable performance, environmental safety, and responsible end-of-life management.")
+	conclude: t("Tandem perovskite/silicon là con đường gần nhất.", "Perovskite/silicon tandem is the nearest path."),
+	warn: t("Đừng so tế bào với module.", "Don't compare a cell with a module."),
+	sources: t("Nguồn", "Sources"),
+	lessonTitle: t("4.4 Thị trường 2024–2026", "4.4 Market 2024–2026"),
+	lessonBody: t("Sáu mốc, một bảng.", "Six milestones, one table.")
+};
+var C6_CARDS = [
+	{
+		id: "what",
+		head: t("Perovskite halide", "Halide perovskite"),
+		big: "ABX₃",
+		bigNote: t("Một khung tinh thể, ba “núm vặn”", "One crystal frame, three knobs"),
+		points: [
+			t("A: cation lớn", "A: large cation"),
+			t("B: chì hoặc thiếc", "B: lead or tin"),
+			t("X: iod, brom, clo (halide)", "X: iodide, bromide, chloride (halide)")
+		]
+	},
+	{
+		id: "why",
+		head: t("Vì sao nổi bật", "Why it stands out"),
+		points: [
+			t("Hấp thụ ánh sáng mạnh", "Strong light absorption"),
+			t("Màng rất mỏng", "Very thin film"),
+			t("Điện tích đi xa", "Charges travel far"),
+			t("Chế tạo nhiệt độ thấp", "Low-temperature processing")
+		]
+	},
+	{
+		id: "progress",
+		head: t("Tiến bộ", "Progress"),
+		big: "3.8% → 27%+",
+		bigNote: t("pin một lớp, 2009 → nay", "single junction, 2009 → today"),
+		points: [t("Tandem perovskite/silicon: khoảng 35%", "Perovskite/silicon tandem: about 35%")]
+	},
+	{
+		id: "left",
+		head: t("Việc còn lại", "Work left"),
+		points: [
+			t("Độ bền: ẩm, oxy, nhiệt, UV, ion", "Durability: moisture, oxygen, heat, UV, ions"),
+			t("Chì: giữ và quản lý", "Lead: contain and manage"),
+			t("Phủ diện tích lớn", "Large-area coating")
+		]
+	}
+];
+var C6 = {
+	kicker: t("6", "6"),
+	title: t("Kết luận", "Conclusion"),
+	closing: t("Hấp thụ ánh sáng rất tốt. Còn lại: độ bền và chì.", "A great light absorber. What is left: durability and lead."),
+	next: t("Đường gần nhất: tandem trên silicon.", "Nearest path: tandem on silicon."),
+	lessonBody: t("Một trang tổng kết về perovskite và perovskite halide.", "One summary page on perovskite and halide perovskite.")
 };
 /**
 * Chapter 5 · Proposed improvement: choose a p–i–n stack, give every layer a job, justify the materials,
@@ -2340,8 +1821,6 @@ var SUMMARY = {
 *   5.1  Step 1 — choose a p–i–n stack          (scene sPin)
 *   5.2  Step 2 — one job per layer             (scene sFunc)
 *   5.3  Step 3 — why those ingredients         (scene sMat)
-*   5.4  Step 4 — prove it with ISOS            (scene sIsos)
-*   5.5  Putting it together                    (scene sFin)
 *
 * Same engine as Chapters 3 and 4: every text is a Vietnamese / English pair written once with `t()`.
 * Everything here is a conceptual teaching model unless a citation says otherwise.
@@ -2435,12 +1914,7 @@ var LAYERS$1 = {
 		cite: [103, 106]
 	}
 };
-var ENC = {
-	name: t("Đóng gói", "Encapsulation"),
-	tag: t("Đóng gói (vỏ bảo vệ)", "Encapsulation (protective shell)"),
-	role: t("Bao kín thiết bị bằng vật liệu bảo vệ để giảm tiếp xúc với môi trường; nó cũng có thể giữ lại sản phẩm phân hủy dễ bay hơi.", "Encloses the device in protective materials to reduce exposure to the environment; it may also keep volatile decomposition products in."),
-	cite: [38, 103]
-};
+t("Đóng gói", "Encapsulation"), t("Đóng gói (vỏ bảo vệ)", "Encapsulation (protective shell)"), t("Bao kín thiết bị bằng vật liệu bảo vệ để giảm tiếp xúc với môi trường; nó cũng có thể giữ lại sản phẩm phân hủy dễ bay hơi.", "Encloses the device in protective materials to reduce exposure to the environment; it may also keep volatile decomposition products in.");
 var P = {
 	e: t("Điện tử e⁻", "Electron e⁻"),
 	h: t("Lỗ trống h⁺", "Hole h⁺"),
@@ -2768,965 +2242,14 @@ var FUNC = {
 		final: true
 	})]
 };
-var CRITERIA = [
-	{
-		id: "align",
-		name: t("Khớp mức năng lượng", "Energy-level alignment"),
-		q: t("Lấy được đúng điện tích mà không mất quá nhiều năng lượng không?", "Can the desired charge be extracted without excessive energy loss?")
-	},
-	{
-		id: "select",
-		name: t("Chọn lọc hạt tải", "Carrier selectivity"),
-		q: t("Lớp có ưu tiên hạt tải mà nó phục vụ không?", "Does the contact favour its intended carrier?")
-	},
-	{
-		id: "cond",
-		name: t("Độ dẫn / điện trở tiếp xúc", "Conductivity / contact resistance"),
-		q: t("Điện tích đi qua mà không tổn thất điện quá lớn?", "Can charge move without excessive electrical losses?")
-	},
-	{
-		id: "optical",
-		name: t("Độ truyền quang", "Optical transmission"),
-		q: t("Lớp có để phần ánh sáng cần thiết tới lớp hấp thụ không?", "Does the layer let the required light reach the absorber?")
-	},
-	{
-		id: "passiv",
-		name: t("Thụ động hóa khuyết tật", "Defect passivation"),
-		q: t("Lớp có giảm khuyết tật giao diện hay tái hợp có hại không?", "Can the layer reduce harmful interface defects or recombination?")
-	},
-	{
-		id: "chem",
-		name: t("Tương thích hóa học", "Chemical compatibility"),
-		q: t("Vật liệu có sống chung với perovskite và các lớp kề không?", "Can the material coexist with the perovskite and neighbouring layers?")
-	},
-	{
-		id: "process",
-		name: t("Tương thích nhiệt / quy trình", "Thermal / process compatibility"),
-		q: t("Chịu được điều kiện chế tạo và vận hành không?", "Can it tolerate the required fabrication and operating conditions?")
-	},
-	{
-		id: "stab",
-		name: t("Độ bền", "Stability"),
-		q: t("Còn hiệu quả khi chịu ánh sáng, nhiệt và môi trường không?", "Does it remain effective during exposure to light, heat and the environment?")
-	},
-	{
-		id: "manuf",
-		name: t("Khả năng sản xuất", "Manufacturability"),
-		q: t("Phủ đồng đều được bằng một quy trình thực tế không?", "Can it be deposited uniformly with a practical process?")
-	},
-	{
-		id: "cost",
-		name: t("Chi phí và an toàn", "Cost and safety"),
-		q: t("Chi phí, nguồn cung, độc tính và xử lý chất thải có kiểm soát được không?", "Are cost, supply, hazards and disposal manageable?")
-	}
-];
+t("Khớp mức năng lượng", "Energy-level alignment"), t("Lấy được đúng điện tích mà không mất quá nhiều năng lượng không?", "Can the desired charge be extracted without excessive energy loss?"), t("Chọn lọc hạt tải", "Carrier selectivity"), t("Lớp có ưu tiên hạt tải mà nó phục vụ không?", "Does the contact favour its intended carrier?"), t("Độ dẫn / điện trở tiếp xúc", "Conductivity / contact resistance"), t("Điện tích đi qua mà không tổn thất điện quá lớn?", "Can charge move without excessive electrical losses?"), t("Độ truyền quang", "Optical transmission"), t("Lớp có để phần ánh sáng cần thiết tới lớp hấp thụ không?", "Does the layer let the required light reach the absorber?"), t("Thụ động hóa khuyết tật", "Defect passivation"), t("Lớp có giảm khuyết tật giao diện hay tái hợp có hại không?", "Can the layer reduce harmful interface defects or recombination?"), t("Tương thích hóa học", "Chemical compatibility"), t("Vật liệu có sống chung với perovskite và các lớp kề không?", "Can the material coexist with the perovskite and neighbouring layers?"), t("Tương thích nhiệt / quy trình", "Thermal / process compatibility"), t("Chịu được điều kiện chế tạo và vận hành không?", "Can it tolerate the required fabrication and operating conditions?"), t("Độ bền", "Stability"), t("Còn hiệu quả khi chịu ánh sáng, nhiệt và môi trường không?", "Does it remain effective during exposure to light, heat and the environment?"), t("Khả năng sản xuất", "Manufacturability"), t("Phủ đồng đều được bằng một quy trình thực tế không?", "Can it be deposited uniformly with a practical process?"), t("Chi phí và an toàn", "Cost and safety"), t("Chi phí, nguồn cung, độc tính và xử lý chất thải có kiểm soát được không?", "Are cost, supply, hazards and disposal manageable?");
 var CAT_LABEL = {
 	adv: t("Là ưu điểm", "Advantage"),
 	trade: t("Đánh đổi", "Trade-off"),
 	nv: t("Cần kiểm chứng", "Needs validation")
 };
-/** Candidate materials per layer. Categories are qualitative and come with the source behind each cell; "needs validation" is the default. */
-var CANDS = {
-	tco: [{
-		id: "ito",
-		name: t("ITO", "ITO"),
-		why: t("Là điện cực trong suốt trong các chồng lớp ITO/SAM/perovskite/C₆₀ của các bài tổng quan.", "It is the transparent electrode in the ITO / SAM / perovskite / C₆₀ stacks of the reviews."),
-		limits: t("Phải cân bằng độ trong suốt với độ dẫn; bài này không có số liệu so sánh các điện cực.", "Transparency has to be balanced against conductivity; this chapter has no data comparing electrodes."),
-		iface: t("Nhóm neo của SAM gắn vào bề mặt ITO; nhóm neo có tính axit mạnh có thể gây ăn mòn.", "A SAM's anchoring group binds to the ITO surface; strongly acidic anchors can cause corrosion."),
-		fab: t("Chưa đánh giá ở đây; xem bài gốc.", "Not assessed here; see the original papers."),
-		cite: [105],
-		cells: { chem: {
-			c: "trade",
-			note: t("Neo axit có thể ăn mòn ITO; neo ít axit giảm ăn mòn.", "Acidic anchors can corrode ITO; low-acidity anchors reduce it."),
-			cite: [105]
-		} }
-	}, {
-		id: "other",
-		name: t("Điện cực trong suốt khác", "Other transparent electrodes"),
-		why: t("Tùy thiết kế thiết bị, các điện cực trong suốt khác cũng được dùng.", "Depending on the device design, other transparent electrodes are used."),
-		limits: t("Chưa có bằng chứng so sánh trong bộ nguồn của chương này.", "No comparative evidence in this chapter's source set."),
-		iface: t("Cần kiểm chứng.", "Needs validation."),
-		fab: t("Cần kiểm chứng.", "Needs validation."),
-		cite: [],
-		cells: {}
-	}],
-	htl: [
-		{
-			id: "sam",
-			name: t("SAM (2PACz, MeO-2PACz)", "SAM (2PACz, MeO-2PACz)"),
-			why: t("Lớp đơn phân tử cực mỏng, nhóm neo gắn vào ITO nên dịch chuyển công thoát và giảm khuyết tật bề mặt; các SAM như MeO-2PACz/2PACz được báo cáo là khớp năng lượng thuận lợi và giảm tái hợp không bức xạ.", "An extremely thin molecular layer whose anchoring group binds ITO, shifting the work function and reducing surface defects; SAMs such as MeO-2PACz / 2PACz are reported with favourable energy alignment and reduced non-radiative recombination."),
-			limits: t("Loại nhóm neo còn ít; độ axit ảnh hưởng độ bền; một dẫn xuất chỉ giữ khoảng 60% sau 1600 giờ trong bài tổng quan; mức khớp năng lượng nhỏ nhất chưa chắc cho hiệu suất cao nhất.", "Few anchoring-group types; acidity affects stability; one derivative kept only about 60% after 1600 h in the review; the smallest energy offset does not always give the best performance."),
-			iface: t("Cần phủ kín bề mặt ITO; nhóm đầu quyết định tương tác với perovskite (ví dụ phối trí với Pb²⁺).", "It must cover the ITO surface; the head group sets the interaction with the perovskite (for example coordination to Pb²⁺)."),
-			fab: t("Phần lớn xử lý dung dịch; lắng đọng chân không chưa phổ biến nhưng đã được báo cáo cho 2PACz.", "Mostly solution-processed; vacuum deposition is not widespread but has been reported for 2PACz."),
-			cite: [105, 104],
-			cells: {
-				align: {
-					c: "trade",
-					note: t("Điều chỉnh được công thoát, nhưng mức lệch nhỏ nhất không phải lúc nào cũng tốt nhất.", "Work function is tunable, but the smallest offset is not always best."),
-					cite: [105]
-				},
-				select: {
-					c: "adv",
-					note: t("Đóng vai lớp vận chuyển lỗ trống trong pin p–i–n.", "Works as the hole-transporting layer in p–i–n cells."),
-					cite: [105]
-				},
-				passiv: {
-					c: "adv",
-					note: t("Giảm khuyết tật bề mặt ITO; nhóm đầu có thể thụ động hóa perovskite.", "Reduces ITO surface defects; the head group can passivate the perovskite."),
-					cite: [105, 104]
-				},
-				chem: {
-					c: "trade",
-					note: t("Nhóm neo axit có thể ăn mòn ITO; neo axit boronic ít axit giảm ăn mòn.", "Acidic anchors can corrode ITO; a low-acidity boronic-acid anchor reduced corrosion."),
-					cite: [105]
-				},
-				process: {
-					c: "trade",
-					note: t("Chủ yếu xử lý dung dịch; chân không ít dùng.", "Mostly solution-processed; vacuum deposition is rarely used."),
-					cite: [105]
-				},
-				stab: {
-					c: "trade",
-					note: t("Tùy phân tử: một số kém bền do độ axit.", "Molecule-dependent: some are less stable because of acidity."),
-					cite: [105]
-				},
-				manuf: {
-					c: "adv",
-					note: t("Tổng hợp đơn giản, dùng rất ít phân tử, hợp diện tích lớn.", "Simple synthesis, tiny amounts of molecule, suited to large area."),
-					cite: [105]
-				}
-			}
-		},
-		{
-			id: "nio",
-			name: t("NiOₓ", "NiOₓ"),
-			why: t("Oxit trong suốt, lấy điện tích hiệu quả và mức năng lượng phù hợp với perovskite theo bài tổng quan.", "A transparent oxide that, according to the review, extracts charge efficiently and has energy levels matched to the perovskite."),
-			limits: t("Độ dẫn của NiOₓ cần được cải thiện bằng pha tạp; giao diện oxit/perovskite có tái hợp, mức năng lượng chưa tối ưu và ăn mòn hóa học.", "NiOₓ conductivity is improved by doping; the oxide/perovskite interface shows recombination, non-optimal levels and chemical corrosion."),
-			iface: t("Một SAM có thể được đặt giữa oxit và perovskite để giảm các vấn đề này, nên NiOₓ và SAM có thể là bổ sung chứ không chỉ là lựa chọn thay thế.", "A SAM can be placed between the oxide and the perovskite to ease these problems, so NiOₓ and a SAM can be complementary and not only alternatives."),
-			fab: t("Chưa đánh giá ở đây.", "Not assessed here."),
-			cite: [106, 104],
-			cells: {
-				align: {
-					c: "trade",
-					note: t("Được mô tả là khớp năng lượng, nhưng giao diện oxit/perovskite có mức chưa tối ưu.", "Described as energy-matched, yet the oxide/perovskite interface shows non-optimal levels."),
-					cite: [106, 104]
-				},
-				cond: {
-					c: "trade",
-					note: t("Pha tạp được dùng để tăng độ dẫn.", "Doping is used to raise conductivity."),
-					cite: [106]
-				},
-				optical: {
-					c: "adv",
-					note: t("Độ truyền quang cao.", "High transmissivity."),
-					cite: [106]
-				},
-				passiv: {
-					c: "trade",
-					note: t("Có tái hợp ở giao diện oxit/perovskite.", "Recombination occurs at the oxide/perovskite interface."),
-					cite: [104]
-				},
-				chem: {
-					c: "trade",
-					note: t("Có ăn mòn hóa học giữa oxit và perovskite.", "Chemical corrosion occurs between oxide and perovskite."),
-					cite: [104]
-				}
-			}
-		},
-		{
-			id: "ptaa",
-			name: t("PTAA (polyme)", "PTAA (polymer)"),
-			why: t("Màng polyme đặc, đồng đều, kỵ nước nên có thể có lợi cho độ bền.", "A dense, uniform polymer film; its hydrophobicity can favour stability."),
-			limits: t("Dẫn điện kém, bị hỏng do tia UV, năng lượng bề mặt cao nên khó thấm ướt bằng dung dịch perovskite.", "Poor conductivity, UV-induced degradation, and a high surface energy that makes the perovskite solution hard to spread."),
-			iface: t("Khó thấm ướt là vấn đề giao diện chính.", "Poor wetting is the main interface issue."),
-			fab: t("Xử lý dung dịch.", "Solution-processed."),
-			cite: [106],
-			cells: {
-				cond: {
-					c: "trade",
-					note: t("Dẫn điện kém.", "Poor electrical conductivity."),
-					cite: [106]
-				},
-				chem: {
-					c: "trade",
-					note: t("Thấm ướt kém bởi dung dịch perovskite.", "Poorly wetted by the perovskite solution."),
-					cite: [106]
-				},
-				stab: {
-					c: "trade",
-					note: t("Kỵ nước có lợi; nhưng bị hỏng do UV.", "Hydrophobic is helpful; but UV degrades it."),
-					cite: [106]
-				}
-			}
-		}
-	],
-	etl: [{
-		id: "c60",
-		name: t("C₆₀", "C₆₀"),
-		why: t("Fullerene: mức năng lượng phù hợp, độ linh động điện tử tốt và tạo màng đơn giản (nói chung cho fullerene).", "A fullerene: applicable energy levels, good electron mobility and simple film forming (said of fullerenes in general)."),
-		limits: t("Giao diện C₆₀/perovskite tái hợp mạnh; huỳnh quang màng giảm 1–2 bậc độ lớn.", "The C₆₀/perovskite interface recombines strongly; film photoluminescence drops by one to two orders of magnitude."),
-		iface: t("Thường có thêm lớp đệm (BCP) giữa C₆₀ và kim loại.", "A buffer (BCP) is often added between C₆₀ and the metal."),
-		fab: t("Chưa đánh giá ở đây.", "Not assessed here."),
-		cite: [103, 106],
-		cells: {
-			align: {
-				c: "adv",
-				note: t("Fullerene có mức năng lượng phù hợp.", "Fullerenes have applicable energy levels."),
-				cite: [106]
-			},
-			cond: {
-				c: "adv",
-				note: t("Độ linh động điện tử tốt.", "Good electron mobility."),
-				cite: [106]
-			},
-			passiv: {
-				c: "trade",
-				note: t("Tái hợp mạnh ở giao diện C₆₀/perovskite.", "Strong recombination at the C₆₀/perovskite interface."),
-				cite: [103]
-			},
-			manuf: {
-				c: "adv",
-				note: t("Tạo màng đơn giản (fullerene nói chung).", "Simple film forming (fullerenes in general)."),
-				cite: [106]
-			}
-		}
-	}, {
-		id: "pcbm",
-		name: t("PCBM", "PCBM"),
-		why: t("Dẫn xuất fullerene tan được, cũng được dùng rộng rãi làm ETL trong pin đảo.", "A soluble fullerene derivative, also widely used as an ETL in inverted cells."),
-		limits: t("Bài tổng quan nêu dẫn điện kém và tái hợp điện tích đáng kể; cải thiện bằng chỉnh sửa giao diện hoặc pha tạp.", "The review notes poor conductivity and serious charge recombination; interface modification or doping is used to improve it."),
-		iface: t("Thường kèm một lớp đệm ở giao diện với kim loại, ví dụ BCP.", "Often paired with a buffer at the metal interface, for example BCP."),
-		fab: t("Chưa đánh giá ở đây.", "Not assessed here."),
-		cite: [106],
-		cells: {
-			align: {
-				c: "adv",
-				note: t("Fullerene có mức năng lượng phù hợp.", "Fullerenes have applicable energy levels."),
-				cite: [106]
-			},
-			cond: {
-				c: "trade",
-				note: t("Dẫn điện kém.", "Poor electrical conductivity."),
-				cite: [106]
-			},
-			passiv: {
-				c: "trade",
-				note: t("Tái hợp điện tích đáng kể.", "Serious charge recombination."),
-				cite: [106]
-			},
-			manuf: {
-				c: "adv",
-				note: t("Tạo màng đơn giản (fullerene nói chung).", "Simple film forming (fullerenes in general)."),
-				cite: [106]
-			}
-		}
-	}],
-	buf: [{
-		id: "bcp",
-		name: t("BCP", "BCP"),
-		why: t("Màng BCP mỏng ở giao diện fullerene/kim loại được báo cáo là cải thiện tiếp xúc và ngăn tái hợp lỗ trống–điện tử ở giao diện.", "A thin BCP film at the fullerene/metal interface is reported to improve contact and prevent hole–electron recombination at the interface."),
-		limits: t("Bài tổng quan không bàn nhược điểm riêng của BCP; cần xem bài gốc.", "The review does not discuss BCP-specific drawbacks; see the original papers."),
-		iface: t("Nằm giữa ETL và kim loại.", "Sits between the ETL and the metal."),
-		fab: t("Chưa đánh giá ở đây.", "Not assessed here."),
-		cite: [106],
-		cells: {
-			select: {
-				c: "adv",
-				note: t("Giúp ngăn lỗ trống rò tới kim loại.", "Helps stop holes leaking to the metal."),
-				cite: [106]
-			},
-			cond: {
-				c: "adv",
-				note: t("Cải thiện tiếp xúc.", "Improves contact."),
-				cite: [106]
-			}
-		}
-	}, {
-		id: "sno2",
-		name: t("Lớp chắn oxit mỏng (SnO₂)", "Thin oxide barrier (SnO₂)"),
-		why: t("Các lớp chắn (oxit indi, SnO₂, Cr) được thêm để cản di chuyển ion halide tới điện cực.", "Barrier layers (indium oxide, SnO₂, Cr) are added to hinder halide-ion migration toward the electrode."),
-		limits: t("Hiệu quả phụ thuộc độ dày, độ đặc khít và quy trình; có thể làm hỏng bề mặt nếu quy trình không hợp.", "Effectiveness depends on thickness, density and process; a poorly matched process could damage the surface (to be validated)."),
-		iface: t("Nằm giữa ETL và kim loại để cản halide.", "Sits between the ETL and the metal to hinder halides."),
-		fab: t("Chưa đánh giá ở đây; bài tổng quan [106] không nêu vai trò của SnO₂ lắng đọng lớp nguyên tử.", "Not assessed here; review [106] does not describe the role of atomic-layer-deposited SnO₂."),
-		cite: [103],
-		cells: { stab: {
-			c: "adv",
-			note: t("Cản di chuyển halide, nguyên nhân gây hỏng khi chịu sáng và nhiệt.", "Hinders halide migration, a cause of failure under light and heat."),
-			cite: [103]
-		} }
-	}],
-	metal: [{
-		id: "metals",
-		name: t("Bạc / vàng / nhôm", "Silver / gold / aluminium"),
-		why: t("Cả ba đều xuất hiện làm điện cực sau trong các thiết bị đã công bố.", "All three appear as back electrodes in published devices."),
-		limits: t("Bài tổng quan không bàn phản ứng ăn mòn kim loại–halide; cần kiểm chứng trên chồng lớp cụ thể.", "The review does not discuss metal–halide corrosion; it must be validated on the specific stack."),
-		iface: t("Nên tránh để halide di chuyển tới kim loại; lớp đệm/chắn được dùng.", "Mobile halides should not reach the metal; buffer or barrier layers are used."),
-		fab: t("Chưa đánh giá ở đây.", "Not assessed here."),
-		cite: [106, 103],
-		cells: {}
-	}],
-	enc: [{
-		id: "enc",
-		name: t("Đóng gói", "Encapsulation"),
-		why: t("Giảm tiếp xúc với hơi ẩm và oxy, và có thể giữ lại sản phẩm phân hủy dễ bay hơi.", "Reduces exposure to moisture and oxygen, and may keep volatile decomposition products in."),
-		limits: t("Không tự động ngăn mọi hư hỏng: sáng và nhiệt vẫn gây di chuyển ion bên trong thiết bị.", "It does not automatically stop all degradation: light and heat still drive ion migration inside the device."),
-		iface: t("Chi tiết đóng gói (vật liệu, độ dày, keo viền) phải được báo cáo cùng kết quả độ bền.", "Encapsulation details (materials, thickness, edge sealant) must be reported with stability results."),
-		fab: t("Cần kiểm chứng theo vật liệu đóng gói cụ thể.", "To be validated for the specific encapsulant."),
-		cite: [38, 103],
-		cells: { stab: {
-			c: "trade",
-			note: t("Giảm tác động môi trường nhưng không loại bỏ hư hỏng do sáng và nhiệt.", "Reduces environmental effects but does not remove light- and heat-driven degradation."),
-			cite: [103]
-		} }
-	}]
-};
-/** Layer of each step of 5.3 (the selected layer follows the step; the viewer can pick another). */
-var WHY_LAYER = [
-	"tco",
-	"htl",
-	"perov",
-	"etl",
-	"buf",
-	"metal",
-	"all"
-];
-/** Requirements of the absorber (step 3). `kind` tells the viewer these are different properties. */
-var ABSORBER_REQS = [
-	{
-		name: t("Hấp thụ", "Absorption"),
-		text: t("Hấp thụ mạnh ở vùng phổ cần dùng.", "Strong absorption in the intended spectral range.")
-	},
-	{
-		name: t("Vùng cấm", "Bandgap"),
-		text: t("Vùng cấm phù hợp với kiến trúc thiết bị (một lớp hay tandem).", "A bandgap suited to the device architecture (single junction or tandem).")
-	},
-	{
-		name: t("Vận chuyển hạt tải", "Carrier transport"),
-		text: t("Sinh và vận chuyển hạt tải hiệu quả.", "Effective generation and transport of carriers.")
-	},
-	{
-		name: t("Tái hợp", "Recombination"),
-		text: t("Tổn thất tái hợp có hại thấp.", "Low harmful recombination losses.")
-	},
-	{
-		name: t("Độ bền", "Stability"),
-		text: t("Bền hóa học và cấu trúc.", "Chemical and structural stability.")
-	},
-	{
-		name: t("Tương thích", "Compatibility"),
-		text: t("Hợp với các lớp kề và quy trình chế tạo.", "Compatible with neighbouring layers and the fabrication process.")
-	}
-];
-var WHY = {
-	id: "why",
-	scene: "sMat",
-	section: "5.3",
-	group: "design",
-	microSwitch: true,
-	views: [
-		t("Toàn thiết bị", "Device"),
-		t("Lớp", "Layer"),
-		t("Giao diện", "Interface")
-	],
-	title: t("Bước 3 — vì sao đúng những chất ấy", "Step 3 — Why those ingredients?"),
-	sentence: t("Chọn vật liệu bằng cách cân nhắc vai trò, mức năng lượng, tương thích và khả năng chịu quy trình, không chỉ hiệu suất ban đầu.", "Choose materials by weighing role, energy alignment, compatibility and process survival, not just initial efficiency."),
-	final: t("5.3 là về lý do chọn: vì sao vật liệu này thuộc về đúng lớp này.", "5.3 is about justification: why this material belongs in this specific layer."),
-	qa: {
-		q: t("Vì sao không chọn vật liệu chỉ vì hiệu suất ban đầu cao?", "Why not pick a material only for high initial efficiency?"),
-		a: t("Vì nó còn phải khớp vai trò, mức năng lượng, hợp với lớp kề và sống sót qua chế tạo và vận hành.", "Because it must also fit its role, align energetically, be compatible with neighbours and survive fabrication and operation.")
-	},
-	legend: [
-		{
-			swatch: "c5htl",
-			label: t("HTL", "HTL")
-		},
-		{
-			swatch: "c5perov",
-			label: t("Perovskite", "Perovskite")
-		},
-		{
-			swatch: "c5etl",
-			label: t("ETL", "ETL")
-		},
-		{
-			swatch: "c5defect",
-			label: t("Giao diện có vấn đề", "Problem interface")
-		},
-		{
-			swatch: "c5shell",
-			label: t("Đóng gói", "Encapsulation")
-		}
-	],
-	simple: t("Chọn vật liệu giống chọn người vào một đội: giỏi một việc chưa đủ, còn phải hợp với đồng đội và chịu được áp lực.", "Choosing materials is like picking a team: being good at one thing is not enough; they must fit with teammates and stand the pressure."),
-	options: "none",
-	brief: true,
-	controls: [
-		panelCtl("open"),
-		seg$1("tcoc", t("Điện cực giả định", "Hypothetical electrode"), [["bal", t("Cân bằng", "Balanced")], ["clear", t("Trong suốt nhưng dẫn kém", "Clear but poorly conducting")]], "bal", [0]),
-		seg$1("htlc", t("Ứng viên HTL", "HTL candidate"), [["sam", "SAM"], ["nio", "NiOₓ"]], "sam", [1]),
-		seg$1("ifc", t("Giao diện", "Interface"), [["ok", t("Ổn", "Fine")], ["bad", t("Có vấn đề", "Problem")]], "ok", [1]),
-		seg$1("buf", t("Lớp đệm", "Buffer"), [["no", t("Không có lớp đệm", "Without")], ["yes", t("Có lớp đệm", "With")]], "no", [4]),
-		seg$1("energy", t("Sơ đồ mức năng lượng", "Energy-level diagram"), [["off", OFF], ["on", ON]], "off", [
-			1,
-			2,
-			3,
-			4
-		])
-	],
-	factList: [
-		{
-			k: t("Câu hỏi của bước này", "Question of this step"),
-			v: t("Vì sao những vật liệu này phù hợp với vai trò của chúng?", "Why are these materials suitable for their roles?")
-		},
-		{
-			k: t("Tiêu chí", "Criteria"),
-			v: t("Mười tiêu chí: khớp năng lượng, chọn lọc, dẫn điện, truyền quang, thụ động hóa, tương thích hóa học, quy trình, độ bền, sản xuất, chi phí–an toàn.", "Ten criteria: alignment, selectivity, conductivity, transmission, passivation, chemical compatibility, process, stability, manufacturability, cost–safety.")
-		},
-		{
-			k: t("Không có điểm số", "No scores"),
-			v: t("Bảng dùng nhãn định tính (ưu điểm, đánh đổi, cần kiểm chứng) kèm nguồn; không gán điểm số tùy ý.", "The table uses qualitative labels (advantage, trade-off, needs validation) with sources; no arbitrary numeric scores.")
-		},
-		{
-			k: t("Mức năng lượng", "Energy levels"),
-			v: t("Sơ đồ chỉ là khái niệm, không có giá trị số.", "The diagram is conceptual and has no numerical values.")
-		}
-	],
-	factRefs: [
-		101,
-		102,
-		103,
-		104,
-		105,
-		106
-	],
-	steps: [
-		step(t("Chọn điện cực trong suốt", "Choose the transparent electrode"), t("Điện cực trong suốt phải truyền ánh sáng tới và đồng thời dẫn điện. So sánh hai điện cực giả định: một cái rất trong suốt nhưng dẫn kém, một cái cân bằng giữa truyền quang và dẫn điện. Các tính chất này chỉ để minh họa, không phải số đo.", "The transparent electrode must let light through and carry current at once. Compare two hypothetical electrodes: one very transparent but poorly conducting, one balancing transmission and conductivity. These properties are illustrative, not measurements."), t("Một điện cực chỉ giỏi một việc vẫn làm hỏng cả pin.", "An electrode that is good at only one job still ruins the cell."), "1", 10, [105], { info: t("Tính chất của hai điện cực này là giả định để minh họa.", "The properties of these two electrodes are hypothetical, for illustration.") }),
-		step(t("Chọn tiếp xúc chọn lọc lỗ trống", "Choose the hole-selective contact"), t("Phóng to giao diện ITO – tiếp xúc chọn lọc lỗ trống – perovskite. Hai ví dụ: đơn lớp tự sắp xếp (như MeO-2PACz, 2PACz) và lớp oxit NiOₓ. Chúng là lựa chọn dùng trong các kiến trúc và quy trình khác nhau, không tự động chồng cả hai vào mọi thiết bị. Tiêu chí: lấy lỗ trống, khớp mức năng lượng, chất lượng giao diện, tương thích hóa học, nhiệt độ và dung môi, điện trở tiếp xúc, độ bền.", "Zoom into the ITO – hole-selective contact – perovskite interface. Two examples: a self-assembled monolayer (such as MeO-2PACz or 2PACz) and an oxide layer, NiOₓ. They are alternatives used in different architectures and processes; they should not automatically be stacked together in every device. Criteria: hole extraction, energy alignment, interface quality, chemical compatibility, temperature and solvent compatibility, contact resistance, stability."), t("Hai cách đều có ưu điểm và nhược điểm; câu hỏi là cách nào hợp với phần còn lại của chồng lớp.", "Both have strengths and weaknesses; the question is which fits the rest of the stack."), "3", 14, [
-			102,
-			104,
-			105,
-			106
-		]),
-		step(t("Chọn lớp hấp thụ perovskite", "Choose the perovskite absorber"), t("Lớp hấp thụ phải thỏa nhiều yêu cầu khác nhau: hấp thụ mạnh, vùng cấm phù hợp, vận chuyển hạt tải, ít tái hợp, bền, và hợp với lớp kề và quy trình. Vùng cấm, độ hấp thụ, độ linh động hạt tải và độ bền là bốn tính chất khác nhau, không phải một. Phổ hấp thụ và sơ đồ vùng chỉ là khái niệm.", "The absorber must meet several different requirements: strong absorption, a suitable bandgap, carrier transport, low recombination, stability, and compatibility with neighbours and process. Bandgap, absorption, carrier mobility and stability are four different properties, not one. The spectrum and band diagram are conceptual."), t("Một lớp hấp thụ tuyệt vời về ánh sáng vẫn có thể thất bại nếu giao diện hoặc độ bền kém.", "An absorber that is excellent at catching light can still fail if its interfaces or stability are poor."), "1", 13, [101, 103]),
-		step(t("Chọn tiếp xúc chọn lọc điện tử", "Choose the electron-selective contact"), t("Ví dụ: C₆₀ hoặc PCBM, tùy kiến trúc. Lớp này cần hỗ trợ lấy điện tử hiệu quả và giảm truyền lỗ trống không mong muốn. Các đánh đổi: vận chuyển điện tích, điện trở tiếp xúc, mật độ khuyết tật, hóa học giao diện, độ phủ màng, quy trình. Không có vật liệu nào tối ưu cho mọi thành phần perovskite và mọi chồng lớp.", "Examples: C₆₀ or PCBM, depending on the architecture. This layer must support effective electron extraction and reduce unwanted hole transfer. Trade-offs: charge transport, contact resistance, defect density, interface chemistry, film coverage, process. No single material is optimal for every perovskite composition and device stack."), t("Hai fullerene gần giống nhau vẫn có ưu và nhược điểm khác nhau.", "Two similar fullerenes still have different strengths and weaknesses."), "3", 12, [103, 106]),
-		step(t("Xét lớp đệm / lớp giao diện", "Consider the buffer or interfacial layer"), t("Một lớp giao diện mỏng, tùy chọn, có thể chỉnh hóa học bề mặt, khớp mức năng lượng, thụ động hóa khuyết tật hoặc bảo vệ lớp kề. Chuyển công tắc “Lớp đệm” để xem giao diện không có và có lớp phù hợp. Kết quả thật phụ thuộc hóa học, độ dày và quy trình, và một lớp phủ hợp với chồng này có thể gây hại ở chồng khác.", "An optional, thin interfacial layer can modify surface chemistry, align energy levels, passivate defects or protect a neighbouring material. Switch the “Buffer” control to see the interface without and with a suitable layer. The real result depends on chemistry, thickness and process, and a layer that suits one stack can hurt in another."), t("Ví dụ: lớp 2D thụ động hóa rất có lợi ở pin n–i–p nhưng có thể làm hại pin p–i–n [103].", "Example: a 2D passivation layer helps n–i–p cells a lot but can harm p–i–n cells [103]."), "buf", 13, [103, 106], { info: t("Mô hình chỉ minh họa ý tưởng: không có lớp → nhiều chỗ tái hợp hơn; có lớp phù hợp → giảm tổn thất giao diện.", "The model only illustrates the idea: no layer → more recombination sites; a suitable layer → reduced interface losses.") }),
-		step(t("Chọn điện cực và chiến lược bảo vệ", "Choose the electrode and the protection strategy"), t("Làm nổi bật điện cực kim loại và lớp đóng gói. Thiết bị cần không chỉ tiếp xúc điện mà còn một chiến lược bảo vệ chung để giới hạn hơi ẩm, oxy và các tác nhân môi trường khác. Điện cực và đóng gói không tự động ngăn mọi hư hỏng: ánh sáng và nhiệt vẫn có thể gây di chuyển ion bên trong.", "The metal electrode and the encapsulation are highlighted. The device needs not only electrical contacts but a coherent protection strategy that limits moisture, oxygen and other environmental stresses. Neither the electrode nor the encapsulation automatically prevents all degradation: light and heat can still drive ion migration inside."), t("Bảo vệ là một phần của thiết kế chồng lớp, không phải thứ thêm vào sau cùng.", "Protection is part of the stack design, not an afterthought."), "1", 12, [38, 103]),
-		step(t("So sánh các ứng viên", "Compare the candidates"), t("Chọn một lớp trong cột bên để xem bảng so sánh mười tiêu chí. Ô được gắn nhãn ưu điểm, đánh đổi hoặc cần kiểm chứng, mỗi ô kèm nguồn; không có điểm số tùy ý. Nhiều ô là “cần kiểm chứng” vì bộ nguồn của chương này chưa đủ bằng chứng — và đó là thông tin trung thực.", "Pick a layer in the side column to see the ten-criterion comparison table. Cells are labelled advantage, trade-off or needs validation, each with its source; there are no arbitrary scores. Many cells say “needs validation” because this chapter's source set lacks the evidence — and that is honest information."), t("Chọn vật liệu là cân bằng nhiều yêu cầu; cải thiện một tính chất có thể tạo vấn đề ở nơi khác.", "Choosing materials is balancing many requirements; improving one property can create a problem elsewhere."), "1", 12, [
-			101,
-			102,
-			103,
-			104,
-			105,
-			106
-		], { final: true })
-	]
-};
-/** Conceptual energy-level scenarios (no numbers). */
-var ENERGY = [
-	{
-		id: "good",
-		name: t("Khớp thuận lợi", "Favourable alignment"),
-		text: t("Mức năng lượng của hai tiếp xúc nằm đúng phía so với perovskite: điện tử có đường xuống dốc về ETL, lỗ trống có đường về HTL.", "The contacts' energy levels sit on the right side of the perovskite's: electrons have a downhill path to the ETL, holes a path to the HTL.")
-	},
-	{
-		id: "barrier",
-		name: t("Bền nhưng lệch mức", "Stable but misaligned"),
-		text: t("Một vật liệu có thể bền hóa học mà vẫn lệch mức năng lượng: lỗ trống gặp một rào khi vào HTL. Bền không đồng nghĩa với phù hợp về điện.", "A material can be chemically stable and still be misaligned: holes meet a barrier entering the HTL. Stable does not mean electrically suitable.")
-	},
-	{
-		id: "hard",
-		name: t("Khớp nhưng khó chế tạo", "Aligned but hard to make"),
-		text: t("Mức năng lượng đẹp nhưng vật liệu khó phủ đều, không hợp dung môi hoặc kém bền: hấp dẫn về điện nhưng khó đưa vào sản xuất.", "The levels look attractive but the material is hard to coat uniformly, clashes with the solvent or is unstable: electronically attractive, difficult to put into production.")
-	}
-];
-var AMB = t("Môi trường (23 ± 4 °C)", "Ambient (23 ± 4 °C)");
-var AMBRH = t("Môi trường xung quanh", "Ambient");
-var NONE = t("Không dùng", "None");
-var SIM = t("Mô phỏng mặt trời", "Solar simulator");
-var OC = "OC";
-var MPPOC = t("MPP hoặc OC", "MPP or OC");
-var ISO_FAMILIES = [
-	{
-		fam: "D",
-		name: t("Lưu trữ trong tối (ISOS-D)", "Dark storage (ISOS-D)"),
-		what: t("Thiết bị được cất trong tối để khảo sát độ bền khi lưu trữ ở khí quyển và nhiệt độ đã nêu.", "The device is stored in the dark to investigate storage stability under the stated atmosphere and temperature."),
-		rows: [
-			{
-				id: "D-1",
-				light: NONE,
-				temp: AMB,
-				rh: AMBRH,
-				env: t("Không khí môi trường", "Ambient air"),
-				load: OC
-			},
-			{
-				id: "D-2",
-				light: NONE,
-				temp: "65, 85 °C",
-				rh: AMBRH,
-				env: t("Lò, không khí môi trường", "Oven, ambient air"),
-				load: OC
-			},
-			{
-				id: "D-3",
-				light: NONE,
-				temp: "65, 85 °C",
-				rh: "85%",
-				env: t("Buồng môi trường", "Environmental chamber"),
-				load: OC
-			}
-		]
-	},
-	{
-		fam: "V",
-		name: t("Phân cực điện trong tối (ISOS-V)", "Electrical bias in the dark (ISOS-V)"),
-		what: t("Thiết bị chịu một điện áp phân cực trong tối, vì phân cực điện có thể kích hoạt di chuyển ion.", "The device is held at an electrical bias in the dark, because bias can trigger ion migration."),
-		rows: [
-			{
-				id: "V-1",
-				light: NONE,
-				temp: AMB,
-				rh: AMBRH,
-				env: t("Không khí môi trường", "Ambient air"),
-				load: t("Phân cực điện (xem Bảng 1)", "Electrical bias (see Table 1)")
-			},
-			{
-				id: "V-2",
-				light: NONE,
-				temp: "65, 85 °C",
-				rh: AMBRH,
-				env: t("Lò, không khí môi trường", "Oven, ambient air"),
-				load: t("Phân cực điện (xem Bảng 1)", "Electrical bias (see Table 1)")
-			},
-			{
-				id: "V-3",
-				light: NONE,
-				temp: "65, 85 °C",
-				rh: "85%",
-				env: t("Buồng môi trường", "Environmental chamber"),
-				load: t("Phân cực điện (xem Bảng 1)", "Electrical bias (see Table 1)")
-			}
-		]
-	},
-	{
-		fam: "L",
-		name: t("Chiếu sáng liên tục (ISOS-L)", "Light soaking (ISOS-L)"),
-		what: t("Thiết bị được chiếu sáng trong điều kiện được báo cáo rõ. Ánh sáng có thể ảnh hưởng hóa học vật liệu, sự phân bố lại ion và hiệu suất.", "The device is illuminated under explicitly reported conditions. Light can affect material chemistry, ion redistribution and device performance."),
-		rows: [
-			{
-				id: "L-1",
-				light: SIM,
-				temp: AMB,
-				rh: AMBRH,
-				env: t("Chỉ ánh sáng", "Light only"),
-				load: MPPOC
-			},
-			{
-				id: "L-2",
-				light: SIM,
-				temp: "65, 85 °C",
-				rh: AMBRH,
-				env: t("Ánh sáng và nhiệt độ", "Light & temperature"),
-				load: MPPOC
-			},
-			{
-				id: "L-3",
-				light: SIM,
-				temp: "65, 85 °C",
-				rh: "~50%",
-				env: t("Ánh sáng, nhiệt độ và độ ẩm", "Light, temperature & RH"),
-				load: "MPP"
-			}
-		]
-	},
-	{
-		fam: "O",
-		name: t("Ngoài trời (ISOS-O)", "Outdoor exposure (ISOS-O)"),
-		what: t("Thiết bị được thử ngoài trời trong khi các yếu tố môi trường và điện được theo dõi hoặc báo cáo.", "The device is tested outdoors while the relevant environmental and electrical conditions are monitored or reported."),
-		rows: [
-			{
-				id: "O-1",
-				light: t("Ánh nắng", "Sunlight"),
-				temp: AMBRH,
-				rh: AMBRH,
-				env: t("Ngoài trời", "Outdoor"),
-				load: MPPOC
-			},
-			{
-				id: "O-2",
-				light: t("Ánh nắng", "Sunlight"),
-				temp: AMBRH,
-				rh: AMBRH,
-				env: t("Ngoài trời", "Outdoor"),
-				load: MPPOC
-			},
-			{
-				id: "O-3",
-				light: t("Ánh nắng", "Sunlight"),
-				temp: AMBRH,
-				rh: AMBRH,
-				env: t("Ngoài trời", "Outdoor"),
-				load: "MPP"
-			}
-		]
-	},
-	{
-		fam: "T",
-		name: t("Chu kỳ nhiệt trong tối (ISOS-T)", "Thermal cycling in the dark (ISOS-T)"),
-		what: t("Nhiệt độ thay đổi theo chu kỳ để khảo sát tác hại của các lần đổi nhiệt lặp lại.", "The temperature is cycled to investigate the effect of repeated thermal changes."),
-		rows: [
-			{
-				id: "T-1",
-				light: NONE,
-				temp: t("Nhiệt độ phòng đến 65, 85 °C", "Room temp. to 65, 85 °C"),
-				rh: AMBRH,
-				env: t("Bàn nhiệt / lò", "Hot plate / oven"),
-				load: OC
-			},
-			{
-				id: "T-2",
-				light: NONE,
-				temp: t("Nhiệt độ phòng đến 65, 85 °C", "Room temp. to 65, 85 °C"),
-				rh: AMBRH,
-				env: t("Lò / buồng môi trường", "Oven / environmental chamber"),
-				load: OC
-			},
-			{
-				id: "T-3",
-				light: NONE,
-				temp: "−40 → +85 °C",
-				rh: t("< 55% (kiểm soát khi > 40 °C)", "< 55% (controlled above 40 °C)"),
-				env: t("Buồng môi trường", "Environmental chamber"),
-				load: OC
-			}
-		]
-	},
-	{
-		fam: "LC",
-		name: t("Chu kỳ sáng–tối (ISOS-LC)", "Light–dark cycling (ISOS-LC)"),
-		what: t("Bật tắt ánh sáng mô phỏng chu kỳ 2, 8 hoặc 24 giờ để thấy phần hư hỏng có thể phục hồi trong tối (chu kỳ ngày–đêm).", "Simulated sunlight is switched on and off with cycle periods of 2, 8 or 24 h to reveal damage that recovers in the dark (day–night cycles)."),
-		rows: [
-			{
-				id: "LC-1",
-				light: t("Mô phỏng mặt trời / tối; chu kỳ 2, 8, 24 giờ; sáng:tối 1:1 hoặc 1:2", "Solar simulator / dark; cycle 2, 8 or 24 h; light:dark 1:1 or 1:2"),
-				temp: AMB,
-				rh: AMBRH,
-				env: t("Chỉ ánh sáng", "Light only"),
-				load: MPPOC
-			},
-			{
-				id: "LC-2",
-				light: t("Như LC-1", "As LC-1"),
-				temp: "65, 85 °C",
-				rh: AMBRH,
-				env: t("Ánh sáng và nhiệt độ", "Light & temperature"),
-				load: MPPOC
-			},
-			{
-				id: "LC-3",
-				light: t("Như LC-1", "As LC-1"),
-				temp: "65, 85 °C",
-				rh: "< 50%",
-				env: t("Ánh sáng, nhiệt độ và độ ẩm", "Light, temperature & RH"),
-				load: "MPP"
-			}
-		]
-	},
-	{
-		fam: "LT",
-		name: t("Chu kỳ sáng–ẩm–nhiệt (ISOS-LT)", "Light–humidity–thermal cycling (ISOS-LT)"),
-		what: t("Thiết bị chịu ánh sáng cùng độ ẩm và nhiệt độ thay đổi, mô phỏng biến thiên ngày–mùa của thời tiết.", "The device sees light together with changing humidity and temperature, resembling diurnal and seasonal weather variation."),
-		rows: [
-			{
-				id: "LT-1",
-				light: SIM,
-				temp: t("Tăng giảm tuyến tính hoặc bậc: phòng → 65 °C", "Linear or step ramp: room → 65 °C"),
-				rh: t("Chỉ theo dõi, không kiểm soát", "Monitored, uncontrolled"),
-				env: t("Buồng thời tiết", "Weathering chamber"),
-				load: MPPOC
-			},
-			{
-				id: "LT-2",
-				light: SIM,
-				temp: t("Tăng giảm tuyến tính 5 → 65 °C", "Linear ramp 5 → 65 °C"),
-				rh: t("Theo dõi; kiểm soát 50% khi > 40 °C", "Monitored; controlled at 50% above 40 °C"),
-				env: t("Buồng môi trường có đèn mô phỏng", "Environmental chamber with sun simulator"),
-				load: MPPOC
-			},
-			{
-				id: "LT-3",
-				light: SIM,
-				temp: t("Tăng giảm tuyến tính −25 → 65 °C", "Linear ramp −25 → 65 °C"),
-				rh: t("Theo dõi; kiểm soát 50% khi > 40 °C", "Monitored; controlled at 50% above 40 °C"),
-				env: t("Buồng có đèn mô phỏng và làm lạnh", "Chamber with sun simulator and freezing"),
-				load: MPPOC
-			}
-		]
-	}
-];
-var ISO_HEAD = {
-	id: t("Mã", "Code"),
-	light: t("Nguồn sáng", "Light source"),
-	temp: t("Nhiệt độ", "Temperature"),
-	rh: t("Độ ẩm tương đối", "Relative humidity"),
-	env: t("Môi trường / bố trí", "Environment / set-up"),
-	load: t("Tải điện", "Electrical load")
-};
-/** The checklist of the reporting framework (the consensus statement's Table 3, grouped). */
-var CHECKLIST = [
-	{
-		id: "arch",
-		name: t("Kiến trúc thiết bị", "Device architecture"),
-		why: t("Để biết chồng lớp nào được thử.", "So the reader knows which stack was tested.")
-	},
-	{
-		id: "area",
-		name: t("Diện tích hoạt động và loại mẫu", "Active area and sample type"),
-		why: t("Ô, mini-module hay module cho kết quả khác nhau.", "Cells, mini-modules and modules behave differently.")
-	},
-	{
-		id: "init",
-		name: t("Hiệu suất ban đầu và cách đo", "Initial performance and measurement method"),
-		why: t("Cần để biết giá trị 100% là gì.", "Needed to know what 100% refers to.")
-	},
-	{
-		id: "light",
-		name: t("Nguồn sáng, phổ, cường độ", "Light source, spectrum, intensity"),
-		why: t("“AM1.5G” mà không nêu nguồn sáng là chưa đủ.", "“AM1.5G” without naming the source is not enough.")
-	},
-	{
-		id: "temp",
-		name: t("Nhiệt độ", "Temperature"),
-		why: t("Cả trong bóng tối và khi chiếu sáng.", "In the dark and under illumination.")
-	},
-	{
-		id: "rh",
-		name: t("Độ ẩm tương đối", "Relative humidity"),
-		why: t("Kể cả khi không được kiểm soát vẫn phải ghi lại.", "Even if uncontrolled it should still be monitored and reported.")
-	},
-	{
-		id: "atm",
-		name: t("Khí quyển", "Atmosphere"),
-		why: t("Không khí, hộp găng, túi kín, buồng môi trường…", "Air, glovebox, sealed pouch, environmental chamber…")
-	},
-	{
-		id: "bias",
-		name: t("Điện áp đặt hoặc điều kiện làm việc", "Applied bias or operating condition"),
-		why: t("Hở mạch, điểm công suất cực đại, ngắn mạch…", "Open circuit, maximum power point, short circuit…")
-	},
-	{
-		id: "enc",
-		name: t("Chi tiết đóng gói", "Encapsulation details"),
-		why: t("Vật liệu, độ dày, keo viền; có hay không đóng gói.", "Materials, thickness, edge sealant; encapsulated or not.")
-	},
-	{
-		id: "dur",
-		name: t("Thời gian thử", "Test duration"),
-		why: t("Thời gian chịu ứng suất và tổn thất tương ứng.", "Stress duration and the matching performance loss.")
-	},
-	{
-		id: "freq",
-		name: t("Tần suất ghi dữ liệu", "Data-collection frequency"),
-		why: t("Tần suất đo J–V hoặc theo dõi MPP.", "How often J–V curves or MPP tracking were recorded.")
-	},
-	{
-		id: "n",
-		name: t("Số mẫu và độ biến thiên", "Sample count and variability"),
-		why: t("Một mẫu duy nhất không thể nói về độ lặp lại.", "A single sample says nothing about reproducibility.")
-	},
-	{
-		id: "norm",
-		name: t("Chỉ số chuẩn hóa", "Normalised performance metric"),
-		why: t("Phải nêu giá trị dùng để chuẩn hóa.", "State the value the curve is normalised to.")
-	},
-	{
-		id: "stop",
-		name: t("Tiêu chí hỏng hoặc dừng thử", "Failure or stopping criterion"),
-		why: t("Nếu có dùng.", "If one was used.")
-	},
-	{
-		id: "src",
-		name: t("Trích dẫn nguồn", "Source citation"),
-		why: t("Để người đọc kiểm tra được.", "So the reader can check it.")
-	}
-];
-var ISO_TEXT = {
-	isosName: t("ISOS: International Summit on Organic PV Stability", "ISOS: International Summit on Organic Photovoltaic Stability"),
-	isosWhat: t("Một họ quy trình thử và báo cáo độ bền, ban đầu cho pin hữu cơ rồi được điều chỉnh cho perovskite [38].", "A family of stability-testing and reporting procedures, first made for organic cells and then adapted for perovskites [38]."),
-	notCert: t("ISOS là quy trình nghiên cứu và báo cáo, không phải chứng nhận đạt/trượt về tuổi thọ, và không thay thế các tiêu chuẩn chứng nhận sản phẩm.", "ISOS protocols are research testing and reporting procedures. They are not a universal pass/fail certification of lifetime, and they do not replace product-qualification standards."),
-	illustrative: t("DỮ LIỆU MINH HỌA — KHÔNG PHẢI KẾT QUẢ THỰC NGHIỆM.", "ILLUSTRATIVE DATA — NOT EXPERIMENTAL RESULTS."),
-	qualL: t("Thử nghiệm nghiên cứu dựa trên ISOS", "ISOS-based research testing"),
-	qualR: t("Tiêu chuẩn chứng nhận sản phẩm PV", "PV product-qualification standards"),
-	qualLItems: [
-		t("Giúp nhà nghiên cứu khảo sát cơ chế suy giảm.", "Helps researchers investigate degradation mechanisms."),
-		t("Giúp chuẩn hóa cách báo cáo thí nghiệm.", "Helps standardise how experiments are reported."),
-		t("Làm cho việc so sánh giữa các nghiên cứu có ý nghĩa hơn khi điều kiện trùng nhau.", "Makes comparison between studies more meaningful when the conditions align."),
-		t("Không cho một chứng chỉ tuổi thọ đạt/trượt: “một pin không thể đạt hay trượt phép thử ISOS”.", "Gives no universal pass/fail lifetime certificate: “a solar cell cannot pass or fail ISOS stability tests”.")
-	],
-	qualRItems: [
-		t("Đưa ra yêu cầu chứng nhận và độ tin cậy phù hợp với sản phẩm và tiêu chuẩn liên quan (ví dụ IEC 61215 cho tấm silicon).", "Set qualification and reliability requirements appropriate to the product and standard concerned (for example IEC 61215 for silicon panels)."),
-		t("Không thể thay thế cho nhau với một thí nghiệm lão hóa ISOS đơn lẻ trong phòng thí nghiệm.", "Are not interchangeable with a single laboratory ISOS ageing experiment."),
-		t("Không bao giờ nói vượt qua một phép thử ISOS chung chung đảm bảo 25 năm hoạt động.", "Never say that passing a generic ISOS test guarantees 25 years of operation.")
-	]
-};
-var VERIFY = {
-	id: "verify",
-	scene: "sIsos",
-	section: "5.4",
-	group: "design",
-	microSwitch: true,
-	views: [
-		t("Phòng thử", "Test lab"),
-		t("Mẫu", "Sample"),
-		t("Số liệu", "Data")
-	],
-	title: t("Bước 4 — chứng minh bằng chuẩn ISOS", "Step 4 — Prove it with ISOS"),
-	sentence: t("Hiệu suất ban đầu cao chưa chứng minh pin bền; độ bền phải được đo trong điều kiện xác định và báo cáo đủ chi tiết.", "A high initial efficiency does not prove durability; stability must be measured under defined conditions and reported in detail."),
-	final: t("Cải tiến đáng tin cần cả hiệu suất ban đầu tốt và bằng chứng tái lập rằng pin giữ được hiệu suất trong điều kiện được báo cáo rõ.", "Reliable improvement requires both good initial performance and reproducible evidence that the device retains its performance under clearly reported conditions."),
-	qa: {
-		q: t("ISOS có phải chứng nhận tuổi thọ không?", "Is ISOS a lifetime certification?"),
-		a: t("Không: đó là quy trình nghiên cứu và báo cáo, không có đạt/trượt.", "No: it is a research and reporting procedure, with no pass/fail.")
-	},
-	legend: [
-		{
-			swatch: "sun",
-			label: t("Ánh sáng", "Light")
-		},
-		{
-			swatch: "c5heat",
-			label: t("Nhiệt", "Heat")
-		},
-		{
-			swatch: "c5humid",
-			label: t("Độ ẩm", "Humidity")
-		},
-		{
-			swatch: "c5shell",
-			label: t("Đóng gói", "Encapsulation")
-		}
-	],
-	simple: t("Giống như đưa một chiếc áo qua nhiều kiểu thử: giặt, phơi nắng, mưa. Mỗi phép thử cho biết một điểm yếu khác nhau.", "Like putting a coat through different tests: washing, sun, rain. Each test shows a different weakness."),
-	options: "none",
-	brief: true,
-	controls: [
-		panelCtl("open"),
-		seg$1("iso", t("Nhóm thử", "Test group"), [
-			["D", "D"],
-			["V", "V"],
-			["L", "L"],
-			["O", "O"],
-			["T", "T"],
-			["LC", "LC"],
-			["LT", "LT"]
-		], "L", [
-			1,
-			2,
-			3
-		]),
-		seg$1("lvl", t("Mức", "Level"), [
-			["1", "1"],
-			["2", "2"],
-			["3", "3"]
-		], "2", [
-			1,
-			2,
-			3
-		])
-	],
-	factList: [
-		{
-			k: t("Câu hỏi của bước này", "Question of this step"),
-			v: t("Làm sao đánh giá pin còn giữ được hiệu suất theo thời gian?", "How do researchers evaluate whether the device remains stable over time?")
-		},
-		{
-			k: "ISOS",
-			v: ISO_TEXT.isosWhat
-		},
-		{
-			k: t("Điều ISOS không phải", "What ISOS is not"),
-			v: ISO_TEXT.notCert
-		},
-		{
-			k: t("Số liệu trên biểu đồ", "Chart data"),
-			v: t("Các đường cong là minh họa, không phải kết quả thí nghiệm của bài báo nào.", "The curves are illustrative; they are not the experimental result of any paper.")
-		},
-		{
-			k: t("Điều kiện thử", "Test conditions"),
-			v: t("Chép từ Bảng 1 của tuyên bố đồng thuận [38]; không tự bịa mã giao thức, thời lượng hay điều kiện.", "Copied from Table 1 of the consensus statement [38]; no protocol code, duration or condition is invented.")
-		}
-	],
-	factRefs: [38, 103],
-	steps: [
-		step(t("Đo hiệu suất ban đầu", "Measure the initial performance"), t("Mẫu chưa lão hóa được đo trước. Cần ghi lại: hiệu suất chuyển đổi ban đầu (PCE), công suất cực đại, nhiệt độ thử, cường độ và phổ ánh sáng, độ ẩm, tình trạng đóng gói, diện tích và loại thiết bị. Hiệu suất ban đầu không phải độ bền lâu dài.", "The un-aged sample is measured first. Record: initial power conversion efficiency (PCE), maximum power output, test temperature, light intensity and spectrum, humidity, encapsulation status, device area and device type. Initial efficiency is not long-term stability."), t("Không có giá trị ban đầu rõ ràng thì không biết “100%” là gì.", "Without a clear initial value, nobody knows what “100%” means."), "1", 9, [38], { info: t("Bảng bên liệt kê điều phải ghi; các giá trị điền sẵn lấy từ giao thức đã chọn ở bước sau.", "The side table lists what must be recorded; the pre-filled values come from the protocol chosen in the next step.") }),
-		step(t("Chọn một điều kiện thử", "Choose a test condition"), t("Chọn nhóm thử: lưu trữ trong tối (D), phân cực trong tối (V), chiếu sáng (L), ngoài trời (O), chu kỳ nhiệt (T), chu kỳ sáng–tối (LC) hoặc chu kỳ sáng–ẩm–nhiệt (LT). Không phòng thí nghiệm nào dùng tất cả; mỗi nhóm có ba mức phức tạp tăng dần.", "Choose a test group: dark storage (D), bias in the dark (V), light soaking (L), outdoor (O), thermal cycling (T), light–dark cycling (LC) or light–humidity–thermal cycling (LT). No laboratory uses all of them; each group has three levels of increasing sophistication."), t("Mỗi nhóm thử một điểm yếu khác nhau.", "Each group probes a different weakness."), "2", 12, [38]),
-		step(t("Cấu hình điều kiện ứng suất", "Configure the stress conditions"), t("Buồng thử hiện các biến của nhóm đã chọn: ánh sáng, nhiệt độ, độ ẩm, khí quyển, tải điện. Chỉ hiện các điều khiển phù hợp: không có thanh trượt trộn các quy trình không tương thích. Một kịch bản tự chế không tự động là phép thử ISOS tiêu chuẩn.", "The chamber shows the variables of the chosen group: light, temperature, humidity, atmosphere, electrical load. Only appropriate controls appear: there is no slider that mixes incompatible protocols. A custom scenario is not automatically a standard ISOS test."), t("Điều kiện phải được nói ra, nếu không kết quả không so sánh được.", "The conditions must be stated, otherwise results cannot be compared."), "1", 13, [38]),
-		step(t("Bắt đầu lão hóa", "Begin ageing"), t("Mẫu vào buồng và chịu ứng suất đã chọn; thiết bị đo ghi lại đáp ứng. Biểu đồ trong cột bên là minh họa: DỮ LIỆU MINH HỌA — KHÔNG PHẢI KẾT QUẢ THỰC NGHIỆM.", "The sample enters the chamber and sees the chosen stress; the instrument records the response. The chart in the side column is illustrative: ILLUSTRATIVE DATA — NOT EXPERIMENTAL RESULTS."), t("Đường cong chỉ cho thấy các kiểu hành vi có thể xảy ra, không phải số đo của bài nào.", "The curve only shows kinds of behaviour that can occur, not a measurement from any paper."), "2", 14, [38], { info: ISO_TEXT.illustrative }),
-		step(t("Theo dõi hiệu suất theo thời gian", "Track performance over time"), t("Trục ngang là thời gian thử; trục dọc là PCE chuẩn hóa (1,0 là 100% giá trị tham chiếu đã chọn). Không phải pin nào cũng suy giảm đơn điệu: vài thay đổi có thể tạm thời hoặc đảo ngược, và phụ thuộc cách đo và lịch sử thiết bị. Ví dụ ISOS-LC cho thấy phục hồi trong tối.", "The horizontal axis is test time; the vertical axis is normalised PCE (1.0 is 100% of the chosen reference value). Not every cell declines monotonically: some changes are temporary or reversible and depend on the measurement protocol and the device history. ISOS-LC, for example, reveals recovery in the dark."), t("Một đường cong chỉ có nghĩa khi biết nó được chuẩn hóa theo giá trị nào.", "A curve only means something once you know the value it is normalised to."), "3", 13, [38], { info: ISO_TEXT.illustrative }),
-		step(t("Giải thích các chỉ số độ bền", "Explain the stability metrics"), t("T80 là thời gian cho đến khi chỉ số đã chọn (ví dụ PCE) giảm còn 80% giá trị tham chiếu đã xác định, tính từ lúc bắt đầu (t = 0). TS80 tính từ một điểm khác (cực đại hoặc cuối giai đoạn “burn-in”). T95 tương tự cho 95%. Nếu chưa tới T80 trong thời gian thử, báo cáo mức giảm sau 1000 giờ. Không suy ra tuổi thọ vận hành từ một phép thử ngắn nếu không có mô hình được chứng minh.", "T80 is the time until the chosen metric (for example PCE) falls to 80% of its explicitly defined reference value, counted from the start (t = 0). TS80 counts from another point (the maximum, or the end of the “burn-in”). T95 is the same for 95%. If T80 is not reached within the test, report the decrease after 1000 h. Do not infer an operating lifetime from a short test without a justified model."), t("“T80 = 1000 giờ” chỉ có nghĩa kèm đủ điều kiện, chỉ số nào và mốc tham chiếu nào.", "“T80 = 1000 h” only means something together with the conditions, the metric and the reference."), "3", 14, [38]),
-		step(t("So sánh hai điều kiện thử", "Compare two test conditions"), t("Hai mẫu cạnh nhau: A chiếu sáng cùng nhiệt (ISOS-L-2), B nhiệt ẩm trong tối (ISOS-D-3). Hai đường cong đều minh họa và không so sánh được trực tiếp. Điều học được: các phép thử khác nhau bộc lộ những điểm yếu khác nhau. Một kết quả ở một điều kiện không chứng minh độ bền ở mọi điều kiện thực tế.", "Two samples side by side: A under light and heat (ISOS-L-2), B under damp heat in the dark (ISOS-D-3). Both curves are illustrative and not directly comparable. The lesson: different tests reveal different weaknesses. A result under one stress condition does not establish stability under every real-world condition."), t("Một bài kiểm tra tốt không thay cho tất cả các bài kiểm tra khác.", "One good test does not replace all the other tests."), "cmp", 15, [38], { info: ISO_TEXT.illustrative }),
-		step(t("Trở lại pin hoàn chỉnh", "Back to the complete solar cell"), t("Rời buồng thử, ta thấy lại toàn bộ pin. Đã đo: hiệu suất ban đầu và đáp ứng dưới một ứng suất xác định. Còn chưa biết: hành vi dưới mọi ứng suất khác, ở diện tích lớn hơn, và trong nhiều năm ngoài trời. ISOS giúp báo cáo và so sánh có trách nhiệm; nó không phải chứng nhận.", "Leaving the test chamber, we see the whole cell again. Measured: initial performance and the response under one defined stress. Still unknown: behaviour under every other stress, at larger area, and over years outdoors. ISOS helps to report and compare responsibly; it is not a certification."), t("Cải tiến đáng tin cần cả hiệu suất ban đầu tốt và bằng chứng độ bền tái lập được.", "Reliable improvement needs both good initial performance and reproducible stability evidence."), "1", 13, [38], { final: true })
-	]
-};
-var FIN_STAGES = [
-	{
-		n: "1",
-		name: t("Chọn kiến trúc", "Choose the architecture"),
-		sub: t("Chồng lớp p–i–n", "p–i–n stack"),
-		line: t("Thứ tự lớp xác lập cấu trúc lấy điện tích của thiết bị.", "The layer order establishes the device's charge-extraction structure.")
-	},
-	{
-		n: "2",
-		name: t("Xác định chức năng từng lớp", "Define the primary function of each layer"),
-		sub: t("Hấp thụ + vận chuyển chọn lọc + thu điện", "Absorption + selective charge transport + electrical collection"),
-		line: t("Các lớp phải phối hợp để tạo dòng điện hữu ích.", "The layers must cooperate to create useful current.")
-	},
-	{
-		n: "3",
-		name: t("Biện minh lựa chọn vật liệu", "Justify the material choices"),
-		sub: t("Khớp năng lượng + tương thích giao diện + khả năng chế tạo + độ bền", "Energy alignment + interface compatibility + processability + stability"),
-		line: t("Các vật liệu phải hoạt động tốt cùng nhau trong cả chồng lớp.", "The material choices must work together as a complete stack.")
-	},
-	{
-		n: "4",
-		name: t("Kiểm chứng độ bền", "Verify stability"),
-		sub: t("Điều kiện ứng suất xác định + hiệu suất đo được + báo cáo minh bạch", "Defined stress conditions + measured performance + transparent reporting"),
-		line: t("Thiết bị phải được đánh giá vượt ra ngoài hiệu suất ban đầu.", "The device must be evaluated beyond its initial efficiency.")
-	}
-];
-registerStories([
-	PIN,
-	FUNC,
-	WHY,
-	VERIFY,
-	{
-		id: "c5fin",
-		scene: "sFin",
-		section: "5.5",
-		group: "design",
-		microSwitch: false,
-		views: [
-			t("Toàn thiết bị", "Device"),
-			t("Các lớp", "Layers"),
-			t("Giao diện", "Interface")
-		],
-		title: t("Tổng hợp — từ kiến trúc đến bằng chứng", "Putting it together — from architecture to evidence"),
-		sentence: t("Bốn bước nối thành một vòng: kiến trúc, chức năng, vật liệu, rồi bằng chứng độ bền để thiết kế lại.", "The four steps form one loop: architecture, function, materials, then stability evidence to redesign."),
-		final: t("Một pin perovskite tốt hơn không chỉ là một lớp hấp thụ hiệu suất cao. Đó là một chồng lớp được thiết kế tốt từ các vật liệu tương thích, với hiệu suất và độ bền được chứng minh bằng các phép thử tái lập.", "A better perovskite solar cell is not just a high-efficiency absorber. It is a well-designed stack made from compatible materials, with performance and stability demonstrated using reproducible tests."),
-		qa: {
-			q: t("Vòng thiết kế đi qua những gì?", "What does the design loop go through?"),
-			a: t("Kiến trúc → chức năng lớp → vật liệu và giao diện → thử độ bền → thiết kế lại dựa trên bằng chứng.", "Architecture → layer functions → materials and interfaces → stability testing → evidence-based redesign.")
-		},
-		legend: [],
-		options: "none",
-		brief: true,
-		controls: [panelCtl("open")],
-		steps: [...FIN_STAGES.map((s, i) => step(t(`Giai đoạn ${s.n}: ${s.name}`, `Stage ${s.n}: ${STORY_EN[s.name] ?? s.name}`), s.line, s.sub, i === 3 ? "2" : i === 2 ? "3" : "1", 10, i === 0 ? [101, 102] : i === 1 ? [102, 103] : i === 2 ? [
-			104,
-			105,
-			106
-		] : [38])), step(t("Vòng khép lại: thiết kế lại dựa trên bằng chứng", "Closing the loop: evidence-based redesign"), t("Kết quả thử độ bền quay lại kiến trúc, lớp và vật liệu: chỗ nào hỏng thì sửa chỗ đó, rồi thử lại. Chuỗi này là: kiến trúc → chức năng lớp → vật liệu và giao diện → thử độ bền → thiết kế lại dựa trên bằng chứng.", "The stability results flow back into the architecture, layers and materials: fix what failed and test again. The chain is: architecture → layer functions → materials and interfaces → stability testing → evidence-based redesign."), t("Cải tiến là một vòng lặp, không phải một lần chọn.", "Improvement is a loop, not a single choice."), "1", 12, [38, 101], { final: true })]
-	}
-]);
+t("ITO", "ITO"), t("Là điện cực trong suốt trong các chồng lớp ITO/SAM/perovskite/C₆₀ của các bài tổng quan.", "It is the transparent electrode in the ITO / SAM / perovskite / C₆₀ stacks of the reviews."), t("Phải cân bằng độ trong suốt với độ dẫn; bài này không có số liệu so sánh các điện cực.", "Transparency has to be balanced against conductivity; this chapter has no data comparing electrodes."), t("Nhóm neo của SAM gắn vào bề mặt ITO; nhóm neo có tính axit mạnh có thể gây ăn mòn.", "A SAM's anchoring group binds to the ITO surface; strongly acidic anchors can cause corrosion."), t("Chưa đánh giá ở đây; xem bài gốc.", "Not assessed here; see the original papers."), t("Neo axit có thể ăn mòn ITO; neo ít axit giảm ăn mòn.", "Acidic anchors can corrode ITO; low-acidity anchors reduce it."), t("Điện cực trong suốt khác", "Other transparent electrodes"), t("Tùy thiết kế thiết bị, các điện cực trong suốt khác cũng được dùng.", "Depending on the device design, other transparent electrodes are used."), t("Chưa có bằng chứng so sánh trong bộ nguồn của chương này.", "No comparative evidence in this chapter's source set."), t("Cần kiểm chứng.", "Needs validation."), t("Cần kiểm chứng.", "Needs validation."), t("SAM (2PACz, MeO-2PACz)", "SAM (2PACz, MeO-2PACz)"), t("Lớp đơn phân tử cực mỏng, nhóm neo gắn vào ITO nên dịch chuyển công thoát và giảm khuyết tật bề mặt; các SAM như MeO-2PACz/2PACz được báo cáo là khớp năng lượng thuận lợi và giảm tái hợp không bức xạ.", "An extremely thin molecular layer whose anchoring group binds ITO, shifting the work function and reducing surface defects; SAMs such as MeO-2PACz / 2PACz are reported with favourable energy alignment and reduced non-radiative recombination."), t("Loại nhóm neo còn ít; độ axit ảnh hưởng độ bền; một dẫn xuất chỉ giữ khoảng 60% sau 1600 giờ trong bài tổng quan; mức khớp năng lượng nhỏ nhất chưa chắc cho hiệu suất cao nhất.", "Few anchoring-group types; acidity affects stability; one derivative kept only about 60% after 1600 h in the review; the smallest energy offset does not always give the best performance."), t("Cần phủ kín bề mặt ITO; nhóm đầu quyết định tương tác với perovskite (ví dụ phối trí với Pb²⁺).", "It must cover the ITO surface; the head group sets the interaction with the perovskite (for example coordination to Pb²⁺)."), t("Phần lớn xử lý dung dịch; lắng đọng chân không chưa phổ biến nhưng đã được báo cáo cho 2PACz.", "Mostly solution-processed; vacuum deposition is not widespread but has been reported for 2PACz."), t("Điều chỉnh được công thoát, nhưng mức lệch nhỏ nhất không phải lúc nào cũng tốt nhất.", "Work function is tunable, but the smallest offset is not always best."), t("Đóng vai lớp vận chuyển lỗ trống trong pin p–i–n.", "Works as the hole-transporting layer in p–i–n cells."), t("Giảm khuyết tật bề mặt ITO; nhóm đầu có thể thụ động hóa perovskite.", "Reduces ITO surface defects; the head group can passivate the perovskite."), t("Nhóm neo axit có thể ăn mòn ITO; neo axit boronic ít axit giảm ăn mòn.", "Acidic anchors can corrode ITO; a low-acidity boronic-acid anchor reduced corrosion."), t("Chủ yếu xử lý dung dịch; chân không ít dùng.", "Mostly solution-processed; vacuum deposition is rarely used."), t("Tùy phân tử: một số kém bền do độ axit.", "Molecule-dependent: some are less stable because of acidity."), t("Tổng hợp đơn giản, dùng rất ít phân tử, hợp diện tích lớn.", "Simple synthesis, tiny amounts of molecule, suited to large area."), t("NiOₓ", "NiOₓ"), t("Oxit trong suốt, lấy điện tích hiệu quả và mức năng lượng phù hợp với perovskite theo bài tổng quan.", "A transparent oxide that, according to the review, extracts charge efficiently and has energy levels matched to the perovskite."), t("Độ dẫn của NiOₓ cần được cải thiện bằng pha tạp; giao diện oxit/perovskite có tái hợp, mức năng lượng chưa tối ưu và ăn mòn hóa học.", "NiOₓ conductivity is improved by doping; the oxide/perovskite interface shows recombination, non-optimal levels and chemical corrosion."), t("Một SAM có thể được đặt giữa oxit và perovskite để giảm các vấn đề này, nên NiOₓ và SAM có thể là bổ sung chứ không chỉ là lựa chọn thay thế.", "A SAM can be placed between the oxide and the perovskite to ease these problems, so NiOₓ and a SAM can be complementary and not only alternatives."), t("Chưa đánh giá ở đây.", "Not assessed here."), t("Được mô tả là khớp năng lượng, nhưng giao diện oxit/perovskite có mức chưa tối ưu.", "Described as energy-matched, yet the oxide/perovskite interface shows non-optimal levels."), t("Pha tạp được dùng để tăng độ dẫn.", "Doping is used to raise conductivity."), t("Độ truyền quang cao.", "High transmissivity."), t("Có tái hợp ở giao diện oxit/perovskite.", "Recombination occurs at the oxide/perovskite interface."), t("Có ăn mòn hóa học giữa oxit và perovskite.", "Chemical corrosion occurs between oxide and perovskite."), t("PTAA (polyme)", "PTAA (polymer)"), t("Màng polyme đặc, đồng đều, kỵ nước nên có thể có lợi cho độ bền.", "A dense, uniform polymer film; its hydrophobicity can favour stability."), t("Dẫn điện kém, bị hỏng do tia UV, năng lượng bề mặt cao nên khó thấm ướt bằng dung dịch perovskite.", "Poor conductivity, UV-induced degradation, and a high surface energy that makes the perovskite solution hard to spread."), t("Khó thấm ướt là vấn đề giao diện chính.", "Poor wetting is the main interface issue."), t("Xử lý dung dịch.", "Solution-processed."), t("Dẫn điện kém.", "Poor electrical conductivity."), t("Thấm ướt kém bởi dung dịch perovskite.", "Poorly wetted by the perovskite solution."), t("Kỵ nước có lợi; nhưng bị hỏng do UV.", "Hydrophobic is helpful; but UV degrades it."), t("C₆₀", "C₆₀"), t("Fullerene: mức năng lượng phù hợp, độ linh động điện tử tốt và tạo màng đơn giản (nói chung cho fullerene).", "A fullerene: applicable energy levels, good electron mobility and simple film forming (said of fullerenes in general)."), t("Giao diện C₆₀/perovskite tái hợp mạnh; huỳnh quang màng giảm 1–2 bậc độ lớn.", "The C₆₀/perovskite interface recombines strongly; film photoluminescence drops by one to two orders of magnitude."), t("Thường có thêm lớp đệm (BCP) giữa C₆₀ và kim loại.", "A buffer (BCP) is often added between C₆₀ and the metal."), t("Chưa đánh giá ở đây.", "Not assessed here."), t("Fullerene có mức năng lượng phù hợp.", "Fullerenes have applicable energy levels."), t("Độ linh động điện tử tốt.", "Good electron mobility."), t("Tái hợp mạnh ở giao diện C₆₀/perovskite.", "Strong recombination at the C₆₀/perovskite interface."), t("Tạo màng đơn giản (fullerene nói chung).", "Simple film forming (fullerenes in general)."), t("PCBM", "PCBM"), t("Dẫn xuất fullerene tan được, cũng được dùng rộng rãi làm ETL trong pin đảo.", "A soluble fullerene derivative, also widely used as an ETL in inverted cells."), t("Bài tổng quan nêu dẫn điện kém và tái hợp điện tích đáng kể; cải thiện bằng chỉnh sửa giao diện hoặc pha tạp.", "The review notes poor conductivity and serious charge recombination; interface modification or doping is used to improve it."), t("Thường kèm một lớp đệm ở giao diện với kim loại, ví dụ BCP.", "Often paired with a buffer at the metal interface, for example BCP."), t("Chưa đánh giá ở đây.", "Not assessed here."), t("Fullerene có mức năng lượng phù hợp.", "Fullerenes have applicable energy levels."), t("Dẫn điện kém.", "Poor electrical conductivity."), t("Tái hợp điện tích đáng kể.", "Serious charge recombination."), t("Tạo màng đơn giản (fullerene nói chung).", "Simple film forming (fullerenes in general)."), t("BCP", "BCP"), t("Màng BCP mỏng ở giao diện fullerene/kim loại được báo cáo là cải thiện tiếp xúc và ngăn tái hợp lỗ trống–điện tử ở giao diện.", "A thin BCP film at the fullerene/metal interface is reported to improve contact and prevent hole–electron recombination at the interface."), t("Bài tổng quan không bàn nhược điểm riêng của BCP; cần xem bài gốc.", "The review does not discuss BCP-specific drawbacks; see the original papers."), t("Nằm giữa ETL và kim loại.", "Sits between the ETL and the metal."), t("Chưa đánh giá ở đây.", "Not assessed here."), t("Giúp ngăn lỗ trống rò tới kim loại.", "Helps stop holes leaking to the metal."), t("Cải thiện tiếp xúc.", "Improves contact."), t("Lớp chắn oxit mỏng (SnO₂)", "Thin oxide barrier (SnO₂)"), t("Các lớp chắn (oxit indi, SnO₂, Cr) được thêm để cản di chuyển ion halide tới điện cực.", "Barrier layers (indium oxide, SnO₂, Cr) are added to hinder halide-ion migration toward the electrode."), t("Hiệu quả phụ thuộc độ dày, độ đặc khít và quy trình; có thể làm hỏng bề mặt nếu quy trình không hợp.", "Effectiveness depends on thickness, density and process; a poorly matched process could damage the surface (to be validated)."), t("Nằm giữa ETL và kim loại để cản halide.", "Sits between the ETL and the metal to hinder halides."), t("Chưa đánh giá ở đây; bài tổng quan [106] không nêu vai trò của SnO₂ lắng đọng lớp nguyên tử.", "Not assessed here; review [106] does not describe the role of atomic-layer-deposited SnO₂."), t("Cản di chuyển halide, nguyên nhân gây hỏng khi chịu sáng và nhiệt.", "Hinders halide migration, a cause of failure under light and heat."), t("Bạc / vàng / nhôm", "Silver / gold / aluminium"), t("Cả ba đều xuất hiện làm điện cực sau trong các thiết bị đã công bố.", "All three appear as back electrodes in published devices."), t("Bài tổng quan không bàn phản ứng ăn mòn kim loại–halide; cần kiểm chứng trên chồng lớp cụ thể.", "The review does not discuss metal–halide corrosion; it must be validated on the specific stack."), t("Nên tránh để halide di chuyển tới kim loại; lớp đệm/chắn được dùng.", "Mobile halides should not reach the metal; buffer or barrier layers are used."), t("Chưa đánh giá ở đây.", "Not assessed here."), t("Đóng gói", "Encapsulation"), t("Giảm tiếp xúc với hơi ẩm và oxy, và có thể giữ lại sản phẩm phân hủy dễ bay hơi.", "Reduces exposure to moisture and oxygen, and may keep volatile decomposition products in."), t("Không tự động ngăn mọi hư hỏng: sáng và nhiệt vẫn gây di chuyển ion bên trong thiết bị.", "It does not automatically stop all degradation: light and heat still drive ion migration inside the device."), t("Chi tiết đóng gói (vật liệu, độ dày, keo viền) phải được báo cáo cùng kết quả độ bền.", "Encapsulation details (materials, thickness, edge sealant) must be reported with stability results."), t("Cần kiểm chứng theo vật liệu đóng gói cụ thể.", "To be validated for the specific encapsulant."), t("Giảm tác động môi trường nhưng không loại bỏ hư hỏng do sáng và nhiệt.", "Reduces environmental effects but does not remove light- and heat-driven degradation.");
+registerStories([PIN, FUNC]);
 var C5 = {
 	layers: t("Các lớp", "Layers"),
 	materials: t("Vật liệu ví dụ", "Example materials"),
@@ -3741,6 +2264,203 @@ var C5 = {
 	hideTable: t("Ẩn bảng so sánh", "Hide table"),
 	look: t("Khác biệt tốt / kém", "Good vs poor differences"),
 	hideLook: t("Ẩn khác biệt", "Hide differences")
+};
+var MAT_COLOR = {
+	tco: HEX$2.tco,
+	htl: HEX$2.htl,
+	perov: HEX$2.perov,
+	etl: HEX$2.etl,
+	metal: HEX$2.metal
+};
+var MAT_LAYERS = [
+	{
+		id: "tco",
+		chip: t("Trong suốt", "Transparent"),
+		name: t("Điện cực trong suốt", "Transparent electrode"),
+		short: t("Ánh sáng vào, dòng điện ra", "Light in, current out"),
+		job: t("Ánh sáng vào · thu dòng", "Light in · collect current"),
+		jobCite: [106],
+		want: [t("Trong suốt", "Transparent"), t("Dẫn điện", "Conductive")],
+		examples: [{
+			n: "ITO",
+			cite: [105]
+		}, {
+			n: "FTO",
+			cite: [114]
+		}],
+		tableEx: 0,
+		matters: t("Trong suốt + dẫn điện", "Transparency + conductivity"),
+		learn: [{
+			text: t("Dẫn điện tốt hơn thường che bớt ánh sáng: phải cân bằng.", "More conductive often blocks more light: a balance."),
+			cite: []
+		}]
+	},
+	{
+		id: "htl",
+		chip: t("HTL", "HTL"),
+		name: t("Lớp chọn lọc lỗ trống (HTL)", "Hole-selective layer (HTL)"),
+		short: t("HTL · dẫn lỗ trống", "HTL · moves holes"),
+		job: t("Dẫn lỗ trống", "Moves holes"),
+		jobCite: [106, 102],
+		want: [
+			t("Dẫn lỗ trống", "Hole transport"),
+			t("Ít mất điện tích", "Low charge loss"),
+			t("Giao diện tốt", "Good interface")
+		],
+		examples: [
+			{
+				n: "NiOₓ",
+				cite: [106]
+			},
+			{
+				n: "PTAA",
+				cite: [106]
+			},
+			{
+				n: "SAMs",
+				cite: [104]
+			}
+		],
+		tableEx: 0,
+		matters: t("Chọn lọc + giao diện", "Selectivity + interface"),
+		learn: []
+	},
+	{
+		id: "perov",
+		chip: t("Perovskite", "Perovskite"),
+		name: t("Chất hấp thụ perovskite", "Perovskite absorber"),
+		short: t("Hấp thụ ánh sáng", "Absorbs sunlight"),
+		job: t("Hấp thụ ánh sáng", "Absorbs sunlight"),
+		jobCite: [106, 111],
+		want: [
+			t("Hấp thụ mạnh", "Strong absorption"),
+			t("Vùng cấm phù hợp", "Right bandgap"),
+			t("Dẫn điện tích", "Charge transport"),
+			t("Bền", "Stable")
+		],
+		examples: [{
+			n: "MAPbI₃",
+			cite: [111]
+		}, {
+			n: t("Perovskite hỗn hợp cation", "Mixed-cation perovskites"),
+			cite: [112]
+		}],
+		tableEx: 0,
+		matters: t("Hấp thụ + độ bền", "Absorption + stability"),
+		learn: [{
+			text: t("MAPbI₃: chất hấp thụ trong các pin perovskite đầu tiên.", "MAPbI₃: the absorber in early perovskite cells."),
+			cite: [111]
+		}, {
+			text: t("Hỗn hợp cation (thêm xesi) cải thiện thành phần.", "Mixed cations (adding cesium) improve the composition."),
+			cite: [112]
+		}]
+	},
+	{
+		id: "etl",
+		chip: t("ETL", "ETL"),
+		name: t("Lớp chọn lọc điện tử (ETL)", "Electron-selective layer (ETL)"),
+		short: t("ETL · dẫn điện tử", "ETL · moves electrons"),
+		job: t("Dẫn điện tử", "Moves electrons"),
+		jobCite: [106, 102],
+		want: [
+			t("Dẫn điện tử", "Electron transport"),
+			t("Ít mất điện tích", "Low charge loss"),
+			t("Giao diện tốt", "Good interface")
+		],
+		examples: [
+			{
+				n: "C₆₀",
+				cite: [106]
+			},
+			{
+				n: "PCBM",
+				cite: [106]
+			},
+			{
+				n: "SnO₂",
+				cite: [113]
+			}
+		],
+		tableEx: 2,
+		matters: t("Chọn lọc + giao diện", "Selectivity + interface"),
+		learn: []
+	},
+	{
+		id: "metal",
+		chip: t("Kim loại", "Metal"),
+		name: t("Điện cực kim loại", "Metal electrode"),
+		short: t("Thu dòng điện", "Collects current"),
+		job: t("Thu dòng · khép mạch", "Collect current · close circuit"),
+		jobCite: [106],
+		want: [
+			t("Dẫn điện", "Conductive"),
+			t("Hợp lớp kề", "Compatible"),
+			t("Bền", "Stable")
+		],
+		examples: [
+			{
+				n: "Au",
+				cite: [106]
+			},
+			{
+				n: "Ag",
+				cite: [106]
+			},
+			{
+				n: "Al",
+				cite: [106]
+			}
+		],
+		tableEx: 0,
+		matters: t("Dẫn điện + độ bền", "Conductivity + stability"),
+		learn: []
+	}
+];
+var PHASES = [
+	t("Ánh sáng đi vào.", "Sunlight enters."),
+	t("Perovskite hấp thụ ánh sáng.", "Perovskite absorbs the light."),
+	t("Điện tử và lỗ trống được tạo ra.", "Electrons and holes are created."),
+	t("HTL dẫn lỗ trống. ETL dẫn điện tử.", "The HTL moves holes. The ETL moves electrons."),
+	t("Các điện cực thu điện tích.", "The electrodes collect the charges."),
+	t("Dòng điện chạy trong mạch.", "Electric current flows.")
+];
+var M5 = {
+	kicker: t("5.3", "5.3"),
+	title: t("Chọn đúng vật liệu", "Choose the right materials"),
+	lead: t("Mỗi lớp một việc — mỗi lớp cần đúng vật liệu.", "One job per layer — each layer needs the right material."),
+	light: t("Ánh sáng", "Light"),
+	electricity: t("Điện", "Electricity"),
+	holes: t("lỗ trống h⁺", "holes h⁺"),
+	electrons: t("điện tử e⁻", "electrons e⁻"),
+	hint: t("Bấm vào một lớp để xem việc của nó", "Click a layer to learn more"),
+	concept: t("Minh họa khái niệm — không đúng tỉ lệ.", "Conceptual illustration — not to scale."),
+	play: t("Phát", "Play"),
+	pause: t("Dừng", "Pause"),
+	replay: t("Phát lại", "Replay"),
+	pick: t("Chọn lớp", "Choose a layer"),
+	selected: t("Lớp đang chọn", "Selected layer"),
+	job: t("Việc của lớp", "Job"),
+	want: t("Cần gì", "We want"),
+	examples: t("Ví dụ", "Examples"),
+	learn: t("Tìm hiểu thêm", "Learn more"),
+	tableLayer: t("Lớp", "Layer"),
+	tableJob: t("Việc", "Job"),
+	tableMatters: t("Từ khóa", "Key points"),
+	tableExample: t("Ví dụ", "Examples"),
+	oneTitle: t("Sao không dùng một vật liệu?", "Why not one material?"),
+	pairs: [
+		[t("Hấp thụ giỏi", "Good absorber"), t("nhưng dẫn điện tích kém", "but bad transport")],
+		[t("Dẫn điện giỏi", "Good conductor"), t("nhưng kém trong suốt", "but bad transparency")],
+		[t("Dẫn điện tích giỏi", "Good transport"), t("nhưng kém bền", "but poor stability")]
+	],
+	pairsNote: t("Ví dụ khái niệm.", "Conceptual examples."),
+	conclude: t("Đúng vật liệu cho đúng việc.", "The right material for each job."),
+	formulaA: t("Đúng vật liệu", "Right material"),
+	formulaB: t("Đúng lớp", "Right layer"),
+	formulaC: t("Pin tốt hơn", "Better solar cell"),
+	sources: t("Nguồn", "Sources"),
+	lessonTitle: t("Bước 3 — chọn đúng vật liệu", "Step 3 — Choose the right materials"),
+	lessonBody: t("Mỗi lớp một việc. Bấm một lớp để xem việc, điều cần và ví dụ.", "One job per layer. Click a layer for its job, needs and examples.")
 };
 /**
 * Chapter 4 sources. Each entry has the details the citation card shows: title, author or
@@ -4181,6 +2901,58 @@ var SOURCES = [
 		doi: "10.1021/acs.chemmater.8b00136",
 		supports: t("Cả pin n–i–p thường và p–i–n đảo đều có quy trình đã công bố cho hiệu suất từ 20% trở lên; các tác giả nhấn mạnh quy trình chi tiết và dễ lặp lại.", "Both regular n–i–p and inverted p–i–n cells have published protocols for efficiencies of 20% or more; the authors stress detailed, reproducible protocols."),
 		note: t("Phần tóm tắt đọc qua OpenAlex; chưa mở toàn văn. Chỉ dùng để nói cả hai kiến trúc đều làm được trên 20%; không dùng để xếp hạng.", "Abstract read through OpenAlex; the full text was not opened. Used only to say both architectures reach above 20%, not to rank them.")
+	},
+	{
+		n: 111,
+		title: "Organometal Halide Perovskites as Visible-Light Sensitizers for Photovoltaic Cells",
+		by: "Akihiro Kojima, Kenjiro Teshima, Yasuo Shirai, Tsutomu Miyasaka",
+		date: "2009-04-14",
+		kind: "paper",
+		journal: "Journal of the American Chemical Society 131(17), 6050–6051",
+		evidence: "measured",
+		url: "https://doi.org/10.1021/ja809598r",
+		doi: "10.1021/ja809598r",
+		supports: t("Perovskite halide hữu cơ–vô cơ (trong đó có metylamoni chì iodua, MAPbI₃) được dùng làm chất hấp thụ ánh sáng trong pin mặt trời.", "Organometal halide perovskites (among them methylammonium lead iodide, MAPbI₃) were used as light absorbers in a solar cell."),
+		note: t("Metadata kiểm qua Crossref; chưa mở tóm tắt hay toàn văn. Ý trên dựa vào tiêu đề bài và hiểu biết nền về công trình này.", "Metadata checked through Crossref; neither the abstract nor the full text was opened. The statement rests on the paper's title and background knowledge of this work.")
+	},
+	{
+		n: 112,
+		title: "Cesium-containing triple cation perovskite solar cells: improved stability, reproducibility and high efficiency",
+		by: "Michael Saliba, Taisuke Matsui, Ji-Youn Seo, Konrad Domanski, Juan-Pablo Correa-Baena, Mohammad Khaja Nazeeruddin, Shaik M. Zakeeruddin, Wolfgang Tress, Antonio Abate, Anders Hagfeldt, Michael Grätzel",
+		date: "2016",
+		kind: "paper",
+		journal: "Energy & Environmental Science 9(6), 1989–1997",
+		evidence: "measured",
+		url: "https://doi.org/10.1039/C5EE03874J",
+		doi: "10.1039/C5EE03874J",
+		supports: t("Các pin perovskite tốt nhất dùng hỗn hợp cation (formamidini và metylamoni); thêm xesi cải thiện thành phần, theo tiêu đề là về độ bền, độ lặp lại và hiệu suất.", "The best perovskite cells use a mixture of cations (formamidinium and methylammonium); adding cesium improves the composition — by the title, stability, reproducibility and efficiency."),
+		note: t("Hai câu đầu của phần tóm tắt đọc qua Crossref; chưa mở toàn văn.", "The first two sentences of the abstract were read through Crossref; the full text was not opened.")
+	},
+	{
+		n: 113,
+		title: "Robust electron transport layers of SnO2 for efficient perovskite solar cells: recent advances and perspectives",
+		by: "Bin Du, Kun He, Gangqi Tian, Xiang Che, Lin Song",
+		date: "2023",
+		kind: "review",
+		journal: "Journal of Materials Chemistry C 11(40), 13625–13646",
+		evidence: "literature",
+		url: "https://doi.org/10.1039/D3TC02445H",
+		doi: "10.1039/D3TC02445H",
+		supports: t("SnO₂ được dùng làm lớp vận chuyển điện tử trong pin perovskite.", "SnO₂ is used as an electron transport layer in perovskite solar cells."),
+		note: t("Metadata và một dòng tóm tắt kiểm qua Crossref; chưa mở toàn văn.", "Metadata and a one-line abstract checked through Crossref; the full text was not opened.")
+	},
+	{
+		n: 114,
+		title: "Electrodeposition of SnO2 on FTO and its Application in Planar Heterojunction Perovskite Solar Cells as an Electron Transport Layer",
+		by: "Yohan Ko, Yeong Rim Kim, Haneol Jang, Chanyong Lee, Man Gu Kang, Yongseok Jun",
+		date: "2017-08-16",
+		kind: "paper",
+		journal: "Nanoscale Research Letters 12, 498",
+		evidence: "measured",
+		url: "https://doi.org/10.1186/s11671-017-2247-x",
+		doi: "10.1186/s11671-017-2247-x",
+		supports: t("FTO (oxit thiếc pha flo) được dùng làm đế dẫn điện trong suốt cho pin perovskite phẳng có lớp SnO₂.", "FTO (fluorine-doped tin oxide) is used as the transparent conducting substrate of planar perovskite cells with an SnO₂ layer."),
+		note: t("Metadata kiểm qua Crossref; đọc mô tả bài qua kết quả tìm kiếm, chưa mở toàn văn.", "Metadata checked through Crossref; the paper's description was read in a search result, the full text was not opened.")
 	}
 ];
 function sourceOf(n) {
@@ -5020,9 +3792,20 @@ var sourceLessons = [
 	...[
 		"pin",
 		"stack",
-		"why",
-		"verify"
-	].map((id, i) => ({
+		"why"
+	].map((id, i) => id === "why" ? {
+		id,
+		chapter: "c5",
+		section: "5.3",
+		title: M5.lessonTitle,
+		scene: "page",
+		cam: "default",
+		page: "materials",
+		steps: [{
+			title: M5.lessonTitle,
+			body: M5.lessonBody
+		}]
+	} : {
 		id,
 		chapter: "c5",
 		section: `5.${i + 1}`,
@@ -5033,85 +3816,19 @@ var sourceLessons = [
 			title: id,
 			body: id
 		}]
-	})),
+	}),
 	{
 		id: "finale",
 		chapter: "c6",
 		section: "6",
-		title: "Bảy kết luận của cả hành trình",
-		scene: "finale",
-		cam: "wide",
-		steps: [
-			{
-				title: "Kết luận 1 — Bốn bước biến ánh sáng thành điện",
-				body: "Photon rơi vào lớp tím. Điện tử đi lên vùng dẫn, lỗ trống ở lại, rồi hai hạt ra hai cửa. Không có máy quay, không đốt nhiên liệu.",
-				caption: "Hình: một photon, một lần tách, hai mũi tên ra mạch ngoài. Đây là cả pin mặt trời, thu gọn vào bốn động tác."
-			},
-			{
-				title: "Kết luận 2 — ABX₃ là ba núm vặn trên một khung",
-				body: "A là cation lớn trong hốc, B là chì hoặc thiếc ở tâm bát diện, X là I, Br hoặc Cl ở đỉnh. Đổi một ion là đổi vùng cấm và độ bền.",
-				caption: "Hình: một ô mạng. Nhãn A, B, X là ba núm vặn, không phải ba chất rời nhau."
-			},
-			{
-				title: "Kết luận 3 — Tổ hợp hiếm: 3,8% lên 27,3% rồi tandem",
-				body: "Vùng cấm thẳng, hấp thụ mạnh trong lớp mỏng cỡ 0,5 µm, điện tích đi được xa hơn bề dày lớp, và chế tạo dưới 150 °C. Vì vậy hiệu suất tài liệu dẫn đi từ 3,8% năm 2009 lên 27,3% một lớp, và tandem được ghi 35% [1][7].",
-				caption: "Hình: hai mốc trên cùng một cột thời gian. 27,3% là mức một lớp được tài liệu dẫn, không phải chiều cao của tandem."
-			},
-			{
-				title: "Kết luận 4 — Mạng mềm là cả ưu điểm lẫn năm kẻ thù",
-				body: "Cùng liên kết yếu cho tinh thể tự vá và cho ion iod nhảy, cho ẩm, oxy, nhiệt và tia cực tím làm hỏng pin. Năm kẻ thù ấy không phải chuyện phụ của hiệu suất cao.",
-				caption: "Hình: tinh thể ở giữa, năm chấm cảnh báo quay quanh. Mỗi chấm là một kẻ thù đã gặp ở mục 3.8."
-			},
-			{
-				title: "Kết luận 5 — Bảy cách chế tạo, một quy tắc mầm",
-				body: "Quay phủ, hai bước, chân không, kết tinh nhiệt độ ngược, chích nóng, dao gạt và phủ khe khác nhau ở chỗ ép mầm ra. Chúng giống nhau ở quy tắc: mầm phải xuất hiện cùng lúc, rồi lớn đều, nếu không thì thủng lỗ kim.",
-				caption: "Hình: nhiều mầm cùng cỡ bung ra, rồi khép thành một màng. Ảnh thực của từng cách nằm ở chương phương pháp chế tạo."
-			},
-			{
-				title: "Kết luận 6 — Cải tiến là một chồng lớp được thiết kế",
-				body: "Chương 5 không bán một chất mới. Nó đi qua bốn bước: chọn kiến trúc p–i–n, giao cho mỗi lớp một vai trò chính, biện minh từng vật liệu bằng nhiều tiêu chí, rồi kiểm chứng độ bền. Chồng lớp kính / ITO / SAM / perovskite / C₆₀ / lớp đệm / kim loại chỉ là một ví dụ minh họa.",
-				caption: "Hình: chồng lớp ví dụ của chương 5. Lớp nào đặt ở đâu và vì sao là câu hỏi, không phải một công thức cố định. Độ dày vẽ không theo tỉ lệ thật."
-			},
-			{
-				title: "Kết luận 7 — Việc còn lại là độ bền; đường gần là tandem",
-				body: "Số bền chỉ có nghĩa khi kèm điều kiện. ISOS là bộ quy trình nghiên cứu và báo cáo, không phải chứng nhận đạt/trượt và không hứa 25 năm. Con đường thương mại gần nhất vẫn là trải perovskite lên silicon có sẵn.",
-				caption: "Hình: lớp perovskite mỏng nằm trên lát silicon dày. Đồng hồ minh họa một phép thử độ bền, không phải số đo của một pin cụ thể."
-			}
-		]
-	},
-	{
-		id: "quiz",
-		chapter: "c6",
-		section: "Tự kiểm",
-		title: "Tự kiểm — sáu câu ôn cả hành trình",
-		scene: "quiz",
+		title: C6.title,
+		scene: "page",
 		cam: "default",
-		steps: [
-			{
-				title: "Câu 1 · Photon 900 nm",
-				body: "Vì sao photon hồng ngoại 900 nm đi xuyên qua lớp MAPbI₃? Gợi ý của tài liệu: tính E = 1240/λ rồi so với 1,57 eV."
-			},
-			{
-				title: "Câu 2 · Đếm trong ô lập phương",
-				body: "Đếm số ion A, B, X trong một ô cơ sở. Vì sao ion ở góc chỉ tính một phần tám?"
-			},
-			{
-				title: "Câu 3 · Hai pha vàng, hai lý do",
-				body: "CsPbI₃ và FAPbI₃ cùng dễ chuyển sang pha vàng, nhưng vì hai lý do ngược nhau. Giải bằng hệ số dung hạn."
-			},
-			{
-				title: "Câu 4 · PLQY và Voc",
-				body: "Nếu PLQY giảm từ 1% xuống 0,01%, Voc giảm khoảng bao nhiêu?"
-			},
-			{
-				title: "Câu 5 · Vượt 33,7%",
-				body: "Vì sao pin tandem có thể vượt giới hạn Shockley–Queisser của pin một lớp?"
-			},
-			{
-				title: "Câu 6 · Chặn ion iod",
-				body: "Trong đề xuất chương 5, lớp nào chặn kẻ thù di chuyển ion, và bằng cách nào?"
-			}
-		]
+		page: "conclusion",
+		steps: [{
+			title: C6.title,
+			body: C6.lessonBody
+		}]
 	}
 ];
 var chapters = [
@@ -5177,17 +3894,10 @@ var chapters = [
 		lessonIds: [
 			"c4home",
 			"spin",
-			"twostep",
 			"vacuum",
-			"crystal",
-			"qdot",
-			"market",
 			"blade",
-			"slot",
-			"lead",
-			"leadmit",
-			"leadcmp",
-			"c4sum"
+			"market",
+			"lead"
 		]
 	},
 	{
@@ -5197,16 +3907,14 @@ var chapters = [
 		lessonIds: [
 			"pin",
 			"stack",
-			"why",
-			"verify",
-			"c5fin"
+			"why"
 		]
 	},
 	{
 		id: "c6",
 		num: "6",
 		title: "Kết luận",
-		lessonIds: ["finale", "quiz"]
+		lessonIds: ["finale"]
 	},
 	{
 		id: "cA",
@@ -5599,74 +4307,6 @@ for (const src of SOURCES) {
 		cite: `${src.by}. ${src.title}. ${src.date}. ${where}`
 	});
 }
-var QUIZ = [
-	{
-		prompt: "Photon 900 nm gặp MAPbI₃ thì sao?",
-		options: [
-			"Bị phản xạ vì quá mạnh",
-			"E ≈ 1,38 eV, thấp hơn Eg ≈ 1,57 eV, nên đi xuyên",
-			"Bị hấp thụ hết vì nằm trong vùng nhìn thấy",
-			"Chỉ bị chặn nếu lớp dày hơn 180 µm"
-		],
-		answer: 1,
-		why: "1240/900 ≈ 1,38 eV. MAPbI₃ có Eg khoảng 1,57 eV. Photon yếu hơn vùng cấm không tạo được cặp điện tích."
-	},
-	{
-		prompt: "Trong một ô lập phương có bao nhiêu A, B, X?",
-		options: [
-			"8 A, 6 B, 1 X",
-			"1 A, 1 B, 3 X — góc chỉ tính 1/8 vì tám ô dùng chung",
-			"1 A, 3 B, 1 X",
-			"4 A, 4 B, 4 X"
-		],
-		answer: 1,
-		why: "Góc thuộc về 8 ô, tâm mặt thuộc về 2 ô, tâm ô thuộc trọn về một ô. 8×1/8 + 1 + 6×1/2 = ABX₃."
-	},
-	{
-		prompt: "Vì sao CsPbI₃ và FAPbI₃ đều dễ hóa vàng?",
-		options: [
-			"Cả hai đều có t ≈ 1,00",
-			"Cs quá nhỏ (t ≈ 0,85) nên sụp cạnh; FA quá lớn (t ≈ 0,99) nên chuyển lục giác dùng chung mặt",
-			"Cả hai đều mất chì khi gặp nước",
-			"Vì cùng vùng cấm 1,12 eV"
-		],
-		answer: 1,
-		why: "Hai lý do ngược nhau quanh hốc trống: A nhỏ làm khung sụp, A lớn làm khung chuyển sang cách nối khác."
-	},
-	{
-		prompt: "PLQY từ 1% xuống 0,01%. Voc đổi thế nào?",
-		options: [
-			"Tăng khoảng 60 mV",
-			"Giảm khoảng 120 mV",
-			"Không đổi vì Voc chỉ phụ thuộc Eg",
-			"Giảm một nửa"
-		],
-		answer: 1,
-		why: "Hai lần chia mười. Mỗi lần khoảng 60 mV, vì (kT/q)·ln(10) ≈ 60 mV ở 300 K."
-	},
-	{
-		prompt: "Tandem vượt 33,7% bằng cách nào?",
-		options: [
-			"Dùng lớp dày hơn silicon",
-			"Nhiều lớp có Eg khác nhau, mỗi lớp xử lý một phần phổ, nên không còn là pin một lớp",
-			"Bỏ tái hợp bằng cách tắt ánh sáng",
-			"Đo dưới phổ mạnh hơn AM1.5G nên trần đổi"
-		],
-		answer: 1,
-		why: "Trần 33,7% là cho một vùng cấm. Xếp chồng các vùng cấm khác nhau né được đồng thời cả tổn thất nhiệt hóa và photon bỏ đi."
-	},
-	{
-		prompt: "Vì sao không nên chọn một vật liệu chỉ vì hiệu suất ban đầu cao?",
-		options: [
-			"Vì hiệu suất ban đầu luôn là số sai",
-			"Vì vật liệu còn phải khớp vai trò, mức năng lượng, hợp với lớp kề và sống sót qua chế tạo và vận hành",
-			"Vì chỉ vật liệu rẻ nhất mới được dùng",
-			"Vì pin perovskite không cần lớp tiếp xúc"
-		],
-		answer: 1,
-		why: "Mục 5.3: một vật liệu cải thiện một tính chất có thể gây vấn đề ở nơi khác (ví dụ một lớp thụ động hóa có lợi ở n–i–p nhưng có thể hại ở p–i–n [103]), nên cả chồng lớp phải được tối ưu cùng nhau."
-	}
-];
 function storyLesson(spec) {
 	return {
 		id: spec.id,
@@ -5704,16 +4344,8 @@ var lessons = sourceLessons.flatMap((lesson) => {
 	if (after >= 0) lessons.splice(after + 1, 0, ...degrade);
 	const ch4 = [
 		"spin",
-		"twostep",
 		"vacuum",
-		"crystal",
-		"qdot",
-		"market",
-		"blade",
-		"slot",
-		"lead",
-		"leadmit",
-		"leadcmp"
+		"blade"
 	].map((id) => STORIES.find((s) => s.id === id)).filter((s) => s !== void 0).map(storyLesson);
 	const home = {
 		id: "c4home",
@@ -5728,24 +4360,34 @@ var lessons = sourceLessons.flatMap((lesson) => {
 			body: C4_INTRO.body
 		}]
 	};
-	const sum = {
-		id: "c4sum",
+	const market = {
+		id: "market",
 		chapter: "c4",
-		section: "4.10",
-		title: C4_INTRO.sumTitle,
+		section: "4.4",
+		title: MK.lessonTitle,
 		scene: "page",
 		cam: "default",
-		page: "summary",
+		page: "market",
 		steps: [{
-			title: C4_INTRO.sumTitle,
-			body: C4_INTRO.sumBody
+			title: MK.lessonTitle,
+			body: MK.lessonBody
 		}]
 	};
-	const fin = STORIES.find((s) => s.id === "c5fin");
-	const afterVerify = lessons.findIndex((l) => l.id === "verify");
-	if (fin && afterVerify >= 0) lessons.splice(afterVerify + 1, 0, storyLesson(fin));
+	const lead = {
+		id: "lead",
+		chapter: "c4",
+		section: "4.5",
+		title: L4.title,
+		scene: "page",
+		cam: "default",
+		page: "lead",
+		steps: [{
+			title: L4.title,
+			body: L4.lessonBody
+		}]
+	};
 	const before = lessons.findIndex((l) => l.id === "pin");
-	lessons.splice(before >= 0 ? before : lessons.length, 0, home, ...ch4, sum);
+	lessons.splice(before >= 0 ? before : lessons.length, 0, home, ...ch4, market, lead);
 }
 function glossaryLesson() {
 	return {
@@ -6996,7 +5638,6 @@ var UI = {
 		of: "/",
 		searchTerms: "Tìm thuật ngữ",
 		searchRefs: "Tìm nguồn",
-		correct: "Đúng",
 		more: "Giải thích thêm",
 		figure: "Chú thích hình",
 		table: "Bảng",
@@ -7052,7 +5693,6 @@ var UI = {
 		of: "/",
 		searchTerms: "Search terms",
 		searchRefs: "Search sources",
-		correct: "Score",
 		more: "A closer look",
 		figure: "Figure caption",
 		table: "Table",
@@ -7406,7 +6046,6 @@ var PHRASE = {
 	"Một tổ hợp hiếm": "A rare combination",
 	"Mạng mềm là cả hai mặt": "The soft lattice is both sides of the coin",
 	"Đích bây giờ là độ bền": "The target now is lifetime",
-	"Tự kiểm — sáu câu ôn cả hành trình": "Check yourself — six questions over the whole path",
 	"Câu 1 · Photon 900 nm": "Question 1 · a 900 nm photon",
 	"Câu 2 · Đếm trong ô lập phương": "Question 2 · counting the cubic cell",
 	"Câu 3 · Hai pha vàng, hai lý do": "Question 3 · two yellow phases, two reasons",
@@ -8109,70 +6748,6 @@ var TABLES = {
 			]
 		}
 	},
-	lead: {
-		caption: {
-			vi: "Hiệu suất pin một lớp của các họ ít chì hoặc không chì so với perovskite chì, theo các mốc tài liệu dẫn [34][36][41]. Trục ngang là phần trăm. Thiếc–chì vẫn là hợp kim có chì.",
-			en: "Single-junction efficiency of lower-lead and lead-free families versus lead perovskite, using the marks cited in the notes [34][36][41]. The horizontal axis is percent. Tin–lead is still a lead alloy."
-		},
-		headers: {
-			vi: [
-				"Họ",
-				"Hiệu suất nêu trong tài liệu",
-				"Vướng mắc"
-			],
-			en: [
-				"Family",
-				"Efficiency cited",
-				"The problem"
-			]
-		},
-		rows: {
-			vi: [
-				[
-					"Chì Pb",
-					"27,3%",
-					"Độc, tan trong nước"
-				],
-				[
-					"Thiếc–chì",
-					"24,8%",
-					"Vẫn còn chì"
-				],
-				[
-					"Thiếc Sn",
-					"16,65%",
-					"Sn²⁺ dễ thành Sn⁴⁺, pin rò"
-				],
-				[
-					"Kép Cs₂AgBiBr₆",
-					"6,37%",
-					"Vùng cấm gián tiếp, hấp thụ kém"
-				]
-			],
-			en: [
-				[
-					"Lead Pb",
-					"27.3%",
-					"Toxic, water-soluble"
-				],
-				[
-					"Tin–lead",
-					"24.8%",
-					"Still contains lead"
-				],
-				[
-					"Tin Sn",
-					"16.65%",
-					"Sn²⁺ oxidizes to Sn⁴⁺, the cell leaks"
-				],
-				[
-					"Double Cs₂AgBiBr₆",
-					"6.37%",
-					"Indirect gap, weak absorption"
-				]
-			]
-		}
-	},
 	sq: {
 		caption: {
 			vi: "Trần Shockley–Queisser của một lớp [70]. Hai tổn thất không tránh: photon yếu hơn Eg đi xuyên, photon mạnh hơn Eg chỉ nộp đúng Eg và phần dư thành nhiệt. Đỉnh minh họa giữ ở 33,7%, quanh 1,34 eV. Từ 1,0 đến 1,6 eV đường vẫn trên 30%. Hai lớp không bị buộc theo đường này.",
@@ -8272,68 +6847,6 @@ var TABLES = {
 		}
 	}
 };
-var QUIZ_EN = [
-	{
-		prompt: "A 900 nm photon meets MAPbI₃. What happens?",
-		options: [
-			"It is reflected because it is too strong",
-			"E ≈ 1.38 eV, below Eg ≈ 1.57 eV, so it passes through",
-			"It is fully absorbed because it is visible",
-			"It is stopped only if the layer is thicker than 180 µm"
-		],
-		why: "1240/900 ≈ 1.38 eV. MAPbI₃ has Eg near 1.57 eV. A photon below the gap does not create a charge pair."
-	},
-	{
-		prompt: "How many A, B and X are in one cubic cell?",
-		options: [
-			"8 A, 6 B, 1 X",
-			"1 A, 1 B, 3 X — a corner counts as 1/8 because eight cells share it",
-			"1 A, 3 B, 1 X",
-			"4 A, 4 B, 4 X"
-		],
-		why: "A corner belongs to 8 cells, a face center to 2, the body center to 1. 8×1/8 + 1 + 6×1/2 = ABX₃."
-	},
-	{
-		prompt: "Why do both CsPbI₃ and FAPbI₃ turn yellow easily?",
-		options: [
-			"Both have t ≈ 1.00",
-			"Cs is too small (t ≈ 0.85) and the frame collapses; FA is too large (t ≈ 0.99) and it turns hexagonal, face-sharing",
-			"Both lose lead in water",
-			"They share silicon’s 1.12 eV gap"
-		],
-		why: "Two opposite size problems around the same cavity: a small A collapses the frame, a large A switches how the octahedra connect."
-	},
-	{
-		prompt: "PLQY falls from 1% to 0.01%. What happens to Voc?",
-		options: [
-			"It rises by about 60 mV",
-			"It falls by about 120 mV",
-			"It is unchanged because Voc depends only on Eg",
-			"It is cut in half"
-		],
-		why: "Two factors of ten. Each costs about 60 mV, because (kT/q)·ln(10) ≈ 60 mV at 300 K."
-	},
-	{
-		prompt: "How does a tandem beat 33.7%?",
-		options: [
-			"By using a layer thicker than silicon",
-			"Several layers with different gaps each take part of the spectrum, so it is no longer a single-junction cell",
-			"By turning the light off to stop recombination",
-			"By measuring under a spectrum stronger than AM1.5G"
-		],
-		why: "33.7% is the limit for one gap. Stacking different gaps avoids both thermalization loss and the photons that were passing through."
-	},
-	{
-		prompt: "Why should a material not be chosen only for a high initial efficiency?",
-		options: [
-			"Because initial efficiency is always a wrong number",
-			"Because it must also fit its role, align energetically, be compatible with neighbouring layers and survive fabrication and operation",
-			"Because only the cheapest material may be used",
-			"Because perovskite cells need no contact layers"
-		],
-		why: "Section 5.3: a material that improves one property can create a problem elsewhere (for example a passivation layer that helps n–i–p cells but can hurt p–i–n cells [103]), so the whole stack must be optimised together."
-	}
-];
 var cell = {
 	src: "/photos/cell-hand.jpg",
 	alt: {
@@ -8478,15 +6991,6 @@ var color = {
 	credit: "Glass on Web",
 	href: "https://www.glassonweb.com/article/thin-film-solar-cells-low-cost-glass-substrates"
 };
-var itc = {
-	src: "/photos/itc-vials.jpg",
-	alt: {
-		vi: "Bốn lọ thật trong bài kết tinh nhanh: dung dịch trong, mầm đỏ, dung dịch vàng, và tinh thể đen nằm đáy lọ.",
-		en: "Four real vials from a rapid-growth paper: clear solution, red seeds, a yellow solution, and black crystals at the bottom."
-	},
-	credit: "Nature Communications, 2016 — rapid growth of halide perovskite crystals",
-	href: "https://www.nature.com/articles/ncomms13303"
-};
 var bladeLab = {
 	src: "/photos/blade-lab.jpg",
 	alt: {
@@ -8495,15 +6999,6 @@ var bladeLab = {
 	},
 	credit: "Springer — Doctor blade coating, laboratory photograph in the figure",
 	href: "https://link.springer.com/chapter/10.1007/978-981-99-0961-2_12"
-};
-var r2r = {
-	src: "/photos/r2r-coater.jpg",
-	alt: {
-		vi: "Máy phủ cuộn-sang-cuộn thật: cuộn thả bên trái, đầu phủ ở giữa, lò, rồi cuộn thu bên phải.",
-		en: "A real roll-to-roll coater: unwind on the left, coating head in the middle, oven, then rewind on the right."
-	},
-	credit: "infinityPV — LR2RC roll-to-roll coater",
-	href: "https://www.infinitypv.com/r2r-academy/roll-to-roll-processing"
 };
 var evapReal = {
 	src: "/photos/evap-chamber.jpg",
@@ -8618,29 +7113,18 @@ var PHOTO_SETS = {
 	],
 	c4home: [
 		spin,
-		dots,
-		itc
+		vac,
+		bladeLab
 	],
 	spin: [
 		spin,
 		drop,
 		waferSpin
 	],
-	twostep: [
-		drop,
-		dark,
-		sem
-	],
 	vacuum: [
 		evapReal,
 		vac,
 		sem
-	],
-	crystal: [itc, sem],
-	qdot: [
-		dots,
-		dots2,
-		peled
 	],
 	market: [
 		module,
@@ -8648,19 +7132,7 @@ var PHOTO_SETS = {
 		cell
 	],
 	blade: [bladeLab, slotFig],
-	slot: [
-		slotFig,
-		r2r,
-		flex
-	],
 	lead: [module, cell],
-	leadmit: [module, cell],
-	leadcmp: [module, cell],
-	c4sum: [
-		module,
-		cell,
-		dots
-	],
 	pin: [
 		sem,
 		cell,
@@ -8668,13 +7140,6 @@ var PHOTO_SETS = {
 	],
 	stack: [sem, cell],
 	why: [sem, dark],
-	verify: [module, cell],
-	finale: [
-		cell,
-		module,
-		dots
-	],
-	quiz: [cell, dark],
 	glossary: [
 		dark,
 		dots,
@@ -8701,24 +7166,6 @@ var STEP_PHOTOS = {
 		[dark],
 		[sem, dark]
 	],
-	crystal: [
-		[itc],
-		[itc],
-		[itc],
-		[itc],
-		[itc],
-		[itc, sem],
-		[sem, dark]
-	],
-	qdot: [
-		[dots],
-		[dots2],
-		[dots2],
-		[dots, dots2],
-		[dots],
-		[peled, dots],
-		[dots2]
-	],
 	blade: [
 		[bladeLab],
 		[bladeLab],
@@ -8727,15 +7174,6 @@ var STEP_PHOTOS = {
 		[bladeLab, dark],
 		[dark, color],
 		[dark, cell]
-	],
-	slot: [
-		[slotFig],
-		[slotFig],
-		[slotFig],
-		[slotFig, r2r],
-		[r2r, flex],
-		[dark, color],
-		[r2r, flex]
 	],
 	pin: [
 		[sem, cell],
@@ -8754,15 +7192,6 @@ var STEP_PHOTOS = {
 		[cell],
 		[sem],
 		[module]
-	],
-	finale: [
-		[cell, color],
-		[dark, sem],
-		[module, cell],
-		[dark],
-		[spin, bladeLab],
-		[sem, cell],
-		[module, minis]
 	]
 };
 function photosFor(id, step) {
@@ -8956,14 +7385,6 @@ var useSim = create((set, get) => ({
 	nWell: 2,
 	architecture: "pin",
 	inspect: null,
-	quiz: [
-		null,
-		null,
-		null,
-		null,
-		null,
-		null
-	],
 	locale: "vi",
 	textScale: 1,
 	presenting: false,
@@ -9001,7 +7422,7 @@ var useSim = create((set, get) => ({
 			temp: 25,
 			inspect: null,
 			query: "",
-			explain: lesson.id === "glossary" || lesson.id === "refs" || lesson.id === "quiz" ? true : s.explain,
+			explain: lesson.id === "glossary" || lesson.id === "refs" ? true : s.explain,
 			visited: s.visited.includes(lesson.id) ? s.visited : [...s.visited, lesson.id]
 		}));
 		const tune = lesson.tune?.[0];
@@ -9050,11 +7471,6 @@ var useSim = create((set, get) => ({
 	bumpReplay: () => set((s) => ({ replay: s.replay + 1 })),
 	toggleHelp: () => set((s) => ({ help: !s.help })),
 	patch: (p) => set(p),
-	answerQuiz: (q, choice) => set((s) => {
-		const quiz = s.quiz.slice();
-		quiz[q] = choice;
-		return { quiz };
-	}),
 	setLocale: (locale) => set({ locale }),
 	setTextScale: (n) => set({ textScale: Math.min(1.45, Math.max(.85, n)) }),
 	togglePresent: () => set((s) => ({ presenting: !s.presenting })),
@@ -9221,754 +7637,40 @@ function Ch4Landing() {
 		className: "page-scroll",
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 			className: "page-inner",
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-					className: "page-lead",
-					children: tr(locale, LANDING.lead)
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "page-note",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: tr(locale, LANDING.distinct) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", { children: LANDING.notes.map((n) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: tr(locale, n) }, n)) })]
-				}),
-				GROUPS.map((g) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
-					className: "page-group",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: tr(locale, g.title) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-						className: "page-cards",
-						children: g.cards.map((c) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-							type: "button",
-							className: "page-card",
-							onClick: () => setLesson(c.id),
-							children: [
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "page-card-icon",
-									"aria-hidden": "true",
-									children: c.icon
-								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "page-card-num",
-									children: c.num
-								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: tr(locale, c.name) }),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: tr(locale, c.line) }),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "page-card-kind",
-									children: tr(locale, c.kind)
-								})
-							]
-						}, c.id))
-					})]
-				}, g.title)),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-					type: "button",
-					className: "btn btn-accent",
-					onClick: () => setLesson("c4sum"),
-					children: tr(locale, C4_SUM_LINK)
-				})
-			]
-		})
-	});
-}
-var C4_SUM_LINK = t("Xem tổng kết chương", "See the chapter synthesis");
-var KIND_CLASS = {
-	table: "src-table",
-	company: "src-company",
-	forecast: "src-forecast"
-};
-var KIND_NAME = {
-	table: t("Bảng hiệu suất", "Efficiency table"),
-	company: t("Thông cáo công ty", "Company announcement"),
-	forecast: t("Dự báo", "Forecast")
-};
-function Ch4Summary() {
-	const locale = useSim((s) => s.locale);
-	const setLesson = useSim((s) => s.setLesson);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-		className: "page-scroll",
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "page-inner page-three",
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
-					className: "page-panel",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: tr(locale, SUMMARY.a) }),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
-							className: "route-list",
-							children: SUMMARY.routes.map((r) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-								type: "button",
-								onClick: () => setLesson(r.id),
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									"aria-hidden": "true",
-									children: r.icon
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
-									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: tr(locale, r.name) }),
-									" — ",
-									tr(locale, r.line),
-									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("em", { children: tr(locale, r.kind) })
-								] })]
-							}) }, r.id))
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-							className: "page-foot",
-							children: tr(locale, SUMMARY.noBest)
-						})
-					]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
-					className: "page-panel",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: tr(locale, SUMMARY.b) }),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ol", {
-							className: "ladder",
-							children: SUMMARY.ladder.map((r) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "ladder-val",
-									children: r.val
-								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: tr(locale, r.label) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: tr(locale, r.note) })] }),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: `src-badge ${KIND_CLASS[r.kind] ?? ""}`,
-									children: tr(locale, KIND_NAME[r.kind] ?? r.kind)
-								})
-							] }, r.label))
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-							className: "page-foot",
-							children: tr(locale, SUMMARY.bnote)
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-							className: "page-foot",
-							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { text: "[2] [5] [87] [92]" })
-						})
-					]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
-					className: "page-panel",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: tr(locale, SUMMARY.c) }),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
-							className: "sum-list",
-							children: SUMMARY.cItems.map((c) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: tr(locale, c) }, c))
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-							className: "page-closing",
-							children: tr(locale, SUMMARY.closing)
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-							className: "page-foot",
-							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { text: "[93] [94] [96] [97] [98]" })
-						})
-					]
-				})
-			]
-		})
-	});
-}
-var MK = {
-	timeline: t("Dòng thời gian", "Timeline"),
-	cell: t("TẾ BÀO", "CELL"),
-	module: t("MODULE", "MODULE"),
-	ship: t("LÔ HÀNG", "SHIPMENT"),
-	forecast: t("DỰ BÁO", "FORECAST"),
-	ann: t("Thông cáo công ty", "Company announcement"),
-	cert: t("Chứng nhận độc lập", "Independent certification"),
-	table: t("Có trong bảng tham chiếu", "In a reference table"),
-	measured: t("Hiệu năng thương mại đo được", "Measured commercial performance"),
-	yes: t("có", "yes"),
-	no: t("không", "no"),
-	stated: t("công ty nói có", "stated by the company"),
-	na: t("không áp dụng", "n/a"),
-	warnTitle: t("Lưu ý khi đọc kỷ lục", "Reading records carefully"),
-	warn: t("Kỷ lục tế bào nghiên cứu, kỷ lục module, tình trạng chứng nhận và việc có trong bảng tham chiếu là các sự thật khác nhau. Luôn kiểm tra diện tích thiết bị, phòng đo và ngày nguồn.", "Research-cell record, module record, certification status, and inclusion in reference tables are different facts. Always check device area, test laboratory, and source date."),
-	forecastNote: t("Dự báo của IDTechEx — không phải doanh thu thị trường đã quan sát.", "IDTechEx forecast — not observed market revenue."),
-	schematic: t("Đường nét đứt chỉ là sơ đồ nối hiện tại với điểm dự báo duy nhất; chỉ điểm 2035 đến từ dự báo.", "The dashed path is only a schematic joining today to the single forecast point; only the 2035 end point comes from the forecast."),
-	rep: t("Giá trị đại diện / mục tiêu, không phải bảo đảm cho mọi sản phẩm.", "Representative / target values, not a guarantee for every product."),
-	silicon: t("Module silicon điển hình", "Typical silicon module"),
-	tandem: t("Mục tiêu module tandem", "Tandem module target"),
-	hurdles: t("Rào cản chính", "Major hurdles"),
-	chip: t("Kỷ lục công bố, chưa thành sản phẩm", "Record result, not a product")
-};
-var HURDLES = [
-	t("Độ bền ngoài trời lâu dài", "Long-term outdoor stability"),
-	t("Bảo vệ khỏi ẩm, nhiệt, ánh sáng, UV", "Moisture, heat, light and UV protection"),
-	t("Năng suất và độ đồng đều sản xuất", "Manufacturing yield and uniformity"),
-	t("Phủ và lắng đọng diện tích lớn", "Large-area coating and deposition"),
-	t("Bọc kín và độ bền cơ học", "Encapsulation and mechanical durability"),
-	t("Kiểm soát rò rỉ chì", "Lead-leakage control"),
-	t("Tái chế và quản lý cuối đời", "Recycling and end-of-life management"),
-	t("Chi phí sản xuất và khả năng vay vốn (bankability)", "Manufacturing cost and bankability")
-];
-var EVIDENCE = [
-	{
-		date: t("19/6/2024", "19 Jun 2024"),
-		who: "Oxford PV",
-		kind: MK.module,
-		value: "26.9%",
-		area: t("diện tích chỉ định > 1,6 m² · 60 tế bào", "designated area > 1.6 m² · 60 cells"),
-		flags: {
-			ann: 1,
-			cert: 1,
-			table: 0,
-			measured: 0
-		},
-		line: t("Fraunhofer CalLab đo và chứng nhận độc lập.", "Independently measured and certified by Fraunhofer CalLab."),
-		refs: [85]
-	},
-	{
-		date: t("4/2025", "Apr 2025"),
-		who: "LONGi",
-		kind: MK.cell,
-		value: "34.85%",
-		area: t("diện tích không nêu trong thông cáo", "area not stated in the release"),
-		flags: {
-			ann: 1,
-			cert: "stated",
-			table: 0,
-			measured: 0
-		},
-		line: t("LONGi nói NREL đã chứng nhận. Đây là tế bào, không phải module.", "LONGi states NREL certified it. This is a cell, not a module."),
-		refs: [86]
-	},
-	{
-		date: t("8/7/2025", "8 Jul 2025"),
-		who: "Caelux",
-		kind: MK.ship,
-		value: t("lô đầu tiên", "first order"),
-		area: t("kính phủ perovskite + module silicon", "perovskite-coated glass + silicon module"),
-		flags: {
-			ann: 1,
-			cert: 0,
-			table: 0,
-			measured: 0
-		},
-		line: t("Một lô giao hàng không chứng minh sản xuất hàng loạt, hiệu suất module được chứng nhận hay độ tin cậy ngoài trời.", "One shipment does not prove mass production, certified module efficiency or long-term field reliability."),
-		refs: [87, 62]
-	},
-	{
-		date: t("2026 · Version 68", "2026 · Version 68"),
-		who: t("Bảng hiệu suất (Green và cs.)", "Efficiency tables (Green et al.)"),
-		kind: "",
-		value: "",
-		area: "",
-		flags: {
-			ann: 0,
-			cert: 0,
-			table: 1,
-			measured: 0
-		},
-		line: "",
-		refs: [2, 100]
-	},
-	{
-		date: t("14/7/2026", "14 Jul 2026"),
-		who: "LONGi",
-		kind: MK.cell,
-		value: "35.5%",
-		area: t("diện tích không nêu trong thông cáo", "area not stated in the release"),
-		flags: {
-			ann: 1,
-			cert: "stated",
-			table: 0,
-			measured: 0
-		},
-		line: t("Công ty nói ESTI chứng nhận. Chưa có trong Version 68 vì thời điểm chốt dữ liệu của bảng đó sớm hơn.", "The company states ESTI certified it. Not in Version 68 because that table's data cutoff came earlier."),
-		refs: [88]
-	},
-	{
-		date: "2025–2035",
-		who: "IDTechEx",
-		kind: MK.forecast,
-		value: "≈ US$12B",
-		area: t("doanh thu perovskite PV hằng năm vào 2035", "annual perovskite PV revenue by 2035"),
-		flags: {
-			ann: 0,
-			cert: 0,
-			table: 0,
-			measured: 0
-		},
-		line: "",
-		refs: [92, 63]
-	}
-];
-function Flag({ label, v }) {
-	const locale = useSim((s) => s.locale);
-	const text = v === "stated" ? MK.stated : v ? MK.yes : MK.no;
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", {
-		className: v === 1 ? "yes" : v === "stated" ? "mid" : "no",
-		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: tr(locale, label) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: tr(locale, text) })]
-	});
-}
-var TIMELINE = [
-	t("6/2024", "Jun 2024"),
-	t("4/2025", "Apr 2025"),
-	t("7/2025", "Jul 2025"),
-	t("2026", "2026"),
-	t("7/2026", "Jul 2026"),
-	t("→ 2035", "→ 2035")
-];
-function ForecastChart() {
-	const locale = useSim((s) => s.locale);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("figure", {
-		className: "mk-chart",
-		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("svg", {
-			viewBox: "0 0 260 120",
-			role: "img",
-			"aria-label": tr(locale, MK.forecastNote),
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("line", {
-					x1: "26",
-					y1: "100",
-					x2: "250",
-					y2: "100",
-					className: "ax"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("line", {
-					x1: "26",
-					y1: "10",
-					x2: "26",
-					y2: "100",
-					className: "ax"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", {
-					d: "M30 96 C 110 96, 180 70, 238 18",
-					className: "fc"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("circle", {
-					cx: "30",
-					cy: "96",
-					r: "3.5",
-					className: "dot-obs"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("circle", {
-					cx: "238",
-					cy: "18",
-					r: "4.5",
-					className: "dot-fc"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
-					x: "30",
-					y: "113",
-					className: "tx",
-					children: "2025"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
-					x: "218",
-					y: "113",
-					className: "tx",
-					children: "2035"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
-					x: "152",
-					y: "22",
-					className: "tx tx-fc",
-					children: "≈ US$12B"
-				})
-			]
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("figcaption", { children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: tr(locale, MK.forecastNote) }),
-			" ",
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { text: "[92] [63]" }),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("br", {}),
-			tr(locale, MK.schematic)
-		] })]
-	});
-}
-/** Right-hand evidence column of 4.6. */
-function MarketPanel({ step }) {
-	const locale = useSim((s) => s.locale);
-	const scope = useSim((s) => s.fab.scope);
-	const setStep = useSim((s) => s.setStep);
-	const ev = EVIDENCE[step] ?? EVIDENCE[0];
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("aside", {
-		className: "mk-panel",
-		"aria-label": tr(locale, MK.timeline),
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ol", {
-				className: "mk-timeline",
-				"aria-label": tr(locale, MK.timeline),
-				children: TIMELINE.map((d, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", {
-					className: i === step ? "on" : i < step ? "seen" : "",
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+				className: "page-lead",
+				children: tr(locale, LANDING.lead)
+			}), GROUPS.map((g) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
+				className: "page-group",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: tr(locale, g.title) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+					className: "page-cards",
+					children: g.cards.map((c) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
 						type: "button",
-						onClick: () => setStep(i),
-						"aria-label": tr(locale, d),
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("i", {}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: tr(locale, d) })]
-					})
-				}, d))
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "mk-card",
-				children: [
-					step === 3 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "mk-head",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: tr(locale, ev.date) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: tr(locale, ev.who) })]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
-							className: "mk-rows",
-							children: (scope === "module" ? [[
-								MK.module,
-								"29.4%",
-								t("tandem · ≈ 1,7 m²", "tandem · ≈ 1.7 m²")
-							]] : [[
-								MK.cell,
-								"28.0%",
-								t("perovskite chì halide · 0,05 cm²", "lead-halide perovskite · 0.05 cm²")
-							], [
-								MK.cell,
-								"35.2%",
-								t("tandem Si/perovskite · 1 cm²", "Si/perovskite tandem · 1 cm²")
-							]]).map(([k, v, a]) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "mk-kind",
-									children: tr(locale, k)
-								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: v }),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: tr(locale, a) })
-							] }, `${k}${v}`))
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-							className: "mk-line",
-							children: scope === "module" ? tr(locale, t("Cũng có module tandem nhỏ 0,17 m² đạt 31,4%. Phòng đo xem trong bảng gốc.", "A smaller 0.17 m² tandem module is listed at 31.4%. The test laboratory is in the original table.")) : tr(locale, t("Không so trực tiếp với kết quả module: khác diện tích hàng chục nghìn lần.", "Do not compare directly with a module result: the areas differ by orders of magnitude."))
-						})
-					] }) : step === 5 ? null : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "mk-head",
-							children: [
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: tr(locale, ev.date) }),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: tr(locale, ev.who) }),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "mk-kind",
-									children: tr(locale, ev.kind)
-								})
-							]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", {
-							className: "mk-value",
-							children: tr(locale, ev.value)
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: tr(locale, ev.area) }),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-							className: "mk-line",
-							children: tr(locale, ev.line)
-						})
-					] }),
-					step !== 5 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ul", {
-						className: "mk-flags",
+						className: "page-card",
+						onClick: () => setLesson(c.id),
 						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flag, {
-								label: MK.ann,
-								v: ev.flags.ann
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: "page-card-icon",
+								"aria-hidden": "true",
+								children: c.icon
 							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flag, {
-								label: MK.cert,
-								v: ev.flags.cert
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: "page-card-num",
+								children: c.num
 							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flag, {
-								label: MK.table,
-								v: ev.flags.table
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: tr(locale, c.name) }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: tr(locale, c.line) }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: "page-card-kind",
+								children: tr(locale, c.kind)
 							})
 						]
-					}) : null,
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-						className: "mk-cite",
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { text: ev.refs.map((n) => `[${n}]`).join(" ") })
-					})
-				]
-			}),
-			step === 4 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "mk-warn",
-				role: "note",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: tr(locale, MK.warnTitle) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: tr(locale, MK.warn) })]
-			}) : null,
-			step === 5 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "mk-card",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "mk-head",
-							children: [
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: tr(locale, MK.silicon) }),
-								" ",
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "≈ 22–24%" }),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: tr(locale, MK.tandem) }),
-								" ",
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "→ ≈ 30%" })
-							]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-							className: "mk-line",
-							children: tr(locale, MK.rep)
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-							className: "mk-cite",
-							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { text: "[91]" })
-						})
-					]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "mk-card",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", {
-						className: "mk-hurdle-title",
-						children: tr(locale, MK.hurdles)
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
-						className: "mk-hurdles",
-						children: HURDLES.map((h) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: tr(locale, h) }, h))
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ForecastChart, {})
-			] }) : null
-		]
+					}, c.id))
+				})]
+			}, g.title))]
+		})
 	});
 }
-var LEAD_TABS = [
-	{
-		id: "lead",
-		name: t("A · Vật liệu", "A · Materials")
-	},
-	{
-		id: "leadmit",
-		name: t("B · Giảm rủi ro", "B · Mitigation")
-	},
-	{
-		id: "leadcmp",
-		name: t("C · So sánh thiết kế", "C · Compare designs")
-	}
-];
-function LeadTabs({ current }) {
-	const locale = useSim((s) => s.locale);
-	const setLesson = useSim((s) => s.setLesson);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-		className: "story-tabs",
-		role: "tablist",
-		"aria-label": "4.9",
-		children: LEAD_TABS.map((tab) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-			type: "button",
-			role: "tab",
-			"aria-selected": tab.id === current,
-			className: tab.id === current ? "btn on" : "btn",
-			onClick: (e) => {
-				setLesson(tab.id);
-				e.currentTarget.blur();
-			},
-			children: tr(locale, tab.name)
-		}, tab.id))
-	});
-}
-var FAMILIES = [
-	{
-		id: "pb",
-		name: t("Perovskite chì", "Pb-based")
-	},
-	{
-		id: "snpb",
-		name: t("Sn–Pb hỗn hợp", "Mixed Sn–Pb")
-	},
-	{
-		id: "sn",
-		name: t("Chỉ thiếc", "Sn-only")
-	},
-	{
-		id: "dbl",
-		name: "Cs₂AgBiBr₆"
-	}
-];
-var LEAD_ROWS = [
-	{
-		dim: t("Có chứa chì?", "Contains lead?"),
-		cells: [
-			t("Có", "Yes"),
-			t("Có", "Yes"),
-			t("Không", "No"),
-			t("Không", "No")
-		]
-	},
-	{
-		dim: t("Hàm lượng chì tương đối", "Relative lead content"),
-		cells: [
-			t("Mốc so sánh", "Reference"),
-			t("Giảm", "Reduced"),
-			t("Không có", "None"),
-			t("Không có", "None")
-		]
-	},
-	{
-		dim: t("Độ trưởng thành hiệu suất", "Efficiency maturity"),
-		cells: [
-			t("Mạnh", "Strong"),
-			t("Tiềm năng nghiên cứu mạnh", "Strong research potential"),
-			t("Đang phát triển", "Developing"),
-			t("Đang phát triển", "Developing")
-		]
-	},
-	{
-		dim: t("Thách thức hóa học chính", "Main chemical challenge"),
-		cells: [
-			t("Giữ chì và độ ổn định vật liệu", "Lead containment and material stability"),
-			t("Oxy hóa Sn và chì còn lại", "Sn oxidation plus residual Pb"),
-			t("Oxy hóa Sn và kiểm soát khuyết tật", "Sn oxidation and defect control"),
-			t("Vùng cấm/hấp thụ và vận chuyển điện tích", "Bandgap/absorption and charge-transport limitations")
-		]
-	},
-	{
-		dim: t("Cân nhắc môi trường chính", "Main environmental consideration"),
-		cells: [
-			t("Chì có thể rò rỉ; xử lý chất thải", "Potential Pb leakage and waste handling"),
-			t("Giảm nhưng chưa loại bỏ mối lo về chì", "Reduced but not eliminated Pb concern"),
-			t("Không có Pb trong lớp hấp thụ, nhưng vẫn đánh giá tác động khác", "No Pb in the absorber, but assess other impacts"),
-			t("Không Pb, nhưng vẫn đánh giá toàn bộ vòng đời vật liệu", "No Pb, but still assess the full material lifecycle")
-		]
-	},
-	{
-		dim: t("Vai trò hiện nay", "Current role"),
-		cells: [
-			t("Dẫn đầu hiệu suất và phát triển tandem", "Leading efficiency and tandem development"),
-			t("Nghiên cứu vùng cấm hẹp và tandem", "Narrow-bandgap and tandem research"),
-			t("Nghiên cứu hấp thụ không chì", "Lead-free absorber research"),
-			t("Nghiên cứu thay thế không chì", "Lead-free alternative research")
-		]
-	}
-];
-var LEAD_NOTE = t("Bảng định tính, không thay cho chuẩn so sánh theo tài liệu. Chưa có con số hiệu suất nào được đưa vào vì mỗi số cần nêu loại linh kiện, diện tích hoạt động, cơ sở đo và ngày nguồn.", "A qualitative comparison, not a literature-backed benchmark. No efficiency numbers are shown because every number would need device type, active area, measurement basis and source date.");
-function LeadTable({ pick, foot }) {
-	const locale = useSim((s) => s.locale);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-		className: "lead-table-wrap",
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("table", {
-				className: "lead-table",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", {}), FAMILIES.map((f) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", {
-					className: pick === f.id ? "on" : "",
-					children: tr(locale, f.name)
-				}, f.id))] }) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("tbody", { children: LEAD_ROWS.map((r) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", {
-					scope: "row",
-					children: tr(locale, r.dim)
-				}), r.cells.map((c, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", {
-					className: pick === FAMILIES[i].id ? "on" : "",
-					children: tr(locale, c)
-				}, c + i))] }, r.dim)) })]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-				className: "lead-note",
-				children: [
-					tr(locale, LEAD_NOTE),
-					" ",
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { text: "[96] [97] [98] [99]" })
-				]
-			}),
-			foot ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-				className: "lead-foot",
-				children: tr(locale, foot)
-			}) : null
-		]
-	});
-}
-var DESIGN_ROWS = [
-	{
-		q: t("Nước có tới lớp hấp thụ?", "Does water reach the absorber?"),
-		cells: [
-			t("Bị chặn khi nguyên vẹn; có thể vào qua vết nứt", "Blocked while intact; can enter through a crack"),
-			t("Như thiết kế 1", "Same as design 1"),
-			t("Như thiết kế 1", "Same as design 1")
-		],
-		level: [
-			1,
-			1,
-			1
-		]
-	},
-	{
-		q: t("Chất chứa chì có thoát ra?", "Can lead-containing species escape?"),
-		cells: [
-			t("Có thể, sau khi hỏng và nước vào", "Possible after damage and water ingress"),
-			t("Giảm: bị giữ ở lớp giữ chì (không tuyệt đối)", "Reduced: held at the capture layer (not absolute)"),
-			t("Giảm như thiết kế 2", "Reduced as in design 2")
-		],
-		level: [
-			2,
-			1,
-			1
-		]
-	},
-	{
-		q: t("Có lớp giữ chì?", "Is a lead-capture layer present?"),
-		cells: [
-			t("Không", "No"),
-			t("Có (cách đã công bố)", "Yes (published approach)"),
-			t("Có (cách đã công bố)", "Yes (published approach)")
-		],
-		level: [
-			2,
-			0,
-			0
-		]
-	},
-	{
-		q: t("Khi module bị hỏng?", "What happens when the module is damaged?"),
-		cells: [
-			t("Chì có thể di chuyển ra khỏi module", "Lead may move out of the module"),
-			t("Chì tới lớp giữ và bị liên kết; vẫn còn chì", "Lead reaches the capture layer and is bound; lead is still present"),
-			t("Như thiết kế 2", "As in design 2")
-		],
-		level: [
-			2,
-			1,
-			1
-		]
-	},
-	{
-		q: t("Khi hết vòng đời?", "What must happen at end of life?"),
-		cells: [
-			t("Cần thu gom và xử lý có kiểm soát", "Needs controlled collection and handling"),
-			t("Vẫn cần thu gom: chì đã giữ vẫn là chì", "Still needs collection: captured lead is still lead"),
-			t("Có kế hoạch: thu gom → tháo dỡ → thu hồi", "Planned: collection → dismantling → recovery")
-		],
-		level: [
-			2,
-			2,
-			0
-		]
-	}
-];
-var DESIGN_NAMES = [
-	t("1 · Bọc kín chuẩn", "1 · Standard encapsulation"),
-	t("2 · + giữ chì", "2 · + lead capture"),
-	t("3 · + giữ chì + cuối đời", "3 · + capture + end of life")
-];
-function DesignTable({ design, foot }) {
-	const locale = useSim((s) => s.locale);
-	const sel = Math.max(0, Math.min(2, Number(design) - 1));
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-		className: "lead-table-wrap",
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("table", {
-				className: "lead-table",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", {}), DESIGN_NAMES.map((n, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", {
-					className: i === sel ? "on" : "",
-					children: tr(locale, n)
-				}, n))] }) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("tbody", { children: DESIGN_ROWS.map((r) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", {
-					scope: "row",
-					children: tr(locale, r.q)
-				}), r.cells.map((c, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", {
-					className: `lvl-${r.level[i]} ${i === sel ? "on" : ""}`,
-					children: tr(locale, c)
-				}, c + i))] }, r.q)) })]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-				className: "lead-note",
-				children: [
-					tr(locale, DESIGN_NOTE),
-					" ",
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { text: "[93] [94] [95]" })
-				]
-			}),
-			foot ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-				className: "lead-foot",
-				children: tr(locale, foot)
-			}) : null
-		]
-	});
-}
-var DESIGN_NOTE = t("Chỉ báo định tính. Không có tỉ lệ rò rỉ nào được nêu và không có thiết kế nào được coi là “không rò rỉ” khi chưa có thử nghiệm đã công bố.", "Qualitative indicators. No leakage percentage is given and no design is called “zero leakage” without a published test.");
 /** Back to the chapter overview, used by every Chapter 4 lesson. */
 function BackToOverview({ spec }) {
 	const locale = useSim((s) => s.locale);
@@ -9985,42 +7687,541 @@ function BackToOverview({ spec }) {
 		})]
 	});
 }
-var cites = (a) => a.map((n) => `[${n}]`).join(" ");
-function useFab() {
-	const fab = useSim((s) => s.fab);
-	const patch = useSim((s) => s.patch);
-	return {
-		fab,
-		set: (k, v) => patch({ fab: {
-			...useSim.getState().fab,
-			[k]: v
-		} })
-	};
-}
-function Dot({ c }) {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("i", {
-		className: "c5-dot",
-		style: { background: c },
-		"aria-hidden": "true"
+var X0$1 = 100;
+var W$2 = 230;
+var XR = 330;
+var XB = 392;
+var ROWS = {
+	tco: {
+		y: 84,
+		h: 42
+	},
+	htl: {
+		y: 130,
+		h: 44
+	},
+	perov: {
+		y: 178,
+		h: 84
+	},
+	etl: {
+		y: 266,
+		h: 44
+	},
+	metal: {
+		y: 314,
+		h: 40
+	}
+};
+var mid = (id) => ROWS[id].y + ROWS[id].h / 2;
+/** where the charges are born (low in the absorber, clear of its caption) */
+var Y0$2 = ROWS.perov.y + 62;
+var PAIRS$2 = [122, 308];
+/** The flat map of the cell: light in, five layers, charges out, one current. */
+function Diagram({ sel, onPick, phase }) {
+	const locale = useSim((s) => s.locale);
+	const on = (n) => phase >= n ? ` on${n}` : "";
+	const cls = `m5-svg ph${phase}${on(1)}${on(2)}${on(3)}${on(4)}${on(5)}`;
+	const yTop = mid("tco");
+	const yBot = mid("metal");
+	const [hWord, hSym] = tr(locale, M5.holes).split(" ");
+	const [eWord, eSym] = tr(locale, M5.electrons).split(" ");
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("svg", {
+		className: cls,
+		viewBox: "0 0 500 380",
+		role: "img",
+		"aria-label": tr(locale, M5.hint),
+		children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("circle", {
+				className: "m5-sun",
+				cx: 215,
+				cy: "28",
+				r: "14"
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
+				className: "m5-note-t",
+				x: 239,
+				y: "33",
+				children: tr(locale, M5.light)
+			}),
+			[
+				150,
+				215,
+				280
+			].map((x, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", {
+				className: "m5-ray",
+				style: { animationDelay: `${i * .25}s` },
+				d: `M${x} 48 V80 m-6 -7 l6 7 l6 -7`
+			}, x)),
+			MAT_LAYERS.map((l) => {
+				const r = ROWS[l.id];
+				const picked = sel === l.id;
+				const big = l.id === "perov";
+				return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("g", {
+					className: picked ? "m5-layer on" : "m5-layer",
+					role: "button",
+					tabIndex: 0,
+					"aria-pressed": picked,
+					"aria-label": tr(locale, l.name),
+					onClick: () => onPick(l.id),
+					onKeyDown: (e) => {
+						if (e.key === "Enter" || e.key === " ") {
+							e.preventDefault();
+							onPick(l.id);
+						}
+					},
+					children: [
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("rect", {
+							className: big ? "m5-rect m5-abs" : "m5-rect",
+							x: X0$1,
+							y: r.y,
+							width: W$2,
+							height: r.h,
+							rx: "5",
+							fill: MAT_COLOR[l.id]
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
+							className: "m5-lt",
+							x: 215,
+							y: r.y + (big ? 22 : r.h / 2 - 1),
+							children: tr(locale, l.name).replace(/ \(.+\)$/, "")
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
+							className: "m5-ls",
+							x: 215,
+							y: r.y + (big ? 40 : r.h / 2 + 14),
+							children: tr(locale, l.short)
+						})
+					]
+				}, l.id);
+			}),
+			PAIRS$2.map((x, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("g", {
+				className: "m5-pair",
+				style: { ["--d"]: `${i * .2}s` },
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("circle", {
+					className: "m5-h",
+					cx: x - 8,
+					cy: Y0$2,
+					r: "6",
+					style: {
+						["--a"]: `${mid("htl") - Y0$2}px`,
+						["--b"]: `${yTop - Y0$2}px`
+					}
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("circle", {
+					className: "m5-e",
+					cx: x + 8,
+					cy: Y0$2,
+					r: "6",
+					style: {
+						["--a"]: `${mid("etl") - Y0$2}px`,
+						["--b"]: `${yBot - Y0$2}px`
+					}
+				})]
+			}, x)),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("g", {
+				className: "m5-arrow m5-arrow-h",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: `M76 ${Y0$2 - 12} V${yTop + 6} m-8 10 l8 -10 l8 10` }),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
+						x: "64",
+						y: mid("htl") + 2,
+						textAnchor: "end",
+						children: hWord
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
+						x: "64",
+						y: mid("htl") + 16,
+						textAnchor: "end",
+						children: hSym
+					})
+				]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("g", {
+				className: "m5-arrow m5-arrow-e",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: `M76 ${Y0$2 + 12} V${yBot - 6} m-8 -10 l8 10 l8 -10` }),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
+						x: "64",
+						y: mid("etl") - 2,
+						textAnchor: "end",
+						children: eWord
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
+						x: "64",
+						y: mid("etl") + 12,
+						textAnchor: "end",
+						children: eSym
+					})
+				]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", {
+				className: "m5-wire",
+				d: `M${XR} ${yTop} H${XB} V${yBot} H${XR}`
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", {
+				className: "m5-flow",
+				d: `M${XR} ${yBot} H${XB} V${yTop} H${XR}`
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("circle", {
+				className: "m5-bulb",
+				cx: XB,
+				cy: (yTop + yBot) / 2,
+				r: "16"
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
+				className: "m5-pole",
+				x: 342,
+				y: yTop - 6,
+				children: "+"
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
+				className: "m5-pole",
+				x: 342,
+				y: yBot + 18,
+				children: "−"
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
+				className: "m5-note-t",
+				x: 416,
+				y: (yTop + yBot) / 2 + 4,
+				children: tr(locale, M5.electricity)
+			})
+		]
 	});
 }
-/** The row of layer buttons: the same list on the model and in the panel. */
-function LayerChips({ ids, value, onPick }) {
+function Source({ n }) {
+	const locale = useSim((s) => s.locale);
+	const s = sourceOf(n);
+	if (!s) return null;
+	const first = s.by.split(",")[0].trim();
+	const more = s.by.includes(",") ? " et al." : "";
+	const year = s.date.slice(0, 4);
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", {
+		className: "m5-src",
+		children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { text: `[${n}]` }),
+			" ",
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+				first,
+				more,
+				", ",
+				s.journal ?? "",
+				", ",
+				year,
+				". ",
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("i", { children: s.title })
+			] }),
+			s.url ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
+				href: s.url,
+				target: "_blank",
+				rel: "noopener noreferrer",
+				children: s.doi ? `doi:${s.doi}` : tr(locale, M5.sources)
+			}) : null
+		]
+	});
+}
+function MaterialsPage() {
+	const locale = useSim((s) => s.locale);
+	const replay = useSim((s) => s.replay);
+	const [sel, setSel] = (0, import_react.useState)("perov");
+	const [phase, setPhase] = (0, import_react.useState)(0);
+	const [auto, setAuto] = (0, import_react.useState)(true);
+	const layer = MAT_LAYERS.find((l) => l.id === sel);
+	(0, import_react.useEffect)(() => {
+		if (!auto) return;
+		const id = window.setInterval(() => setPhase((p) => (p + 1) % PHASES.length), 4500);
+		return () => window.clearInterval(id);
+	}, [auto]);
+	(0, import_react.useEffect)(() => {
+		setPhase(0);
+		setAuto(true);
+	}, [replay]);
+	(0, import_react.useEffect)(() => {}, []);
+	const used = Array.from(new Set(MAT_LAYERS.flatMap((l) => [
+		...l.jobCite,
+		...l.examples.flatMap((e) => e.cite),
+		...l.learn.flatMap((p) => p.cite)
+	]))).sort((a, b) => a - b);
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+		className: "page-scroll m5-page",
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "m5-inner",
+			children: [
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", {
+					className: "m5-head",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+						className: "m5-kicker",
+						children: tr(locale, M5.kicker)
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: tr(locale, M5.title) })]
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
+					className: "m5-main",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("figure", {
+						className: "m5-figure",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Diagram, {
+							sel,
+							onPick: setSel,
+							phase
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("figcaption", { children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+								className: "m5-beat",
+								"aria-live": "polite",
+								children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: phase + 1 }),
+									" ",
+									tr(locale, PHASES[phase])
+								]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "m5-beats",
+								role: "group",
+								"aria-label": "story",
+								children: [
+									PHASES.map((p, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+										type: "button",
+										className: i === phase ? "on" : i < phase ? "seen" : "",
+										"aria-label": `${i + 1}. ${tr(locale, p)}`,
+										onClick: () => {
+											setPhase(i);
+											setAuto(false);
+										},
+										children: i + 1
+									}, p)),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+										type: "button",
+										className: "m5-ctl",
+										onClick: () => setAuto(!auto),
+										"aria-label": tr(locale, auto ? M5.pause : M5.play),
+										children: auto ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Pause, { size: 14 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Play, { size: 14 })
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+										type: "button",
+										className: "m5-ctl",
+										onClick: () => {
+											setPhase(0);
+											setAuto(true);
+										},
+										"aria-label": tr(locale, M5.replay),
+										children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RotateCcw, { size: 14 })
+									})
+								]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+								className: "m5-fine",
+								children: tr(locale, M5.concept)
+							})
+						] })]
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "m5-side",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+							className: "m5-chips",
+							role: "group",
+							"aria-label": tr(locale, M5.pick),
+							children: MAT_LAYERS.map((l) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+								type: "button",
+								className: sel === l.id ? "on" : "",
+								"aria-pressed": sel === l.id,
+								onClick: () => setSel(l.id),
+								style: { ["--c"]: MAT_COLOR[l.id] },
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("i", { "aria-hidden": "true" }), tr(locale, l.chip)]
+							}, l.id))
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", {
+							className: "m5-card",
+							style: { ["--c"]: MAT_COLOR[sel] },
+							"aria-label": tr(locale, M5.selected),
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: tr(locale, layer.name) }),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "m5-job",
+									children: tr(locale, layer.job)
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
+									className: "m5-ex m5-key",
+									children: layer.want.map((w) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: tr(locale, w) }, w))
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", { children: tr(locale, M5.examples) }),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
+									className: "m5-ex",
+									children: layer.examples.map((e) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: tr(locale, e.n) }, e.n))
+								})
+							]
+						})]
+					})]
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+					className: "m5-formula",
+					children: [
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: tr(locale, M5.formulaA) }),
+						" + ",
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: tr(locale, M5.formulaB) }),
+						" = ",
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: tr(locale, M5.formulaC) })
+					]
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("details", {
+					className: "m5-sec m5-sources",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("summary", { children: tr(locale, M5.sources) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("ol", { children: used.map((n) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Source, { n }, n)) })]
+				})
+			]
+		})
+	});
+}
+/** 4.5: the four absorber families in one flat table. */
+function LeadPage() {
+	const locale = useSim((s) => s.locale);
+	const [pick, setPick] = (0, import_react.useState)(null);
+	const on = (id) => pick === id ? " on" : "";
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+		className: "page-scroll m5-page",
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "m5-inner",
+			children: [
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", {
+					className: "m5-head",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+						className: "m5-kicker",
+						children: tr(locale, L4.kicker)
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: tr(locale, L4.title) })]
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "l4-wrap",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("table", {
+						className: "l4-table",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", {}), L4_COLS.map((c) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", {
+							scope: "col",
+							className: on(c.id),
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+								type: "button",
+								"aria-pressed": pick === c.id,
+								"aria-label": `${tr(locale, L4.pick)}: ${tr(locale, c.name)}`,
+								onClick: () => setPick(pick === c.id ? null : c.id),
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: tr(locale, c.name) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: c.sub })]
+							})
+						}, c.id))] }) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("tbody", { children: L4_ROWS.map((r) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", {
+							scope: "row",
+							children: tr(locale, r.dim)
+						}), r.cells.map((c, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", {
+							className: `l4-${c.tone}${on(L4_COLS[i].id)}`,
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: tr(locale, c.text) })
+						}, L4_COLS[i].id))] }, r.dim)) })]
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "m5-fine",
+						children: tr(locale, L4.fine)
+					})]
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+					className: "m5-formula l4-conclude",
+					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: tr(locale, L4.conclude) })
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("details", {
+					className: "m5-sec m5-sources",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("summary", { children: tr(locale, L4.sources) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("ol", { children: L4_CITES.map((n) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Source, { n }, n)) })]
+				})
+			]
+		})
+	});
+}
+/** 4.4: the market milestones in one flat table. */
+function MarketPage() {
 	const locale = useSim((s) => s.locale);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-		className: "c5-chips",
-		role: "group",
-		"aria-label": tr(locale, C5.layers),
-		children: ids.map((id) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-			type: "button",
-			className: value === id ? "c5-chip on" : "c5-chip",
-			"aria-pressed": value === id,
-			onClick: () => onPick(id),
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Dot, { c: HEX$2[id] }), tr(locale, id === "enc" ? ENC.name : LAYERS$1[id].name)]
-		}, id))
+		className: "page-scroll m5-page",
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "m5-inner",
+			children: [
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", {
+					className: "m5-head",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+						className: "m5-kicker",
+						children: tr(locale, MK.kicker)
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: tr(locale, MK.title) })]
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("table", {
+					className: "mk4-table",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("tr", { children: MK.head.map((h) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", {
+						scope: "col",
+						children: tr(locale, h)
+					}, h)) }) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("tbody", { children: MK_ROWS.map((r) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", { children: [
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", {
+							scope: "row",
+							children: tr(locale, r.date)
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", {
+							className: "mk4-who",
+							children: tr(locale, r.who)
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+							className: "mk4-kind",
+							children: tr(locale, r.kind)
+						}) }),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", {
+							className: "mk4-res",
+							children: r.result.map((x) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: tr(locale, x) }, x))
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+							className: `mk4-status mk4-${r.tone}`,
+							children: tr(locale, r.status)
+						}) })
+					] }, r.date + r.who)) })]
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+					className: "m5-formula mk4-conclude",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: tr(locale, MK.conclude) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: tr(locale, MK.warn) })]
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("details", {
+					className: "m5-sec m5-sources",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("summary", { children: tr(locale, MK.sources) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("ol", { children: MK_CITES.map((n) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Source, { n }, n)) })]
+				})
+			]
+		})
 	});
 }
-t("Kính", "Glass"), t("ITO", "ITO"), t("HTL / SAM (chọn lọc lỗ trống)", "HTL / SAM (hole-selective)"), t("Perovskite", "Perovskite"), t("ETL (C₆₀)", "ETL (C₆₀)"), t("Lớp đệm (tùy chọn)", "Buffer (optional)"), t("Kim loại", "Metal"), t("Kính", "Glass"), t("Điện cực trong suốt", "Transparent electrode"), t("ETL, ví dụ SnO₂", "ETL, e.g. SnO₂"), t("Perovskite", "Perovskite"), t("HTL, ví dụ spiro-OMeTAD", "HTL, e.g. spiro-OMeTAD"), t("Kim loại", "Metal");
+/** 6: the closing slide. */
+function ConclusionPage() {
+	const locale = useSim((s) => s.locale);
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+		className: "page-scroll m5-page",
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "m5-inner",
+			children: [
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", {
+					className: "m5-head",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+						className: "m5-kicker",
+						children: tr(locale, C6.kicker)
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: tr(locale, C6.title) })]
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+					className: "c6-grid",
+					children: C6_CARDS.map((c) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", {
+						className: `c6-card c6-${c.id}`,
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: tr(locale, c.head) }),
+							c.big ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", {
+								className: "c6-big",
+								children: c.big
+							}) : null,
+							c.bigNote ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", {
+								className: "c6-note",
+								children: tr(locale, c.bigNote)
+							}) : null,
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", { children: c.points.map((p) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: tr(locale, p) }, p)) })
+						]
+					}, c.id))
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+					className: "m5-formula c6-closing",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: tr(locale, C6.closing) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: tr(locale, C6.next) })]
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+					className: "m5-fine c6-src",
+					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { text: "[7] [1] [2]" })
+				})
+			]
+		})
+	});
+}
+var cites = (a) => a.map((n) => `[${n}]`).join(" ");
 function ArchCompare() {
 	const locale = useSim((s) => s.locale);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -10120,924 +8321,10 @@ function DeviceColumn({ spec }) {
 		children: tr(locale, P.notScale)
 	})] });
 }
-function Spectrum() {
-	const locale = useSim((s) => s.locale);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("figure", {
-		className: "c5-fig",
-		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("svg", {
-			viewBox: "0 0 300 130",
-			role: "img",
-			"aria-label": tr(locale, t("Phổ hấp thụ khái niệm và sơ đồ vùng năng lượng", "Conceptual absorption spectrum and band diagram")),
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("line", {
-					className: "ax",
-					x1: "12",
-					y1: "104",
-					x2: "150",
-					y2: "104"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("line", {
-					className: "ax",
-					x1: "12",
-					y1: "104",
-					x2: "12",
-					y2: "16"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", {
-					d: "M12 30 C70 30 92 32 104 44 C112 54 114 90 150 98",
-					className: "curve"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("line", {
-					className: "edge",
-					x1: "108",
-					y1: "20",
-					x2: "108",
-					y2: "104"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
-					x: "112",
-					y: "26",
-					className: "tx",
-					children: tr(locale, t("mép hấp thụ", "absorption edge"))
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
-					x: "14",
-					y: "118",
-					className: "tx",
-					children: tr(locale, t("bước sóng (ngắn → dài)", "wavelength (short → long)"))
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
-					x: "16",
-					y: "14",
-					className: "tx",
-					children: tr(locale, t("hấp thụ", "absorption"))
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("line", {
-					className: "band",
-					x1: "190",
-					y1: "30",
-					x2: "280",
-					y2: "30"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("line", {
-					className: "band",
-					x1: "190",
-					y1: "90",
-					x2: "280",
-					y2: "90"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
-					x: "196",
-					y: "24",
-					className: "tx",
-					children: tr(locale, t("vùng dẫn", "conduction band"))
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
-					x: "196",
-					y: "104",
-					className: "tx",
-					children: tr(locale, t("vùng hóa trị", "valence band"))
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("line", {
-					className: "gap",
-					x1: "235",
-					y1: "33",
-					x2: "235",
-					y2: "87"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
-					x: "241",
-					y: "64",
-					className: "tx",
-					children: "Eg"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("circle", {
-					cx: "262",
-					cy: "30",
-					r: "5",
-					fill: HEX$2.e
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("circle", {
-					cx: "262",
-					cy: "90",
-					r: "5",
-					fill: "none",
-					stroke: HEX$2.h,
-					strokeWidth: "2"
-				})
-			]
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("figcaption", { children: tr(locale, t("Minh họa khái niệm, không phải bộ số liệu có trích dẫn.", "Conceptual illustration, not a cited dataset.")) })]
-	});
-}
-function EnergyDiagram() {
-	const locale = useSim((s) => s.locale);
-	const [sc, setSc] = (0, import_react.useState)("good");
-	const cur = ENERGY.find((e) => e.id === sc) ?? ENERGY[0];
-	const htlHomo = sc === "barrier" ? 108 : 86;
-	const etlLumo = 52;
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-		className: "c5-energy",
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-				className: "c5-tabs",
-				role: "tablist",
-				children: ENERGY.map((e) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-					type: "button",
-					role: "tab",
-					"aria-selected": sc === e.id,
-					className: sc === e.id ? "c5-tab on" : "c5-tab",
-					onClick: () => setSc(e.id),
-					children: tr(locale, e.name)
-				}, e.id))
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("figure", {
-				className: "c5-fig",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("svg", {
-					viewBox: "0 0 300 150",
-					role: "img",
-					"aria-label": tr(locale, cur.name),
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
-							x: "6",
-							y: "12",
-							className: "tx",
-							children: tr(locale, t("năng lượng điện tử ↑", "electron energy ↑"))
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("rect", {
-							x: "14",
-							y: htlHomo,
-							width: "64",
-							height: "3",
-							fill: HEX$2.htl
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("rect", {
-							x: "14",
-							y: "30",
-							width: "64",
-							height: "3",
-							fill: HEX$2.htl,
-							opacity: "0.35"
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
-							x: "22",
-							y: "124",
-							className: "tx",
-							children: "HTL"
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("rect", {
-							x: "118",
-							y: "38",
-							width: "64",
-							height: "3",
-							fill: HEX$2.perov
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("rect", {
-							x: "118",
-							y: "96",
-							width: "64",
-							height: "3",
-							fill: HEX$2.perov
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
-							x: "122",
-							y: "124",
-							className: "tx",
-							children: tr(locale, t("Perovskite", "Perovskite"))
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("rect", {
-							x: "222",
-							y: etlLumo,
-							width: "64",
-							height: "3",
-							fill: HEX$2.etl
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("rect", {
-							x: "222",
-							y: "120",
-							width: "64",
-							height: "3",
-							fill: HEX$2.etl,
-							opacity: "0.35"
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
-							x: "244",
-							y: "140",
-							className: "tx",
-							children: "ETL"
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", {
-							d: `M182 40 L222 ${etlLumo}`,
-							stroke: HEX$2.e,
-							strokeWidth: "2",
-							fill: "none"
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("circle", {
-							cx: "182",
-							cy: "40",
-							r: "4",
-							fill: HEX$2.e
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", {
-							d: `M118 98 L78 ${htlHomo}`,
-							stroke: HEX$2.h,
-							strokeWidth: "2",
-							fill: "none",
-							strokeDasharray: sc === "barrier" ? "3 3" : void 0
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("circle", {
-							cx: "118",
-							cy: "98",
-							r: "4",
-							fill: "none",
-							stroke: HEX$2.h,
-							strokeWidth: "2"
-						}),
-						sc === "barrier" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
-							x: "64",
-							y: htlHomo - 6,
-							fill: HEX$2.defect,
-							fontSize: "14",
-							fontWeight: "700",
-							children: "✕"
-						}) : null,
-						sc === "hard" ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("text", {
-							x: "228",
-							y: "42",
-							fill: "#ffd36a",
-							fontSize: "10",
-							children: ["⚠ ", tr(locale, t("khó phủ đều", "hard to coat"))]
-						}) : null
-					]
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("figcaption", { children: tr(locale, t("Khái niệm — không có giá trị số, không phải mức đo của vật liệu cụ thể.", "Conceptual — no numerical values, not measured levels of specific materials.")) })]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-				className: "c5-note",
-				children: tr(locale, cur.text)
-			})
-		]
-	});
-}
-function CandCard({ c }) {
-	const locale = useSim((s) => s.locale);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", {
-		className: "c5-card",
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", { children: tr(locale, c.name) }),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("dl", { children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: tr(locale, t("Vì sao có ích", "Why it can help")) }),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: tr(locale, c.why) }),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: tr(locale, t("Hạn chế / rủi ro", "Limitations / risks")) }),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: tr(locale, c.limits) }),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: tr(locale, t("Giao diện", "Interface")) }),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: tr(locale, c.iface) }),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: tr(locale, t("Chế tạo", "Fabrication")) }),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: tr(locale, c.fab) })
-			] }),
-			c.cite.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-				className: "c5-cites",
-				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { text: cites(c.cite) })
-			}) : null
-		]
-	});
-}
-function CompareTable({ cands }) {
-	const locale = useSim((s) => s.locale);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-		className: "lead-table-wrap c5-table",
-		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("table", {
-			className: "lead-table",
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", { children: tr(locale, t("Tiêu chí so sánh", "Criterion")) }), cands.map((c) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", { children: tr(locale, c.name) }, c.id))] }) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("tbody", { children: CRITERIA.map((cr) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("th", {
-				scope: "row",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: tr(locale, cr.name) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-					className: "c5-q",
-					children: tr(locale, cr.q)
-				})]
-			}), cands.map((c) => {
-				const cell = c.cells[cr.id] ?? { c: "nv" };
-				return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("td", {
-					className: `c5-cell c5-${cell.c}`,
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: tr(locale, CAT_LABEL[cell.c]) }),
-						cell.note ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: tr(locale, cell.note) }) : null,
-						cell.cite ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-							className: "c5-cites",
-							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { text: cites(cell.cite) })
-						}) : null
-					]
-				}, c.id);
-			})] }, cr.id)) })]
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-			className: "c5-note",
-			children: tr(locale, t("Nhãn định tính kèm nguồn; không có điểm số. “Cần kiểm chứng” nghĩa là bộ nguồn của chương này chưa có bằng chứng.", "Qualitative labels with sources; no scores. “Needs validation” means this chapter's source set has no evidence."))
-		})]
-	});
-}
-var TCO_NOTE = {
-	bal: t("Điện cực cân bằng: truyền phần lớn ánh sáng và dẫn điện đủ tốt.", "Balanced electrode: transmits most of the light and conducts well enough."),
-	clear: t("Điện cực giả định rất trong suốt nhưng dẫn kém: ánh sáng tới đủ, nhưng dòng điện bị nghẽn.", "Hypothetical very transparent but poorly conducting electrode: plenty of light arrives, but the current is choked.")
-};
-function MaterialColumn({ step }) {
-	const { fab, set } = useFab();
-	const locale = useSim((s) => s.locale);
-	const stepLayer = WHY_LAYER[step] ?? "all";
-	const layer = fab.layer ?? (stepLayer === "all" ? "htl" : stepLayer);
-	(0, import_react.useEffect)(() => {
-		set("layer", stepLayer === "all" ? "htl" : stepLayer);
-	}, [step]);
-	const cands = CANDS[layer] ?? [];
-	const candSel = String(fab[`cand-${layer}`] ?? cands[0]?.id ?? "");
-	const cur = cands.find((c) => c.id === candSel) ?? cands[0];
-	const energy = fab.energy === "on";
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(LayerChips, {
-			ids: [
-				"tco",
-				"htl",
-				"perov",
-				"etl",
-				"buf",
-				"metal",
-				"enc"
-			],
-			value: layer,
-			onPick: (id) => set("layer", id)
-		}),
-		cands.length && step === 6 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("details", {
-			className: "c5-details",
-			open: step === 6,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("summary", { children: tr(locale, t("Bảng so sánh 10 tiêu chí", "Ten-criterion comparison table")) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CompareTable, { cands })]
-		}, `${layer}-${step === 6 ? "t" : "f"}`) : null,
-		layer === "tco" && step === 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", {
-			className: "c5-card",
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", { children: tr(locale, t("Điện cực giả định", "Hypothetical electrode")) }),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: tr(locale, TCO_NOTE[String(fab.tcoc ?? "bal") === "clear" ? "clear" : "bal"]) }),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-					className: "c5-note",
-					children: tr(locale, t("Chỉ để minh họa; không phải số đo.", "Illustration only; not measured values."))
-				})
-			]
-		}) : null,
-		layer === "perov" ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", {
-			className: "c5-card",
-			style: { borderColor: HEX$2.perov },
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h4", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Dot, { c: HEX$2.perov }), tr(locale, LAYERS$1.perov.name)] }),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
-					className: "c5-reqs",
-					children: ABSORBER_REQS.map((r) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: tr(locale, r.name) }),
-						" ",
-						tr(locale, r.text)
-					] }, r.name))
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Spectrum, {}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-					className: "c5-note",
-					children: [
-						tr(locale, t("Vùng cấm, độ hấp thụ, độ linh động hạt tải và độ bền là các tính chất khác nhau.", "Bandgap, absorption, carrier mobility and stability are different properties.")),
-						" ",
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { text: "[101] [103]" })
-					]
-				})
-			]
-		}) : cands.length ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-			className: "c5-tabs",
-			role: "tablist",
-			children: cands.map((c) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-				type: "button",
-				role: "tab",
-				"aria-selected": cur?.id === c.id,
-				className: cur?.id === c.id ? "c5-tab on" : "c5-tab",
-				onClick: () => set(`cand-${layer}`, c.id),
-				children: tr(locale, c.name)
-			}, c.id))
-		}), cur ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CandCard, { c: cur }) : null] }) : null,
-		energy ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(EnergyDiagram, {}) : null,
-		cands.length && step !== 6 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("details", {
-			className: "c5-details",
-			open: step === 6,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("summary", { children: tr(locale, t("Bảng so sánh 10 tiêu chí", "Ten-criterion comparison table")) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CompareTable, { cands })]
-		}, `${layer}-${step === 6 ? "t" : "f"}`) : null
-	] });
-}
-/** Illustrative curves for the kind of behaviour each test group is meant to reveal. They are not data. */
-function isoCurve(fam, lvl, x) {
-	const r = [
-		.12,
-		.3,
-		.5
-	][Math.min(2, Math.max(0, lvl - 1))];
-	const trend = 1 - r * .55 * x;
-	switch (fam) {
-		case "D": return 1 - r * .45 * x ** 1.1;
-		case "V": return 1 - r * .6 * x;
-		case "L": return trend - .07 * (1 - Math.exp(-x / .05));
-		case "O": return 1 - r * .4 * x + .025 * Math.sin(x * Math.PI * 2 * 10);
-		case "T": {
-			const k = Math.floor(x * 8);
-			return 1 - r * .35 * (k / 8) - .012 * (x * 8 % 1);
-		}
-		case "LC": {
-			const ph = x * 10 % 1;
-			return trend - .07 * (ph < .5 ? ph / .5 : (1 - ph) / .5);
-		}
-		case "LT": return 1 - r * .45 * x + .02 * Math.sin(x * Math.PI * 2 * 12);
-	}
-}
-function curvePath(fam, lvl, until = 1, w = 280, h = 150, x0 = 34, y0 = 12) {
-	const pts = [];
-	const n = 160;
-	for (let i = 0; i <= n; i++) {
-		const x = i / n * until;
-		const y = Math.max(.6, Math.min(1.05, isoCurve(fam, lvl, x)));
-		const px = x0 + (w - x0 - 8) * (i / n) * until;
-		const py = y0 + (h - y0 - 22) * (1 - (y - .6) / .45);
-		pts.push(`${i === 0 ? "M" : "L"}${px.toFixed(1)} ${py.toFixed(1)}`);
-	}
-	return pts.join(" ");
-}
-function crossing(fam, lvl, target) {
-	const n = 400;
-	for (let i = 1; i <= n; i++) {
-		const x = i / n;
-		if (isoCurve(fam, lvl, x) <= target) return x;
-	}
-	return null;
-}
-/** Normalised-PCE chart. Always marked as illustrative: the curves are shapes, not data. */
-function PerformanceChart({ lines, progress = 1, showMetrics = false }) {
-	const locale = useSim((s) => s.locale);
-	const w = 280;
-	const h = 150;
-	const x0 = 34;
-	const y0 = 12;
-	const py = (v) => y0 + 116 * (1 - (v - .6) / .45);
-	const px = (x) => x0 + 238 * x;
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("figure", {
-		className: "c5-fig c5-chart",
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-				className: "c5-warn",
-				role: "note",
-				children: tr(locale, ISO_TEXT.illustrative)
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("svg", {
-				viewBox: `0 0 ${w} ${h}`,
-				role: "img",
-				"aria-label": tr(locale, t("PCE chuẩn hóa theo thời gian thử (minh họa)", "Normalised PCE versus test time (illustrative)")),
-				children: [
-					[
-						.6,
-						.8,
-						1
-					].map((v) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("g", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("line", {
-						className: "grid",
-						x1: x0,
-						x2: 272,
-						y1: py(v),
-						y2: py(v)
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
-						x: 30,
-						y: py(v) + 3,
-						textAnchor: "end",
-						className: "tx",
-						children: v.toFixed(1)
-					})] }, v)),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("line", {
-						className: "ref",
-						x1: x0,
-						x2: 272,
-						y1: py(.95),
-						y2: py(.95)
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
-						x: 270,
-						y: py(.95) - 2,
-						textAnchor: "end",
-						className: "tx",
-						children: "T95"
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("line", {
-						className: "ref",
-						x1: x0,
-						x2: 272,
-						y1: py(.8),
-						y2: py(.8)
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
-						x: 270,
-						y: py(.8) - 2,
-						textAnchor: "end",
-						className: "tx",
-						children: "T80"
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("line", {
-						className: "ax",
-						x1: x0,
-						y1: py(.6),
-						x2: 272,
-						y2: py(.6)
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("line", {
-						className: "ax",
-						x1: x0,
-						y1: py(1.05),
-						x2: x0,
-						y2: py(.6)
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
-						x: x0,
-						y: 144,
-						className: "tx",
-						children: tr(locale, t("bắt đầu", "start"))
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
-						x: 272,
-						y: 144,
-						textAnchor: "end",
-						className: "tx",
-						children: tr(locale, t("thời gian thử (thang minh họa) →", "test time (illustrative scale) →"))
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
-						x: "2",
-						y: 16,
-						className: "tx",
-						children: "PCE"
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
-						x: "2",
-						y: 25,
-						className: "tx",
-						children: "/ PCE₀"
-					}),
-					lines.map((l, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", {
-						d: curvePath(l.fam, l.lvl, progress, w, h, x0, y0),
-						fill: "none",
-						stroke: l.color,
-						strokeWidth: "2",
-						strokeDasharray: i > 0 ? "5 3" : void 0,
-						className: "c5-curve"
-					}, `${l.fam}${l.lvl}${i}`)),
-					showMetrics ? lines.map((l, i) => {
-						const c80 = crossing(l.fam, l.lvl, .8);
-						return c80 !== null ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("g", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("line", {
-							x1: px(c80),
-							x2: px(c80),
-							y1: py(.8),
-							y2: py(.6),
-							stroke: l.color,
-							strokeDasharray: "2 2"
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("circle", {
-							cx: px(c80),
-							cy: py(.8),
-							r: "3",
-							fill: l.color
-						})] }, `m${i}`) : null;
-					}) : null
-				]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("figcaption", { children: lines.map((l, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
-				className: "c5-leg",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("i", { style: { background: l.color } }), tr(locale, l.label)]
-			}, i)) })
-		]
-	});
-}
-function ProtocolTable({ fam, lvl }) {
-	const locale = useSim((s) => s.locale);
-	const f = ISO_FAMILIES.find((x) => x.fam === fam) ?? ISO_FAMILIES[2];
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-		className: "lead-table-wrap c5-table",
-		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("table", {
-			className: "lead-table",
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", { children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", { children: tr(locale, ISO_HEAD.id) }),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", { children: tr(locale, ISO_HEAD.light) }),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", { children: tr(locale, ISO_HEAD.temp) }),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", { children: tr(locale, ISO_HEAD.rh) }),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", { children: tr(locale, ISO_HEAD.env) }),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", { children: tr(locale, ISO_HEAD.load) })
-			] }) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("tbody", { children: f.rows.map((r, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("tr", {
-				className: i + 1 === lvl ? "c5-row on" : "c5-row",
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("th", {
-						scope: "row",
-						children: ["ISOS-", r.id]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: tr(locale, r.light) }),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: tr(locale, r.temp) }),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: tr(locale, r.rh) }),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: tr(locale, r.env) }),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: tr(locale, r.load) })
-				]
-			}, r.id)) })]
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-			className: "c5-note",
-			children: [
-				tr(locale, t("Chép từ Bảng 1 của tuyên bố đồng thuận. Bảng không ghi sẵn thời lượng: người làm thí nghiệm chọn và phải báo cáo.", "Copied from Table 1 of the consensus statement. The table gives no fixed duration: the experimenter chooses it and must report it.")),
-				" ",
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { text: "[38]" })
-			]
-		})]
-	});
-}
-var RECORD = [
-	t("PCE ban đầu", "Initial PCE"),
-	t("Công suất cực đại ban đầu", "Initial maximum power"),
-	t("Nhiệt độ thử", "Test temperature"),
-	t("Cường độ và phổ ánh sáng", "Light intensity and spectrum"),
-	t("Độ ẩm tương đối", "Relative humidity"),
-	t("Tình trạng đóng gói", "Encapsulation status"),
-	t("Diện tích và loại thiết bị", "Device area and type")
-];
-function RecordCard({ fam, lvl }) {
-	const locale = useSim((s) => s.locale);
-	const f = ISO_FAMILIES.find((x) => x.fam === fam) ?? ISO_FAMILIES[2];
-	const row = f.rows[lvl - 1] ?? f.rows[0];
-	const val = [
-		t("do trước khi lão hóa; tác giả báo cáo", "measured before ageing; authors report it"),
-		t("đo cùng lúc; tác giả báo cáo", "measured at the same time; authors report it"),
-		row.temp,
-		row.light,
-		row.rh,
-		t("có hay không, và chi tiết; tác giả báo cáo", "yes or no, and details; authors report it"),
-		t("tác giả báo cáo", "authors report it")
-	];
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", {
-		className: "c5-card",
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", { children: tr(locale, t("Bản ghi tại t = 0", "Record at t = 0")) }),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dl", { children: RECORD.map((r, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: tr(locale, r) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: tr(locale, val[i]) })] }, r)) }),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-				className: "c5-note",
-				children: [
-					tr(locale, t("Ví dụ điền theo giao thức đang chọn (ISOS-", "Pre-filled from the protocol currently chosen (ISOS-")),
-					row.id,
-					"). ",
-					tr(locale, t("Hiệu suất ban đầu khác độ bền lâu dài.", "Initial efficiency is not long-term stability.")),
-					" ",
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { text: "[38]" })
-				]
-			})
-		]
-	});
-}
-function Checklist() {
-	const { fab, set } = useFab();
-	const locale = useSim((s) => s.locale);
-	const raw = String(fab.chk ?? "").padEnd(CHECKLIST.length, "0");
-	const cycle = (i) => {
-		const next = {
-			"0": "1",
-			"1": "2",
-			"2": "0"
-		}[raw[i]] ?? "0";
-		set("chk", raw.slice(0, i) + next + raw.slice(i + 1));
-	};
-	const n1 = [...raw].filter((c) => c === "1").length;
-	const n2 = [...raw].filter((c) => c === "2").length;
-	const label = {
-		"0": t("chưa kiểm", "unchecked"),
-		"1": t("đã báo cáo", "reported"),
-		"2": t("không báo cáo", "not reported")
-	};
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-		className: "c5-check",
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-				className: "c5-note",
-				children: tr(locale, t("Đọc một bài báo và bấm từng mục: chưa kiểm → đã báo cáo → không báo cáo.", "Read a paper and click each item: unchecked → reported → not reported."))
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", { children: CHECKLIST.map((it, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-				type: "button",
-				className: `c5-ck c5-ck-${raw[i]}`,
-				onClick: () => cycle(i),
-				"aria-label": `${tr(locale, it.name)}: ${tr(locale, label[raw[i]])}`,
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-						className: "c5-ck-mark",
-						"aria-hidden": "true",
-						children: raw[i] === "1" ? "✓" : raw[i] === "2" ? "–" : ""
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: tr(locale, it.name) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("small", { children: tr(locale, it.why) })] }),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("em", { children: tr(locale, label[raw[i]]) })
-				]
-			}) }, it.id)) }),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-				className: "c5-note",
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("b", { children: [
-						n1,
-						" ",
-						tr(locale, t("đã báo cáo", "reported")),
-						" · ",
-						n2,
-						" ",
-						tr(locale, t("không báo cáo", "not reported"))
-					] }),
-					" — ",
-					tr(locale, t("“Không báo cáo” không làm bài báo vô giá trị; nó chỉ hạn chế khả năng tái lập và so sánh trực tiếp.", "“Not reported” does not make a paper invalid; it only limits reproducibility and direct comparison.")),
-					" ",
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { text: "[38]" })
-				]
-			})
-		]
-	});
-}
-function VsQualification() {
-	const locale = useSim((s) => s.locale);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-		className: "c5-arch",
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", {
-				className: "c5-card good",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", { children: tr(locale, ISO_TEXT.qualL) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", { children: ISO_TEXT.qualLItems.map((x) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: tr(locale, x) }, x)) })]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", {
-				className: "c5-card",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", { children: tr(locale, ISO_TEXT.qualR) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", { children: ISO_TEXT.qualRItems.map((x) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: tr(locale, x) }, x)) })]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-				className: "c5-note",
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: tr(locale, ISO_TEXT.notCert) }),
-					" ",
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { text: "[38]" })
-				]
-			})
-		]
-	});
-}
-var TAB_DEFAULT = [
-	"setup",
-	"setup",
-	"setup",
-	"chart",
-	"chart",
-	"chart",
-	"chart",
-	"vs"
-];
-function IsosColumn({ step }) {
-	const { fab } = useFab();
-	const locale = useSim((s) => s.locale);
-	const [tab, setTab] = (0, import_react.useState)(TAB_DEFAULT[step] ?? "setup");
-	(0, import_react.useEffect)(() => setTab(TAB_DEFAULT[step] ?? "setup"), [step]);
-	const fam = String(fab.iso ?? "L") || "L";
-	const lvl = Number(fab.lvl ?? 2) || 2;
-	const f = ISO_FAMILIES.find((x) => x.fam === fam) ?? ISO_FAMILIES[2];
-	const row = f.rows[lvl - 1] ?? f.rows[0];
-	const tabs = [
-		["setup", t("Điều kiện thử", "Test conditions")],
-		["chart", t("Biểu đồ", "Chart")],
-		["check", t("Danh sách báo cáo", "Reporting checklist")],
-		["vs", t("ISOS và chứng nhận", "ISOS vs qualification")]
-	];
-	const compare = step === 6;
-	const lines = (0, import_react.useMemo)(() => compare ? [{
-		fam: "L",
-		lvl: 2,
-		color: "#ffd36a",
-		label: t("Mẫu A · ISOS-L-2 (minh họa)", "Sample A · ISOS-L-2 (illustrative)")
-	}, {
-		fam: "D",
-		lvl: 3,
-		color: "#79b0ff",
-		label: t("Mẫu B · ISOS-D-3 (minh họa)", "Sample B · ISOS-D-3 (illustrative)")
-	}] : [{
-		fam,
-		lvl,
-		color: "#ffd36a",
-		label: t(`ISOS-${row.id} (minh họa)`, `ISOS-${row.id} (illustrative)`)
-	}], [
-		compare,
-		fam,
-		lvl,
-		row.id
-	]);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-			className: "c5-tabs",
-			role: "tablist",
-			children: tabs.map(([id, name]) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-				type: "button",
-				role: "tab",
-				"aria-selected": tab === id,
-				className: tab === id ? "c5-tab on" : "c5-tab",
-				onClick: () => setTab(id),
-				children: tr(locale, name)
-			}, id))
-		}),
-		tab === "setup" ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", {
-				className: "c5-card",
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", { children: tr(locale, f.name) }),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: tr(locale, f.what) }),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-						className: "c5-note",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("b", { children: [tr(locale, ISO_TEXT.isosName), "."] }),
-							" ",
-							tr(locale, ISO_TEXT.isosWhat)
-						]
-					})
-				]
-			}),
-			step === 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RecordCard, {
-				fam,
-				lvl
-			}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ProtocolTable, {
-				fam,
-				lvl
-			}),
-			step >= 2 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-				className: "c5-note",
-				children: tr(locale, t("Biến áp dụng cho nhóm này: ánh sáng, nhiệt độ, độ ẩm, môi trường, tải điện. Thời lượng do người làm thí nghiệm chọn và báo cáo.", "Variables that apply to this group: light, temperature, humidity, environment, electrical load. Duration is chosen by the experimenter and reported."))
-			}) : null
-		] }) : null,
-		tab === "chart" ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PerformanceChart, {
-				lines,
-				showMetrics: step >= 5
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-				className: "c5-note",
-				children: [
-					tr(locale, t("Trục dọc: PCE chuẩn hóa, 1,0 = 100% giá trị tham chiếu (ở đây là PCE ban đầu). Hình dạng đường cong chỉ minh họa kiểu hành vi của nhóm thử này, không phải kết quả của bài nào.", "Vertical axis: normalised PCE, 1.0 = 100% of the reference value (here the initial PCE). The shape only illustrates the kind of behaviour this group reveals; it is not any paper's result.")),
-					" ",
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { text: "[38]" })
-				]
-			}),
-			step >= 5 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", {
-				className: "c5-card",
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", { children: tr(locale, t("Chỉ số độ bền", "Stability metrics")) }),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("dl", { children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "T80" }),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: tr(locale, t("Thời gian để chỉ số đã chọn (ví dụ PCE) còn 80% giá trị tham chiếu đã xác định, từ t = 0.", "Time for the chosen metric (e.g. PCE) to fall to 80% of its defined reference value, from t = 0.")) }),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "TS80" }),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: tr(locale, t("Như T80 nhưng tính từ một mốc khác (cực đại, hoặc cuối giai đoạn burn-in).", "Like T80 but counted from another point (the maximum, or the end of burn-in).")) }),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "T95" }),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: tr(locale, t("Tương tự cho 95%.", "The same for 95%.")) }),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dt", { children: "η₁₀₀₀" }),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("dd", { children: tr(locale, t("Nếu chưa tới T80, báo cáo mức giảm sau 1000 giờ.", "If T80 is not reached, report the decrease after 1000 h.")) })
-					] }),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-						className: "c5-note",
-						children: [
-							tr(locale, t("Không suy ra tuổi thọ vận hành từ một phép thử ngắn nếu không có mô hình được chứng minh.", "Do not infer an operating lifetime from a short test without a justified model.")),
-							" ",
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { text: "[38]" })
-						]
-					})
-				]
-			}) : null
-		] }) : null,
-		tab === "check" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Checklist, {}) : null,
-		tab === "vs" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(VsQualification, {}) : null
-	] });
-}
-function FinColumn({ step }) {
-	const locale = useSim((s) => s.locale);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ol", {
-		className: "c5-stages",
-		children: [FIN_STAGES.map((s, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", {
-			className: step === i ? "on" : step > i || step === 4 ? "seen" : "",
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("b", { children: [
-				s.n,
-				". ",
-				tr(locale, s.name)
-			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: tr(locale, s.sub) })]
-		}, s.n)), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", {
-			className: step === 4 ? "on loop" : "loop",
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("b", { children: ["↻ ", tr(locale, t("Thiết kế lại dựa trên bằng chứng", "Evidence-based redesign"))] })
-		})]
-	});
-}
 /** Steps whose content lives in the column: it opens by itself when they start. */
 var PANEL_STEPS = {
 	pin: [],
-	stack: [],
-	why: [2, 6],
-	verify: [
-		0,
-		1,
-		2,
-		3,
-		4,
-		5,
-		6,
-		7
-	],
-	c5fin: [
-		0,
-		1,
-		2,
-		3,
-		4
-	]
+	stack: []
 };
 function Ch5Panel({ spec, step }) {
 	const locale = useSim((s) => s.locale);
@@ -11056,24 +8343,18 @@ function Ch5Panel({ spec, step }) {
 		onClick: () => setOpen(!open),
 		children: tr(locale, spec.id === "pin" ? open ? C5.hideTable : C5.table : spec.id === "stack" ? open ? C5.hideLook : C5.look : open ? C5.hideDetails : C5.details)
 	}), open ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("aside", {
-		className: spec.id === "pin" || spec.id === "stack" ? "c5-panel c5-full" : spec.id === "why" && step === 6 ? "c5-panel c5-wide" : "c5-panel",
+		className: spec.id === "pin" || spec.id === "stack" ? "c5-panel c5-full" : "c5-panel",
 		"aria-label": tr(locale, C5.details),
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
-				className: "c5-legend",
-				children: spec.legend.map((l) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("i", {
-					className: `swatch swatch-${l.swatch}`,
-					"aria-hidden": "true"
-				}), tr(locale, l.label)] }, l.label))
-			}),
-			spec.id === "pin" || spec.id === "stack" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DeviceColumn, {
-				spec,
-				step
-			}) : null,
-			spec.id === "why" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(MaterialColumn, { step }) : null,
-			spec.id === "verify" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(IsosColumn, { step }) : null,
-			spec.id === "c5fin" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(FinColumn, { step }) : null
-		]
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
+			className: "c5-legend",
+			children: spec.legend.map((l) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("i", {
+				className: `swatch swatch-${l.swatch}`,
+				"aria-hidden": "true"
+			}), tr(locale, l.label)] }, l.label))
+		}), spec.id === "pin" || spec.id === "stack" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DeviceColumn, {
+			spec,
+			step
+		}) : null]
 	}) : null] });
 }
 /** The compact scientific-facts panel of a Chapter 5 section. */
@@ -11117,9 +8398,7 @@ function StoryOverlay({ lessonId }) {
 	if (!spec) return null;
 	const current = spec.steps[step] ?? spec.steps[0];
 	const tx = (text) => tr(locale, text);
-	const isLead = spec.id === "lead" || spec.id === "leadmit" || spec.id === "leadcmp";
 	const cites = (current.cite ?? []).map((n) => `[${n}]`).join(" ");
-	const tableStep = spec.id === "lead" && step === 5 || spec.id === "leadcmp" && step === spec.steps.length - 1;
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "story-layer",
 		children: [
@@ -11127,7 +8406,6 @@ function StoryOverlay({ lessonId }) {
 				className: "story-top",
 				children: [
 					spec.group === "degrade" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DegradeTabs, { current: spec.id }) : null,
-					isLead ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LeadTabs, { current: spec.id }) : null,
 					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 						className: "story-card",
 						children: [
@@ -11144,7 +8422,7 @@ function StoryOverlay({ lessonId }) {
 								]
 							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: tx(current.title) }),
-							spec.brief || tableStep ? null : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardText, {
+							spec.brief ? null : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardText, {
 								text: tx(current.body),
 								cites
 							}, `${spec.id}-${step}`),
@@ -11170,7 +8448,6 @@ function StoryOverlay({ lessonId }) {
 					spec.facts || spec.factList ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(FactsToggle, { spec }) : null
 				]
 			}),
-			spec.id === "market" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(MarketPanel, { step }) : null,
 			spec.group === "design" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Ch5Panel, {
 				spec,
 				step
@@ -11186,9 +8463,7 @@ function StoryOverlay({ lessonId }) {
 						role: "note",
 						children: tx(current.info)
 					}) : null,
-					spec.id === "lead" && step === 5 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LeadTableSlot, { foot: spec.final }) : null,
-					spec.id === "leadcmp" && step === spec.steps.length - 1 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DesignTableSlot, { foot: spec.final }) : null,
-					current.final && !tableStep ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(FinalMessage, { spec }) : null,
+					current.final ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(FinalMessage, { spec }) : null,
 					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryBar, {
 						spec,
 						step
@@ -11239,26 +8514,6 @@ function FactsToggle({ spec }) {
 		spec,
 		onClose: () => setOpen(false)
 	}) : null] });
-}
-function LeadTableSlot({ foot }) {
-	const pick = useSim((s) => s.fab.pick);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-		className: "lead-slot",
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LeadTable, {
-			pick: String(pick ?? "pb"),
-			foot
-		})
-	});
-}
-function DesignTableSlot({ foot }) {
-	const design = useSim((s) => s.fab.design);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-		className: "lead-slot",
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DesignTable, {
-			design: String(design ?? "1"),
-			foot
-		})
-	});
 }
 /** The sliders and switches of a Chapter 4 lesson, shown on the steps they belong to. */
 function FabControls({ spec, step }) {
@@ -11328,7 +8583,7 @@ function FabControls({ spec, step }) {
 }
 function FinalMessage({ spec }) {
 	const locale = useSim((s) => s.locale);
-	const compact = spec.brief || spec.group === "design" || spec.id === "lead" || spec.id === "leadcmp" || spec.id === "leadmit";
+	const compact = spec.brief || spec.group === "design";
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: compact ? "story-final story-final-brief" : "story-final",
 		role: "status",
@@ -11835,8 +9090,8 @@ function localize(node, locale) {
 	return node;
 }
 var SPHERE = new SphereGeometry(1, 28, 18);
-var OCTA$1 = new OctahedronGeometry(1, 0);
-var OCTA_EDGES$1 = new EdgesGeometry(OCTA$1);
+var OCTA = new OctahedronGeometry(1, 0);
+var OCTA_EDGES = new EdgesGeometry(OCTA);
 var CORNERS = [
 	[
 		-1,
@@ -12006,7 +9261,7 @@ function OctaMesh({ color, scale = 1, opacity = .28 }) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
 		scale,
 		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("mesh", {
-			geometry: OCTA$1,
+			geometry: OCTA,
 			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
 				color,
 				transparent: true,
@@ -12017,7 +9272,7 @@ function OctaMesh({ color, scale = 1, opacity = .28 }) {
 				depthWrite: false
 			})
 		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("lineSegments", {
-			geometry: OCTA_EDGES$1,
+			geometry: OCTA_EDGES,
 			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("lineBasicMaterial", {
 				color,
 				transparent: true,
@@ -19089,514 +16344,6 @@ function CompareScene({ step }) {
 		}) : null
 	] });
 }
-function FinaleScene({ step }) {
-	const ring = (0, import_react.useRef)(null);
-	useFrame(({ clock }) => {
-		if (ring.current) ring.current.rotation.y = clock.elapsedTime * .35;
-	});
-	if (step === 0) return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
-			position: [
-				0,
-				0,
-				0
-			],
-			size: [
-				1.8,
-				.28,
-				1.1
-			],
-			color: "#3a2a55"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(FlowDots, {
-			count: 3,
-			color: "#e4a23a",
-			speed: .45,
-			path: (t) => [
-				0,
-				1.3 - t * 1.15,
-				.35
-			]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(FlowDots, {
-			count: 3,
-			color: "#79b0ff",
-			speed: .3,
-			path: (t) => [
-				-.2 - t * 1.1,
-				.15,
-				.2
-			]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(FlowDots, {
-			count: 3,
-			color: "#e08a55",
-			speed: .3,
-			path: (t) => [
-				.2 + t * 1.1,
-				-.15,
-				.2
-			]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
-			position: [
-				0,
-				1.45,
-				0
-			],
-			accent: true,
-			children: "bốn bước"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
-			position: [
-				-1.5,
-				.2,
-				0
-			],
-			children: "hấp thụ"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
-			position: [
-				1.55,
-				0,
-				0
-			],
-			children: "thu điện"
-		})
-	] });
-	if (step === 1) return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(UnitCell, {
-			aLabel: "A",
-			bLabel: "B",
-			xLabel: "X",
-			highlight: "A"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
-			position: [
-				-1.5,
-				1.2,
-				0
-			],
-			children: "núm A"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
-			position: [
-				0,
-				1.45,
-				0
-			],
-			accent: true,
-			children: "núm B"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
-			position: [
-				1.5,
-				1.2,
-				0
-			],
-			children: "núm X"
-		})
-	] });
-	if (step === 2) return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
-			position: [
-				-1.1,
-				.15,
-				0
-			],
-			size: [
-				.7,
-				.45,
-				.5
-			],
-			color: "#e08a55"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
-			position: [
-				1.1,
-				.85,
-				0
-			],
-			size: [
-				.7,
-				1.7,
-				.5
-			],
-			color: "#6d4bd6",
-			emissive: .25
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
-			position: [
-				-1.1,
-				.7,
-				0
-			],
-			children: "3,8%"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
-			position: [
-				1.1,
-				1.95,
-				0
-			],
-			accent: true,
-			children: "27,3%"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
-			position: [
-				0,
-				-1.15,
-				0
-			],
-			children: "một lớp"
-		})
-	] });
-	if (step === 3) return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(OctaMesh, {
-			color: "#6d4bd6",
-			scale: .7
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: ring,
-			children: [
-				0,
-				1,
-				2,
-				3,
-				4
-			].map((i) => {
-				const a = i / 5 * Math.PI * 2;
-				return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-					position: [
-						Math.cos(a) * 1.35,
-						Math.sin(a) * .85,
-						0
-					],
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("sphereGeometry", { args: [
-						.12,
-						12,
-						10
-					] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-						color: "#e08a55",
-						emissive: "#e08a55",
-						emissiveIntensity: .45
-					})]
-				}, i);
-			})
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
-			position: [
-				0,
-				1.55,
-				0
-			],
-			accent: true,
-			children: "năm kẻ thù"
-		})
-	] });
-	if (step === 4) return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		Array.from({ length: 8 }).map((_, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-			position: [
-				i % 4 * .45 - .7,
-				Math.floor(i / 4) * .4 - .1,
-				0
-			],
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("sphereGeometry", { args: [
-				.1,
-				12,
-				10
-			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-				color: "#6d4bd6",
-				emissive: "#6d4bd6",
-				emissiveIntensity: .35
-			})]
-		}, i)),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
-			position: [
-				0,
-				-.85,
-				0
-			],
-			size: [
-				2.2,
-				.08,
-				1.2
-			],
-			color: "#2a2140"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
-			position: [
-				0,
-				1.2,
-				0
-			],
-			accent: true,
-			children: "mầm cùng lúc"
-		})
-	] });
-	if (step === 5) return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [[
-		"#9ec9ea",
-		"#c46a45",
-		"#b07adf",
-		"#3a2a55",
-		"#8b939e",
-		"#d9d3c8",
-		"#b7daf2"
-	].map((c, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
-		position: [
-			0,
-			-1.05 + i * .32,
-			0
-		],
-		size: [
-			1.7,
-			i === 3 ? .28 : .16,
-			1
-		],
-		color: c,
-		emissive: i === 3 ? .35 : .04
-	}, c)), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
-		position: [
-			1.5,
-			0,
-			0
-		],
-		accent: true,
-		children: "mỗi lớp một việc"
-	})] });
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
-			position: [
-				0,
-				-.25,
-				0
-			],
-			size: [
-				2.2,
-				.35,
-				1.2
-			],
-			color: "#b7c3ce"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
-			position: [
-				0,
-				.12,
-				0
-			],
-			size: [
-				2.2,
-				.08,
-				1.2
-			],
-			color: "#6d4bd6",
-			emissive: .3
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
-			position: [
-				-1.3,
-				.7,
-				0
-			],
-			children: "Si · 150–180 µm"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
-			position: [
-				1.15,
-				.7,
-				0
-			],
-			accent: true,
-			children: "tandem"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
-			position: [
-				0,
-				-1.15,
-				0
-			],
-			children: "đo T80"
-		})
-	] });
-}
-function QuizScene({ step }) {
-	const q = QUIZ[step];
-	if (step === 0) return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
-			position: [
-				0,
-				0,
-				0
-			],
-			size: [
-				1.6,
-				.7,
-				1
-			],
-			color: "#2a2140"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(FlowDots, {
-			count: 1,
-			color: "#7a3030",
-			speed: .15,
-			path: (t) => [
-				0,
-				1.2 - t * 2.2,
-				.4
-			]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
-			position: [
-				0,
-				1.3,
-				0
-			],
-			children: "900 nm · 1,38 eV"
-		})
-	] });
-	if (step === 1) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(UnitCell, {
-		aLabel: "1/8",
-		bLabel: "1",
-		xLabel: "1/2",
-		highlight: "A"
-	});
-	if (step === 2) return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-		position: [
-			-1.2,
-			0,
-			0
-		],
-		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(OctaMesh, {
-			color: "#e6c15a",
-			scale: .7
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
-			position: [
-				0,
-				1.1,
-				0
-			],
-			children: "Cs nhỏ"
-		})]
-	}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-		position: [
-			1.2,
-			0,
-			0
-		],
-		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(OctaMesh, {
-			color: "#e08a55",
-			scale: .7
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
-			position: [
-				0,
-				1.1,
-				0
-			],
-			children: "FA lớn"
-		})]
-	})] });
-	if (step === 3) return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
-		position: [
-			0,
-			.4,
-			0
-		],
-		accent: true,
-		children: "2 × 60 mV ≈ 120 mV"
-	}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
-		position: [
-			0,
-			-.4,
-			0
-		],
-		children: "1% → 0,01%"
-	})] });
-	if (step === 4) return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
-			position: [
-				0,
-				.25,
-				0
-			],
-			size: [
-				1.6,
-				.1,
-				1
-			],
-			color: "#6d4bd6"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
-			position: [
-				0,
-				-.15,
-				0
-			],
-			size: [
-				1.6,
-				.28,
-				1
-			],
-			color: "#b7c3ce"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
-			position: [
-				0,
-				.8,
-				0
-			],
-			children: "hai Eg, một nắng"
-		})
-	] });
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
-			position: [
-				0,
-				0,
-				0
-			],
-			size: [
-				1.7,
-				.35,
-				1
-			],
-			color: "#3a2a55"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
-			position: [
-				0,
-				.28,
-				0
-			],
-			size: [
-				1.8,
-				.06,
-				1.1
-			],
-			color: "#b07adf"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Slab, {
-			position: [
-				0,
-				.5,
-				0
-			],
-			size: [
-				1.8,
-				.08,
-				1.1
-			],
-			color: "#d9d3c8"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tag, {
-			position: [
-				0,
-				1.1,
-				0
-			],
-			children: q ? "2D + SnO₂" : ""
-		})
-	] });
-}
 function RefsScene({ step }) {
 	const safe = (step % REFS.length + REFS.length) % REFS.length;
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [REFS.map((r, i) => {
@@ -19633,8 +16380,6 @@ function RefsScene({ step }) {
 var lateScenes = {
 	race: RaceScene,
 	compare: CompareScene,
-	finale: FinaleScene,
-	quiz: QuizScene,
 	refs: RefsScene
 };
 var SINGLE = [
@@ -20204,56 +16949,6 @@ var FAB = { sSpin: {
 		]
 	}
 } };
-FAB.sTwo = {
-	"1": {
-		pos: [
-			3.2,
-			2.3,
-			4.7
-		],
-		target: [
-			0,
-			.1,
-			0
-		]
-	},
-	"2": {
-		pos: [
-			1.4,
-			1.9,
-			2.9
-		],
-		target: [
-			0,
-			.05,
-			0
-		]
-	},
-	xs: {
-		pos: [
-			4.6,
-			1.4,
-			5.2
-		],
-		target: [
-			3.2,
-			.7,
-			0
-		]
-	},
-	"3": {
-		pos: [
-			4.2,
-			1.5,
-			5.4
-		],
-		target: [
-			3.7,
-			.85,
-			0
-		]
-	}
-};
 FAB.sVac = {
 	"1": {
 		pos: [
@@ -20288,94 +16983,6 @@ FAB.sVac = {
 		target: [
 			2.6,
 			.8,
-			0
-		]
-	}
-};
-FAB.sCry = {
-	"1": {
-		pos: [
-			3.6,
-			1.8,
-			6.2
-		],
-		target: [
-			.7,
-			.2,
-			0
-		]
-	},
-	"2": {
-		pos: [
-			1.3,
-			.9,
-			4.6
-		],
-		target: [
-			-.7,
-			-.15,
-			0
-		]
-	},
-	"3": {
-		pos: [
-			3.7,
-			1.5,
-			6
-		],
-		target: [
-			2.3,
-			.55,
-			0
-		]
-	},
-	cmp: {
-		pos: [
-			.1,
-			1.1,
-			6.2
-		],
-		target: [
-			0,
-			.5,
-			0
-		]
-	}
-};
-FAB.sQd = {
-	"1": {
-		pos: [
-			1.2,
-			1.6,
-			8.2
-		],
-		target: [
-			.7,
-			.3,
-			0
-		]
-	},
-	"2": {
-		pos: [
-			3,
-			.9,
-			5.8
-		],
-		target: [
-			2.8,
-			.45,
-			0
-		]
-	},
-	"3": {
-		pos: [
-			3,
-			.8,
-			4.4
-		],
-		target: [
-			2.9,
-			.45,
 			0
 		]
 	}
@@ -20438,352 +17045,6 @@ FAB.sBlade = {
 		target: [
 			2.3,
 			.4,
-			0
-		]
-	}
-};
-FAB.sSlot = {
-	"1": {
-		pos: [
-			.6,
-			2.2,
-			9.6
-		],
-		target: [
-			0,
-			.6,
-			0
-		]
-	},
-	tank: {
-		pos: [
-			-1.9,
-			1.7,
-			6.2
-		],
-		target: [
-			-2,
-			1.2,
-			0
-		]
-	},
-	"2": {
-		pos: [
-			-.3,
-			1.1,
-			4
-		],
-		target: [
-			-1,
-			.5,
-			.2
-		]
-	},
-	mid: {
-		pos: [
-			.2,
-			1.4,
-			6.4
-		],
-		target: [
-			.2,
-			.4,
-			0
-		]
-	},
-	dry: {
-		pos: [
-			1.5,
-			1.4,
-			5.2
-		],
-		target: [
-			1.3,
-			.4,
-			0
-		]
-	},
-	"3": {
-		pos: [
-			2.6,
-			.9,
-			2.4
-		],
-		target: [
-			2.5,
-			.3,
-			0
-		]
-	},
-	line: {
-		pos: [
-			.4,
-			2.5,
-			10.4
-		],
-		target: [
-			0,
-			.7,
-			0
-		]
-	}
-};
-FAB.sMkt = {
-	"1": {
-		pos: [
-			.6,
-			2.2,
-			9.4
-		],
-		target: [
-			0,
-			1.5,
-			0
-		]
-	},
-	w: {
-		pos: [
-			.6,
-			2.2,
-			9.4
-		],
-		target: [
-			0,
-			1.5,
-			0
-		]
-	},
-	dev: {
-		pos: [
-			1.2,
-			1.8,
-			6.8
-		],
-		target: [
-			0,
-			1.1,
-			0
-		]
-	},
-	line: {
-		pos: [
-			.2,
-			2.6,
-			12.4
-		],
-		target: [
-			0,
-			.9,
-			0
-		]
-	},
-	bench: {
-		pos: [
-			.4,
-			2.1,
-			10.2
-		],
-		target: [
-			0,
-			1.4,
-			0
-		]
-	},
-	cmp: {
-		pos: [
-			0,
-			1.8,
-			7.8
-		],
-		target: [
-			0,
-			1.3,
-			0
-		]
-	},
-	tandem: {
-		pos: [
-			.5,
-			2.4,
-			10
-		],
-		target: [
-			0,
-			1.6,
-			0
-		]
-	}
-};
-FAB.sLeadA = {
-	"1": {
-		pos: [
-			0,
-			1.2,
-			8.6
-		],
-		target: [
-			0,
-			.1,
-			0
-		]
-	},
-	pb: {
-		pos: [
-			-3.3,
-			1,
-			6.6
-		],
-		target: [
-			-3.3,
-			.2,
-			0
-		]
-	},
-	snpb: {
-		pos: [
-			-2.2,
-			1.2,
-			7.4
-		],
-		target: [
-			-2.2,
-			.4,
-			0
-		]
-	},
-	sn: {
-		pos: [
-			1.1,
-			1,
-			6.6
-		],
-		target: [
-			1.1,
-			.4,
-			0
-		]
-	},
-	dbl: {
-		pos: [
-			3.3,
-			.9,
-			7
-		],
-		target: [
-			3.3,
-			.1,
-			0
-		]
-	}
-};
-FAB.sLeadB = {
-	"1": {
-		pos: [
-			.4,
-			3,
-			7.4
-		],
-		target: [
-			0,
-			.6,
-			0
-		]
-	},
-	"2": {
-		pos: [
-			.6,
-			3,
-			5.8
-		],
-		target: [
-			0,
-			.5,
-			0
-		]
-	},
-	cmp: {
-		pos: [
-			0,
-			3,
-			7.8
-		],
-		target: [
-			0,
-			.5,
-			0
-		]
-	},
-	"3": {
-		pos: [
-			.9,
-			2,
-			4
-		],
-		target: [
-			.45,
-			.5,
-			0
-		]
-	},
-	fact: {
-		pos: [
-			0,
-			2.6,
-			11
-		],
-		target: [
-			0,
-			1,
-			0
-		]
-	},
-	recy: {
-		pos: [
-			0,
-			2.8,
-			11.6
-		],
-		target: [
-			0,
-			1,
-			0
-		]
-	}
-};
-FAB.sLeadC = {
-	"1": {
-		pos: [
-			.6,
-			3,
-			7.6
-		],
-		target: [
-			.4,
-			.6,
-			0
-		]
-	},
-	"2": {
-		pos: [
-			.8,
-			3,
-			5.8
-		],
-		target: [
-			.3,
-			.5,
-			0
-		]
-	},
-	"3": {
-		pos: [
-			1.2,
-			2.2,
-			4.8
-		],
-		target: [
-			.8,
-			.5,
 			0
 		]
 	}
@@ -20892,110 +17153,6 @@ FAB.sPin = {
 	}
 };
 FAB.sFunc = FAB.sPin;
-FAB.sMat = {
-	...C5_DEV,
-	"1": {
-		pos: [
-			4.4,
-			1.5,
-			9.4
-		],
-		target: [
-			.5,
-			.15,
-			0
-		]
-	},
-	"2": {
-		pos: [
-			5.2,
-			1.1,
-			10.8
-		],
-		target: [
-			.4,
-			.15,
-			0
-		]
-	}
-};
-FAB.sFin = {
-	...C5_DEV,
-	"1": {
-		pos: [
-			4.4,
-			1.5,
-			9.4
-		],
-		target: [
-			.5,
-			.15,
-			0
-		]
-	},
-	"2": {
-		pos: [
-			5.2,
-			1.1,
-			10.8
-		],
-		target: [
-			.4,
-			.15,
-			0
-		]
-	}
-};
-FAB.sIsos = {
-	"1": {
-		pos: [
-			-.9,
-			1.5,
-			10.8
-		],
-		target: [
-			-.6,
-			-.1,
-			.4
-		]
-	},
-	"2": {
-		pos: [
-			-.3,
-			1.2,
-			8.8
-		],
-		target: [
-			-.3,
-			-.1,
-			.4
-		]
-	},
-	"3": {
-		pos: [
-			4.4,
-			1.5,
-			9.4
-		],
-		target: [
-			.5,
-			.1,
-			0
-		]
-	},
-	cmp: {
-		pos: [
-			0,
-			1.2,
-			9.6
-		],
-		target: [
-			0,
-			-.1,
-			0
-		]
-	}
-};
 var POSES = {
 	...FAB,
 	dmoist: DEG$1,
@@ -21273,7 +17430,7 @@ function StoryRig({ scene, cam }) {
 		if (!fab) return;
 		const c5 = /^s(Pin|Func|Mat|Isos|Fin)$/.test(scene);
 		const narrow = (scene === "sPin" || scene === "sFunc") && size.width < 600;
-		const shiftX = scene === "sMkt" ? Math.round(size.width * .1) : c5 ? Math.round(size.width * (scene === "sPin" || scene === "sFunc" ? -.07 : panelOpen ? .15 : -.07)) : 0;
+		const shiftX = c5 ? Math.round(size.width * (scene === "sPin" || scene === "sFunc" ? -.07 : panelOpen ? .15 : -.07)) : 0;
 		const shiftY = c5 ? Math.round(size.height * (narrow ? .17 : .05)) : Math.round(size.height * .1);
 		cam.setViewOffset(size.width, size.height, shiftX, shiftY, size.width, size.height);
 		return () => cam.clearViewOffset();
@@ -21487,7 +17644,7 @@ function useGate(when) {
 function stepDur(id, step) {
 	return storyOf(id)?.steps[step]?.dur ?? 6;
 }
-var SPH$3 = new SphereGeometry(1, 16, 12);
+var SPH$2 = new SphereGeometry(1, 16, 12);
 var SPH_LO$1 = new SphereGeometry(1, 10, 8);
 /** A pool of glowing spheres drawn with two instanced meshes (core + soft halo). */
 var Swarm = (0, import_react.forwardRef)(function Swarm({ count, color, radius = .07, halo = 2, haloOpacity = .17, emissive = 1.3, basic = false }, ref) {
@@ -21541,7 +17698,7 @@ var Swarm = (0, import_react.forwardRef)(function Swarm({ count, color, radius =
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("instancedMesh", {
 		ref: core,
 		args: [
-			SPH$3,
+			SPH$2,
 			void 0,
 			count
 		],
@@ -22264,7 +18421,7 @@ function GlowBall({ position, color, radius = .15, intensity = 1.2 }) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
 		position,
 		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("mesh", {
-			geometry: SPH$3,
+			geometry: SPH$2,
 			scale: radius,
 			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
 				color,
@@ -24210,7 +20367,7 @@ function RecombTags({ clock, tMeet }) {
 		})]
 	});
 }
-var VIAL$1 = [
+var VIAL = [
 	-2.3,
 	-.6,
 	.2
@@ -24257,11 +20414,11 @@ var SEEDS = Array.from({ length: 36 }, (_, n) => {
 var HEX$1 = new CylinderGeometry(1, 1, 1, 6);
 var GRAIN_BASE = new Color("#7a5688");
 var GRAIN_END = new Color("#2f2139");
-var N_ION$3 = 12;
+var N_ION$1 = 12;
 var N_DROP$1 = 8;
 var N_SOLV$1 = 30;
 var N_HEAT$1 = 16;
-var N_DOT$1 = 42;
+var N_DOT = 42;
 var N_SPRAY = 12;
 function FabScene({ step }) {
 	const coating = useSim((s) => s.coating);
@@ -24337,19 +20494,19 @@ function FabScene({ step }) {
 		for (let i = 0; i < N_SPRAY; i++) sp.hide(i);
 		for (let i = 0; i < N_SOLV$1; i++) so.hide(i);
 		for (let i = 0; i < N_HEAT$1; i++) he.hide(i);
-		for (let i = 0; i < N_DOT$1; i++) dt.hide(i);
+		for (let i = 0; i < N_DOT; i++) dt.hide(i);
 		let drawGrains = false;
 		let stackOn = false;
 		const spinning = coating === "spin";
 		if (step === 0) {
 			const down = between(t, .8, 2) - between(t, 3.2, 4.4);
 			pip = [
-				VIAL$1[0],
+				VIAL[0],
 				.75 - .75 * down,
-				VIAL$1[2]
+				VIAL[2]
 			];
 			liquid = .68 - .04 * between(t, 2, 3);
-			if (t > 3.4) dr.set(0, VIAL$1[0], pip[1] - .06, VIAL$1[2], 1);
+			if (t > 3.4) dr.set(0, VIAL[0], pip[1] - .06, VIAL[2], 1);
 		} else if (step === 1) {
 			if (spinning) {
 				const drip = t < 2.2;
@@ -24515,11 +20672,11 @@ function FabScene({ step }) {
 		ions.forEach((sw, k) => {
 			const api = sw.current;
 			if (!api) return;
-			for (let i = 0; i < N_ION$3; i++) {
+			for (let i = 0; i < N_ION$1; i++) {
 				const a = hash1(i * 7 + k * 31) * 6.28 + t * (.6 + hash1(i + k) * .8) * (step === 0 ? 1 : .4);
 				const r = .08 + hash1(i * 3 + k) * .2;
 				const yy = .1 + hash1(i * 5 + k * 3) * .5 + Math.sin(t * 1.2 + i) * .04;
-				api.set(i, VIAL$1[0] + Math.cos(a) * r, -.5499999999999999 + yy * liquid * 1.1, VIAL$1[2] + Math.sin(a) * r, 1);
+				api.set(i, VIAL[0] + Math.cos(a) * r, -.5499999999999999 + yy * liquid * 1.1, VIAL[2] + Math.sin(a) * r, 1);
 			}
 			api.flush();
 		});
@@ -24574,7 +20731,7 @@ function FabScene({ step }) {
 			})]
 		}),
 		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			position: VIAL$1,
+			position: VIAL,
 			children: [
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
 					position: [
@@ -24632,9 +20789,9 @@ function FabScene({ step }) {
 		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
 			ref: liquidRef,
 			position: [
-				VIAL$1[0],
+				VIAL[0],
 				-.19999999999999996,
-				VIAL$1[2]
+				VIAL[2]
 			],
 			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("cylinderGeometry", { args: [
 				.36,
@@ -24652,7 +20809,7 @@ function FabScene({ step }) {
 		}),
 		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Swarm, {
 			ref: ions[0],
-			count: N_ION$3,
+			count: N_ION$1,
 			color: COLOR.B,
 			radius: .036,
 			halo: 1.6,
@@ -24660,7 +20817,7 @@ function FabScene({ step }) {
 		}),
 		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Swarm, {
 			ref: ions[1],
-			count: N_ION$3,
+			count: N_ION$1,
 			color: COLOR.iodide,
 			radius: .042,
 			halo: 1.6,
@@ -24668,7 +20825,7 @@ function FabScene({ step }) {
 		}),
 		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Swarm, {
 			ref: ions[2],
-			count: N_ION$3,
+			count: N_ION$1,
 			color: COLOR.A,
 			radius: .044,
 			halo: 1.6,
@@ -24980,7 +21137,7 @@ function FabScene({ step }) {
 		}),
 		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Swarm, {
 			ref: dots,
-			count: N_DOT$1,
+			count: N_DOT,
 			color: "#e8b04a",
 			radius: .04,
 			halo: 1.4,
@@ -25368,17 +21525,17 @@ function Labels({ step, clock, coating }) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
 		step === 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
-				VIAL$1[0],
+				VIAL[0],
 				1.25,
-				VIAL$1[2]
+				VIAL[2]
 			],
 			kind: "good",
 			children: L.ink
 		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
-				VIAL$1[0] - .75,
+				VIAL[0] - .75,
 				-.35,
-				VIAL$1[2] + .2
+				VIAL[2] + .2
 			],
 			kind: "tiny",
 			minor: true,
@@ -25660,9 +21817,9 @@ var makeGrainCtl = (openIds = HOT$2.grains) => ({
 	openIds
 });
 var HEX = new CylinderGeometry(1, 1, 1, 6, 1);
-var BOX$3 = new BoxGeometry(1, 1, 1);
+var BOX$2 = new BoxGeometry(1, 1, 1);
 var SPH_LO = new SphereGeometry(1, 10, 8);
-var SPH$2 = new SphereGeometry(1, 16, 12);
+var SPH$1 = new SphereGeometry(1, 16, 12);
 var CYL$1 = new CylinderGeometry(1, 1, 1, 8, 1);
 var RING = new TorusGeometry(1, .09, 6, 28);
 /** The perovskite film as a honeycomb of grains, with the grain boundaries drawn as a glowing network. */
@@ -25738,7 +21895,7 @@ function GrainField({ ctl, state }) {
 	}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("instancedMesh", {
 		ref: rods,
 		args: [
-			BOX$3,
+			BOX$2,
 			void 0,
 			EDGES$2.length
 		],
@@ -25751,7 +21908,7 @@ function GrainField({ ctl, state }) {
 	})] });
 }
 var IDENT_Q = new Quaternion();
-var UP$1 = new Vector3(0, 1, 0);
+var UP = new Vector3(0, 1, 0);
 function ball(p, r, color) {
 	return {
 		geo: SPH_LO,
@@ -25766,7 +21923,7 @@ function stick(a, b, r, color) {
 	return {
 		geo: CYL$1,
 		color,
-		local: new Matrix4().compose(A.clone().lerp(B, .5), new Quaternion().setFromUnitVectors(UP$1, dir.clone().normalize()), new Vector3(r, dir.length(), r)),
+		local: new Matrix4().compose(A.clone().lerp(B, .5), new Quaternion().setFromUnitVectors(UP, dir.clone().normalize()), new Vector3(r, dir.length(), r)),
 		bond: true
 	};
 }
@@ -26609,7 +22766,7 @@ function DegradeBase({ ctl, clock, layerLabels = false, sunTag = false, children
 				-.5
 			],
 			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("mesh", {
-				geometry: SPH$2,
+				geometry: SPH$1,
 				scale: .26,
 				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
 					ref: sunCore,
@@ -30337,7 +26494,7 @@ var N_WATER = 6;
 var N_O2 = 5;
 var N_UV = 7;
 var N_HEAT = 14;
-var N_ION$2 = 8;
+var N_ION = 8;
 var PLATE = new BoxGeometry(1, 1, 1);
 var COLD = new Color("#4a5560");
 var HOT = new Color("#ff6a1f");
@@ -30424,8 +26581,8 @@ function StressScene({ step }) {
 		}
 		h.flush();
 		const eI = emphasis(step, 4);
-		for (let i = 0; i < N_ION$2; i++) {
-			const life = (t * .22 + i / N_ION$2) % 1;
+		for (let i = 0; i < N_ION; i++) {
+			const life = (t * .22 + i / N_ION) % 1;
 			const x = lerp(-1.7, 1.7, life);
 			const z = .9 + i % 2 * .12;
 			io.set(i, x, 0 + Math.sin(life * 18 + i) * .03, z, 1.2 * eI * Math.min(1, life * 6) * Math.min(1, (1 - life) * 6));
@@ -30484,7 +26641,7 @@ function StressScene({ step }) {
 		}),
 		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Swarm, {
 			ref: ions,
-			count: N_ION$2,
+			count: N_ION,
 			color: "#9d7bff",
 			radius: .035,
 			halo: 2.6,
@@ -30675,11 +26832,11 @@ var PAL = {
 	good: "#8fd0a8",
 	warn: "#e08a55"
 };
-var BOX$2 = new BoxGeometry(1, 1, 1);
+var BOX$1 = new BoxGeometry(1, 1, 1);
 var CYL = new CylinderGeometry(1, 1, 1, 40);
 var CYL_LO = new CylinderGeometry(1, 1, 1, 16);
-var SPH$1 = new SphereGeometry(1, 20, 14);
-var EDGES$1 = new EdgesGeometry(BOX$2);
+var SPH = new SphereGeometry(1, 20, 14);
+var EDGES$1 = new EdgesGeometry(BOX$1);
 function Mat({ c = "#888", o = 1, rough = .55, metal = 0, emis, emisI = 0, matRef }) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
 		ref: matRef,
@@ -30709,7 +26866,7 @@ var Bx = (0, import_react.forwardRef)(function Bx({ p = [
 ], edge, vis = true, order, children, ...m }, ref) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
 		ref,
-		geometry: BOX$2,
+		geometry: BOX$1,
 		position: p,
 		scale: s,
 		rotation: r,
@@ -30761,7 +26918,7 @@ var Sp = (0, import_react.forwardRef)(function Sp({ p = [
 ], rad = .1, vis = true, order, children, ...m }, ref) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
 		ref,
-		geometry: SPH$1,
+		geometry: SPH,
 		position: p,
 		scale: rad,
 		visible: vis,
@@ -30883,9 +27040,9 @@ function useGrainTexture(seed = 3, cells = 9, a, b) {
 /** Colour of a film from its state: 0 wet ink → 1 dried → (with `cryst`) dark perovskite. */
 var C_INK = new Color(PAL.ink);
 var C_DRY = new Color(PAL.drying);
-var C_DARK$1 = new Color(PAL.dark);
+var C_DARK = new Color(PAL.dark);
 function filmColor(out, dry, cryst) {
-	return out.copy(C_INK).lerp(C_DRY, Math.min(1, dry)).lerp(C_DARK$1, Math.min(1, cryst));
+	return out.copy(C_INK).lerp(C_DRY, Math.min(1, dry)).lerp(C_DARK, Math.min(1, cryst));
 }
 /**
 * A magnified, cut-away slice of a substrate with a film on top. It is a callout: drawn much larger than
@@ -30952,7 +27109,7 @@ function SectionBlock({ p = [
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("mesh", {
 				ref: film,
-				geometry: BOX$2,
+				geometry: BOX$1,
 				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
 					ref: filmMat,
 					color: PAL.ink,
@@ -31003,7 +27160,7 @@ function VGauge({ p = [
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("mesh", {
 				ref: fill,
-				geometry: BOX$2,
+				geometry: BOX$1,
 				scale: [
 					.09,
 					1,
@@ -31017,7 +27174,7 @@ function VGauge({ p = [
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("mesh", {
 				ref: marker,
-				geometry: SPH$1,
+				geometry: SPH,
 				scale: .1,
 				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
 					color,
@@ -31127,1792 +27284,7 @@ function AssemblingLattice({ n = [
 		})
 	})] });
 }
-var LBL$11 = {
-	vessel: t("Bình nuôi", "Growth vessel"),
-	solution: t("Dung dịch tiền chất", "Precursor solution"),
-	ions: t("Ion hòa tan", "Dissolved ions"),
-	hot: t("Bàn điều nhiệt", "Temperature-controlled plate"),
-	cool: t("Làm nguội chậm", "Slow cooling"),
-	dissolved: t("Lượng chất tan", "Dissolved material"),
-	holds: t("Lượng dung dịch giữ được", "What the solution can hold"),
-	supersat: t("Quá bão hòa", "Supersaturated"),
-	nucleus: t("Mầm tinh thể (rất nhỏ)", "Crystal nucleus (tiny)"),
-	growing: t("Ion bám vào tinh thể", "Ions attach to the crystal"),
-	crystal: t("Tinh thể", "Crystal"),
-	tweezers: t("Nhíp", "Tweezers"),
-	latticeOne: t("Mạng ABX₃ liên tục", "One continuous ABX₃ lattice"),
-	noGb: t("Không có ranh giới hạt bên trong (mô hình lý tưởng)", "No internal grain boundary (idealized model)"),
-	poly: t("Màng đa tinh thể", "Polycrystalline film"),
-	single: t("Đơn tinh thể", "Single crystal"),
-	gb: t("Ranh giới hạt", "Grain boundary"),
-	grain: t("Hạt", "Grain"),
-	macro: t("Tinh thể thấy được bằng mắt", "Macroscopic crystal"),
-	conceptual: t("Minh họa khái niệm", "Conceptual illustration")
-};
-var VX = -.7;
-var V_R = .95;
-var V_H = 1.75;
-var STAND = [
-	2.3,
-	-.45,
-	0
-];
-var N_ION$1 = 72;
-var N_SOLID = 10;
-var NUC = [
-	VX,
-	-.45,
-	0
-];
-/** Octahedron-like crystal: dark, glossy, with bright edges. */
-var OCTA = new OctahedronGeometry(1, 0);
-var OCTA_EDGES = new EdgesGeometry(OCTA);
-var SINGLE_N = [
-	5,
-	3,
-	3
-];
-var GRAIN_N = [
-	2,
-	2,
-	2
-];
-function CrystalScene({ step }) {
-	const clock = useStoryClock(step, stepDur("crystal", step), 2);
-	const crystal = (0, import_react.useRef)(null);
-	const liquid = (0, import_react.useRef)(null);
-	const coil = (0, import_react.useRef)(null);
-	const tw = (0, import_react.useRef)(null);
-	const jawL = (0, import_react.useRef)(null);
-	const jawR = (0, import_react.useRef)(null);
-	const ions = (0, import_react.useRef)(null);
-	const solids = (0, import_react.useRef)(null);
-	const scene1 = (0, import_react.useRef)(null);
-	const bubble = (0, import_react.useRef)(null);
-	const cmpGrp = (0, import_react.useRef)(null);
-	const polyG = (0, import_react.useRef)(null);
-	const oneG = (0, import_react.useRef)(null);
-	const asm = (0, import_react.useRef)(0);
-	const conc = (0, import_react.useRef)(.7);
-	const limit = (0, import_react.useRef)(.95);
-	const csize = (0, import_react.useRef)(0);
-	const g0 = useGate(() => step === 0 && clock.current.t > 2);
-	const g1 = useGate(() => step === 1 && clock.current.t > 1);
-	const gSup = useGate(() => step === 1 && limit.current < conc.current);
-	const g2 = useGate(() => step === 2 && clock.current.t > 1.5);
-	const g3 = useGate(() => step === 3 && clock.current.t > 2);
-	const g4 = useGate(() => step === 4 && clock.current.t > .8);
-	const g5 = useGate(() => step === 5 && clock.current.t > 1.5);
-	const g6 = useGate(() => step === 6 && clock.current.t > 1.2);
-	const matSel = useGate(() => String(useSim.getState().fab.mat ?? "single") === "single");
-	const crystalMat = (0, import_react.useMemo)(() => new MeshStandardMaterial({
-		color: "#241a3d",
-		roughness: .25,
-		metalness: .35
-	}), []);
-	useFrame(() => {
-		const T = clock.current.t;
-		const f = useSim.getState().fab;
-		const mat = String(f.mat ?? "single");
-		const heat = step === 0 ? .8 : step === 1 ? lerp(.8, .2, between(T, .5, 5.5)) : .15;
-		if (coil.current) coil.current.emissiveIntensity = .1 + 1.4 * heat;
-		conc.current = .7;
-		limit.current = step === 1 ? lerp(.95, .45, between(T, .5, 5.5)) : step >= 2 ? .45 : .95;
-		if (liquid.current) {
-			const dep = step === 3 ? between(T, .5, 8) : step >= 4 ? 1 : 0;
-			liquid.current.opacity = lerp(.34, .16, dep);
-			liquid.current.color.set(PAL.ink).lerp(new Color("#c7e5f5"), dep * .7);
-		}
-		if (solids.current) {
-			for (let i = 0; i < N_SOLID; i++) {
-				if (step !== 0) {
-					solids.current.hide(i);
-					continue;
-				}
-				const k = (T - (.4 + i * .25)) / 1.4;
-				if (k < 0 || k > 1) {
-					solids.current.hide(i);
-					continue;
-				}
-				const x = VX + (hash1(i * 3.1) - .5) * .9;
-				const z = (hash1(i * 5.3) - .5) * .9;
-				const y = lerp(1.1 + .6, .45000000000000007, Math.min(1, k * 1.6));
-				solids.current.set(i, x, y - (k > .6 ? (k - .6) * .3 : 0), z, k < .7 ? 1 : (1 - k) / .3);
-			}
-			solids.current.flush();
-		}
-		const size = step < 2 ? 0 : step === 2 ? .1 * between(T, 1, 2.4) : step === 3 ? lerp(.1, .78, between(T, .5, 8)) : .78;
-		csize.current = size;
-		const consumed = step < 2 ? 0 : step === 2 ? .04 : step === 3 ? .04 + .66 * between(T, .5, 8) : .7;
-		if (ions.current) {
-			const visibleN = step === 0 ? Math.round(N_ION$1 * between(T, .8, 3.5)) : N_ION$1;
-			const cy = -.45 + size * .5;
-			for (let i = 0; i < N_ION$1; i++) {
-				if (i >= visibleN || step >= 5) {
-					ions.current.hide(i);
-					continue;
-				}
-				const c = (i + .5) / N_ION$1;
-				const bx = VX + (hash1(i * 2.7) - .5) * (V_R * 1.55) + Math.sin(T * 1.3 + i * 1.9) * .07;
-				const by = -.5 + hash1(i * 6.1) * (V_H * .7) + Math.sin(T * 1.1 + i * 2.3) * .07;
-				const bz = (hash1(i * 8.9) - .5) * (V_R * 1.2) + Math.cos(T * 1.4 + i) * .07;
-				const k = (consumed - c) / .06;
-				if (k >= 1) {
-					ions.current.hide(i);
-					continue;
-				}
-				if (k <= 0) ions.current.set(i, bx, by, bz, 1);
-				else {
-					const e = k * k;
-					ions.current.set(i, lerp(bx, VX, e), lerp(by, cy, e), lerp(bz, 0, e), 1 - e * .5);
-				}
-			}
-			ions.current.flush();
-		}
-		let cx = NUC[0];
-		let cyy = -.45 + size * .5;
-		let cz = 0;
-		let twY = 2.2;
-		let twX = NUC[0];
-		let grip = 0;
-		if (step >= 4) {
-			const T4 = step === 4 ? T : 99;
-			const down = between(T4, .2, 1.2);
-			grip = between(T4, 1.2, 1.6);
-			const lift = between(T4, 1.6, 2.8);
-			const move = between(T4, 2.8, 4.2);
-			const lower = between(T4, 4.2, 5);
-			const rel = between(T4, 5, 6);
-			const restY = -.45 + size * .5;
-			const topY = 1.5;
-			const standY = STAND[1] + .12 + size * .55;
-			cx = lerp(NUC[0], STAND[0], move);
-			cyy = lerp(lerp(restY, topY, lift), standY, lower);
-			cz = 0;
-			twX = cx;
-			twY = lerp(2.2, cyy + .62, down) + rel * 1;
-			grip = grip * (1 - rel);
-			if (step > 4) {
-				cx = STAND[0];
-				cyy = standY;
-				twY = 2.8;
-				grip = 0;
-			}
-		}
-		if (crystal.current) {
-			crystal.current.position.set(cx, cyy, cz);
-			crystal.current.scale.setScalar(Math.max(1e-4, size));
-			crystal.current.rotation.y = T * .25;
-		}
-		if (tw.current) {
-			tw.current.position.set(twX, twY, 0);
-			tw.current.visible = step === 4 && twY < 2.7;
-		}
-		if (jawL.current && jawR.current) {
-			const gap = lerp(.42, .08, grip);
-			jawL.current.position.x = -gap * .5 - .01;
-			jawR.current.position.x = gap * .5 + .01;
-		}
-		asm.current = step === 5 ? between(T, .8, 3) : step === 6 ? between(T, .2, 2) : 0;
-		if (bubble.current) {
-			bubble.current.scale.setScalar(Math.max(1e-4, step === 5 ? between(T, .5, 1.5) : 0));
-			bubble.current.visible = step === 5;
-		}
-		if (scene1.current) scene1.current.scale.setScalar(Math.max(1e-4, step === 6 ? 1 - between(T, 0, .8) : 1));
-		if (cmpGrp.current) {
-			cmpGrp.current.visible = step === 6;
-			cmpGrp.current.scale.setScalar(Math.max(1e-4, step === 6 ? between(T, .6, 1.6) : 0));
-		}
-		if (polyG.current) polyG.current.scale.setScalar(mat === "poly" ? 1.08 : .9);
-		if (oneG.current) oneG.current.scale.setScalar(mat === "single" ? 1.08 : .9);
-	});
-	const grainBlocks = [
-		{
-			p: [
-				-.62,
-				0,
-				0
-			],
-			r: [
-				0,
-				0,
-				0
-			]
-		},
-		{
-			p: [
-				0,
-				.03,
-				0
-			],
-			r: [
-				.4,
-				.7,
-				.2
-			]
-		},
-		{
-			p: [
-				.62,
-				-.02,
-				0
-			],
-			r: [
-				.9,
-				.2,
-				.6
-			]
-		}
-	];
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bench, {}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: scene1,
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					p: [
-						VX,
-						-.78,
-						0
-					],
-					s: [
-						2.3,
-						.24,
-						2.3
-					],
-					c: PAL.steelDark,
-					metal: .5,
-					rough: .5
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-					position: [
-						VX,
-						-.655,
-						0
-					],
-					rotation: [
-						-Math.PI / 2,
-						0,
-						0
-					],
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ringGeometry", { args: [
-						.5,
-						.85,
-						40
-					] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-						ref: coil,
-						color: "#401812",
-						emissive: PAL.hot,
-						emissiveIntensity: 1.2,
-						side: 2
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cy, {
-					p: [
-						VX,
-						.22499999999999998,
-						0
-					],
-					rad: V_R,
-					h: V_H,
-					c: "#cfe9fb",
-					o: .1,
-					rough: .05
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-					position: [
-						VX,
-						-.030000000000000027,
-						0
-					],
-					scale: [
-						V_R * .96,
-						1.2,
-						V_R * .96
-					],
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("cylinderGeometry", { args: [
-						1,
-						1,
-						1,
-						40
-					] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-						ref: liquid,
-						color: PAL.ink,
-						transparent: true,
-						opacity: .34,
-						roughness: .1,
-						depthWrite: false
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Swarm, {
-					ref: ions,
-					count: N_ION$1,
-					color: PAL.ink,
-					radius: .032,
-					halo: 1.8,
-					haloOpacity: .16,
-					emissive: .9
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Swarm, {
-					ref: solids,
-					count: N_SOLID,
-					color: "#e8d9b0",
-					radius: .05,
-					halo: 1.2,
-					haloOpacity: .1,
-					emissive: .4
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-					ref: crystal,
-					scale: 1e-4,
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("mesh", {
-						geometry: OCTA,
-						material: crystalMat
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("lineSegments", {
-						geometry: OCTA_EDGES,
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("lineBasicMaterial", {
-							color: "#b49bf0",
-							transparent: true,
-							opacity: .8
-						})
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cy, {
-					p: [
-						STAND[0],
-						STAND[1] - .1,
-						0
-					],
-					rad: .55,
-					h: .1,
-					c: "#d8e4ee",
-					o: .5,
-					rough: .2
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cy, {
-					p: [
-						STAND[0],
-						-.72,
-						0
-					],
-					rad: .3,
-					h: .34,
-					c: PAL.steelDark,
-					metal: .4
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-					ref: tw,
-					visible: false,
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-							p: [
-								0,
-								.9,
-								0
-							],
-							s: [
-								.12,
-								.8,
-								.05
-							],
-							c: PAL.steel,
-							metal: .8,
-							rough: .3
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-							ref: jawL,
-							position: [
-								-.25,
-								.1,
-								0
-							],
-							scale: [
-								.03,
-								.6,
-								.04
-							],
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-								1,
-								1,
-								1
-							] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-								color: PAL.steel,
-								metalness: .8,
-								roughness: .3
-							})]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-							ref: jawR,
-							position: [
-								.25,
-								.1,
-								0
-							],
-							scale: [
-								.03,
-								.6,
-								.04
-							],
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-								1,
-								1,
-								1
-							] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-								color: PAL.steel,
-								metalness: .8,
-								roughness: .3
-							})]
-						})
-					]
-				})
-			]
-		}),
-		step === 1 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(VGauge, {
-			p: [
-				-2.6,
-				.3,
-				.3
-			],
-			h: 1.3,
-			value: conc,
-			color: PAL.ink
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(VGauge, {
-			p: [
-				-2.2,
-				.3,
-				.3
-			],
-			h: 1.3,
-			value: limit,
-			color: "#79b0ff"
-		})] }) : null,
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: bubble,
-			position: [
-				STAND[0],
-				1.25,
-				0
-			],
-			scale: 1e-4,
-			visible: false,
-			children: matSel ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AssemblingLattice, {
-				n: SINGLE_N,
-				asm,
-				a: .2,
-				radii: {
-					A: .045,
-					B: .032,
-					X: .027
-				},
-				spread: .5
-			}) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [grainBlocks.map((g, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-				position: [
-					g.p[0] * .8,
-					g.p[1],
-					g.p[2]
-				],
-				rotation: g.r,
-				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AssemblingLattice, {
-					n: GRAIN_N,
-					asm,
-					a: .18,
-					radii: {
-						A: .04,
-						B: .028,
-						X: .024
-					},
-					spread: .4
-				})
-			}, i)), [-.25, .25].map((x) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-				position: [
-					x,
-					0,
-					0
-				],
-				rotation: [
-					0,
-					Math.PI / 2,
-					0
-				],
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("planeGeometry", { args: [.7, .7] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshBasicMaterial", {
-					color: PAL.warn,
-					transparent: true,
-					opacity: .25,
-					side: 2,
-					depthWrite: false
-				})]
-			}, x))] })
-		}),
-		g5 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Rod, {
-			a: [
-				STAND[0],
-				STAND[1] + .5,
-				0
-			],
-			b: [
-				STAND[0],
-				.85,
-				0
-			],
-			color: "#b9c5d4"
-		}) : null,
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: cmpGrp,
-			position: [
-				0,
-				.5,
-				0
-			],
-			visible: false,
-			scale: 1e-4,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-				ref: polyG,
-				position: [
-					-1.5,
-					0,
-					0
-				],
-				children: [grainBlocks.map((g, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-					position: [
-						g.p[0],
-						g.p[1],
-						g.p[2]
-					],
-					rotation: g.r,
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AssemblingLattice, {
-						n: GRAIN_N,
-						asm,
-						a: .2,
-						radii: {
-							A: .045,
-							B: .032,
-							X: .027
-						},
-						spread: .4
-					})
-				}, i)), [-.31, .31].map((x) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-					position: [
-						x,
-						0,
-						0
-					],
-					rotation: [
-						0,
-						Math.PI / 2,
-						0
-					],
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("planeGeometry", { args: [.8, .8] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshBasicMaterial", {
-						color: PAL.warn,
-						transparent: true,
-						opacity: .28,
-						side: 2,
-						depthWrite: false
-					})]
-				}, x))]
-			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-				ref: oneG,
-				position: [
-					1.45,
-					0,
-					0
-				],
-				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AssemblingLattice, {
-					n: SINGLE_N,
-					asm,
-					a: .2,
-					radii: {
-						A: .045,
-						B: .032,
-						X: .027
-					},
-					spread: .4
-				})
-			})]
-		}),
-		g0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				.30000000000000004,
-				.85,
-				.5
-			],
-			kind: "layer",
-			children: LBL$11.vessel
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				VX,
-				-.35000000000000003,
-				1
-			],
-			kind: "particle",
-			sub: LBL$11.ions,
-			children: LBL$11.solution
-		})] }) : null,
-		g1 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-2.6,
-					1.1,
-					.3
-				],
-				kind: "particle",
-				minor: true,
-				children: LBL$11.dissolved
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-2.2,
-					-.55,
-					.3
-				],
-				kind: "concept",
-				minor: true,
-				sub: LBL$11.conceptual,
-				children: LBL$11.holds
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					.30000000000000004,
-					-.9,
-					1
-				],
-				kind: "concept",
-				children: LBL$11.cool
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					VX,
-					-.35,
-					1.2
-				],
-				kind: "concept",
-				minor: true,
-				children: LBL$11.hot
-			})
-		] }) : null,
-		gSup ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				-2.4,
-				.9,
-				.3
-			],
-			kind: "bad",
-			children: LBL$11.supersat
-		}) : null,
-		g2 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				-.09999999999999998,
-				-.25,
-				.8
-			],
-			kind: "good",
-			children: LBL$11.nucleus
-		}) : null,
-		g3 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				.20000000000000007,
-				.25,
-				.5
-			],
-			kind: "good",
-			children: LBL$11.crystal
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				-1.4,
-				.35,
-				.6
-			],
-			kind: "particle",
-			children: LBL$11.growing
-		})] }) : null,
-		g4 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				.20000000000000007,
-				1.7,
-				0
-			],
-			kind: "concept",
-			children: LBL$11.tweezers
-		}) : null,
-		g5 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				STAND[0] + .7,
-				STAND[1] + .2,
-				.5
-			],
-			kind: "good",
-			sub: LBL$11.macro,
-			children: LBL$11.crystal
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				STAND[0],
-				1.9,
-				0
-			],
-			kind: matSel ? "good" : "bad",
-			children: matSel ? LBL$11.latticeOne : LBL$11.gb
-		})] }) : null,
-		g6 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-1.5,
-					1.35,
-					0
-				],
-				kind: "bad",
-				children: LBL$11.poly
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-1.5,
-					-.15,
-					0
-				],
-				kind: "bad",
-				minor: true,
-				children: LBL$11.gb
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					1.45,
-					1.35,
-					0
-				],
-				kind: "good",
-				children: LBL$11.single
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					1.45,
-					-.15,
-					0
-				],
-				kind: "good",
-				minor: true,
-				children: LBL$11.noGb
-			})
-		] }) : null
-	] });
-}
-var LBL$10 = {
-	vial: t("Lọ phản ứng (nhìn bằng mắt)", "Reaction vial (macroscopic)"),
-	precursor: t("Dung dịch tiền chất chì halide + phối tử", "Lead-halide precursor solution + ligands"),
-	cs: t("Dung dịch cesium", "Cesium solution"),
-	hot: t("Gia nhiệt", "Heating"),
-	inject: t("Chích nhanh (ví dụ: chích nóng)", "Rapid injection (example: hot injection)"),
-	region: t("Vùng phóng đại", "Magnified region"),
-	zoomNote: t("Chấm không vẽ đúng cỡ so với lọ", "Dots are not drawn at true size relative to the vial"),
-	scale: t("Thanh tỉ lệ ≈ 50 nm (minh họa)", "Scale bar ≈ 50 nm (illustrative)"),
-	nuclei: t("Mầm nano tinh thể", "Nanocrystal nuclei"),
-	dots: t("Chấm lượng tử (nano tinh thể)", "Quantum dots (nanocrystals)"),
-	sizes: t("Nhiều kích cỡ", "Several sizes"),
-	small: t("nhỏ hơn", "smaller"),
-	large: t("lớn hơn", "larger"),
-	anti: t("Chất kết tủa (antisolvent)", "Antisolvent"),
-	spin: t("Ly tâm", "Centrifuge"),
-	pellet: t("Chấm lắng xuống", "Dots settle"),
-	clean: t("Mực chấm đã tinh chế", "Purified dot ink"),
-	waste: t("Bỏ phần dung dịch cũ", "Old liquid removed"),
-	spectrum: t("Phổ phát sáng (minh họa khái niệm)", "Emission spectrum (conceptual illustration)"),
-	wl400: t("400 nm", "400 nm"),
-	wl700: t("700 nm", "700 nm"),
-	uv: t("Đèn UV", "UV lamp"),
-	inkDrop: t("Mực chấm lượng tử", "Quantum-dot ink"),
-	film: t("Màng chấm lượng tử", "Quantum-dot film"),
-	solvent: t("Dung môi bay đi", "Solvent leaves"),
-	substrate: t("Đế", "Substrate"),
-	stage2: t("Giai đoạn tạo màng, khác với giai đoạn tổng hợp", "Film formation is a separate stage from synthesis")
-};
-var VIAL = [
-	-1.4,
-	-.1,
-	0
-];
-var BUB = [
-	2.9,
-	.5,
-	0
-];
-var BUB_R = 1.2;
-var N_DOT = 44;
-var N_PRE = 56;
-var N_SOL$2 = 26;
-var BOX$1 = new BoxGeometry(1, 1, 1);
-var SPH = new SphereGeometry(1, 10, 8);
-var sizeColor = (out, k) => out.setHSL(.62 - .62 * clamp01(k), .95, .5);
-function QdScene({ step }) {
-	const clock = useStoryClock(step, stepDur("qdot", step), 2);
-	const syringe = (0, import_react.useRef)(null);
-	const plunger = (0, import_react.useRef)(null);
-	const stream = (0, import_react.useRef)(null);
-	const vialGrp = (0, import_react.useRef)(null);
-	const liquid = (0, import_react.useRef)(null);
-	const liquidMesh = (0, import_react.useRef)(null);
-	const pelletMesh = (0, import_react.useRef)(null);
-	const heater = (0, import_react.useRef)(null);
-	const dropper = (0, import_react.useRef)(null);
-	const dropMesh = (0, import_react.useRef)(null);
-	const subGrp = (0, import_react.useRef)(null);
-	const filmMesh = (0, import_react.useRef)(null);
-	const filmMat = (0, import_react.useRef)(null);
-	const cubes = (0, import_react.useRef)(null);
-	const pre = (0, import_react.useRef)(null);
-	const halos = (0, import_react.useRef)(null);
-	const flash = (0, import_react.useRef)(null);
-	const solv = (0, import_react.useRef)(null);
-	const uvCone = (0, import_react.useRef)(null);
-	const spec = (0, import_react.useRef)(null);
-	const dummy = (0, import_react.useMemo)(() => new Object3D(), []);
-	const col = (0, import_react.useMemo)(() => new Color(), []);
-	const lastT = (0, import_react.useRef)(0);
-	const rot = (0, import_react.useRef)(0);
-	const gVial = useGate(() => step === 0 && clock.current.t > 1.5);
-	const gInj = useGate(() => step === 1 && clock.current.t > 1.2);
-	const gNuc = useGate(() => step === 2 && clock.current.t > 1.5);
-	const gGrow = useGate(() => step === 3 && clock.current.t > 1.5);
-	const gPur = useGate(() => step === 4 && clock.current.t > .5);
-	const gPel = useGate(() => step === 4 && clock.current.t > 4.6 && clock.current.t < 5.6);
-	const gClean = useGate(() => step === 4 && clock.current.t > 6);
-	const gSpec = useGate(() => step === 5 && clock.current.t > 1);
-	const gFilm = useGate(() => step === 6 && clock.current.t > 5.2);
-	const gInk = useGate(() => step === 6 && clock.current.t > .8 && clock.current.t < 3);
-	const specGeo = (0, import_react.useMemo)(() => {
-		const n = 80;
-		const g = new BufferGeometry();
-		g.setAttribute("position", new Float32BufferAttribute(/* @__PURE__ */ new Float32Array(240), 3));
-		const colors = /* @__PURE__ */ new Float32Array(240);
-		const c = new Color();
-		for (let i = 0; i < n; i++) {
-			c.setHSL(.75 * (1 - i / 79), .9, .6);
-			colors.set([
-				c.r,
-				c.g,
-				c.b
-			], i * 3);
-		}
-		g.setAttribute("color", new Float32BufferAttribute(colors, 3));
-		return g;
-	}, []);
-	const specObj = (0, import_react.useMemo)(() => new Line(specGeo, new LineBasicMaterial({ vertexColors: true })), [specGeo]);
-	const dots = (0, import_react.useMemo)(() => Array.from({ length: N_DOT }, (_, i) => {
-		const u = hash1(i * 1.7);
-		const v = hash1(i * 2.9 + 3);
-		const w = hash1(i * 4.3 + 7);
-		const th = Math.acos(2 * u - 1);
-		const ph = 2 * Math.PI * v;
-		const r = .85 * Math.cbrt(w);
-		return {
-			disp: [
-				Math.sin(th) * Math.cos(ph) * r,
-				Math.cos(th) * r * .9,
-				Math.sin(th) * Math.sin(ph) * r
-			],
-			t0: 1.2 + 2.3 * hash1(i * 5.1 + 2),
-			sz: hash1(i * 6.7 + 5),
-			pellet: [
-				(hash1(i * 8.1) - .5) * .8,
-				-.85 + hash1(i * 9.3) * .18,
-				(hash1(i * 3.7) - .5) * .8
-			],
-			grid: [
-				(i % 8 - 3.5) * .19,
-				-.55,
-				(Math.floor(i / 8) - 3.5) * .19
-			],
-			q: [
-				hash1(i * 1.3),
-				hash1(i * 2.1),
-				hash1(i * 3.3)
-			]
-		};
-	}), []);
-	const pres = (0, import_react.useMemo)(() => Array.from({ length: N_PRE }, (_, i) => {
-		const u = hash1(i * 2.2);
-		const v = hash1(i * 3.4 + 1);
-		const w = hash1(i * 5.1 + 4);
-		const th = Math.acos(2 * u - 1);
-		const ph = 2 * Math.PI * v;
-		const r = .9 * Math.cbrt(w);
-		return [
-			Math.sin(th) * Math.cos(ph) * r,
-			Math.cos(th) * r,
-			Math.sin(th) * Math.sin(ph) * r
-		];
-	}), []);
-	(0, import_react.useLayoutEffect)(() => {
-		const c = cubes.current;
-		if (!c) return;
-		dummy.scale.setScalar(1e-4);
-		dummy.updateMatrix();
-		for (let i = 0; i < N_DOT; i++) {
-			c.setMatrixAt(i, dummy.matrix);
-			c.setColorAt(i, col.set("#ffffff"));
-			halos.current?.setMatrixAt(i, dummy.matrix);
-			halos.current?.setColorAt(i, col);
-		}
-		c.instanceMatrix.needsUpdate = true;
-		if (halos.current) halos.current.instanceMatrix.needsUpdate = true;
-	}, [dummy, col]);
-	useFrame(() => {
-		const T = clock.current.t;
-		const dt = T - lastT.current;
-		lastT.current = T;
-		const f = useSim.getState().fab;
-		const sizeSel = num(f, "size", .5);
-		const mean = .06 + .07 * sizeSel;
-		const heat = step === 0 ? between(T, 1.5, 4) * .7 : step === 1 ? 1 : step === 2 ? .7 : step === 3 ? .4 : .1;
-		if (heater.current) heater.current.emissiveIntensity = .08 + 1.3 * heat;
-		const inject = step === 1 ? between(T, 1.4, 3) : step >= 2 ? 1 : 0;
-		if (syringe.current) {
-			const down = step === 0 ? 0 : step === 1 ? between(T, .2, 1.2) * (1 - between(T, 3.6, 4.6)) : 0;
-			syringe.current.position.set(VIAL[0], lerp(1.55, .95, down), 0);
-			syringe.current.visible = step <= 1;
-		}
-		if (plunger.current) plunger.current.position.y = lerp(.55, .15, inject);
-		if (stream.current) {
-			const on = step === 1 && T > 1.4 && T < 3.1 ? 1 : 0;
-			stream.current.visible = on > 0;
-			stream.current.scale.set(.03, .55, .03);
-			stream.current.position.set(VIAL[0], .5, 0);
-		}
-		let q = 0;
-		let L = .32;
-		if (step === 1) q = between(T, 2.2, 5);
-		else if (step === 2) q = 1;
-		else if (step >= 3) q = 1;
-		const dotCol = sizeColor(col, (mean - .06) / .07);
-		if (liquid.current) {
-			liquid.current.color.set(PAL.ink).lerp(dotCol, q);
-			liquid.current.emissive.copy(dotCol);
-			liquid.current.emissiveIntensity = .5 * q * (step === 5 ? 1.8 : 1);
-			if (step === 4) {
-				L = .32 + .25 * (between(T, 1.6, 2.2) * (1 - between(T, 4.6, 5)));
-				if (T > 5.4) liquid.current.color.set("#bfe9f5");
-				if (T > 6.2) liquid.current.color.copy(dotCol);
-			}
-			liquid.current.opacity = L;
-		}
-		if (pelletMesh.current) {
-			const pk = step === 4 ? between(T, 2.4, 4.6) * (1 - between(T, 6, 7)) : 0;
-			pelletMesh.current.visible = pk > .02;
-			pelletMesh.current.scale.set(.34, .06 + .08 * pk, .34);
-			pelletMesh.current.material.color.copy(dotCol).multiplyScalar(.7);
-		}
-		if (vialGrp.current) {
-			const spin = step === 4 ? between(T, 2, 2.6) * (1 - between(T, 4.5, 5)) : 0;
-			if (dt > 0 && dt < .3) rot.current += spin * 14 * dt;
-			vialGrp.current.rotation.y = rot.current;
-			const away = step === 6 ? between(T, 0, .7) : 0;
-			vialGrp.current.scale.setScalar(Math.max(1e-4, 1 - away));
-			vialGrp.current.position.set(VIAL[0], VIAL[1], VIAL[2]);
-		}
-		if (liquidMesh.current) liquidMesh.current.scale.set(.54, .9, .54);
-		if (uvCone.current) uvCone.current.visible = step === 5;
-		if (dropper.current) {
-			const a4 = step === 4 ? between(T, .2, 1) * (1 - between(T, 2, 2.6)) : 0;
-			const a6 = step === 6 ? between(T, .5, 1.2) * (1 - between(T, 3, 3.8)) : 0;
-			const on = Math.max(a4, a6);
-			dropper.current.visible = on > .02;
-			dropper.current.position.set(VIAL[0] + (step === 6 ? 0 : 0), lerp(2, .95, on), 0);
-		}
-		if (dropMesh.current) {
-			const dr4 = step === 4 ? between(T, 1, 1.6) : 0;
-			const dr6 = step === 6 ? between(T, 1.2, 2) : 0;
-			const k = Math.max(dr4, dr6);
-			const visible = step === 4 && T > 1 && T < 1.8 || step === 6 && T > 1.2 && T < 2.3;
-			dropMesh.current.visible = visible;
-			dropMesh.current.position.set(VIAL[0], lerp(.85, step === 6 ? -.35 : .5, k * k), 0);
-			dropMesh.current.scale.setScalar(.05);
-			dropMesh.current.material.color.set(step === 4 ? "#7ad7ff" : "#79e0a0");
-		}
-		if (subGrp.current) subGrp.current.scale.setScalar(Math.max(1e-4, step === 6 ? between(T, .2, 1) : 0));
-		if (filmMesh.current && filmMat.current) {
-			const spread = step === 6 ? between(T, 2.2, 3.6) : 0;
-			const dry = step === 6 ? between(T, 3.6, 6.2) : 0;
-			filmMesh.current.visible = spread > .01;
-			filmMesh.current.scale.set(Math.max(.001, 1.4 * spread), 1, Math.max(.001, 1 * spread));
-			filmMat.current.color.set("#79e0a0").lerp(new Color(PAL.dark), dry * .55);
-			filmMat.current.emissive.copy(dotCol);
-			filmMat.current.emissiveIntensity = .5 * (1 - dry * .5);
-		}
-		if (solv.current) {
-			const amt = step === 6 ? between(T, 3.6, 4.4) * (1 - between(T, 5.8, 6.6)) : 0;
-			const n = Math.round(N_SOL$2 * amt);
-			for (let i = 0; i < N_SOL$2; i++) {
-				if (i >= n) {
-					solv.current.hide(i);
-					continue;
-				}
-				const life = (T * .35 + hash1(i * 5.9)) % 1;
-				solv.current.set(i, VIAL[0] + (hash1(i * 2.3) - .5) * 1.2, -.3 + life * .9, (hash1(i * 8.7) - .5) * .9, 1 - life * .6);
-			}
-			solv.current.flush();
-		}
-		if (pre.current) {
-			const alive = step === 0 ? between(T, .4, 1.4) : step === 1 ? 1 - between(T, 1.6, 4.4) : 0;
-			for (let i = 0; i < N_PRE; i++) {
-				const p = pres[i];
-				if (i / N_PRE > alive) {
-					pre.current.hide(i);
-					continue;
-				}
-				pre.current.set(i, BUB[0] + p[0] + Math.sin(T * 1.6 + i) * .04, BUB[1] + p[1] + Math.cos(T * 1.3 + i * 1.3) * .04, BUB[2] + p[2], .9);
-			}
-			pre.current.flush();
-		}
-		const c = cubes.current;
-		const hl = halos.current;
-		if (c && hl && flash.current) {
-			const spread = step <= 2 ? .06 : .42;
-			const grow = step === 2 ? between(T, 0, 4.5) : step >= 3 ? 1 : 0;
-			for (let i = 0; i < N_DOT; i++) {
-				const d = dots[i];
-				const full = mean * (1 + (d.sz - .5) * 2 * spread);
-				let s = 0;
-				if (step === 1) s = .03 * between(T, d.t0, d.t0 + .4);
-				else if (step === 2) s = lerp(.03, full, grow);
-				else if (step >= 3) s = full;
-				let x = d.disp[0] + Math.sin(T * .9 + i * 1.7) * .05;
-				let y = d.disp[1] + Math.cos(T * 1.1 + i * 2.3) * .05;
-				let z = d.disp[2] + Math.sin(T * .8 + i * 3.1) * .05;
-				if (step === 4) {
-					const pk = between(T, 2.4, 4.6) * (1 - between(T, 5.6, 6.8));
-					x = lerp(x, d.pellet[0], pk);
-					y = lerp(y, d.pellet[1], pk);
-					z = lerp(z, d.pellet[2], pk);
-				}
-				if (step === 6) {
-					const pack = between(T, 4, 6.5);
-					x = lerp(x, d.grid[0], pack);
-					y = lerp(y, d.grid[1], pack);
-					z = lerp(z, d.grid[2], pack);
-					s = full * lerp(1, 1, pack);
-				}
-				dummy.position.set(BUB[0] + x, BUB[1] + y, BUB[2] + z);
-				dummy.rotation.set(d.q[0] * 6, d.q[1] * 6 + (step === 6 ? 0 : T * .3), d.q[2] * 6);
-				dummy.scale.setScalar(Math.max(1e-4, s));
-				dummy.updateMatrix();
-				c.setMatrixAt(i, dummy.matrix);
-				sizeColor(col, (full - .04) / .1);
-				if (step === 1) col.set("#fff3c4");
-				c.setColorAt(i, col);
-				const gl = s > .002 ? step === 5 ? 1.7 : 1.3 : 0;
-				dummy.rotation.set(0, 0, 0);
-				dummy.scale.setScalar(Math.max(1e-4, s * gl));
-				dummy.updateMatrix();
-				hl.setMatrixAt(i, dummy.matrix);
-				hl.setColorAt(i, col.multiplyScalar(.11));
-				const b = step === 1 ? burst(T, d.t0, .7, .14) : null;
-				if (b) flash.current.set(i, BUB[0] + x, BUB[1] + y, BUB[2] + z, b.r, b.a);
-				else flash.current.hide(i);
-			}
-			c.instanceMatrix.needsUpdate = true;
-			if (c.instanceColor) c.instanceColor.needsUpdate = true;
-			hl.instanceMatrix.needsUpdate = true;
-			if (hl.instanceColor) hl.instanceColor.needsUpdate = true;
-			flash.current.flush();
-		}
-		if (spec.current) spec.current.visible = step === 5;
-		if (step === 5) {
-			const arr = specGeo.getAttribute("position");
-			const wl0 = lerp(440, 650, sizeSel);
-			const n = arr.count;
-			for (let i = 0; i < n; i++) {
-				const wl = 400 + 300 * i / (n - 1);
-				const x = (wl - 400) / 300 * 2 - 1;
-				const y = Math.exp(-((wl - wl0) ** 2) / 968);
-				arr.setXYZ(i, x, y * .7, 0);
-			}
-			arr.needsUpdate = true;
-		}
-	});
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bench, {}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			p: [
-				VIAL[0],
-				-.82,
-				0
-			],
-			s: [
-				1.5,
-				.2,
-				1.5
-			],
-			c: PAL.steelDark,
-			metal: .5,
-			rough: .5
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-			position: [
-				VIAL[0],
-				-.705,
-				0
-			],
-			rotation: [
-				-Math.PI / 2,
-				0,
-				0
-			],
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ringGeometry", { args: [
-				.35,
-				.62,
-				36
-			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-				ref: heater,
-				color: "#401812",
-				emissive: PAL.hot,
-				emissiveIntensity: .1,
-				side: 2
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: vialGrp,
-			position: VIAL,
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cy, {
-					p: [
-						0,
-						.2,
-						0
-					],
-					rad: .58,
-					h: 1.3,
-					c: "#cfe9fb",
-					o: .12,
-					rough: .05
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-					ref: liquidMesh,
-					position: [
-						0,
-						-.05,
-						0
-					],
-					scale: [
-						.54,
-						.9,
-						.54
-					],
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("cylinderGeometry", { args: [
-						1,
-						1,
-						1,
-						32
-					] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-						ref: liquid,
-						color: PAL.ink,
-						transparent: true,
-						opacity: .32,
-						roughness: .1,
-						depthWrite: false
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-					ref: pelletMesh,
-					position: [
-						0,
-						-.5,
-						0
-					],
-					visible: false,
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("cylinderGeometry", { args: [
-						1,
-						1,
-						1,
-						24
-					] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-						color: "#79e0a0",
-						roughness: .6
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cy, {
-					p: [
-						0,
-						.9,
-						0
-					],
-					rad: .3,
-					h: .14,
-					c: "#4a5560",
-					metal: .4
-				})
-			]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: syringe,
-			position: [
-				VIAL[0],
-				1.55,
-				0
-			],
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cy, {
-					p: [
-						0,
-						.3,
-						0
-					],
-					rad: .1,
-					h: .7,
-					c: "#d9eefb",
-					o: .35,
-					lo: true
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cy, {
-					p: [
-						0,
-						.25,
-						0
-					],
-					rad: .085,
-					h: .5,
-					c: "#bde07a",
-					o: .9,
-					lo: true
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-					ref: plunger,
-					position: [
-						0,
-						.55,
-						0
-					],
-					scale: [
-						.03,
-						.5,
-						.03
-					],
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("cylinderGeometry", { args: [
-						1,
-						1,
-						1,
-						8
-					] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-						color: PAL.steel,
-						metalness: .7,
-						roughness: .3
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cy, {
-					p: [
-						0,
-						-.15,
-						0
-					],
-					rad: .012,
-					h: .5,
-					c: PAL.steel,
-					metal: .8,
-					lo: true
-				})
-			]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-			ref: stream,
-			visible: false,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("cylinderGeometry", { args: [
-				1,
-				1,
-				1,
-				8
-			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-				color: "#bde07a",
-				emissive: "#bde07a",
-				emissiveIntensity: .6,
-				transparent: true,
-				opacity: .9
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: dropper,
-			visible: false,
-			position: [
-				VIAL[0],
-				2,
-				0
-			],
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cy, {
-				p: [
-					0,
-					.5,
-					0
-				],
-				rad: .045,
-				h: .9,
-				c: "#d9eefb",
-				o: .4,
-				rough: .1,
-				lo: true
-			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sp, {
-				p: [
-					0,
-					1.02,
-					0
-				],
-				rad: .12,
-				c: "#7a2a2a",
-				rough: .7
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-			ref: dropMesh,
-			visible: false,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("sphereGeometry", { args: [
-				1,
-				14,
-				10
-			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-				color: "#7ad7ff",
-				roughness: .1,
-				transparent: true,
-				opacity: .9
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: subGrp,
-			position: [
-				VIAL[0],
-				-.5,
-				0
-			],
-			scale: 1e-4,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-				s: [
-					1.7,
-					.07,
-					1.2
-				],
-				c: PAL.glass,
-				o: .4,
-				edge: "#cfe9fb",
-				rough: .15
-			}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-				ref: filmMesh,
-				position: [
-					0,
-					.045,
-					0
-				],
-				rotation: [
-					-Math.PI / 2,
-					0,
-					0
-				],
-				visible: false,
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("planeGeometry", { args: [1, 1] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-					ref: filmMat,
-					color: "#79e0a0",
-					roughness: .4,
-					side: 2
-				})]
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Swarm, {
-			ref: solv,
-			count: N_SOL$2,
-			color: PAL.solvent,
-			radius: .03,
-			halo: 2,
-			haloOpacity: .16,
-			emissive: 1
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-			ref: uvCone,
-			position: [
-				VIAL[0],
-				1.1,
-				0
-			],
-			visible: false,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("coneGeometry", { args: [
-				.7,
-				1.4,
-				24,
-				1,
-				true
-			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshBasicMaterial", {
-				color: "#8d5cff",
-				transparent: true,
-				opacity: .16,
-				side: 2,
-				depthWrite: false,
-				blending: 2
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			position: BUB,
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("sphereGeometry", { args: [
-					BUB_R,
-					36,
-					24
-				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshBasicMaterial", {
-					color: "#9cc9e8",
-					transparent: true,
-					opacity: .06,
-					depthWrite: false
-				})] }),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("sphereGeometry", { args: [
-					BUB_R,
-					18,
-					12
-				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshBasicMaterial", {
-					color: "#9cc9e8",
-					wireframe: true,
-					transparent: true,
-					opacity: .12,
-					depthWrite: false
-				})] }),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					p: [
-						-.55,
-						-1,
-						.6
-					],
-					s: [
-						.5,
-						.02,
-						.02
-					],
-					c: "#e4a23a",
-					emis: "#e4a23a",
-					emisI: .8
-				})
-			]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("instancedMesh", {
-			ref: cubes,
-			args: [
-				BOX$1,
-				void 0,
-				N_DOT
-			],
-			frustumCulled: false,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-				roughness: .35,
-				metalness: .1,
-				emissive: "#ffffff",
-				emissiveIntensity: .1
-			})
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("instancedMesh", {
-			ref: halos,
-			args: [
-				SPH,
-				void 0,
-				N_DOT
-			],
-			frustumCulled: false,
-			renderOrder: 6,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshBasicMaterial", {
-				color: "#ffffff",
-				transparent: true,
-				depthWrite: false,
-				blending: 2
-			})
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flashes, {
-			ref: flash,
-			count: N_DOT,
-			color: "#fff3c4"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Swarm, {
-			ref: pre,
-			count: N_PRE,
-			color: PAL.ink,
-			radius: .025,
-			halo: 2,
-			haloOpacity: .15,
-			emissive: .9
-		}),
-		step !== 6 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Rod, {
-				a: [
-					VIAL[0] + .6,
-					.2,
-					0
-				],
-				b: [
-					BUB[0] - BUB_R * .9,
-					BUB[1] + .7,
-					0
-				],
-				color: "#7f8fa3",
-				radius: .006,
-				opacity: .6
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Rod, {
-				a: [
-					VIAL[0] + .6,
-					-.4,
-					0
-				],
-				b: [
-					BUB[0] - BUB_R * .9,
-					BUB[1] - .7,
-					0
-				],
-				color: "#7f8fa3",
-				radius: .006,
-				opacity: .6
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-				position: [
-					VIAL[0],
-					0,
-					.58
-				],
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("torusGeometry", { args: [
-					.16,
-					.012,
-					8,
-					28
-				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshBasicMaterial", { color: "#e4a23a" })]
-			})
-		] }) : null,
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: spec,
-			position: [
-				.75,
-				1.3,
-				0
-			],
-			visible: false,
-			scale: [
-				.9,
-				.9,
-				.9
-			],
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("primitive", { object: specObj }),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					p: [
-						0,
-						-.02,
-						0
-					],
-					s: [
-						2.1,
-						.012,
-						.01
-					],
-					c: "#c5ccd6"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					p: [
-						-1.05,
-						.33,
-						0
-					],
-					s: [
-						.012,
-						.7,
-						.01
-					],
-					c: "#c5ccd6"
-				})
-			]
-		}),
-		gVial ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				VIAL[0] - .9,
-				.55,
-				.4
-			],
-			kind: "layer",
-			children: LBL$10.vial
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				VIAL[0],
-				-1.1,
-				.9
-			],
-			kind: "particle",
-			sub: LBL$10.precursor,
-			children: LBL$10.hot
-		})] }) : null,
-		step === 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				BUB[0],
-				BUB[1] + BUB_R + .2,
-				0
-			],
-			kind: "tiny",
-			sub: LBL$10.zoomNote,
-			children: LBL$10.region
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				BUB[0] - .5,
-				BUB[1] - 1,
-				.7
-			],
-			kind: "tiny",
-			children: LBL$10.scale
-		})] }) : null,
-		gInj ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				VIAL[0] + .5,
-				1.1,
-				.3
-			],
-			kind: "concept",
-			children: LBL$10.cs
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				VIAL[0] - .2,
-				1.8,
-				0
-			],
-			kind: "bad",
-			minor: true,
-			children: LBL$10.inject
-		})] }) : null,
-		gNuc ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				BUB[0],
-				BUB[1] + 1,
-				.2
-			],
-			kind: "good",
-			children: LBL$10.nuclei
-		}) : null,
-		gGrow ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				BUB[0],
-				BUB[1] + 1,
-				.2
-			],
-			kind: "good",
-			children: LBL$10.dots
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				BUB[0] + .2,
-				BUB[1] - 1,
-				.6
-			],
-			kind: "concept",
-			children: LBL$10.sizes
-		})] }) : null,
-		gPur ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				VIAL[0] - .9,
-				1,
-				.4
-			],
-			kind: "particle",
-			minor: true,
-			children: LBL$10.anti
-		}) : null,
-		gPel ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				VIAL[0] + .8,
-				-.5,
-				.7
-			],
-			kind: "good",
-			children: LBL$10.pellet
-		}) : null,
-		step === 4 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				VIAL[0],
-				1.45,
-				.6
-			],
-			kind: "concept",
-			minor: true,
-			children: LBL$10.spin
-		}) : null,
-		gClean ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				VIAL[0] - .9,
-				.5,
-				.5
-			],
-			kind: "good",
-			children: LBL$10.clean
-		}) : null,
-		gSpec ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					.75,
-					2.3,
-					0
-				],
-				kind: "tiny",
-				sub: t("không phải bộ số liệu thực nghiệm", "not an experimental dataset"),
-				children: LBL$10.spectrum
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-.15,
-					1.2,
-					0
-				],
-				kind: "tiny",
-				minor: true,
-				children: LBL$10.wl400
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					1.65,
-					1.2,
-					0
-				],
-				kind: "tiny",
-				minor: true,
-				children: LBL$10.wl700
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					VIAL[0] + .7,
-					1,
-					.3
-				],
-				kind: "concept",
-				minor: true,
-				children: LBL$10.uv
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					BUB[0] - 1,
-					BUB[1] + 1,
-					.5
-				],
-				kind: "concept",
-				children: LBL$10.small
-			})
-		] }) : null,
-		gInk ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				VIAL[0] + .7,
-				.3,
-				.3
-			],
-			kind: "particle",
-			children: LBL$10.inkDrop
-		}) : null,
-		step === 6 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				VIAL[0],
-				-1.1,
-				.9
-			],
-			kind: "concept",
-			sub: LBL$10.stage2,
-			children: LBL$10.substrate
-		}) : null,
-		gFilm ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				BUB[0],
-				BUB[1] - .3,
-				.9
-			],
-			kind: "good",
-			children: LBL$10.film
-		}) : null
-	] });
-}
-var LBL$9 = {
+var LBL$3 = {
 	sub: t("Đế sạch", "Clean substrate"),
 	blade: t("Lưỡi dao gạt", "Coating blade"),
 	ink: t("Vệt mực tiền chất", "Precursor ink bead"),
@@ -32940,7 +27312,7 @@ var BX0 = -1.85;
 var BX1 = 1.85;
 var FW = 1.5;
 var N_DROP = 7;
-var N_SOL$1 = 44;
+var N_SOL = 44;
 function defectTexture() {
 	const cv = document.createElement("canvas");
 	cv.width = 512;
@@ -33074,8 +27446,8 @@ function BladeScene({ step }) {
 		}
 		if (solv.current) {
 			const amt = step === 4 ? between(T, .6, 2) : step === 5 ? 1 - between(T, 0, 3) : 0;
-			const n = Math.round(N_SOL$1 * amt);
-			for (let i = 0; i < N_SOL$1; i++) {
+			const n = Math.round(N_SOL * amt);
+			for (let i = 0; i < N_SOL; i++) {
 				if (i >= n) {
 					solv.current.hide(i);
 					continue;
@@ -33220,7 +27592,7 @@ function BladeScene({ step }) {
 		}),
 		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Swarm, {
 			ref: solv,
-			count: N_SOL$1,
+			count: N_SOL,
 			color: PAL.solvent,
 			radius: .03,
 			halo: 2,
@@ -33343,7 +27715,7 @@ function BladeScene({ step }) {
 				.9
 			],
 			kind: "layer",
-			children: LBL$9.sub
+			children: LBL$3.sub
 		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
 				BX0,
@@ -33351,7 +27723,7 @@ function BladeScene({ step }) {
 				.8
 			],
 			kind: "concept",
-			children: LBL$9.blade
+			children: LBL$3.blade
 		})] }) : null,
 		g1 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
@@ -33360,7 +27732,7 @@ function BladeScene({ step }) {
 				.95
 			],
 			kind: "particle",
-			children: LBL$9.ink
+			children: LBL$3.ink
 		}) : null,
 		g2 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
@@ -33370,7 +27742,7 @@ function BladeScene({ step }) {
 			],
 			kind: "concept",
 			minor: true,
-			children: LBL$9.moves
+			children: LBL$3.moves
 		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
 				-1,
@@ -33378,7 +27750,7 @@ function BladeScene({ step }) {
 				.95
 			],
 			kind: "layer",
-			children: LBL$9.wet
+			children: LBL$3.wet
 		})] }) : null,
 		step === 3 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
@@ -33387,8 +27759,8 @@ function BladeScene({ step }) {
 				.9
 			],
 			kind: "tiny",
-			sub: LBL$9.conceptual,
-			children: LBL$9.gap
+			sub: LBL$3.conceptual,
+			children: LBL$3.gap
 		}) : null,
 		gThin ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
@@ -33397,7 +27769,7 @@ function BladeScene({ step }) {
 				.9
 			],
 			kind: "good",
-			children: LBL$9.thin
+			children: LBL$3.thin
 		}) : null,
 		gMod ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
@@ -33406,7 +27778,7 @@ function BladeScene({ step }) {
 				.9
 			],
 			kind: "good",
-			children: LBL$9.mod
+			children: LBL$3.mod
 		}) : null,
 		gThick ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
@@ -33415,7 +27787,7 @@ function BladeScene({ step }) {
 				.9
 			],
 			kind: "bad",
-			children: LBL$9.thick
+			children: LBL$3.thick
 		}) : null,
 		g4 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
@@ -33424,7 +27796,7 @@ function BladeScene({ step }) {
 				.4
 			],
 			kind: "particle",
-			children: LBL$9.solvent
+			children: LBL$3.solvent
 		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
 				-1.3,
@@ -33433,7 +27805,7 @@ function BladeScene({ step }) {
 			],
 			kind: "concept",
 			minor: true,
-			children: LBL$9.heat
+			children: LBL$3.heat
 		})] }) : null,
 		g5 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
@@ -33442,7 +27814,7 @@ function BladeScene({ step }) {
 				.9
 			],
 			kind: "good",
-			children: LBL$9.grains
+			children: LBL$3.grains
 		}) : null,
 		gIdeal ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
@@ -33451,7 +27823,7 @@ function BladeScene({ step }) {
 				.95
 			],
 			kind: "good",
-			children: LBL$9.ideal
+			children: LBL$3.ideal
 		}) : null,
 		gDef ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
@@ -33460,8 +27832,8 @@ function BladeScene({ step }) {
 				.95
 			],
 			kind: "bad",
-			sub: LBL$9.conceptualDef,
-			children: LBL$9.defects
+			sub: LBL$3.conceptualDef,
+			children: LBL$3.defects
 		}) : null,
 		gSec ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
@@ -33471,7 +27843,7 @@ function BladeScene({ step }) {
 					.4
 				],
 				kind: "good",
-				children: LBL$9.secFilm
+				children: LBL$3.secFilm
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 				position: [
@@ -33480,7 +27852,7 @@ function BladeScene({ step }) {
 					.4
 				],
 				kind: "layer",
-				children: LBL$9.secSub
+				children: LBL$3.secSub
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 				position: [
@@ -33489,4669 +27861,12 @@ function BladeScene({ step }) {
 					.4
 				],
 				kind: "tiny",
-				children: LBL$9.scale
+				children: LBL$3.scale
 			})
 		] }) : null
 	] });
 }
-var LBL$8 = {
-	tank: t("Bình chứa mực", "Ink reservoir"),
-	ink: t("Mực tiền chất perovskite", "Perovskite precursor ink"),
-	pump: t("Bơm", "Pump"),
-	feed: t("Ống dẫn mực", "Feed line"),
-	die: t("Đầu phủ khe (slot-die)", "Slot-die head"),
-	manifold: t("Khoang phân phối", "Manifold"),
-	slit: t("Khe hẹp", "Narrow slot"),
-	bead: t("Cầu mực (meniscus)", "Coating bead (meniscus)"),
-	gap: t("Khe đầu phủ – đế (minh họa)", "Die-to-substrate gap (illustrative)"),
-	web: t("Đế chuyển động", "Moving substrate"),
-	wet: t("Màng ướt liên tục", "Continuous wet film"),
-	stable: t("Cầu mực ổn định → lớp phủ đều (khái niệm)", "Stable bead → even coating (conceptual)"),
-	starved: t("Thiếu mực: cầu mực đứt, màng mỏng, có vệt (khái niệm)", "Starved: bead breaks, thin film, streaks (conceptual)"),
-	flooded: t("Thừa mực: màng dày, mực tràn ngược (khái niệm)", "Flooded: thick film, ink overflows upstream (conceptual)"),
-	dryer: t("Vùng sấy", "Drying zone"),
-	solvent: t("Dung môi bay đi", "Solvent leaves"),
-	cryst: t("Màng perovskite tinh thể", "Crystalline perovskite film"),
-	grains: t("Hạt tinh thể", "Crystal grains"),
-	unwind: t("Cuộn nhả đế", "Unwind roll"),
-	rewind: t("Cuộn thu đế", "Rewind roll"),
-	coat: t("Trạm phủ", "Coating station"),
-	drying: t("Trạm sấy", "Drying station"),
-	roller: t("Con lăn", "Rollers"),
-	webSub: t("Đế dạng cuộn (web)", "Web substrate")
-};
-var WEB_Y = .3;
-var DIE_X = -1;
-var FILM_L = 5;
-var N_FLOW = 26;
-var N_SOL = 46;
-var N_MARK = 18;
-var PIPE = [
-	[
-		-3,
-		1.72,
-		0
-	],
-	[
-		-3,
-		1.45,
-		0
-	],
-	[
-		-2,
-		1.45,
-		0
-	],
-	[
-		-1,
-		1.45,
-		0
-	],
-	[
-		-1,
-		1.15,
-		0
-	]
-];
-var PIPE_LEN = pathLength(PIPE);
-var VERT$1 = `
-varying vec3 vW;
-void main() {
-  vec4 w = modelMatrix * vec4(position, 1.0);
-  vW = w.xyz;
-  gl_Position = projectionMatrix * viewMatrix * w;
-}`;
-var FRAG$1 = `
-varying vec3 vW;
-uniform float uFront, uOff, uT, uState, uXd, uThick;
-uniform sampler2D uGrain;
-uniform vec3 uInk, uDryC, uDarkC;
-void main() {
-  float x = vW.x;
-  float z = vW.z;
-  if (x < uXd || x > uXd + uFront) discard;
-  if (uState > 0.5 && uState < 1.5 && sin(z * 9.0 + 1.3 * sin(z * 3.1)) > 0.7) discard;
-  float dry = smoothstep(0.3, 1.7, x);
-  float cr = smoothstep(1.8, 2.3, x);
-  vec3 c = mix(uInk, uDryC, dry);
-  c *= 0.92 + 0.1 * sin((x - uOff) * 9.0 + z * 2.0) * (1.0 - dry);
-  vec3 g = texture2D(uGrain, vec2((x - uOff) * 0.7, z * 0.7)).rgb;
-  c = mix(c, mix(uDarkC, g, 0.92), cr);
-  float alpha = mix(0.6 + 0.35 * uThick, 0.98, dry);
-  gl_FragColor = vec4(c, alpha);
-  #include <colorspace_fragment>
-}`;
-function SlotScene({ step }) {
-	const clock = useStoryClock(step, stepDur("slot", step), 2);
-	const die = (0, import_react.useRef)(null);
-	const manifold = (0, import_react.useRef)(null);
-	const slit = (0, import_react.useRef)(null);
-	const bead = (0, import_react.useRef)(null);
-	const puddle = (0, import_react.useRef)(null);
-	const flowPts = (0, import_react.useRef)(null);
-	const solv = (0, import_react.useRef)(null);
-	const gear = (0, import_react.useRef)(null);
-	const unwind = (0, import_react.useRef)(null);
-	const rewind = (0, import_react.useRef)(null);
-	const marks = (0, import_react.useRef)(null);
-	const gapBar = (0, import_react.useRef)(null);
-	const led = (0, import_react.useRef)(null);
-	const webDist = (0, import_react.useRef)(0);
-	const lastT = (0, import_react.useRef)(0);
-	const state = (0, import_react.useRef)(0);
-	const tex = useGrainTexture(61, 12);
-	const dummy = (0, import_react.useMemo)(() => new Object3D(), []);
-	const lampMat = (0, import_react.useMemo)(() => new MeshStandardMaterial({
-		color: "#401812",
-		emissive: PAL.hot,
-		emissiveIntensity: .1
-	}), []);
-	const mat = (0, import_react.useMemo)(() => new ShaderMaterial({
-		vertexShader: VERT$1,
-		fragmentShader: FRAG$1,
-		transparent: true,
-		depthWrite: false,
-		side: 2,
-		uniforms: {
-			uFront: { value: 0 },
-			uOff: { value: 0 },
-			uT: { value: 0 },
-			uState: { value: 0 },
-			uXd: { value: DIE_X },
-			uThick: { value: .4 },
-			uGrain: { value: tex },
-			uInk: { value: new Color(PAL.ink) },
-			uDryC: { value: new Color(PAL.drying) },
-			uDarkC: { value: new Color(PAL.dark) }
-		}
-	}), [tex]);
-	const g0 = useGate(() => step === 0);
-	const g1 = useGate(() => step === 1 && clock.current.t > 1);
-	const g2 = useGate(() => step === 2 && clock.current.t > 2);
-	const gStable = useGate(() => (step === 3 || step === 2) && state.current === 0 && clock.current.t > 2.5);
-	const gStarved = useGate(() => (step === 3 || step === 2) && state.current === 1 && clock.current.t > 2.5);
-	const gFlooded = useGate(() => (step === 3 || step === 2) && state.current === 2 && clock.current.t > 2.5);
-	const g3 = useGate(() => step === 3 && clock.current.t > 1.5);
-	const g4 = useGate(() => step === 4 && clock.current.t > 1);
-	const g5 = useGate(() => step === 5 && clock.current.t > 1);
-	const g6 = useGate(() => step === 6);
-	useFrame(() => {
-		const T = clock.current.t;
-		const dt = T - lastT.current;
-		lastT.current = T;
-		const f = useSim.getState().fab;
-		const speed = num(f, "speed", .5);
-		const flow = num(f, "flow", .5);
-		const gapN = num(f, "gap", .5);
-		const g = .04 + .2 * gapN;
-		const ratio = flow / ((step >= 3 ? speed : .5) * (.4 + gapN) * 1.1 + .001);
-		const st = ratio < .78 ? 1 : ratio > 1.3 ? 2 : 0;
-		state.current = st;
-		const v = (step < 3 ? 0 : step === 3 ? between(T, 0, 1.5) : 1) * lerp(.3, 1.3, speed);
-		if (dt > 0 && dt < .3) webDist.current += v * dt;
-		const wd = webDist.current;
-		if (marks.current) {
-			for (let i = 0; i < N_MARK; i++) {
-				const x = ((i * .4 + wd) % (N_MARK * .4) + N_MARK * .4) % (N_MARK * .4) - 3.6;
-				dummy.position.set(x, .304, 0);
-				dummy.scale.set(.02, .006, 1.5);
-				dummy.updateMatrix();
-				marks.current.setMatrixAt(i, dummy.matrix);
-			}
-			marks.current.instanceMatrix.needsUpdate = true;
-		}
-		if (unwind.current) unwind.current.rotation.z = -wd / .6;
-		if (rewind.current) rewind.current.rotation.z = -wd / .4;
-		if (die.current) die.current.position.y = WEB_Y + g;
-		const fill = step === 0 ? 0 : step === 1 ? between(T, 2.5, 6) : 1;
-		if (manifold.current) {
-			manifold.current.visible = fill > .02;
-			manifold.current.scale.set(.28 * Math.max(.05, fill), 1.4, .28 * Math.max(.05, fill));
-		}
-		if (slit.current) {
-			const open = step === 1 ? between(T, 5, 6.5) : step >= 2 ? 1 : 0;
-			slit.current.visible = open > .02;
-			slit.current.scale.set(.03, .3 * open, 1.4);
-		}
-		if (gapBar.current) {
-			gapBar.current.visible = step === 2 || step === 3;
-			gapBar.current.scale.set(.012, g, .012);
-			gapBar.current.position.set(-.8, WEB_Y + g / 2, .8);
-		}
-		if (bead.current) {
-			const grow = step === 2 ? between(T, 1, 3.2) : step >= 3 ? 1 : 0;
-			bead.current.visible = grow > .02;
-			bead.current.position.set(-.99, WEB_Y + g * .5, 0);
-			bead.current.children.forEach((c, i) => {
-				const segLen = .3;
-				const flick = st === 1 ? .35 + .65 * Math.max(0, Math.sin(T * 6 + i * 2.1)) : 1;
-				const big = st === 2 ? 1.5 : 1;
-				const gone = st === 1 && (i === 1 || i === 3) ? .25 : 1;
-				c.position.set(0, 0, (i - 2) * segLen);
-				c.scale.set(.12 * big * grow, (g * .6 + .03) * big * grow, segLen * .6 * flick * gone);
-			});
-		}
-		if (puddle.current) {
-			const flood = st === 2 && step >= 2 ? between(T, 1.5, 5) : 0;
-			puddle.current.visible = flood > .02;
-			puddle.current.scale.set(.15 + .3 * flood, 1, 1.2);
-			puddle.current.position.set(-1.22 - .1 * flood, .306, 0);
-		}
-		const ledOn = st === 0 ? "#5be38a" : st === 1 ? "#e4a23a" : "#ff5a47";
-		if (led.current) {
-			led.current.color.set(ledOn);
-			led.current.emissive.set(ledOn);
-			led.current.emissiveIntensity = step >= 2 ? 1.3 : 0;
-		}
-		const u = mat.uniforms;
-		u.uFront.value = step < 3 ? 0 : step === 3 ? Math.min(FILM_L, 1.2 * lerp(.3, 1.3, speed) * Math.max(0, T - .75) + .2) : FILM_L;
-		u.uOff.value = wd;
-		u.uT.value = T;
-		u.uState.value = st;
-		u.uThick.value = clamp01(flow / (speed * .9 + .25) * .5);
-		if (flowPts.current) {
-			const speedP = lerp(.12, .3, flow);
-			const active = step === 0 ? 0 : step === 1 ? between(T, .5, 2) : 1;
-			for (let i = 0; i < N_FLOW; i++) {
-				if (active < .02) {
-					flowPts.current.hide(i);
-					continue;
-				}
-				const p = along(PIPE, (i / N_FLOW + T * speedP) % 1, PIPE_LEN);
-				flowPts.current.set(i, p[0], p[1], p[2], 1);
-			}
-			flowPts.current.flush();
-		}
-		if (gear.current) gear.current.rotation.z = (step === 0 ? 0 : 1) * T * lerp(1.5, 5, flow);
-		lampMat.emissiveIntensity = step >= 4 ? .2 + 1.2 * between(T, 0, 1.5) : step >= 3 ? .5 : .1;
-		if (solv.current) {
-			const amt = step === 3 ? between(T, 4, 8) : step >= 4 ? 1 : 0;
-			const n = Math.round(N_SOL * amt);
-			for (let i = 0; i < N_SOL; i++) {
-				if (i >= n) {
-					solv.current.hide(i);
-					continue;
-				}
-				const life = (T * .34 + hash1(i * 5.9)) % 1;
-				solv.current.set(i, .5 + hash1(i * 2.3) * 1.7, .35 + life * .75, (hash1(i * 8.7) - .5) * 1.3, 1 - life * .6);
-			}
-			solv.current.flush();
-		}
-	});
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bench, {
-			y: -.45,
-			w: 11,
-			d: 4
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			p: [
-				0,
-				.284,
-				0
-			],
-			s: [
-				7.2,
-				.03,
-				1.6
-			],
-			c: "#56697a",
-			metal: .3,
-			rough: .5,
-			o: .96
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("instancedMesh", {
-			ref: marks,
-			args: [
-				void 0,
-				void 0,
-				N_MARK
-			],
-			frustumCulled: false,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-				1,
-				1,
-				1
-			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshBasicMaterial", {
-				color: "#c5ccd6",
-				transparent: true,
-				opacity: .35
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("mesh", {
-			position: [
-				0,
-				.312,
-				0
-			],
-			rotation: [
-				-Math.PI / 2,
-				0,
-				0
-			],
-			material: mat,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("planeGeometry", { args: [9, 1.4] })
-		}),
-		[
-			-2.4,
-			.2,
-			1.4,
-			2.4
-		].map((x) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cy, {
-			p: [
-				x,
-				.12999999999999998,
-				0
-			],
-			rad: .14,
-			h: 1.8,
-			r: [
-				Math.PI / 2,
-				0,
-				0
-			],
-			c: PAL.steel,
-			metal: .7,
-			rough: .35,
-			lo: true
-		}, x)),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cy, {
-			p: [
-				DIE_X,
-				.019999999999999962,
-				0
-			],
-			rad: .28,
-			h: 1.8,
-			r: [
-				Math.PI / 2,
-				0,
-				0
-			],
-			c: "#c9d1da",
-			metal: .8,
-			rough: .25
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: unwind,
-			position: [
-				-3.7,
-				-.25000000000000006,
-				0
-			],
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cy, {
-				rad: .6,
-				h: 1.7,
-				r: [
-					Math.PI / 2,
-					0,
-					0
-				],
-				c: "#6a7d8e",
-				metal: .2,
-				rough: .6
-			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-				p: [
-					.45,
-					0,
-					.86
-				],
-				s: [
-					.12,
-					.03,
-					.02
-				],
-				c: "#ffd27a"
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: rewind,
-			position: [
-				3.7,
-				-.10000000000000003,
-				0
-			],
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cy, {
-				rad: .4,
-				h: 1.7,
-				r: [
-					Math.PI / 2,
-					0,
-					0
-				],
-				c: "#6a7d8e",
-				metal: .2,
-				rough: .6
-			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-				p: [
-					.3,
-					0,
-					.86
-				],
-				s: [
-					.12,
-					.03,
-					.02
-				],
-				c: "#ffd27a"
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cy, {
-			p: [
-				-3,
-				2.2,
-				0
-			],
-			rad: .5,
-			h: .95,
-			c: "#cfe9fb",
-			o: .2,
-			rough: .1
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cy, {
-			p: [
-				-3,
-				2.05,
-				0
-			],
-			rad: .46,
-			h: .62,
-			c: PAL.ink,
-			o: .75,
-			rough: .15
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cy, {
-			p: [
-				-3,
-				2.72,
-				0
-			],
-			rad: .52,
-			h: .06,
-			c: PAL.steelDark,
-			metal: .5
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			p: [
-				-2,
-				1.45,
-				0
-			],
-			s: [
-				.55,
-				.5,
-				.5
-			],
-			c: PAL.steelDark,
-			metal: .5,
-			rough: .5
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: gear,
-			position: [
-				-2,
-				1.45,
-				.27
-			],
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cy, {
-				rad: .15,
-				h: .04,
-				r: [
-					Math.PI / 2,
-					0,
-					0
-				],
-				c: "#c9d1da",
-				metal: .8,
-				lo: true
-			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-				s: [
-					.3,
-					.04,
-					.03
-				],
-				c: PAL.hot
-			})]
-		}),
-		PIPE.slice(1).map((p, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tube, {
-			a: PIPE[i],
-			b: p,
-			rad: .05,
-			c: PAL.steel,
-			o: .55
-		}, i)),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Swarm, {
-			ref: flowPts,
-			count: N_FLOW,
-			color: PAL.ink,
-			radius: .035,
-			halo: 1.6,
-			haloOpacity: .16,
-			emissive: .9
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: die,
-			position: [
-				DIE_X,
-				.42,
-				0
-			],
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-					position: [
-						0,
-						.11,
-						0
-					],
-					rotation: [
-						0,
-						Math.PI / 4,
-						0
-					],
-					scale: [
-						1,
-						1,
-						1.67
-					],
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("cylinderGeometry", { args: [
-						.64,
-						.18,
-						.22,
-						4
-					] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-						color: PAL.steel,
-						metalness: .8,
-						roughness: .28
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					p: [
-						0,
-						.5,
-						0
-					],
-					s: [
-						.9,
-						.56,
-						1.5
-					],
-					c: PAL.steel,
-					metal: .75,
-					rough: .3,
-					o: .42,
-					edge: "#dfe6ee"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-					ref: manifold,
-					position: [
-						0,
-						.52,
-						0
-					],
-					rotation: [
-						Math.PI / 2,
-						0,
-						0
-					],
-					visible: false,
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("cylinderGeometry", { args: [
-						1,
-						1,
-						1,
-						18
-					] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-						color: PAL.ink,
-						emissive: PAL.ink,
-						emissiveIntensity: .4,
-						transparent: true,
-						opacity: .9
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-					ref: slit,
-					position: [
-						0,
-						.17,
-						0
-					],
-					visible: false,
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-						1,
-						1,
-						1
-					] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-						color: PAL.ink,
-						emissive: PAL.ink,
-						emissiveIntensity: .5
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					p: [
-						0,
-						.84,
-						0
-					],
-					s: [
-						.32,
-						.12,
-						.32
-					],
-					c: PAL.steelDark,
-					metal: .6
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-					position: [
-						.44,
-						.62,
-						.76
-					],
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("sphereGeometry", { args: [
-						.04,
-						10,
-						8
-					] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-						ref: led,
-						color: "#5be38a",
-						emissive: "#5be38a",
-						emissiveIntensity: 0
-					})]
-				})
-			]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: bead,
-			position: [
-				DIE_X,
-				.36,
-				0
-			],
-			visible: false,
-			children: [
-				0,
-				1,
-				2,
-				3,
-				4
-			].map((i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("sphereGeometry", { args: [
-				1,
-				14,
-				10
-			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-				color: PAL.ink,
-				roughness: .1,
-				transparent: true,
-				opacity: .95
-			})] }, i))
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-			ref: puddle,
-			rotation: [
-				-Math.PI / 2,
-				0,
-				0
-			],
-			visible: false,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("circleGeometry", { args: [1, 24] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-				color: PAL.ink,
-				roughness: .1,
-				transparent: true,
-				opacity: .9
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-			ref: gapBar,
-			visible: false,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-				1,
-				1,
-				1
-			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshBasicMaterial", { color: "#e4a23a" })]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			position: [
-				1.4,
-				0,
-				0
-			],
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					p: [
-						0,
-						1.28,
-						0
-					],
-					s: [
-						2,
-						.14,
-						1.9
-					],
-					c: PAL.steelDark,
-					metal: .5,
-					rough: .5
-				}),
-				[-.95, .95].map((x) => [-.9, .9].map((z) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					p: [
-						x,
-						.8,
-						z
-					],
-					s: [
-						.07,
-						1,
-						.07
-					],
-					c: PAL.steel,
-					metal: .6
-				}, `${x}${z}`))),
-				[
-					-.6,
-					0,
-					.6
-				].map((x) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("mesh", {
-					position: [
-						x,
-						1.18,
-						0
-					],
-					material: lampMat,
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-						.1,
-						.05,
-						1.5
-					] })
-				}, x)),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					p: [
-						0,
-						.32999999999999996,
-						0
-					],
-					s: [
-						2,
-						.02,
-						1.9
-					],
-					c: "#2a2f36",
-					o: .5
-				})
-			]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Swarm, {
-			ref: solv,
-			count: N_SOL,
-			color: PAL.solvent,
-			radius: .03,
-			halo: 2,
-			haloOpacity: .16,
-			emissive: 1.1
-		}),
-		g0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				-3,
-				2.95,
-				.3
-			],
-			kind: "layer",
-			children: LBL$8.tank
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				-3,
-				1.8,
-				.7
-			],
-			kind: "particle",
-			minor: true,
-			children: LBL$8.ink
-		})] }) : null,
-		g1 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-2,
-					1.9,
-					.3
-				],
-				kind: "concept",
-				children: LBL$8.pump
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-2.5,
-					1.3,
-					.2
-				],
-				kind: "particle",
-				minor: true,
-				children: LBL$8.feed
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-1,
-					1.95,
-					.3
-				],
-				kind: "layer",
-				children: LBL$8.die
-			})
-		] }) : null,
-		g2 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-1.5,
-					1,
-					.8
-				],
-				kind: "layer",
-				minor: true,
-				children: LBL$8.manifold
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-.45,
-					.42,
-					.8
-				],
-				kind: "tiny",
-				sub: LBL$8.gap,
-				children: LBL$8.slit
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-1.6,
-					.25,
-					.8
-				],
-				kind: "particle",
-				children: LBL$8.bead
-			})
-		] }) : null,
-		gStable ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				-1,
-				0,
-				1
-			],
-			kind: "good",
-			children: LBL$8.stable
-		}) : null,
-		gStarved ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				-1,
-				0,
-				1
-			],
-			kind: "bad",
-			children: LBL$8.starved
-		}) : null,
-		gFlooded ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				-1,
-				0,
-				1
-			],
-			kind: "bad",
-			children: LBL$8.flooded
-		}) : null,
-		g3 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				-2.3,
-				.44999999999999996,
-				.95
-			],
-			kind: "concept",
-			minor: true,
-			children: LBL$8.web
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				.1,
-				.4,
-				.95
-			],
-			kind: "layer",
-			children: LBL$8.wet
-		})] }) : null,
-		g4 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				1.4,
-				1.75,
-				.2
-			],
-			kind: "concept",
-			children: LBL$8.dryer
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				1.2,
-				.8500000000000001,
-				.8
-			],
-			kind: "particle",
-			children: LBL$8.solvent
-		})] }) : null,
-		g5 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				2.55,
-				.44999999999999996,
-				.9
-			],
-			kind: "good",
-			children: LBL$8.cryst
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				2.9,
-				.35,
-				-.2
-			],
-			kind: "bad",
-			minor: true,
-			children: LBL$8.grains
-		})] }) : null,
-		g6 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-3.7,
-					1,
-					.9
-				],
-				kind: "concept",
-				children: LBL$8.unwind
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-1,
-					1.95,
-					.3
-				],
-				kind: "layer",
-				children: LBL$8.coat
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					1.4,
-					1.75,
-					.2
-				],
-				kind: "layer",
-				children: LBL$8.drying
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					3.7,
-					.9,
-					.9
-				],
-				kind: "concept",
-				children: LBL$8.rewind
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					.2,
-					0,
-					1
-				],
-				kind: "tiny",
-				minor: true,
-				children: LBL$8.roller
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-2,
-					.44999999999999996,
-					.95
-				],
-				kind: "layer",
-				minor: true,
-				children: LBL$8.webSub
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Arrow3, {
-				a: [
-					-3,
-					.7,
-					.95
-				],
-				b: [
-					-2.2,
-					.7,
-					.95
-				],
-				color: "#e4a23a",
-				head: .05
-			})
-		] }) : null
-	] });
-}
-var LBL$7 = {
-	module: t("Module tandem 60 tế bào", "60-cell tandem module"),
-	eff: t("Hiệu suất MODULE 26,9%", "26.9% MODULE efficiency"),
-	effSub: t("diện tích chỉ định > 1,6 m² · Fraunhofer CalLab chứng nhận", "designated area > 1.6 m² · certified by Fraunhofer CalLab"),
-	cell: t("Một tế bào: cấu trúc tandem", "One cell: tandem structure"),
-	top: t("Perovskite (lớp trên)", "Perovskite (top cell)"),
-	bottom: t("Silicon (lớp dưới)", "Silicon (bottom cell)"),
-	glass: t("Kính", "Glass"),
-	magnified: t("Phóng đại một tế bào (không đúng tỉ lệ)", "One cell magnified (not to scale)"),
-	labCell: t("Tế bào tandem trong phòng thí nghiệm", "Laboratory tandem cell"),
-	cellOnly: t("Kết quả TẾ BÀO — không phải module", "CELL result — not a module"),
-	blue: t("Ánh sáng xanh/lục → perovskite", "Blue/green light → perovskite"),
-	red: t("Ánh sáng đỏ/hồng ngoại → silicon", "Red/infrared light → silicon"),
-	glassSheet: t("Tấm kính công nghiệp", "Industrial glass sheet"),
-	coater: t("Trạm phủ perovskite", "Perovskite coating station"),
-	assembly: t("Trạm lắp ráp", "Assembly station"),
-	siModule: t("Module silicon", "Silicon module"),
-	hybrid: t("Module tandem lai", "Hybrid tandem module"),
-	coated: t("Kính phủ perovskite", "Perovskite-coated glass"),
-	milestone: t("Mốc giao hàng, chưa chứng minh sản xuất hàng loạt", "A shipment milestone — not proof of mass production"),
-	cell1: t("Tế bào perovskite 28,0%", "Perovskite cell 28.0%"),
-	area1: t("0,05 cm²", "0.05 cm²"),
-	cell2: t("Tế bào tandem 35,2%", "Tandem cell 35.2%"),
-	area2: t("1 cm²", "1 cm²"),
-	mod: t("Module tandem 29,4%", "Tandem module 29.4%"),
-	area3: t("≈ 1,7 m²", "≈ 1.7 m²"),
-	ratio: t("diện tích gấp ≈ 17.000 lần tế bào 1 cm²", "area ≈ 17,000× the 1 cm² cell"),
-	notScale: t("Không vẽ đúng tỉ lệ", "Not drawn to scale"),
-	v68: t("Bảng tham chiếu Version 68: 35,2%", "Version 68 reference table: 35.2%"),
-	v68b: t("1 cm² · tế bào", "1 cm² · cell"),
-	ann: t("Công bố của LONGi: 35,5%", "LONGi announcement: 35.5%"),
-	annb: t("công ty nói ESTI chứng nhận · chưa có trong Version 68", "company states ESTI certified · not in Version 68"),
-	july: t("7/2026 — công bố của LONGi; công ty nói đã có chứng nhận ESTI", "July 2026 — LONGi announcement; company reports ESTI certification"),
-	silicon: t("Module silicon sẵn có", "Existing silicon module"),
-	perovLayer: t("Thêm lớp perovskite mỏng", "Add a thin perovskite layer"),
-	tandem: t("Cấu trúc tandem hoàn chỉnh", "The completed tandem structure"),
-	siBar: t("≈ 22–24%", "≈ 22–24%"),
-	tdBar: t("→ ≈ 30% (mục tiêu)", "→ ≈ 30% (target)"),
-	rep: t("Giá trị đại diện/mục tiêu, không phải bảo đảm", "Representative/target values, not a guarantee")
-};
-var COLS = 6;
-var ROWS = 10;
-var BLUE = "#4da3ff";
-var RED = "#ff6a4d";
-var AMBER = "#c9772e";
-var N_PH = 36;
-/** A tandem stack: glass, perovskite top cell, silicon bottom cell, back contact. `ex` spreads the layers apart. */
-function Stack({ w = 1.4, d = 1, ex, glow }) {
-	const layers = (0, import_react.useRef)([]);
-	const amberMat = (0, import_react.useRef)(null);
-	useFrame(() => {
-		const e = ex.current;
-		layers.current.forEach((g, i) => {
-			if (g) g.position.y = (3 - i) * .15 * e - 0;
-		});
-		if (amberMat.current) amberMat.current.emissiveIntensity = .15 + .7 * (glow?.current ?? 0);
-	});
-	const set = (i) => (g) => {
-		layers.current[i] = g;
-	};
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: set(0),
-			position: [
-				0,
-				.34,
-				0
-			],
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-				s: [
-					w,
-					.06,
-					d
-				],
-				c: PAL.glass,
-				o: .35,
-				edge: "#cfe9fb"
-			})
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: set(1),
-			position: [
-				0,
-				.22,
-				0
-			],
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-				scale: [
-					w,
-					.12,
-					d
-				],
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-					1,
-					1,
-					1
-				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-					ref: amberMat,
-					color: AMBER,
-					emissive: AMBER,
-					emissiveIntensity: .15,
-					roughness: .35
-				})]
-			})
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: set(2),
-			position: [
-				0,
-				0,
-				0
-			],
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-				s: [
-					w,
-					.3,
-					d
-				],
-				c: "#17305e",
-				rough: .4,
-				metal: .2
-			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-				p: [
-					0,
-					.15,
-					0
-				],
-				s: [
-					w,
-					.02,
-					d
-				],
-				c: "#243f78"
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: set(3),
-			position: [
-				0,
-				-.2,
-				0
-			],
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-				s: [
-					w,
-					.05,
-					d
-				],
-				c: "#c9d1da",
-				metal: .8,
-				rough: .3
-			})
-		})
-	] });
-}
-/** Blue-green photons stop in the perovskite; red and infrared photons go on to the silicon. */
-function Photons({ at, w, on, y0 = 2 }) {
-	const sw = (0, import_react.useRef)(null);
-	const fl = (0, import_react.useRef)(null);
-	const clk = (0, import_react.useRef)(0);
-	useFrame((_, dt) => {
-		if (!sw.current || !fl.current) return;
-		clk.current += Math.min(dt, .05);
-		const T = clk.current;
-		const run = on.current;
-		for (let i = 0; i < N_PH; i++) {
-			if (run < .02) {
-				sw.current.hide(i);
-				fl.current.hide(i);
-				continue;
-			}
-			const life = (T * .32 + hash1(i * 3.7)) % 1;
-			const x = at[0] + (hash1(i * 6.1) - .5) * w * .8;
-			const z = at[2] + (hash1(i * 9.3) - .5) * .5;
-			const kind = i % 3 === 2 ? "red" : "blue";
-			const stop = kind === "blue" ? at[1] + .22 : at[1] + 0;
-			const yy = lerp(at[1] + y0, stop, life);
-			const done = life > .97;
-			sw.current.tint(i, kind === "red" ? RED : BLUE);
-			sw.current.set(i, x, yy, z, done ? 0 : 1);
-			const b = burst(life, .9, .1, .12);
-			if (b) fl.current.set(i, x, stop, z, b.r, b.a * run);
-			else fl.current.hide(i);
-		}
-		sw.current.flush();
-		fl.current.flush();
-	});
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Swarm, {
-		ref: sw,
-		count: N_PH,
-		color: "#ffffff",
-		radius: .035,
-		halo: 2,
-		haloOpacity: .2,
-		basic: true
-	}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flashes, {
-		ref: fl,
-		count: N_PH,
-		color: "#ffe27a"
-	})] });
-}
-/** A solar module: frame, 60 cells and an optional perovskite film on top. */
-function Module({ w = 1.9, h = 3.1, amber, hl }) {
-	const cells = (0, import_react.useRef)(null);
-	const dummy = (0, import_react.useMemo)(() => new Object3D(), []);
-	const cw = (w - .16) / COLS;
-	const ch = (h - .16) / ROWS;
-	(0, import_react.useLayoutEffect)(() => {
-		const m = cells.current;
-		if (!m) return;
-		let n = 0;
-		for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
-			dummy.position.set(-w / 2 + .08 + cw * (c + .5), -h / 2 + .08 + ch * (r + .5), 0);
-			dummy.scale.set(cw * .92, ch * .9, .03);
-			dummy.updateMatrix();
-			m.setMatrixAt(n++, dummy.matrix);
-		}
-		m.instanceMatrix.needsUpdate = true;
-	}, [
-		dummy,
-		w,
-		h,
-		cw,
-		ch
-	]);
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			s: [
-				w,
-				h,
-				.05
-			],
-			c: "#cfd6de",
-			metal: .6,
-			rough: .4
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			p: [
-				0,
-				0,
-				.012
-			],
-			s: [
-				w - .1,
-				h - .1,
-				.03
-			],
-			c: "#0e1624",
-			rough: .3
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("instancedMesh", {
-			ref: cells,
-			args: [
-				void 0,
-				void 0,
-				60
-			],
-			frustumCulled: false,
-			position: [
-				0,
-				0,
-				.03
-			],
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-				1,
-				1,
-				1
-			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-				color: "#1b3a73",
-				roughness: .3,
-				metalness: .25
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-			position: [
-				0,
-				0,
-				.055
-			],
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("planeGeometry", { args: [w - .12, h - .12] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-				ref: amber,
-				color: AMBER,
-				emissive: AMBER,
-				emissiveIntensity: .2,
-				transparent: true,
-				opacity: 0,
-				depthWrite: false
-			})]
-		}),
-		hl ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-			ref: hl,
-			position: [
-				-w / 2 + .08 + cw * 2.5,
-				-h / 2 + .08 + ch * 6.5,
-				.07
-			],
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-				cw * .98,
-				ch * .96,
-				.02
-			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshBasicMaterial", {
-				color: "#ffd27a",
-				transparent: true,
-				opacity: 0
-			})]
-		}) : null
-	] });
-}
-function MarketScene({ step }) {
-	const clock = useStoryClock(step, stepDur("market", step), 2);
-	const farm = (0, import_react.useRef)(null);
-	const dummy = (0, import_react.useMemo)(() => new Object3D(), []);
-	const m0 = (0, import_react.useRef)(null);
-	const amber0 = (0, import_react.useRef)(null);
-	const hl0 = (0, import_react.useRef)(null);
-	const stack0 = (0, import_react.useRef)(null);
-	const ex0 = (0, import_react.useRef)(0);
-	const glow0 = (0, import_react.useRef)(0);
-	const lab = (0, import_react.useRef)(null);
-	const ex1 = (0, import_react.useRef)(0);
-	const glow1 = (0, import_react.useRef)(0);
-	const ph1 = (0, import_react.useRef)(0);
-	const glassSheet = (0, import_react.useRef)(null);
-	const coat = (0, import_react.useRef)(null);
-	const si2 = (0, import_react.useRef)(null);
-	const amber2 = (0, import_react.useRef)(null);
-	const head = (0, import_react.useRef)(null);
-	const chip1 = (0, import_react.useRef)(null);
-	const chip2 = (0, import_react.useRef)(null);
-	const mod3 = (0, import_react.useRef)(null);
-	const amber3 = (0, import_react.useRef)(null);
-	const cmp = (0, import_react.useRef)(null);
-	const t5 = (0, import_react.useRef)(null);
-	const amber5 = (0, import_react.useRef)(null);
-	const sheet5 = (0, import_react.useRef)(null);
-	const bars = (0, import_react.useRef)(null);
-	const ex5 = (0, import_react.useRef)(0);
-	const glow5 = (0, import_react.useRef)(0);
-	const ph5 = (0, import_react.useRef)(0);
-	const g0a = useGate(() => step === 0 && clock.current.t > 1.5);
-	const g0b = useGate(() => step === 0 && clock.current.t > 4.5);
-	const g0c = useGate(() => step === 0 && clock.current.t > 8.5);
-	const g1 = useGate(() => step === 1 && clock.current.t > 1.5);
-	const g2a = useGate(() => step === 2 && clock.current.t > .5);
-	const g2b = useGate(() => step === 2 && clock.current.t > 4.5);
-	const g2c = useGate(() => step === 2 && clock.current.t > 10);
-	const g3 = useGate(() => step === 3 && clock.current.t > 1);
-	const g4 = useGate(() => step === 4 && clock.current.t > 1);
-	const g5a = useGate(() => step === 5 && clock.current.t > .5);
-	const g5b = useGate(() => step === 5 && clock.current.t > 7);
-	const scopeCell = useGate(() => step === 3 && String(useSim.getState().fab.scope ?? "cell") === "cell");
-	const scopeMod = useGate(() => step === 3 && String(useSim.getState().fab.scope ?? "cell") === "module");
-	(0, import_react.useLayoutEffect)(() => {
-		const m = farm.current;
-		if (!m) return;
-		let n = 0;
-		for (let r = 0; r < 3; r++) for (let c = 0; c < 14; c++) {
-			dummy.position.set(-11 + c * 1.7, .45, -6 - r * 2.2);
-			dummy.rotation.set(-.45, 0, 0);
-			dummy.scale.set(1.4, .9, .05);
-			dummy.updateMatrix();
-			m.setMatrixAt(n++, dummy.matrix);
-		}
-		m.instanceMatrix.needsUpdate = true;
-	}, [dummy]);
-	useFrame(() => {
-		const T = clock.current.t;
-		const f = useSim.getState().fab;
-		const scope = String(f.scope ?? "cell");
-		if (m0.current) m0.current.visible = step === 0;
-		if (amber0.current) amber0.current.opacity = .45;
-		if (hl0.current) {
-			const m = hl0.current.material;
-			m.opacity = step === 0 ? .8 * between(T, 3.5, 4.5) * (1 - between(T, 9, 10)) * (.65 + .35 * Math.sin(T * 5)) : 0;
-		}
-		if (stack0.current) {
-			const s = step === 0 ? between(T, 4, 5.2) * (1 - between(T, 9, 10)) : 0;
-			stack0.current.scale.setScalar(Math.max(1e-4, s));
-		}
-		ex0.current = step === 0 ? between(T, 5, 7.5) : 0;
-		glow0.current = step === 0 ? between(T, 6, 7.5) : 0;
-		if (lab.current) lab.current.visible = step === 1;
-		ex1.current = step === 1 ? .55 + .45 * between(T, 1, 3) : 0;
-		glow1.current = step === 1 ? between(T, 3, 5) : 0;
-		ph1.current = step === 1 ? between(T, 1.5, 3) : 0;
-		if (glassSheet.current && coat.current && si2.current && head.current) {
-			const on = step === 2;
-			glassSheet.current.visible = on;
-			si2.current.visible = on;
-			head.current.visible = on;
-			const a = between(T, .5, 4);
-			const b = between(T, 4.5, 7);
-			const up = between(T, 7.2, 8.4);
-			const down = between(T, 8.4, 9.6);
-			const gx = lerp(-3.8, -1.8, a) + lerp(0, 3.4, b);
-			const gy = .45 + lerp(0, .85, up) - .64 * down;
-			glassSheet.current.position.set(gx, gy, 0);
-			const cf = between(T, 1.2, 4);
-			coat.current.scale.set(Math.max(1e-4, 2.3 * cf), 1.35, 1);
-			coat.current.position.x = -1.15 + 1.15 * cf;
-			si2.current.position.set(lerp(5.2, 1.6, between(T, 4.5, 7)), .55, 0);
-			if (amber2.current) amber2.current.opacity = .5 * between(T, 9.4, 10.6);
-		}
-		const dimCell = scope === "cell" ? 1 : .28;
-		const dimMod = scope === "module" ? 1 : .28;
-		if (chip1.current && chip2.current && mod3.current) {
-			chip1.current.visible = step === 3;
-			chip2.current.visible = step === 3;
-			mod3.current.visible = step === 3;
-			const pop = between(T, 0, 1.5);
-			chip1.current.scale.setScalar(Math.max(1e-4, pop * dimCell));
-			chip2.current.scale.setScalar(Math.max(1e-4, pop * dimCell));
-			mod3.current.scale.setScalar(Math.max(1e-4, pop * (.55 + .45 * dimMod)));
-			if (amber3.current) amber3.current.opacity = .45;
-		}
-		if (cmp.current) cmp.current.visible = step === 4;
-		if (t5.current) t5.current.visible = step === 5;
-		const land = step === 5 ? between(T, 1, 4) : 0;
-		if (sheet5.current) {
-			sheet5.current.visible = step === 5 && land < .99;
-			sheet5.current.position.set(0, 0, lerp(2.4, .07, land));
-		}
-		if (amber5.current) amber5.current.opacity = .5 * between(T, 3.6, 4.4);
-		ex5.current = step === 5 ? .6 * between(T, 5, 7) : 0;
-		glow5.current = step === 5 ? between(T, 6, 8) : 0;
-		ph5.current = step === 5 ? between(T, 6, 8) : 0;
-		if (bars.current) {
-			bars.current.visible = step === 5;
-			bars.current.scale.set(1, Math.max(1e-4, between(T, 8.5, 11)), 1);
-		}
-	});
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-			rotation: [
-				-Math.PI / 2,
-				0,
-				0
-			],
-			position: [
-				0,
-				-.01,
-				-3
-			],
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("planeGeometry", { args: [40, 24] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-				color: "#10171d",
-				roughness: 1
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("instancedMesh", {
-			ref: farm,
-			args: [
-				void 0,
-				void 0,
-				42
-			],
-			frustumCulled: false,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-				1,
-				1,
-				1
-			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-				color: "#16294d",
-				roughness: .4,
-				metalness: .3
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: m0,
-			position: [
-				-1.35,
-				1.65,
-				0
-			],
-			visible: false,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Module, {
-				amber: amber0,
-				hl: hl0
-			})
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: stack0,
-			position: [
-				1.45,
-				1.9,
-				.4
-			],
-			scale: 1e-4,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-				scale: 1.25,
-				rotation: [
-					.45,
-					-.5,
-					0
-				],
-				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Stack, {
-					w: 1.2,
-					d: .9,
-					ex: ex0,
-					glow: glow0
-				})
-			})
-		}),
-		step === 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Rod, {
-			a: [
-				-.4,
-				2.2,
-				.1
-			],
-			b: [
-				.8,
-				2.2,
-				.3
-			],
-			color: "#ffd27a",
-			radius: .008,
-			opacity: .5
-		}) : null,
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: lab,
-			position: [
-				0,
-				.9,
-				0
-			],
-			visible: false,
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					p: [
-						0,
-						-.55,
-						0
-					],
-					s: [
-						2.4,
-						.2,
-						1.6
-					],
-					c: PAL.steelDark,
-					metal: .5
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-					scale: 1.3,
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Stack, {
-						w: 1.4,
-						d: 1,
-						ex: ex1,
-						glow: glow1
-					})
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Photons, {
-					at: [
-						0,
-						0,
-						0
-					],
-					w: 1.8,
-					on: ph1,
-					y0: 2
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tube, {
-					a: [
-						-1,
-						-.3,
-						.55
-					],
-					b: [
-						-1.8,
-						.4,
-						.8
-					],
-					rad: .012,
-					c: "#c9d1da"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tube, {
-					a: [
-						1,
-						-.3,
-						.55
-					],
-					b: [
-						1.8,
-						.4,
-						.8
-					],
-					rad: .012,
-					c: "#c9d1da"
-				})
-			]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: head,
-			position: [
-				-1.8,
-				1.2,
-				0
-			],
-			visible: false,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-				s: [
-					.5,
-					.35,
-					1.6
-				],
-				c: PAL.steel,
-				metal: .8,
-				rough: .3
-			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-				p: [
-					0,
-					.5,
-					0
-				],
-				s: [
-					.12,
-					.7,
-					.12
-				],
-				c: PAL.steel,
-				metal: .7
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: glassSheet,
-			position: [
-				-3.8,
-				.45,
-				0
-			],
-			visible: false,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-				s: [
-					2.3,
-					.07,
-					1.4
-				],
-				c: PAL.glass,
-				o: .45,
-				edge: "#cfe9fb"
-			}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-				ref: coat,
-				position: [
-					-1.15,
-					.03,
-					0
-				],
-				scale: [
-					1e-4,
-					1,
-					1.35
-				],
-				rotation: [
-					-Math.PI / 2,
-					0,
-					0
-				],
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("planeGeometry", { args: [1, 1] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-					color: AMBER,
-					emissive: AMBER,
-					emissiveIntensity: .25,
-					transparent: true,
-					opacity: .65,
-					depthWrite: false,
-					side: 2
-				})]
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: si2,
-			position: [
-				5.2,
-				.55,
-				0
-			],
-			visible: false,
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					s: [
-						2.3,
-						.12,
-						1.4
-					],
-					c: "#17305e",
-					rough: .4,
-					metal: .25
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					p: [
-						0,
-						.07,
-						0
-					],
-					s: [
-						2.1,
-						.02,
-						1.25
-					],
-					c: "#2a4f96"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-					position: [
-						0,
-						.092,
-						0
-					],
-					rotation: [
-						-Math.PI / 2,
-						0,
-						0
-					],
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("planeGeometry", { args: [2.1, 1.25] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-						ref: amber2,
-						color: AMBER,
-						transparent: true,
-						opacity: 0,
-						depthWrite: false
-					})]
-				})
-			]
-		}),
-		step === 2 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [[
-			-4.4,
-			-3.2,
-			-2,
-			-.8,
-			.4,
-			1.6,
-			2.8,
-			4
-		].map((x) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cy, {
-			p: [
-				x,
-				.18,
-				0
-			],
-			rad: .1,
-			h: 1.6,
-			r: [
-				Math.PI / 2,
-				0,
-				0
-			],
-			c: PAL.steel,
-			metal: .7,
-			lo: true
-		}, x)), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			p: [
-				0,
-				.06,
-				0
-			],
-			s: [
-				10,
-				.08,
-				1.9
-			],
-			c: PAL.steelDark,
-			metal: .4
-		})] }) : null,
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: chip1,
-			position: [
-				-2.6,
-				.35,
-				.3
-			],
-			visible: false,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-				s: [
-					.2,
-					.05,
-					.2
-				],
-				c: "#2d1e52",
-				metal: .3,
-				rough: .3,
-				edge: "#8d6cd6"
-			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-				p: [
-					0,
-					.04,
-					0
-				],
-				s: [
-					.2,
-					.03,
-					.2
-				],
-				c: AMBER
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: chip2,
-			position: [
-				-1.5,
-				.4,
-				.3
-			],
-			visible: false,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-				s: [
-					.5,
-					.05,
-					.5
-				],
-				c: "#17305e",
-				metal: .25,
-				rough: .3,
-				edge: "#79b0ff"
-			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-				p: [
-					0,
-					.04,
-					0
-				],
-				s: [
-					.5,
-					.03,
-					.5
-				],
-				c: AMBER
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: mod3,
-			position: [
-				1.3,
-				1.7,
-				0
-			],
-			visible: false,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Module, {
-				w: 2,
-				h: 3.2,
-				amber: amber3
-			})
-		}),
-		step === 3 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			p: [
-				-2,
-				.2,
-				.3
-			],
-			s: [
-				2.4,
-				.04,
-				.9
-			],
-			c: "#1b232c",
-			rough: .8
-		}) }) : null,
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: cmp,
-			visible: false,
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-					position: [
-						-1.3,
-						.8,
-						0
-					],
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-							s: [
-								1,
-								.1,
-								1
-							],
-							c: "#17305e",
-							metal: .25,
-							edge: "#79b0ff"
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-							p: [
-								0,
-								.07,
-								0
-							],
-							s: [
-								1,
-								.04,
-								1
-							],
-							c: AMBER
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-							p: [
-								0,
-								-.4,
-								0
-							],
-							s: [
-								1.5,
-								.6,
-								1.5
-							],
-							c: "#1b232c",
-							rough: .8
-						})
-					]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-					position: [
-						1.3,
-						.8,
-						0
-					],
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-							s: [
-								1,
-								.1,
-								1
-							],
-							c: "#17305e",
-							metal: .25,
-							edge: "#ffd27a"
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-							p: [
-								0,
-								.07,
-								0
-							],
-							s: [
-								1,
-								.04,
-								1
-							],
-							c: AMBER,
-							o: .7
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-							p: [
-								0,
-								-.4,
-								0
-							],
-							s: [
-								1.5,
-								.6,
-								1.5
-							],
-							c: "#241a30",
-							rough: .8
-						})
-					]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					p: [
-						0,
-						1.3,
-						-.5
-					],
-					s: [
-						.05,
-						2.6,
-						.05
-					],
-					c: PAL.steel,
-					metal: .6
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					p: [
-						.5,
-						2.4,
-						-.5
-					],
-					s: [
-						1,
-						.45,
-						.04
-					],
-					c: "#e4a23a"
-				})
-			]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: t5,
-			position: [
-				0,
-				0,
-				0
-			],
-			visible: false,
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-					position: [
-						-.3,
-						1.65,
-						0
-					],
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Module, {
-						w: 2,
-						h: 3,
-						amber: amber5
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-						ref: sheet5,
-						position: [
-							0,
-							0,
-							2.4
-						],
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("planeGeometry", { args: [1.9, 2.9] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-							color: AMBER,
-							emissive: AMBER,
-							emissiveIntensity: .3,
-							transparent: true,
-							opacity: .55,
-							side: 2,
-							depthWrite: false
-						})]
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-					position: [
-						2.2,
-						1.1,
-						.4
-					],
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-						scale: 1,
-						rotation: [
-							.35,
-							-.4,
-							0
-						],
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Stack, {
-							w: 1.2,
-							d: .9,
-							ex: ex5,
-							glow: glow5
-						})
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Photons, {
-						at: [
-							0,
-							0,
-							0
-						],
-						w: 1.3,
-						on: ph5,
-						y0: 1.7
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-					ref: bars,
-					position: [
-						-2.5,
-						0,
-						.2
-					],
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-							p: [
-								0,
-								.9,
-								0
-							],
-							s: [
-								.45,
-								1.8,
-								.45
-							],
-							c: "#4d86d6",
-							rough: .4
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-							p: [
-								.7,
-								1.2,
-								0
-							],
-							s: [
-								.45,
-								2.4,
-								.45
-							],
-							c: AMBER,
-							o: .6,
-							edge: "#ffd27a"
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Arrow3, {
-							a: [
-								.7,
-								2.45,
-								0
-							],
-							b: [
-								.7,
-								2.8,
-								0
-							],
-							color: "#e4a23a",
-							head: .09
-						})
-					]
-				})
-			]
-		}),
-		g0a ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				-1.35,
-				3.4,
-				.2
-			],
-			kind: "layer",
-			children: LBL$7.module
-		}) : null,
-		g0b ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					1.45,
-					3.2,
-					.4
-				],
-				kind: "tiny",
-				children: LBL$7.magnified
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					2.2,
-					2.5,
-					.4
-				],
-				kind: "good",
-				minor: true,
-				children: LBL$7.top
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					2.2,
-					1.55,
-					.4
-				],
-				kind: "layer",
-				minor: true,
-				children: LBL$7.bottom
-			})
-		] }) : null,
-		g0c ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				-1.35,
-				0,
-				.4
-			],
-			kind: "good",
-			sub: LBL$7.effSub,
-			children: LBL$7.eff
-		}) : null,
-		g1 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					0,
-					2.5,
-					0
-				],
-				kind: "bad",
-				sub: LBL$7.labCell,
-				children: LBL$7.cellOnly
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-1.6,
-					2,
-					.3
-				],
-				kind: "concept",
-				minor: true,
-				children: LBL$7.blue
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					1.8,
-					1.2,
-					.3
-				],
-				kind: "bad",
-				minor: true,
-				children: LBL$7.red
-			})
-		] }) : null,
-		g2a ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				-3.2,
-				1,
-				.8
-			],
-			kind: "layer",
-			children: LBL$7.glassSheet
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				-1.8,
-				2,
-				.3
-			],
-			kind: "concept",
-			children: LBL$7.coater
-		})] }) : null,
-		g2b ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				1.6,
-				1.3,
-				.9
-			],
-			kind: "concept",
-			children: LBL$7.assembly
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				3.6,
-				1,
-				.8
-			],
-			kind: "layer",
-			minor: true,
-			children: LBL$7.siModule
-		})] }) : null,
-		g2c ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				1.6,
-				1.8,
-				.8
-			],
-			kind: "good",
-			sub: LBL$7.milestone,
-			children: LBL$7.hybrid
-		}) : null,
-		g3 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-2.6,
-					.95,
-					.4
-				],
-				kind: "particle",
-				sub: LBL$7.area1,
-				children: LBL$7.cell1
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-1.5,
-					1.75,
-					.4
-				],
-				kind: "particle",
-				sub: LBL$7.area2,
-				children: LBL$7.cell2
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					1.3,
-					3.6,
-					.2
-				],
-				kind: "good",
-				sub: LBL$7.area3,
-				children: LBL$7.mod
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-.9,
-					2.8,
-					.3
-				],
-				kind: "tiny",
-				sub: LBL$7.notScale,
-				children: LBL$7.ratio
-			})
-		] }) : null,
-		scopeCell ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				-2,
-				-.15,
-				.5
-			],
-			kind: "concept",
-			children: t("Kết quả TẾ BÀO", "CELL results")
-		}) : null,
-		scopeMod ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				1.3,
-				-.2,
-				.5
-			],
-			kind: "concept",
-			children: t("Kết quả MODULE", "MODULE results")
-		}) : null,
-		g4 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-1.3,
-					1.7,
-					0
-				],
-				kind: "good",
-				sub: LBL$7.v68b,
-				children: LBL$7.v68
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					1.3,
-					1.7,
-					0
-				],
-				kind: "bad",
-				sub: LBL$7.annb,
-				children: LBL$7.ann
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					.3,
-					3.1,
-					-.5
-				],
-				kind: "concept",
-				children: LBL$7.july
-			})
-		] }) : null,
-		g5a ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				-.3,
-				3.4,
-				.2
-			],
-			kind: "layer",
-			children: LBL$7.silicon
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				-.3,
-				.1,
-				2
-			],
-			kind: "good",
-			minor: true,
-			children: LBL$7.perovLayer
-		})] }) : null,
-		g5b ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					2.2,
-					2.5,
-					.4
-				],
-				kind: "good",
-				minor: true,
-				children: LBL$7.tandem
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-2.5,
-					1.95,
-					.2
-				],
-				kind: "layer",
-				minor: true,
-				children: LBL$7.siBar
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-2,
-					3.1,
-					.2
-				],
-				kind: "good",
-				sub: LBL$7.rep,
-				children: LBL$7.tdBar
-			})
-		] }) : null
-	] });
-}
-var newScn = () => ({
-	T: 0,
-	rain: 0,
-	crack: 0,
-	healed: 0,
-	capture: false,
-	heal: false,
-	explode: 0,
-	leakAt: 0
-});
-var SLAB_W = 3.4;
-var CX = .45;
-var N_RAIN = 36;
-var N_PB = 22;
-var PB_COL = "#d9dde3";
-var ESC_COL = "#ff5a47";
-var BOUND_COL = "#79e0a0";
-/** Layer centres at explode = 0, from the top. */
-var Y = {
-	glass: .5,
-	enc: .34,
-	dev: .2,
-	cap: .08,
-	rear: -.06
-};
-var H$1 = {
-	glass: .14,
-	enc: .08,
-	dev: .1,
-	cap: .06,
-	rear: .14
-};
-/**
-* A perovskite module in cross-section-like 3D: front glass, encapsulant, the device, an optional lead-capture
-* layer, the rear barrier and the edge seal. Rain falls on it; through a crack, water reaches the device and
-* lead-containing species either escape (no capture) or are bound by the capture layer. Qualitative only.
-*/
-function ModuleSlab({ scn, ground = -1.25 }) {
-	const g = {
-		glass: (0, import_react.useRef)(null),
-		enc: (0, import_react.useRef)(null),
-		dev: (0, import_react.useRef)(null),
-		cap: (0, import_react.useRef)(null),
-		rear: (0, import_react.useRef)(null)
-	};
-	const crackMesh = (0, import_react.useRef)(null);
-	const healMesh = (0, import_react.useRef)(null);
-	const capMat = (0, import_react.useRef)(null);
-	const encMat = (0, import_react.useRef)(null);
-	const rain = (0, import_react.useRef)(null);
-	const wet = (0, import_react.useRef)(null);
-	const pb = (0, import_react.useRef)(null);
-	const splash = (0, import_react.useRef)(null);
-	useFrame(() => {
-		const s = scn.current;
-		const T = s.T;
-		const ex = s.explode;
-		Object.keys(g).forEach((k, i) => {
-			const grp = g[k].current;
-			if (grp) grp.position.y = Y[k] + (4 - i) * .34 * ex - 0;
-		});
-		if (g.cap.current) g.cap.current.visible = s.capture;
-		const eff = s.crack * (1 - .85 * s.healed);
-		const cw = .05 + .26 * eff;
-		if (crackMesh.current) {
-			crackMesh.current.visible = s.crack > .02 && ex < .05;
-			crackMesh.current.scale.set(cw, .34, 1.84);
-			crackMesh.current.position.set(CX, .42, 0);
-		}
-		if (healMesh.current) {
-			healMesh.current.visible = s.heal && s.healed > .02 && s.crack > .02;
-			healMesh.current.scale.set(.05 + .22 * s.healed, .3, 1.8);
-			healMesh.current.position.set(CX, .42, 0);
-		}
-		if (capMat.current) capMat.current.emissiveIntensity = .3;
-		if (encMat.current) encMat.current.emissiveIntensity = s.heal ? .12 : 0;
-		const rainOn = s.rain > .02 && ex < .05;
-		for (let i = 0; i < N_RAIN; i++) {
-			if (!rainOn) {
-				rain.current?.hide(i);
-				splash.current?.hide(i);
-				continue;
-			}
-			const aimed = i % 3 === 0;
-			const x = aimed ? CX + (hash1(i * 4.1) - .5) * .12 : (hash1(i * 2.7) - .5) * 3.1;
-			const z = (hash1(i * 6.3) - .5) * 1.7;
-			const period = .9 + hash1(i * 1.9) * .4;
-			const life = (T + hash1(i * 9.1)) % period / period;
-			const yTop = .6;
-			const passes = aimed && eff > .22;
-			const yEnd = passes ? Y.dev + .06 : yTop;
-			const y = lerp(2, yEnd, Math.min(1, life * 1.15));
-			const landed = life * 1.15 >= 1;
-			if (landed && !passes) {
-				rain.current?.hide(i);
-				const b = burst(life * 1.15 - 1, 0, .12, .1);
-				if (b) splash.current?.set(i, x, yTop, z, b.r, b.a);
-				else splash.current?.hide(i);
-			} else if (landed && passes) {
-				rain.current?.set(i, x, yEnd, z, 1e-4);
-				splash.current?.hide(i);
-			} else {
-				rain.current?.set(i, x, y, z, 1);
-				splash.current?.hide(i);
-			}
-		}
-		rain.current?.flush();
-		splash.current?.flush();
-		for (let i = 0; i < 14; i++) {
-			if (!(eff > .22 && rainOn)) {
-				wet.current?.hide(i);
-				continue;
-			}
-			const k = (T * .25 + i / 14) % 1 * .8;
-			wet.current?.set(i, CX + (hash1(i * 3.3) - .5) * .3 + Math.sin(T * 2 + i) * .05, lerp(Y.dev + .1, Y.dev - .02, k), (hash1(i * 5.9) - .5) * 1.2, 1);
-		}
-		wet.current?.flush();
-		for (let i = 0; i < N_PB; i++) {
-			const bx = (hash1(i * 2.1) - .5) * 2.8;
-			const bz = (hash1(i * 7.9) - .5) * 1.5;
-			const by = Y.dev + (hash1(i * 4.3) - .5) * .04 + ex * 2 * .34;
-			const leave = eff > .22 && rainOn ? Math.min(1, Math.max(0, (T - s.leakAt - hash1(i * 5.3) * 3) / 3.2)) : 0;
-			if (ex > .05 || leave <= 0) {
-				pb.current?.set(i, bx, by, bz, 1);
-				pb.current?.tint(i, PB_COL);
-				continue;
-			}
-			if (s.capture) {
-				const yy = lerp(by, Y.cap + .04, Math.min(1, leave * 1.5));
-				pb.current?.set(i, bx, yy, bz, 1);
-				pb.current?.tint(i, leave > .7 ? BOUND_COL : PB_COL);
-			} else {
-				const toCrack = Math.min(1, leave * 2);
-				const out = Math.max(0, leave * 2 - 1);
-				const x = lerp(bx, CX, toCrack) + out * (hash1(i * 8.3) - .5) * .8;
-				const y = out > 0 ? lerp(Y.rear - .1, ground + .05, out) : by;
-				const z = lerp(bz, 0, toCrack) + out * (hash1(i * 1.3) - .5) * .6;
-				pb.current?.set(i, x, y, z, out > 0 ? 1.1 : 1);
-				pb.current?.tint(i, out > 0 ? ESC_COL : PB_COL);
-			}
-		}
-		pb.current?.flush();
-	});
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: g.glass,
-			position: [
-				0,
-				Y.glass,
-				0
-			],
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-				s: [
-					SLAB_W,
-					H$1.glass,
-					2
-				],
-				c: "#a9d3f0",
-				o: .45,
-				edge: "#e3f2fd",
-				rough: .1
-			})
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: g.enc,
-			position: [
-				0,
-				Y.enc,
-				0
-			],
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-				scale: [
-					3.28,
-					H$1.enc,
-					1.88
-				],
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-					1,
-					1,
-					1
-				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-					ref: encMat,
-					color: "#f0e0a8",
-					transparent: true,
-					opacity: .42,
-					emissive: "#79e0a0",
-					emissiveIntensity: 0,
-					depthWrite: false
-				})]
-			})
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: g.dev,
-			position: [
-				0,
-				Y.dev,
-				0
-			],
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-				s: [
-					3.1999999999999997,
-					H$1.dev,
-					1.8
-				],
-				c: "#3a2a66",
-				rough: .5,
-				metal: .2
-			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-				p: [
-					0,
-					H$1.dev / 2 + .002,
-					0
-				],
-				s: [
-					3.1999999999999997,
-					.012,
-					1.8
-				],
-				c: "#c9772e",
-				emis: "#c9772e",
-				emisI: .2
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: g.cap,
-			position: [
-				0,
-				Y.cap,
-				0
-			],
-			visible: false,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-				scale: [
-					3.1999999999999997,
-					H$1.cap,
-					1.8
-				],
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-					1,
-					1,
-					1
-				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-					ref: capMat,
-					color: "#5fd391",
-					emissive: "#5fd391",
-					emissiveIntensity: .3,
-					transparent: true,
-					opacity: .55,
-					depthWrite: false
-				})]
-			})
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: g.rear,
-			position: [
-				0,
-				Y.rear,
-				0
-			],
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-				s: [
-					SLAB_W,
-					H$1.rear,
-					2
-				],
-				c: "#9db0c2",
-				o: .75,
-				edge: "#d7e2ec",
-				rough: .3
-			})
-		}),
-		[
-			{
-				p: [
-					0,
-					.22,
-					.97
-				],
-				s: [
-					SLAB_W,
-					.78,
-					.07
-				]
-			},
-			{
-				p: [
-					0,
-					.22,
-					-.97
-				],
-				s: [
-					SLAB_W,
-					.78,
-					.07
-				]
-			},
-			{
-				p: [
-					SLAB_W / 2 - .03,
-					.22,
-					0
-				],
-				s: [
-					.07,
-					.78,
-					2
-				]
-			},
-			{
-				p: [
-					-1.67,
-					.22,
-					0
-				],
-				s: [
-					.07,
-					.78,
-					2
-				]
-			}
-		].map((e, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-			position: e.p,
-			scale: e.s,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-				1,
-				1,
-				1
-			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-				color: "#46515c",
-				roughness: .6,
-				transparent: true,
-				opacity: .92
-			})]
-		}, i)),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-			ref: crackMesh,
-			visible: false,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-				1,
-				1,
-				1
-			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshBasicMaterial", { color: "#05080b" })]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-			ref: healMesh,
-			visible: false,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-				1,
-				1,
-				1
-			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-				color: "#79e0a0",
-				emissive: "#79e0a0",
-				emissiveIntensity: .5,
-				transparent: true,
-				opacity: .8
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Swarm, {
-			ref: rain,
-			count: N_RAIN,
-			color: PAL.water,
-			radius: .035,
-			halo: 1.8,
-			haloOpacity: .15,
-			emissive: 1.2
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flashes, {
-			ref: splash,
-			count: N_RAIN,
-			color: "#9fe8f4"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Swarm, {
-			ref: wet,
-			count: 14,
-			color: PAL.water,
-			radius: .028,
-			halo: 1.6,
-			haloOpacity: .14,
-			emissive: 1
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Swarm, {
-			ref: pb,
-			count: N_PB,
-			color: "#ffffff",
-			radius: .04,
-			halo: 1.8,
-			haloOpacity: .16,
-			basic: true
-		})
-	] });
-}
-/** The ground the species fall on. */
-function Ground({ y = -1.25, w = 6, d = 3 }) {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-		position: [
-			0,
-			y,
-			0
-		],
-		rotation: [
-			-Math.PI / 2,
-			0,
-			0
-		],
-		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("planeGeometry", { args: [w, d] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-			color: "#1d2a22",
-			roughness: 1
-		})]
-	});
-}
-var LA = {
-	pb: t("Perovskite chì halide", "Lead-halide perovskite"),
-	snpb: t("Hỗn hợp Sn–Pb", "Mixed Sn–Pb"),
-	sn: t("Chỉ thiếc", "Tin-only"),
-	dbl: t("Perovskite kép Cs₂AgBiBr₆", "Double perovskite Cs₂AgBiBr₆"),
-	siteB: t("Vị trí B: Pb²⁺", "B-site: Pb²⁺"),
-	siteMix: t("Vị trí B: Pb²⁺ và Sn²⁺", "B-site: Pb²⁺ and Sn²⁺"),
-	siteSn: t("Vị trí B: Sn²⁺", "B-site: Sn²⁺"),
-	siteDbl: t("Vị trí B: Ag⁺ và Bi³⁺", "B-site: Ag⁺ and Bi³⁺"),
-	warn: t("⚠ Minh họa khái niệm: nước vào linh kiện hỏng", "⚠ Conceptual: water entering a damaged device"),
-	intact: t("Linh kiện nguyên vẹn: nước bị chặn", "Intact device: water is blocked"),
-	leak: t("Chất chứa chì có thể thoát ra", "Lead-containing species may escape"),
-	leadRef: t("Hàm lượng chì: mốc so sánh (toàn Pb)", "Lead content: reference (all Pb)"),
-	leadMix: t("Sn–Pb: giảm khoảng 50–60% trong tài liệu dẫn", "Sn–Pb: roughly 50–60% lower in the cited literature"),
-	stillPb: t("Vẫn chứa chì", "Still contains lead"),
-	ox: t("Sn²⁺ → Sn⁴⁺ (sơ đồ đơn giản)", "Sn²⁺ → Sn⁴⁺ (simplified schematic)"),
-	vac: t("Khuyết tật (vị trí trống)", "Defects (vacant sites)"),
-	penalty: t("Hình phạt hiệu suất (khái niệm)", "Performance penalty (conceptual)"),
-	noPb: t("Không có chì trong lớp hấp thụ", "No lead in the absorber"),
-	abs: t("Hấp thụ ánh sáng (minh họa, không phải số liệu)", "Light absorption (illustrative, not data)"),
-	absPb: t("Perovskite chì: bờ hấp thụ dốc", "Lead-halide perovskite: steep onset"),
-	absDbl: t("Cs₂AgBiBr₆: yếu hơn, bắt đầu muộn (vùng cấm gián tiếp)", "Cs₂AgBiBr₆: weaker, later onset (indirect gap)"),
-	energy: t("Năng lượng photon →", "Photon energy →"),
-	notFree: t("Không chì ≠ không tác động môi trường", "Lead-free ≠ free of all environmental impact")
-};
-var FAM_X = [
-	-3.3,
-	-1.1,
-	1.1,
-	3.3
-];
-var LAT_Y = .25;
-var C_PB = new Color(PAL.pb);
-var C_SN = new Color(PAL.sn);
-var C_AG = new Color("#f5f6f8");
-var C_BI = new Color("#b78be0");
-var C_OX = new Color("#ff5a47");
-var N2 = [
-	2,
-	2,
-	2
-];
-var RAD = {
-	A: .056,
-	B: .046,
-	X: .038
-};
-function styleB(kind, ox) {
-	return (a, out) => {
-		if (a.kind !== "B") return;
-		const odd = (a.i + a.j + a.k) % 2 === 1;
-		if (kind === "pb") out.color.copy(C_PB);
-		else if (kind === "snpb") out.color.copy(odd ? C_SN : C_PB);
-		else if (kind === "dbl") {
-			out.color.copy(odd ? C_BI : C_AG);
-			out.scale *= odd ? 1.1 : .95;
-		} else {
-			const h = hash1(a.id * 3.7);
-			out.color.copy(C_SN);
-			if (h < ox.current) {
-				out.color.copy(C_OX);
-				out.scale *= 1.18;
-			}
-			if (h < ox.current * .4) out.scale *= .25;
-		}
-	};
-}
-function AbsPlot({ show }) {
-	const grp = (0, import_react.useRef)(null);
-	const geo = (0, import_react.useMemo)(() => {
-		const mk = (fn) => {
-			const n = 60;
-			const pts = [];
-			for (let i = 0; i < n; i++) {
-				const e = 1.2 + 2.2 * i / 59;
-				pts.push((e - 1.2) / 2.2 * 2 - 1, fn(e) * 1, 0);
-			}
-			const g = new BufferGeometry();
-			g.setAttribute("position", new Float32BufferAttribute(pts, 3));
-			return g;
-		};
-		return {
-			pb: mk((e) => .92 / (1 + Math.exp(-(e - 1.6) / .05)) + .06 * Math.max(0, e - 1.6)),
-			dbl: mk((e) => .3 / (1 + Math.exp(-(e - 2.4) / .22)) + .05 / (1 + Math.exp(-(e - 2) / .2)))
-		};
-	}, []);
-	const linePb = (0, import_react.useMemo)(() => new Line(geo.pb, new LineBasicMaterial({ color: "#8fd0ff" })), [geo]);
-	const lineDbl = (0, import_react.useMemo)(() => new Line(geo.dbl, new LineBasicMaterial({ color: "#ffb04a" })), [geo]);
-	useFrame(() => {
-		if (grp.current) {
-			grp.current.visible = show.current > .02;
-			grp.current.scale.setScalar(Math.max(1e-4, show.current));
-		}
-	});
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-		ref: grp,
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-				p: [
-					0,
-					.5,
-					-.02
-				],
-				s: [
-					2.4,
-					1.25,
-					.02
-				],
-				c: "#10161c",
-				o: .8
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-				p: [
-					0,
-					-.02,
-					0
-				],
-				s: [
-					2.1,
-					.012,
-					.01
-				],
-				c: "#c5ccd6"
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-				p: [
-					-1.05,
-					.5,
-					0
-				],
-				s: [
-					.012,
-					1.1,
-					.01
-				],
-				c: "#c5ccd6"
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("primitive", { object: linePb }),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("primitive", { object: lineDbl })
-		]
-	});
-}
-function LeadAScene({ step }) {
-	const clock = useStoryClock(step, stepDur("lead", step), 2);
-	const grp = [
-		(0, import_react.useRef)(null),
-		(0, import_react.useRef)(null),
-		(0, import_react.useRef)(null),
-		(0, import_react.useRef)(null)
-	];
-	const asm = (0, import_react.useRef)(0);
-	const ox = (0, import_react.useRef)(0);
-	const absShow = (0, import_react.useRef)(0);
-	const gauge = (0, import_react.useRef)(1);
-	const scn = (0, import_react.useRef)(newScn());
-	const slab = (0, import_react.useRef)(null);
-	const bars = (0, import_react.useRef)(null);
-	const leadBar = (0, import_react.useRef)(null);
-	const styles = (0, import_react.useMemo)(() => ({
-		pb: styleB("pb", ox),
-		snpb: styleB("snpb", ox),
-		sn: styleB("sn", ox),
-		dbl: styleB("dbl", ox)
-	}), []);
-	const gWarn = useGate(() => step === 1 && String(useSim.getState().fab.dmg ?? "ok") === "wet" && clock.current.t > 3);
-	const gIntact = useGate(() => step === 1 && String(useSim.getState().fab.dmg ?? "ok") === "ok" && clock.current.t > 2);
-	const gOx = useGate(() => step === 3 && clock.current.t > 1.5);
-	const gVac = useGate(() => step === 3 && ox.current > .3);
-	const gAbs = useGate(() => step === 4 && clock.current.t > 1.5);
-	const gSite = useGate(() => step >= 1 && step <= 4 && clock.current.t > 1);
-	useFrame(() => {
-		const T = clock.current.t;
-		const f = useSim.getState().fab;
-		asm.current = between(T, .2, step === 0 ? 3 : 1.2) + (step > 0 ? 1 : 0);
-		asm.current = Math.min(1, asm.current);
-		ox.current = step === 3 ? Number(f.ox ?? 0) : 0;
-		const pick = step === 5 ? String(f.pick ?? "pb") : "";
-		const em = (i) => {
-			const id = [
-				"pb",
-				"snpb",
-				"sn",
-				"dbl"
-			][i];
-			if (step === 0) return 1;
-			if (step === 1) return i === 0 ? 1.25 : .7;
-			if (step === 2) return i <= 1 ? 1.15 : .7;
-			if (step === 3) return i === 2 ? 1.25 : .7;
-			if (step === 4) return i === 3 ? 1.25 : .7;
-			return id === pick ? 1.2 : .85;
-		};
-		grp.forEach((r, i) => {
-			if (r.current) r.current.scale.setScalar(lerp(r.current.scale.x, em(i), .1));
-		});
-		absShow.current = step === 4 ? between(T, 1, 2.2) : 0;
-		gauge.current = 1 - .6 * ox.current;
-		const s = scn.current;
-		const wet = String(f.dmg ?? "ok") === "wet";
-		s.T = T;
-		s.rain = step === 1 ? between(T, .5, 1.2) : 0;
-		s.crack = step === 1 && wet ? between(T, 1.2, 2.5) : 0;
-		s.capture = false;
-		s.heal = false;
-		s.leakAt = 2.6;
-		if (slab.current) slab.current.visible = step === 1;
-		if (bars.current) bars.current.visible = step === 2;
-		if (leadBar.current) leadBar.current.scale.x = .9 * between(T, 1, 2.4) + 1e-4;
-	});
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-			position: [
-				0,
-				-1.3,
-				0
-			],
-			rotation: [
-				-Math.PI / 2,
-				0,
-				0
-			],
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("planeGeometry", { args: [14, 5] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-				color: "#10171d",
-				roughness: 1
-			})]
-		}),
-		FAM_X.map((x) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			p: [
-				x,
-				-.55,
-				0
-			],
-			s: [
-				1.8,
-				.05,
-				1.4
-			],
-			c: "#26313b",
-			rough: .8
-		}, x)),
-		FAM_X.map((x, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: grp[i],
-			position: [
-				x,
-				LAT_Y,
-				0
-			],
-			children: i === 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AssemblingLattice, {
-				n: N2,
-				a: .34,
-				asm,
-				radii: RAD,
-				style: styles.pb,
-				colors: {
-					A: "#3cba84",
-					B: PAL.pb,
-					X: "#7a56e0"
-				}
-			}) : i === 1 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AssemblingLattice, {
-				n: N2,
-				a: .34,
-				asm,
-				radii: RAD,
-				style: styles.snpb,
-				colors: {
-					A: "#3cba84",
-					B: PAL.pb,
-					X: "#7a56e0"
-				}
-			}) : i === 2 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AssemblingLattice, {
-				n: N2,
-				a: .34,
-				asm,
-				radii: RAD,
-				style: styles.sn,
-				colors: {
-					A: "#3cba84",
-					B: PAL.sn,
-					X: "#7a56e0"
-				}
-			}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AssemblingLattice, {
-				n: N2,
-				a: .34,
-				asm,
-				radii: RAD,
-				style: styles.dbl,
-				colors: {
-					A: "#79b0ff",
-					B: "#ffffff",
-					X: "#e07a32"
-				}
-			})
-		}, `g${x}`)),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: slab,
-			position: [
-				FAM_X[0],
-				-.45,
-				0
-			],
-			scale: .5,
-			visible: false,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ModuleSlab, {
-				scn,
-				ground: -1.3
-			})
-		}),
-		step === 1 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			position: [
-				FAM_X[0],
-				0,
-				0
-			],
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Ground, {
-				y: -1.1,
-				w: 2.2,
-				d: 1.2
-			})
-		}) : null,
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: bars,
-			position: [
-				-2.2,
-				-.6,
-				.6
-			],
-			visible: false,
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					p: [
-						0,
-						.3,
-						0
-					],
-					s: [
-						2,
-						.14,
-						.14
-					],
-					c: PAL.pb
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					p: [
-						-.55,
-						-.1,
-						0
-					],
-					s: [
-						.9,
-						.14,
-						.14
-					],
-					c: PAL.pb
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					p: [
-						-1 + .9 + .55,
-						-.1,
-						0
-					],
-					s: [
-						1.1,
-						.14,
-						.14
-					],
-					c: PAL.sn,
-					o: .5,
-					edge: "#d2a36a"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-					ref: leadBar,
-					position: [
-						0,
-						-.32,
-						0
-					],
-					visible: false,
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-						1,
-						.02,
-						.02
-					] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshBasicMaterial", { color: "#e4a23a" })]
-				})
-			]
-		}),
-		step === 3 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(VGauge, {
-			p: [
-				2.2,
-				.1,
-				.5
-			],
-			h: 1,
-			value: gauge,
-			color: "#ff8a4c"
-		}) : null,
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			position: [
-				3.3,
-				-1.65,
-				.9
-			],
-			scale: .8,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AbsPlot, { show: absShow })
-		}),
-		FAM_X.map((x, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				x,
-				1.35,
-				0
-			],
-			kind: i === 0 ? "layer" : i === 3 ? "good" : "concept",
-			children: [
-				LA.pb,
-				LA.snpb,
-				LA.sn,
-				LA.dbl
-			][i]
-		}, `t${x}`)),
-		gSite ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-			step <= 2 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					FAM_X[0],
-					.35,
-					.8
-				],
-				kind: "tiny",
-				minor: true,
-				children: LA.siteB
-			}) : null,
-			step === 2 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					FAM_X[1],
-					.35,
-					.8
-				],
-				kind: "tiny",
-				minor: true,
-				children: LA.siteMix
-			}) : null,
-			step === 3 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					FAM_X[2],
-					.35,
-					.8
-				],
-				kind: "tiny",
-				minor: true,
-				children: LA.siteSn
-			}) : null,
-			step === 4 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					FAM_X[3],
-					.35,
-					.8
-				],
-				kind: "tiny",
-				minor: true,
-				children: LA.siteDbl
-			}) : null
-		] }) : null,
-		gWarn ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				FAM_X[0],
-				-1.35,
-				.9
-			],
-			kind: "bad",
-			sub: LA.leak,
-			children: LA.warn
-		}) }) : null,
-		gIntact ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				FAM_X[0],
-				-1.35,
-				.9
-			],
-			kind: "good",
-			children: LA.intact
-		}) : null,
-		step === 2 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				-2.2,
-				-.05,
-				.6
-			],
-			kind: "layer",
-			minor: true,
-			children: LA.leadRef
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				-2.2,
-				-.62,
-				.6
-			],
-			kind: "concept",
-			sub: LA.stillPb,
-			children: LA.leadMix
-		})] }) : null,
-		gOx ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				FAM_X[2],
-				1.9,
-				.5
-			],
-			kind: "bad",
-			minor: true,
-			children: LA.ox
-		}) : null,
-		gVac ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				FAM_X[2],
-				.1,
-				.8
-			],
-			kind: "bad",
-			children: LA.vac
-		}) : null,
-		step === 3 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				2.2,
-				.85,
-				.5
-			],
-			kind: "tiny",
-			minor: true,
-			sub: LA.penalty,
-			children: t("Hiệu suất", "Performance")
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				1.1,
-				-.9,
-				.9
-			],
-			kind: "good",
-			minor: true,
-			children: LA.noPb
-		})] }) : null,
-		gAbs ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					3.3,
-					-.45,
-					.9
-				],
-				kind: "tiny",
-				sub: LA.energy,
-				children: LA.abs
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					3.3,
-					-2.05,
-					.9
-				],
-				kind: "concept",
-				minor: true,
-				sub: LA.absDbl,
-				children: LA.absPb
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					3.3,
-					1.2,
-					.5
-				],
-				kind: "tiny",
-				minor: true,
-				children: LA.notFree
-			})
-		] }) : null
-	] });
-}
-var LB = {
-	front: t("Kính trước", "Front glass"),
-	enc: t("Chất bọc (encapsulant)", "Encapsulant"),
-	dev: t("Linh kiện perovskite", "Perovskite device"),
-	cap: t("Lớp giữ chì (tùy chọn)", "Lead-capture layer (optional)"),
-	rear: t("Lớp chắn / kính sau", "Rear barrier / glass"),
-	seal: t("Viền kín", "Edge seal"),
-	rain: t("Mưa", "Rain"),
-	blocked: t("Nước bị chặn khi còn nguyên vẹn", "Water blocked while intact"),
-	crack: t("Vết nứt", "Crack"),
-	enters: t("Nước vào qua vết nứt", "Water enters through the crack"),
-	species: t("Chất chứa chì", "Lead-containing species"),
-	escape: t("Có thể thoát ra môi trường (khái niệm)", "May escape to the environment (conceptual)"),
-	bound: t("Bị liên kết ở lớp giữ chì (khái niệm)", "Bound at the capture layer (conceptual)"),
-	without: t("Không có lớp giữ chì", "Without lead capture"),
-	withCap: t("Có lớp giữ chì", "With lead capture"),
-	immobilized: t("Cố định chì giảm độ linh động và sự giải phóng; không loại bỏ mọi rủi ro", "Immobilization reduces mobility and release; it does not remove all risk"),
-	research: t("Các cách đã công bố trong nghiên cứu, chưa phải tiêu chuẩn công nghiệp", "Published research approaches, not standard industrial practice"),
-	heal: t("Polymer tự lành đóng một phần vết nứt", "Self-healing polymer closes part of the crack"),
-	healNote: t("Minh họa khái niệm một hướng nghiên cứu đã công bố", "Conceptual illustration of a published research approach"),
-	line: t("Dây chuyền sản xuất", "Production line"),
-	waste: t("Chất thải chứa chì", "Lead-containing process waste"),
-	drum: t("Thùng chứa kín", "Sealed container"),
-	tray: t("Khay chứa dự phòng", "Secondary containment"),
-	label: t("Dán nhãn", "Labelled"),
-	transfer: t("Vận chuyển chất thải có kiểm soát", "Controlled waste transfer"),
-	water: t("Nước thải", "Wastewater"),
-	treat: t("Xử lý nước thải trước khi xả", "Treated before discharge"),
-	sep: t("Kiểm soát nhà máy khác với ngăn rò rỉ từ module", "Factory control is separate from preventing leakage from a module"),
-	oldMod: t("Module cũ / hỏng", "Old or damaged module"),
-	collect: t("Thu gom", "Collection"),
-	dismantle: t("Tháo dỡ có kiểm soát", "Controlled dismantling"),
-	glassRec: t("Kính và khung: thu hồi vật liệu dùng lại", "Glass and frame: reusable materials recovered"),
-	leadFrac: t("Phần chứa chì: thu hồi / xử lý thích hợp", "Lead-containing fraction: appropriate recovery / handling"),
-	never: t("Không đập vỡ, đổ bỏ hay xả vào nước thải thường", "No uncontrolled breakage, dumping or ordinary wastewater"),
-	all: t("Mọi biện pháp bổ trợ cho nhau", "The measures complement each other"),
-	s1: t("1 · Bọc kín", "1 · Encapsulation"),
-	s2: t("2 · Giữ chì", "2 · Lead capture"),
-	s3: t("3 · Tự lành", "3 · Self-healing"),
-	s4: t("4 · Kiểm soát nhà máy", "4 · Factory control"),
-	s5: t("5 · Thu gom và tái chế", "5 · Collection and recycling"),
-	env: t("Môi trường (đất / nước)", "Environment (soil / water)")
-};
-var GROUND_Y = -1.25;
-var N_WASTE = 16;
-function Factory() {
-	const waste = (0, import_react.useRef)(null);
-	const drum = (0, import_react.useRef)(null);
-	const lid = (0, import_react.useRef)(null);
-	const truck = (0, import_react.useRef)(null);
-	const treat = (0, import_react.useRef)(null);
-	const water = (0, import_react.useRef)(null);
-	const clk = (0, import_react.useRef)(0);
-	useFrame((_, dt) => {
-		clk.current += Math.min(dt, .05);
-		const T = useSim.getState().playing ? clk.current : clk.current;
-		const loop = T % 12;
-		const lidK = between(loop, 3, 4);
-		const mv = between(loop, 5.5, 8.5);
-		if (lid.current) lid.current.position.y = lerp(.62, .36, lidK);
-		if (drum.current) drum.current.position.set(lerp(-1.4, 1.5, mv), -.7, .2);
-		if (truck.current) truck.current.position.x = lerp(4.6, 3.3, between(loop, 7, 9));
-		if (treat.current) treat.current.emissiveIntensity = .2 + .6 * between(loop, 7, 10);
-		if (waste.current) {
-			for (let i = 0; i < N_WASTE; i++) {
-				if (!(loop < 3.2)) {
-					waste.current.hide(i);
-					continue;
-				}
-				const life = (loop * .5 + i / N_WASTE) % 1;
-				waste.current.set(i, lerp(-2.4, -1.4, life), lerp(-.25, .45 - life * .9, life), .2, 1);
-			}
-			waste.current.flush();
-		}
-		if (water.current) {
-			for (let i = 0; i < 12; i++) {
-				const life = (T * .3 + i / 12) % 1;
-				const x = lerp(-2.7, .5, life);
-				water.current.set(i, x, lerp(-.1, -.55, life) + Math.sin(life * 6) * .04, -1.1, 1);
-			}
-			water.current.flush();
-		}
-	});
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-			position: [
-				0,
-				-.9,
-				0
-			],
-			rotation: [
-				-Math.PI / 2,
-				0,
-				0
-			],
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("planeGeometry", { args: [11, 4] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-				color: "#141b21",
-				roughness: 1
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			p: [
-				-3.2,
-				-.45,
-				0
-			],
-			s: [
-				1.6,
-				.9,
-				1.2
-			],
-			c: PAL.steelDark,
-			metal: .5,
-			rough: .5
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			p: [
-				-3.2,
-				.12,
-				0
-			],
-			s: [
-				1.3,
-				.2,
-				1
-			],
-			c: "#17305e"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tube, {
-			a: [
-				-2.4,
-				-.25,
-				.2
-			],
-			b: [
-				-1.4,
-				.55,
-				.2
-			],
-			rad: .05,
-			c: PAL.steel,
-			o: .6
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			p: [
-				-1.4,
-				-.84,
-				.2
-			],
-			s: [
-				1,
-				.06,
-				.9
-			],
-			c: "#5a6572"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			p: [
-				.2,
-				-.84,
-				.2
-			],
-			s: [
-				4.2,
-				.06,
-				.7
-			],
-			c: "#2a323b"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: drum,
-			position: [
-				-1.4,
-				-.7,
-				.2
-			],
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cy, {
-					rad: .32,
-					h: .7,
-					c: "#d4a72c",
-					metal: .3,
-					rough: .5
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cy, {
-					p: [
-						0,
-						0,
-						0
-					],
-					rad: .325,
-					h: .14,
-					c: "#161a1f"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-					ref: lid,
-					position: [
-						0,
-						.62,
-						0
-					],
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("cylinderGeometry", { args: [
-						.34,
-						.34,
-						.05,
-						24
-					] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-						color: "#5a6572",
-						metalness: .6,
-						roughness: .4
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					p: [
-						0,
-						.08,
-						.33
-					],
-					s: [
-						.26,
-						.26,
-						.01
-					],
-					c: "#ffffff"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					p: [
-						0,
-						.08,
-						.335
-					],
-					s: [
-						.2,
-						.04,
-						.01
-					],
-					c: "#d33"
-				})
-			]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Swarm, {
-			ref: waste,
-			count: N_WASTE,
-			color: "#ff9a7a",
-			radius: .04,
-			halo: 1.6,
-			haloOpacity: .15,
-			emissive: .8
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			p: [
-				1.9,
-				-.45,
-				-.1
-			],
-			s: [
-				1,
-				.8,
-				1
-			],
-			c: "#33404d",
-			rough: .6
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			p: [
-				1.9,
-				0,
-				.41
-			],
-			s: [
-				.7,
-				.2,
-				.02
-			],
-			c: "#ffffff"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			p: [
-				1.9,
-				0,
-				.42
-			],
-			s: [
-				.5,
-				.05,
-				.02
-			],
-			c: "#d33"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: truck,
-			position: [
-				4.6,
-				-.55,
-				0
-			],
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					s: [
-						1.5,
-						.7,
-						.9
-					],
-					c: "#e8edf2",
-					rough: .6
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					p: [
-						-.95,
-						-.1,
-						0
-					],
-					s: [
-						.5,
-						.5,
-						.85
-					],
-					c: "#4d86d6"
-				}),
-				[-.5, .4].map((x) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cy, {
-					p: [
-						x,
-						-.4,
-						.45
-					],
-					rad: .14,
-					h: .1,
-					r: [
-						Math.PI / 2,
-						0,
-						0
-					],
-					c: "#0e1318"
-				}, x))
-			]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cy, {
-			p: [
-				-2.7,
-				-.4,
-				-1.1
-			],
-			rad: .35,
-			h: .9,
-			c: PAL.steelDark,
-			metal: .4
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tube, {
-			a: [
-				-2.35,
-				-.3,
-				-1.1
-			],
-			b: [
-				.5,
-				-.55,
-				-1.1
-			],
-			rad: .05,
-			c: PAL.steel,
-			o: .7
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			p: [
-				-.9,
-				-.55,
-				-1.1
-			],
-			s: [
-				.5,
-				.5,
-				.5
-			],
-			c: "#2a323b",
-			metal: .4
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cy, {
-			p: [
-				.9,
-				-.4,
-				-1.1
-			],
-			rad: .35,
-			h: .9,
-			c: "#cfe9fb",
-			o: .3
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-			position: [
-				.9,
-				-.55,
-				-1.1
-			],
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("cylinderGeometry", { args: [
-				.3,
-				.3,
-				.55,
-				20
-			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-				ref: treat,
-				color: "#5fd391",
-				emissive: "#5fd391",
-				emissiveIntensity: .2,
-				transparent: true,
-				opacity: .8
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Swarm, {
-			ref: water,
-			count: 12,
-			color: PAL.water,
-			radius: .03,
-			halo: 1.6,
-			haloOpacity: .14,
-			emissive: 1
-		})
-	] });
-}
-function Recycling() {
-	const mod = (0, import_react.useRef)(null);
-	const glass = (0, import_react.useRef)(null);
-	const dev = (0, import_react.useRef)(null);
-	const frame = (0, import_react.useRef)(null);
-	const sawA = (0, import_react.useRef)(null);
-	const clk = (0, import_react.useRef)(0);
-	useFrame((_, dt) => {
-		clk.current += Math.min(dt, .05);
-		const loop = clk.current % 13;
-		const run = between(loop, .5, 3.5);
-		const split = between(loop, 4.2, 6);
-		const away = between(loop, 6, 9);
-		const baseX = lerp(-3.4, -.2, run);
-		if (mod.current) mod.current.visible = loop < 13;
-		if (frame.current) frame.current.position.set(baseX + away * 0, 0, 0);
-		if (glass.current) glass.current.position.set(baseX + lerp(0, 2.6, away), .1 + .45 * split + lerp(0, .1, away), 0);
-		if (dev.current) dev.current.position.set(baseX + lerp(0, 2.6, away), 0 - .1 * split - .35 * away, 0);
-		if (frame.current) frame.current.position.set(baseX + lerp(0, 2.6, away), .1, lerp(0, 0, away) + 0);
-		if (sawA.current) sawA.current.rotation.z = loop * 12 * (split > 0 && split < 1 ? 1 : 0);
-	});
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-			position: [
-				0,
-				-.9,
-				0
-			],
-			rotation: [
-				-Math.PI / 2,
-				0,
-				0
-			],
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("planeGeometry", { args: [11, 4] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-				color: "#141b21",
-				roughness: 1
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			p: [
-				-.4,
-				-.75,
-				0
-			],
-			s: [
-				8.4,
-				.1,
-				.9
-			],
-			c: "#2a323b"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			p: [
-				-4,
-				-.4,
-				0
-			],
-			s: [
-				1.2,
-				.8,
-				1.1
-			],
-			c: "#33404d",
-			rough: .6
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			p: [
-				-4,
-				.03,
-				.56
-			],
-			s: [
-				.8,
-				.18,
-				.02
-			],
-			c: "#ffffff"
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			p: [
-				-.2,
-				.55,
-				0
-			],
-			s: [
-				1.6,
-				.18,
-				1.4
-			],
-			c: PAL.steelDark,
-			metal: .5
-		}),
-		[-.7, .7].map((x) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			p: [
-				x - .2,
-				0,
-				0
-			],
-			s: [
-				.1,
-				1.2,
-				1.3
-			],
-			c: PAL.steel,
-			metal: .6
-		}, x)),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: sawA,
-			position: [
-				-.2,
-				.3,
-				.75
-			],
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cy, {
-				rad: .18,
-				h: .03,
-				r: [
-					Math.PI / 2,
-					0,
-					0
-				],
-				c: "#c9d1da",
-				metal: .8,
-				lo: true
-			})
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: mod,
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-					ref: glass,
-					position: [
-						-3.4,
-						.1,
-						0
-					],
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-						s: [
-							1.7,
-							.06,
-							1
-						],
-						c: "#a9d3f0",
-						o: .5,
-						edge: "#cfe9fb"
-					})
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-					ref: dev,
-					position: [
-						-3.4,
-						0,
-						0
-					],
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-						s: [
-							1.6,
-							.06,
-							.95
-						],
-						c: "#241a30"
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-						p: [
-							0,
-							.035,
-							0
-						],
-						s: [
-							1.6,
-							.012,
-							.95
-						],
-						c: "#c9772e"
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-					ref: frame,
-					position: [
-						-3.4,
-						.1,
-						0
-					],
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-						p: [
-							0,
-							0,
-							.52
-						],
-						s: [
-							1.8,
-							.1,
-							.05
-						],
-						c: "#cfd6de",
-						metal: .6
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-						p: [
-							0,
-							0,
-							-.52
-						],
-						s: [
-							1.8,
-							.1,
-							.05
-						],
-						c: "#cfd6de",
-						metal: .6
-					})]
-				})
-			]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			p: [
-				2.8,
-				-.4,
-				-.2
-			],
-			s: [
-				1.3,
-				.8,
-				1.2
-			],
-			c: "#2f6b8a",
-			o: .6,
-			rough: .4
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			p: [
-				2.8,
-				-.35,
-				1
-			],
-			s: [
-				1,
-				.7,
-				.8
-			],
-			c: "#7a1f1f",
-			rough: .5
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			p: [
-				2.8,
-				-0,
-				1.41
-			],
-			s: [
-				.6,
-				.16,
-				.02
-			],
-			c: "#ffffff"
-		})
-	] });
-}
-function LeadBScene({ step }) {
-	const clock = useStoryClock(step, stepDur("leadmit", step), 2);
-	const protSel = useSim((s) => String(s.fab.prot ?? "enc"));
-	const main = (0, import_react.useRef)(newScn());
-	const left = (0, import_react.useRef)(newScn());
-	const right = (0, import_react.useRef)(newScn());
-	const gMain = (0, import_react.useRef)(null);
-	const gSplit = (0, import_react.useRef)(null);
-	const gFact = (0, import_react.useRef)(null);
-	const gRec = (0, import_react.useRef)(null);
-	const g0 = useGate(() => step === 0 && clock.current.t > 3);
-	const g1a = useGate(() => step === 1 && clock.current.t > 1.5 && clock.current.t < 6);
-	const g1b = useGate(() => step === 1 && clock.current.t > 7);
-	const g1c = useGate(() => step === 1 && clock.current.t > 9);
-	const g2 = useGate(() => step === 2 && clock.current.t > 4);
-	const g3 = useGate(() => step === 3 && clock.current.t > 5);
-	const g6 = useGate(() => step === 6 && clock.current.t > 1);
-	useFrame(() => {
-		const T = clock.current.t;
-		const f = useSim.getState().fab;
-		const prot = String(f.prot ?? "enc");
-		const m = main.current;
-		m.T = T;
-		m.capture = step === 1 ? prot !== "enc" : step === 3 || step === 6;
-		m.heal = step === 1 ? prot === "heal" : step === 3;
-		m.explode = step === 0 ? between(T, .4, 3.2) * (1 - between(T, 8.5, 10.5)) : 0;
-		m.rain = step === 1 ? between(T, .5, 1.5) : step === 3 ? between(T, .3, 1) : 0;
-		m.crack = step === 1 ? between(T, 6, 8) : step === 3 ? between(T, 1, 2.5) : 0;
-		m.healed = step === 1 ? m.heal ? .75 * between(T, 9.5, 12) : 0 : step === 3 ? between(T, 4.5, 9) : 0;
-		m.leakAt = step === 1 ? 7.5 : 2.6;
-		const l = left.current;
-		const r = right.current;
-		for (const sc of [l, r]) {
-			sc.T = T;
-			sc.rain = step === 2 ? between(T, .4, 1) : 0;
-			sc.crack = step === 2 ? between(T, 2, 3.5) : 0;
-			sc.heal = false;
-			sc.healed = 0;
-			sc.leakAt = 3.2;
-		}
-		l.capture = false;
-		r.capture = true;
-		if (gMain.current) gMain.current.visible = step === 0 || step === 1 || step === 3 || step === 6;
-		if (gSplit.current) gSplit.current.visible = step === 2;
-		if (gFact.current) gFact.current.visible = step === 4;
-		if (gRec.current) gRec.current.visible = step === 5;
-	});
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		step <= 3 || step === 6 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Ground, {
-			y: GROUND_Y,
-			w: 9,
-			d: 3.6
-		}) : null,
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: gMain,
-			visible: false,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ModuleSlab, { scn: main })
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: gSplit,
-			visible: false,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-				position: [
-					-2.1,
-					0,
-					0
-				],
-				scale: .62,
-				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ModuleSlab, {
-					scn: left,
-					ground: -1.35
-				})
-			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-				position: [
-					2.1,
-					0,
-					0
-				],
-				scale: .62,
-				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ModuleSlab, {
-					scn: right,
-					ground: -1.35
-				})
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: gFact,
-			visible: false,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Factory, {})
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: gRec,
-			visible: false,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Recycling, {})
-		}),
-		g0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-2.3,
-					1.9,
-					.4
-				],
-				kind: "layer",
-				children: LB.front
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-2.3,
-					1.3,
-					.4
-				],
-				kind: "concept",
-				minor: true,
-				children: LB.enc
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-2.3,
-					.7,
-					.4
-				],
-				kind: "good",
-				children: LB.dev
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-2.3,
-					.1,
-					.4
-				],
-				kind: "good",
-				minor: true,
-				children: LB.cap
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-2.3,
-					-.5,
-					.4
-				],
-				kind: "layer",
-				minor: true,
-				children: LB.rear
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					2.2,
-					.5,
-					1.2
-				],
-				kind: "concept",
-				children: LB.seal
-			})
-		] }) : null,
-		g1a ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				-.6,
-				1.3,
-				.8
-			],
-			kind: "good",
-			children: LB.blocked
-		}) : null,
-		g1b ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				.45,
-				.95,
-				.9
-			],
-			kind: "bad",
-			children: LB.crack
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				-1.6,
-				0,
-				.9
-			],
-			kind: "particle",
-			minor: true,
-			children: LB.enters
-		})] }) : null,
-		g1c ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				.5,
-				-1.55,
-				.9
-			],
-			kind: protSel === "enc" ? "bad" : "good",
-			sub: LB.research,
-			children: protSel === "enc" ? LB.escape : LB.bound
-		}) : null,
-		step === 2 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				-2.1,
-				1.35,
-				.4
-			],
-			kind: "bad",
-			children: LB.without
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				2.1,
-				1.35,
-				.4
-			],
-			kind: "good",
-			children: LB.withCap
-		})] }) : null,
-		g2 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				-2.1,
-				-1.2,
-				.9
-			],
-			kind: "bad",
-			minor: true,
-			children: LB.escape
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				2.1,
-				-1.2,
-				.9
-			],
-			kind: "good",
-			sub: LB.immobilized,
-			children: LB.bound
-		})] }) : null,
-		g3 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				.45,
-				1,
-				.9
-			],
-			kind: "good",
-			sub: LB.healNote,
-			children: LB.heal
-		}) : null,
-		step === 4 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-3.4,
-					1.1,
-					.5
-				],
-				kind: "layer",
-				children: LB.line
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-1.4,
-					1.1,
-					.6
-				],
-				kind: "bad",
-				minor: true,
-				children: LB.waste
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-1.4,
-					-1.25,
-					.8
-				],
-				kind: "concept",
-				minor: true,
-				children: LB.tray
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					1.9,
-					.45,
-					.6
-				],
-				kind: "concept",
-				sub: LB.label,
-				children: LB.drum
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					3.4,
-					0,
-					.6
-				],
-				kind: "good",
-				minor: true,
-				children: LB.transfer
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-3.1,
-					-1.05,
-					-.8
-				],
-				kind: "particle",
-				minor: true,
-				children: LB.water
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					.9,
-					-1.05,
-					-.8
-				],
-				kind: "good",
-				minor: true,
-				children: LB.treat
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					0,
-					-1.4,
-					1.2
-				],
-				kind: "tiny",
-				children: LB.sep
-			})
-		] }) : null,
-		step === 5 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-4,
-					.2,
-					.7
-				],
-				kind: "concept",
-				sub: LB.oldMod,
-				children: LB.collect
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-.2,
-					1.1,
-					.5
-				],
-				kind: "layer",
-				children: LB.dismantle
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					2.8,
-					.35,
-					0
-				],
-				kind: "good",
-				minor: true,
-				children: LB.glassRec
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					2.8,
-					-.1,
-					1.5
-				],
-				kind: "bad",
-				minor: true,
-				children: LB.leadFrac
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					0,
-					-1.4,
-					1.2
-				],
-				kind: "tiny",
-				children: LB.never
-			})
-		] }) : null,
-		g6 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-2.4,
-					1.5,
-					.5
-				],
-				kind: "layer",
-				children: LB.s1
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-2.4,
-					.9,
-					.5
-				],
-				kind: "good",
-				children: LB.s2
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					2.4,
-					1.5,
-					.5
-				],
-				kind: "good",
-				children: LB.s3
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					2.4,
-					.9,
-					.5
-				],
-				kind: "concept",
-				children: LB.s4
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					0,
-					1.9,
-					.5
-				],
-				kind: "concept",
-				children: LB.s5
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					0,
-					-1.7,
-					.9
-				],
-				kind: "tiny",
-				children: LB.all
-			})
-		] }) : null
-	] });
-}
-var LC = {
-	rain: t("Mưa rơi lên module", "Rain falls on the module"),
-	seal: t("Bọc kín nguyên vẹn chặn nước", "The intact encapsulation blocks water"),
-	crack: t("Vết nứt mở ra", "A crack opens"),
-	escape: t("Chất chứa chì có thể thoát ra", "Lead-containing species may escape"),
-	bound: t("Bị giữ ở lớp giữ chì, độ linh động giảm", "Held at the capture layer, mobility reduced"),
-	design: t("Thiết kế", "Design"),
-	d1: t("1 · Bọc kín chuẩn", "1 · Standard encapsulation"),
-	d2: t("2 · + giữ chì", "2 · + lead capture"),
-	d3: t("3 · + giữ chì + kế hoạch cuối đời", "3 · + capture + end-of-life plan"),
-	eolPlan: t("Kế hoạch cuối đời: thu gom → tháo dỡ → thu hồi", "End-of-life plan: collection → dismantling → recovery"),
-	eolNone: t("Chưa có kế hoạch cuối đời: chì vẫn còn đó", "No end-of-life plan: the lead is still there"),
-	eolNeed: t("Vẫn cần thu gom và xử lý có kiểm soát", "Still needs controlled collection and handling"),
-	noZero: t("Không có số phần trăm rò rỉ nào được nêu; không gọi là “không rò rỉ”", "No leakage percentage is given; nothing is called “zero leakage”")
-};
-function LeadCScene({ step }) {
-	const clock = useStoryClock(step, stepDur("leadcmp", step), 2);
-	const designSel = useSim((s) => String(s.fab.design ?? "1"));
-	const scn = (0, import_react.useRef)(newScn());
-	const slab = (0, import_react.useRef)(null);
-	const bin = (0, import_react.useRef)(null);
-	const flag = (0, import_react.useRef)(null);
-	const g1 = useGate(() => step === 1 && clock.current.t > 2);
-	const g2a = useGate(() => step === 2 && clock.current.t > 3);
-	const g2b = useGate(() => step === 2 && clock.current.t > 5);
-	const g3 = useGate(() => step === 3 && clock.current.t > 3);
-	useFrame(() => {
-		const T = clock.current.t;
-		const f = useSim.getState().fab;
-		const design = Number(String(f.design ?? "1"));
-		const s = scn.current;
-		s.T = T;
-		s.capture = design >= 2;
-		s.heal = false;
-		s.healed = 0;
-		s.rain = step === 0 ? between(T, .3, 1) : step === 1 ? 1 : step === 2 ? 1 : step === 3 ? .2 : step === 4 ? .8 : 0;
-		s.crack = step === 2 ? between(T, 1.2, 2.8) : step >= 3 ? 1 : 0;
-		s.leakAt = step === 2 ? 3.2 : .1;
-		if (slab.current) {
-			const toBin = step === 3 && design === 3 ? between(T, 4, 7) : 0;
-			slab.current.position.set(lerp(0, 3, toBin), lerp(0, -.6, toBin), 0);
-			slab.current.scale.setScalar(lerp(1, .6, toBin));
-		}
-		if (bin.current) bin.current.visible = step === 3 && design === 3;
-		if (flag.current) flag.current.visible = step === 3 && design !== 3;
-	});
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Ground, {
-			y: GROUND_Y,
-			w: 9,
-			d: 3.6
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: slab,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ModuleSlab, { scn })
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: bin,
-			position: [
-				3,
-				-.7,
-				0
-			],
-			visible: false,
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					s: [
-						1.3,
-						.9,
-						1.1
-					],
-					c: "#33404d",
-					rough: .6
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					p: [
-						0,
-						.1,
-						.56
-					],
-					s: [
-						.8,
-						.2,
-						.02
-					],
-					c: "#ffffff"
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Arrow3, {
-					a: [
-						-1.6,
-						.9,
-						0
-					],
-					b: [
-						-.4,
-						.9,
-						0
-					],
-					color: "#79e0a0",
-					head: .08
-				})
-			]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: flag,
-			position: [
-				2.9,
-				-.2,
-				0
-			],
-			visible: false,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-				p: [
-					0,
-					.4,
-					0
-				],
-				s: [
-					.05,
-					1.2,
-					.05
-				],
-				c: PAL.steel
-			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-				p: [
-					.35,
-					.9,
-					0
-				],
-				s: [
-					.7,
-					.4,
-					.03
-				],
-				c: "#e4a23a"
-			})]
-		}),
-		step === 1 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Rod, {
-			a: [
-				-1.7,
-				.2,
-				1.05
-			],
-			b: [
-				1.7,
-				.2,
-				1.05
-			],
-			color: "#79e0a0",
-			radius: .01,
-			opacity: .5
-		}) : null,
-		step === 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				-1.6,
-				1.4,
-				.5
-			],
-			kind: "particle",
-			children: LC.rain
-		}) : null,
-		g1 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				0,
-				1,
-				1
-			],
-			kind: "good",
-			children: LC.seal
-		}) : null,
-		g2a ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				.45,
-				.95,
-				.9
-			],
-			kind: "bad",
-			children: LC.crack
-		}) : null,
-		g2b ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				.3,
-				-1.5,
-				.9
-			],
-			kind: designSel === "1" ? "bad" : "good",
-			children: designSel === "1" ? LC.escape : LC.bound
-		}) : null,
-		g3 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: designSel === "3" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				3,
-				.3,
-				.7
-			],
-			kind: "good",
-			children: LC.eolPlan
-		}) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				2.6,
-				1.4,
-				.5
-			],
-			kind: "bad",
-			children: LC.eolNone
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				0,
-				-1.7,
-				.9
-			],
-			kind: "tiny",
-			children: LC.eolNeed
-		})] }) }) : null,
-		step === 4 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				0,
-				-1.7,
-				.9
-			],
-			kind: "tiny",
-			children: LC.noZero
-		}) : null
-	] });
-}
-var LBL$6 = {
+var LBL$2 = {
 	glass: t("Đế thủy tinh", "Glass substrate"),
 	chuck: t("Mâm quay (chuck)", "Rotating chuck"),
 	pipette: t("Pipet", "Pipette"),
@@ -38580,7 +28295,7 @@ function SpinScene({ step }) {
 				],
 				kind: "concept",
 				minor: true,
-				children: LBL$6.thicker
+				children: LBL$2.thicker
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 				position: [
@@ -38590,7 +28305,7 @@ function SpinScene({ step }) {
 				],
 				kind: "concept",
 				minor: true,
-				children: LBL$6.thinner
+				children: LBL$2.thinner
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 				position: [
@@ -38599,7 +28314,7 @@ function SpinScene({ step }) {
 					.4
 				],
 				kind: "tiny",
-				sub: LBL$6.illus,
+				sub: LBL$2.illus,
 				children: t("Độ dày", "Thickness")
 			})
 		] }) : null,
@@ -38688,7 +28403,7 @@ function SpinScene({ step }) {
 				.9
 			],
 			kind: "layer",
-			children: LBL$6.glass
+			children: LBL$2.glass
 		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
 				-.7,
@@ -38696,7 +28411,7 @@ function SpinScene({ step }) {
 				1.1
 			],
 			kind: "concept",
-			children: LBL$6.chuck
+			children: LBL$2.chuck
 		})] }) : null,
 		showPip ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
@@ -38705,7 +28420,7 @@ function SpinScene({ step }) {
 				0
 			],
 			kind: "concept",
-			children: LBL$6.pipette
+			children: LBL$2.pipette
 		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
 				.7,
@@ -38713,7 +28428,7 @@ function SpinScene({ step }) {
 				.5
 			],
 			kind: "particle",
-			children: LBL$6.ink
+			children: LBL$2.ink
 		})] }) : null,
 		showFlow ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
@@ -38722,7 +28437,7 @@ function SpinScene({ step }) {
 				.95
 			],
 			kind: "particle",
-			children: LBL$6.spread
+			children: LBL$2.spread
 		}) : null,
 		step === 3 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
@@ -38731,7 +28446,7 @@ function SpinScene({ step }) {
 				1
 			],
 			kind: "layer",
-			children: LBL$6.wet
+			children: LBL$2.wet
 		}) : null,
 		showSolv ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
@@ -38740,7 +28455,7 @@ function SpinScene({ step }) {
 				.6
 			],
 			kind: "particle",
-			children: LBL$6.solvent
+			children: LBL$2.solvent
 		}) : null,
 		showGrain ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
@@ -38750,7 +28465,7 @@ function SpinScene({ step }) {
 					0
 				],
 				kind: "good",
-				children: LBL$6.lattice
+				children: LBL$2.lattice
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 				position: [
@@ -38759,7 +28474,7 @@ function SpinScene({ step }) {
 					.55
 				],
 				kind: "good",
-				children: LBL$6.grains
+				children: LBL$2.grains
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 				position: [
@@ -38769,7 +28484,7 @@ function SpinScene({ step }) {
 				],
 				kind: "bad",
 				minor: true,
-				children: LBL$6.gb
+				children: LBL$2.gb
 			})
 		] }) : null,
 		showSec ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
@@ -38780,7 +28495,7 @@ function SpinScene({ step }) {
 					.4
 				],
 				kind: "good",
-				children: LBL$6.film
+				children: LBL$2.film
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 				position: [
@@ -38789,7 +28504,7 @@ function SpinScene({ step }) {
 					.4
 				],
 				kind: "layer",
-				children: LBL$6.sub
+				children: LBL$2.sub
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 				position: [
@@ -38798,12 +28513,12 @@ function SpinScene({ step }) {
 					.4
 				],
 				kind: "tiny",
-				children: LBL$6.scale
+				children: LBL$2.scale
 			})
 		] }) : null
 	] });
 }
-var LBL$5 = {
+var LBL$1 = {
 	sub: t("Đế", "Substrate"),
 	holder: t("Giá đỡ đế", "Substrate holder"),
 	door: t("Cửa buồng", "Chamber door"),
@@ -39408,7 +29123,7 @@ function VacuumScene({ step }) {
 			],
 			kind: "tiny",
 			sub: t("minh họa", "illustrative"),
-			children: LBL$5.thick
+			children: LBL$1.thick
 		})] }) : null,
 		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SectionBlock, {
 			p: [
@@ -39441,7 +29156,7 @@ function VacuumScene({ step }) {
 				1
 			],
 			kind: "layer",
-			children: LBL$5.chamber
+			children: LBL$1.chamber
 		}) : null,
 		step === 0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
@@ -39451,7 +29166,7 @@ function VacuumScene({ step }) {
 			],
 			kind: "concept",
 			minor: true,
-			children: LBL$5.door
+			children: LBL$1.door
 		}) : null,
 		gHolder ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
@@ -39460,7 +29175,7 @@ function VacuumScene({ step }) {
 				.6
 			],
 			kind: "layer",
-			children: LBL$5.sub
+			children: LBL$1.sub
 		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
 				-.9,
@@ -39469,7 +29184,7 @@ function VacuumScene({ step }) {
 			],
 			kind: "concept",
 			minor: true,
-			children: LBL$5.holder
+			children: LBL$1.holder
 		})] }) : null,
 		gPump ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
@@ -39479,7 +29194,7 @@ function VacuumScene({ step }) {
 					.5
 				],
 				kind: "concept",
-				children: LBL$5.pump
+				children: LBL$1.pump
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 				position: [
@@ -39488,8 +29203,8 @@ function VacuumScene({ step }) {
 					.5
 				],
 				kind: "tiny",
-				sub: LBL$5.low,
-				children: LBL$5.gauge
+				sub: LBL$1.low,
+				children: LBL$1.gauge
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 				position: [
@@ -39499,7 +29214,7 @@ function VacuumScene({ step }) {
 				],
 				kind: "particle",
 				minor: true,
-				children: LBL$5.air
+				children: LBL$1.air
 			})
 		] }) : null,
 		gSrc ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
@@ -39509,7 +29224,7 @@ function VacuumScene({ step }) {
 				.7
 			],
 			kind: "layer",
-			children: LBL$5.srcA
+			children: LBL$1.srcA
 		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
 				SRC_X,
@@ -39517,7 +29232,7 @@ function VacuumScene({ step }) {
 				.7
 			],
 			kind: "good",
-			children: LBL$5.srcB
+			children: LBL$1.srcB
 		})] }) : null,
 		gVap ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
@@ -39527,7 +29242,7 @@ function VacuumScene({ step }) {
 			],
 			kind: "layer",
 			minor: true,
-			children: LBL$5.vapA
+			children: LBL$1.vapA
 		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
 				1,
@@ -39536,7 +29251,7 @@ function VacuumScene({ step }) {
 			],
 			kind: "good",
 			minor: true,
-			children: LBL$5.vapB
+			children: LBL$1.vapB
 		})] }) : null,
 		gFilm ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
@@ -39545,7 +29260,7 @@ function VacuumScene({ step }) {
 				.8
 			],
 			kind: "good",
-			children: LBL$5.film
+			children: LBL$1.film
 		}) : null,
 		gOnlyA ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
@@ -39554,7 +29269,7 @@ function VacuumScene({ step }) {
 				.9
 			],
 			kind: "bad",
-			children: LBL$5.onlyA
+			children: LBL$1.onlyA
 		}) : null,
 		gOnlyB ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 			position: [
@@ -39563,7 +29278,7 @@ function VacuumScene({ step }) {
 				.9
 			],
 			kind: "bad",
-			children: LBL$5.onlyB
+			children: LBL$1.onlyB
 		}) : null,
 		gSec ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
@@ -39573,7 +29288,7 @@ function VacuumScene({ step }) {
 					.4
 				],
 				kind: "good",
-				children: LBL$5.secFilm
+				children: LBL$1.secFilm
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 				position: [
@@ -39582,7 +29297,7 @@ function VacuumScene({ step }) {
 					.4
 				],
 				kind: "layer",
-				children: LBL$5.secSub
+				children: LBL$1.secSub
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
 				position: [
@@ -39591,667 +29306,9 @@ function VacuumScene({ step }) {
 					.4
 				],
 				kind: "tiny",
-				children: LBL$5.scale
+				children: LBL$1.scale
 			})
 		] }) : null
-	] });
-}
-var LBL$4 = {
-	clean: t("Đế sạch", "Clean substrate"),
-	stage: t("Bệ phủ", "Coating stage"),
-	first: t("Dung dịch PbI₂ (tiền chất 1)", "PbI₂ solution (first precursor)"),
-	layer: t("Lớp tiền chất PbI₂", "PbI₂ precursor layer"),
-	notYet: t("chưa phải perovskite", "not finished perovskite"),
-	second: t("Dung dịch MAI (tiền chất 2)", "MAI solution (second precursor)"),
-	mai: t("Tiền chất 2: MAI", "Second precursor: MAI"),
-	pbi2: t("Tiền chất 1: PbI₂ chưa phản ứng", "First precursor: unreacted PbI₂"),
-	zone: t("Vùng phản ứng", "Reaction region"),
-	perov: t("MAPbI₃ perovskite", "MAPbI₃ perovskite"),
-	equation: t("PbI₂ + MAI → MAPbI₃  (ví dụ đơn giản)", "PbI₂ + MAI → MAPbI₃  (simplified example)"),
-	scale: t("Mặt cắt phóng đại, không đúng tỉ lệ", "Magnified cross-section, not to scale"),
-	before: t("Trước: lớp PbI₂", "Before: PbI₂ layer"),
-	after: t("Sau: màng perovskite", "After: perovskite film"),
-	ma: t("MA⁺", "MA⁺")
-};
-var BLOCK_X = 2.9;
-var BW = 1.5;
-var BD = .6;
-var GH = .5;
-var LH = .5;
-var MH = .2;
-var N_ION = 22;
-var SUB = 1.5;
-var C_YEL = new Color(PAL.pbi2);
-var C_DARK = new Color(PAL.dark);
-/** How strongly a part is shown when the viewer picks one to examine. */
-var dimFor = (focus, part) => focus === "all" || focus === part ? 1 : .16;
-function TwoStepScene({ step }) {
-	const clock = useStoryClock(step, stepDur("twostep", step), 2);
-	const subGrp = (0, import_react.useRef)(null);
-	const film1 = (0, import_react.useRef)(null);
-	const film1Mat = (0, import_react.useRef)(null);
-	const film2 = (0, import_react.useRef)(null);
-	const film2Mat = (0, import_react.useRef)(null);
-	const grain = (0, import_react.useRef)(null);
-	const grainMat = (0, import_react.useRef)(null);
-	const bar1 = (0, import_react.useRef)(null);
-	const bar2 = (0, import_react.useRef)(null);
-	const block = (0, import_react.useRef)(null);
-	const unreact = (0, import_react.useRef)(null);
-	const unreactMat = (0, import_react.useRef)(null);
-	const react = (0, import_react.useRef)(null);
-	const reactMat = (0, import_react.useRef)(null);
-	const zone = (0, import_react.useRef)(null);
-	const zoneMat = (0, import_react.useRef)(null);
-	const maiLayer = (0, import_react.useRef)(null);
-	const maiMat = (0, import_react.useRef)(null);
-	const faceGrain = (0, import_react.useRef)(null);
-	const faceMat = (0, import_react.useRef)(null);
-	const ma = (0, import_react.useRef)(null);
-	const iod = (0, import_react.useRef)(null);
-	const bubble = (0, import_react.useRef)(null);
-	const asm = (0, import_react.useRef)(0);
-	const cur = (0, import_react.useRef)({ r: 0 });
-	const tex = useGrainTexture(21, 8);
-	const faceTex = useGrainTexture(27, 7);
-	const g0 = useGate(() => step === 0);
-	const g1 = useGate(() => step === 1 && clock.current.t > 3.6);
-	const g2 = useGate(() => step === 2 && clock.current.t > 3.6);
-	const gx = useGate(() => step >= 3);
-	const gEq = useGate(() => step === 4 && clock.current.t > 3.2);
-	const gBefore = useGate(() => step === 5 && cur.current.r < .5);
-	const gAfter = useGate(() => step === 5 && cur.current.r >= .5);
-	useFrame(() => {
-		const T = clock.current.t;
-		const f = useSim.getState().fab;
-		const focus = String(f.focus ?? "all");
-		const ba = String(f.ba ?? "auto");
-		let r = 0;
-		if (step === 3) r = .78 * between(T, 1, 8);
-		else if (step === 4) r = lerp(.78, 1, between(T, 0, 3));
-		else if (step >= 5) r = 1;
-		if (step === 5) {
-			const auto = T % 6 < 3 ? 0 : 1;
-			r = ba === "before" ? 0 : ba === "after" ? 1 : auto;
-		}
-		cur.current.r = lerp(cur.current.r, r, step === 5 ? .12 : 1);
-		const R = cur.current.r;
-		if (subGrp.current) subGrp.current.position.y = step === 0 ? lerp(1, 0, between(T, .4, 3)) : 0;
-		const x1 = step === 1 ? lerp(-.8, .8, between(T, .6, 3.4)) : step < 1 ? -.8 : .8;
-		const x2 = step === 2 ? lerp(-.8, .8, between(T, .6, 3.4)) : step < 2 ? -.8 : .8;
-		if (bar1.current) {
-			bar1.current.position.set(x1, .5, 0);
-			bar1.current.visible = step === 1 && T < 4.2;
-		}
-		if (bar2.current) {
-			bar2.current.position.set(x2, .5, 0);
-			bar2.current.visible = step === 2 && T < 4.2;
-		}
-		if (film1.current && film1Mat.current) {
-			const w = step === 0 ? 0 : step === 1 ? x1 + .8 : 1.6;
-			film1.current.visible = w > .01;
-			film1.current.scale.set(Math.max(.001, w), 1, 1.4);
-			film1.current.position.x = -.8 + w / 2;
-			film1Mat.current.color.copy(C_YEL).lerp(C_DARK, step >= 3 ? R : 0);
-		}
-		if (film2.current && film2Mat.current) {
-			const w = step < 2 ? 0 : step === 2 ? x2 + .8 : 1.6;
-			film2.current.visible = w > .01 && R < .98;
-			film2.current.scale.set(Math.max(.001, w), 1, 1.4);
-			film2.current.position.x = -.8 + w / 2;
-			film2Mat.current.opacity = .55 * (1 - clamp01(R * 1.3));
-		}
-		if (grainMat.current) grainMat.current.opacity = clamp01((R - .3) / .7);
-		if (block.current) block.current.scale.setScalar(Math.max(1e-4, step === 3 ? between(T, 0, 1) : step > 3 ? 1 : 0));
-		const H = LH;
-		const reacted = H * R;
-		const rest = H - reacted;
-		const dUn = dimFor(focus, "pbi2");
-		const dRe = dimFor(focus, "perov");
-		const dZo = dimFor(focus, "zone");
-		const dMa = dimFor(focus, "mai");
-		if (unreact.current && unreactMat.current) {
-			unreact.current.scale.set(BW, Math.max(1e-4, rest), BD);
-			unreact.current.position.y = GH / 2 + rest / 2;
-			unreactMat.current.opacity = .95 * dUn;
-			unreact.current.visible = rest > .004;
-		}
-		if (react.current && reactMat.current) {
-			react.current.scale.set(BW, Math.max(1e-4, reacted), BD);
-			react.current.position.y = GH / 2 + rest + reacted / 2;
-			reactMat.current.opacity = .95 * dRe;
-			react.current.visible = reacted > .004;
-		}
-		if (zone.current && zoneMat.current) {
-			const on = R > .01 && R < .995 ? 1 : 0;
-			zone.current.scale.set(1.52, .07 * on + 1e-4, .62);
-			zone.current.position.y = GH / 2 + rest;
-			zoneMat.current.opacity = .85 * dZo;
-		}
-		if (maiLayer.current && maiMat.current) {
-			const left = step < 4 ? lerp(MH, MH * .35, R) : MH * .35 * (1 - between(T, 0, 3));
-			maiLayer.current.scale.set(BW, Math.max(1e-4, left), BD);
-			maiLayer.current.position.y = .75 + left / 2;
-			maiMat.current.opacity = .5 * dMa;
-			maiLayer.current.visible = left > .004;
-		}
-		if (faceGrain.current && faceMat.current) {
-			faceGrain.current.scale.set(BW, Math.max(1e-4, reacted), 1);
-			faceGrain.current.position.set(0, GH / 2 + rest + reacted / 2, .303);
-			faceMat.current.opacity = clamp01((R - .15) / .5) * dRe;
-		}
-		if (ma.current && iod.current) {
-			const run = step === 2 ? between(T, 4, 6) * .3 : step === 3 ? 1 : step === 4 ? 1 - between(T, .5, 3) : 0;
-			const top = .87;
-			const front = GH / 2 + rest;
-			for (let i = 0; i < N_ION; i++) {
-				if (!(run * N_ION > i)) {
-					ma.current.hide(i);
-					iod.current.hide(i);
-					continue;
-				}
-				const life = (T * .22 + hash1(i * 4.7)) % 1;
-				const x = (hash1(i * 2.3) - .5) * 1.3;
-				const z = (hash1(i * 6.1) - .5) * .5;
-				const y = lerp(top, Math.max(front, .28), life);
-				const fade = life < .9 ? 1 : (1 - life) / .1;
-				ma.current.set(i, x, y, z, fade * dimFor(focus, "mai"));
-				iod.current.set(i, x + .06, y + .04, z + .05, fade * dimFor(focus, "mai") * .8);
-			}
-			ma.current.flush();
-			iod.current.flush();
-		}
-		asm.current = step === 4 ? between(T, .6, 3.6) : step >= 5 ? R > .5 ? 1 : .02 : 0;
-		if (bubble.current) bubble.current.scale.setScalar(Math.max(1e-4, step === 4 ? between(T, .2, 1) : step === 5 ? 1 : 0));
-	});
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bench, {}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			p: [
-				0,
-				-.45,
-				0
-			],
-			s: [
-				2.4,
-				.8,
-				2.4
-			],
-			c: PAL.steelDark,
-			metal: .4,
-			rough: .5
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-			p: [
-				0,
-				-.04,
-				0
-			],
-			s: [
-				2,
-				.04,
-				2
-			],
-			c: PAL.steel,
-			metal: .6,
-			rough: .3
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: subGrp,
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					p: [
-						0,
-						.04,
-						0
-					],
-					s: [
-						SUB,
-						.07,
-						SUB
-					],
-					c: PAL.glass,
-					o: .4,
-					edge: "#cfe9fb",
-					rough: .15
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-					ref: film1,
-					position: [
-						-.8,
-						.085,
-						0
-					],
-					rotation: [
-						-Math.PI / 2,
-						0,
-						0
-					],
-					visible: false,
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("planeGeometry", { args: [1, 1] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-						ref: film1Mat,
-						color: PAL.pbi2,
-						roughness: .35,
-						transparent: true,
-						opacity: .95
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-					ref: film2,
-					position: [
-						-.8,
-						.09,
-						0
-					],
-					rotation: [
-						-Math.PI / 2,
-						0,
-						0
-					],
-					visible: false,
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("planeGeometry", { args: [1, 1] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-						ref: film2Mat,
-						color: PAL.mai,
-						roughness: .15,
-						transparent: true,
-						opacity: .55,
-						depthWrite: false
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-					ref: grain,
-					position: [
-						0,
-						.093,
-						0
-					],
-					rotation: [
-						-Math.PI / 2,
-						0,
-						0
-					],
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("planeGeometry", { args: [1.4, 1.4] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshBasicMaterial", {
-						ref: grainMat,
-						map: tex,
-						transparent: true,
-						opacity: 0,
-						depthWrite: false
-					})]
-				})
-			]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: bar1,
-			visible: false,
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					s: [
-						.12,
-						.1,
-						1.3
-					],
-					c: PAL.steel,
-					metal: .6,
-					rough: .3
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					p: [
-						0,
-						-.04,
-						0
-					],
-					s: [
-						.06,
-						.04,
-						1.25
-					],
-					c: PAL.pbi2,
-					o: .9,
-					emis: PAL.pbi2,
-					emisI: .35
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tube, {
-					a: [
-						0,
-						.05,
-						0
-					],
-					b: [
-						0,
-						.55,
-						0
-					],
-					rad: .035,
-					c: PAL.pbi2,
-					o: .8
-				})
-			]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: bar2,
-			visible: false,
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					s: [
-						.12,
-						.1,
-						1.3
-					],
-					c: PAL.steel,
-					metal: .6,
-					rough: .3
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-					p: [
-						0,
-						-.04,
-						0
-					],
-					s: [
-						.06,
-						.04,
-						1.25
-					],
-					c: PAL.mai,
-					o: .9,
-					emis: PAL.mai,
-					emisI: .35
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tube, {
-					a: [
-						0,
-						.05,
-						0
-					],
-					b: [
-						0,
-						.55,
-						0
-					],
-					rad: .035,
-					c: PAL.mai,
-					o: .8
-				})
-			]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			position: [
-				BLOCK_X,
-				.45,
-				0
-			],
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-				ref: block,
-				scale: 1e-4,
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Bx, {
-						s: [
-							BW,
-							GH,
-							BD
-						],
-						c: PAL.glass,
-						o: .45,
-						edge: "#cfe9fb"
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-						ref: unreact,
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-							1,
-							1,
-							1
-						] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-							ref: unreactMat,
-							color: PAL.pbi2,
-							roughness: .4,
-							transparent: true,
-							opacity: .95
-						})]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-						ref: react,
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-							1,
-							1,
-							1
-						] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-							ref: reactMat,
-							color: PAL.dark,
-							roughness: .4,
-							transparent: true,
-							opacity: .95
-						})]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-						ref: zone,
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-							1,
-							1,
-							1
-						] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-							ref: zoneMat,
-							color: PAL.warn,
-							emissive: PAL.warn,
-							emissiveIntensity: .8,
-							transparent: true,
-							opacity: .85
-						})]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-						ref: maiLayer,
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-							1,
-							1,
-							1
-						] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-							ref: maiMat,
-							color: PAL.mai,
-							roughness: .1,
-							transparent: true,
-							opacity: .5,
-							depthWrite: false
-						})]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-						ref: faceGrain,
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("planeGeometry", { args: [1, 1] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshBasicMaterial", {
-							ref: faceMat,
-							map: faceTex,
-							transparent: true,
-							opacity: 0,
-							depthWrite: false
-						})]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Swarm, {
-						ref: ma,
-						count: N_ION,
-						color: PAL.mai,
-						radius: .045,
-						halo: 1.8,
-						haloOpacity: .18,
-						emissive: 1.1
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Swarm, {
-						ref: iod,
-						count: N_ION,
-						color: "#9d7bff",
-						radius: .032,
-						halo: 1.8,
-						haloOpacity: .16,
-						emissive: 1.3
-					})
-				]
-			})
-		}),
-		gx ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Rod, {
-			a: [
-				.85,
-				.12,
-				0
-			],
-			b: [
-				2.0999999999999996,
-				.5,
-				0
-			],
-			color: "#b9c5d4"
-		}) : null,
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: bubble,
-			position: [
-				4.5,
-				1.15,
-				0
-			],
-			scale: 1e-4,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AssemblingLattice, {
-				asm,
-				a: .26,
-				radii: {
-					A: .055,
-					B: .04,
-					X: .033
-				},
-				colors: {
-					A: PAL.mai,
-					B: "#c5ccd6",
-					X: "#7a56e0"
-				},
-				spread: .7
-			})
-		}),
-		g0 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				.95,
-				.2,
-				.9
-			],
-			kind: "layer",
-			children: LBL$4.clean
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				-1,
-				-.45,
-				1.3
-			],
-			kind: "concept",
-			children: LBL$4.stage
-		})] }) : null,
-		g1 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				.2,
-				.3,
-				.95
-			],
-			kind: "layer",
-			sub: LBL$4.notYet,
-			children: LBL$4.layer
-		}) : null,
-		step === 1 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				0,
-				.85,
-				0
-			],
-			kind: "particle",
-			minor: true,
-			children: LBL$4.first
-		}) : null,
-		step === 2 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				0,
-				.85,
-				0
-			],
-			kind: "particle",
-			minor: true,
-			children: LBL$4.second
-		}) : null,
-		g2 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				.3,
-				.28,
-				.95
-			],
-			kind: "good",
-			children: LBL$4.mai
-		}) : null,
-		gx ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					BLOCK_X,
-					1.4,
-					.5
-				],
-				kind: "tiny",
-				children: LBL$4.scale
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					1.95,
-					.55,
-					BD / 2
-				],
-				kind: "layer",
-				minor: true,
-				children: LBL$4.pbi2
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					3.8499999999999996,
-					.9,
-					BD / 2
-				],
-				kind: "good",
-				minor: true,
-				children: LBL$4.mai
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					3.8499999999999996,
-					.68,
-					BD / 2
-				],
-				kind: "bad",
-				children: LBL$4.zone
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					1.95,
-					.95,
-					BD / 2
-				],
-				kind: "good",
-				children: LBL$4.perov
-			})
-		] }) : null,
-		gEq ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				4.5,
-				.35,
-				0
-			],
-			kind: "concept",
-			children: LBL$4.equation
-		}) : null,
-		gBefore ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				0,
-				.5,
-				.9
-			],
-			kind: "layer",
-			children: LBL$4.before
-		}) : null,
-		gAfter ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				0,
-				.5,
-				.9
-			],
-			kind: "good",
-			children: LBL$4.after
-		}) : null
 	] });
 }
 /** Electrons end in the electron transport layer, holes in the hole transport layer. */
@@ -41970,7 +31027,7 @@ function PinScene({ step }) {
 		})] })
 	] });
 }
-var LBL$3 = {
+var LBL = {
 	good: t("Thiết kế tốt", "Good design"),
 	poor: t("Thiết kế kém", "Poor design"),
 	goodSub: t("chọn lọc tốt, ít tổn thất giao diện", "good selectivity, fewer interface losses"),
@@ -42086,8 +31143,8 @@ function FuncScene({ step }) {
 					0
 				],
 				kind: "good",
-				sub: narrow ? void 0 : LBL$3.goodSub,
-				children: LBL$3.good
+				sub: narrow ? void 0 : LBL.goodSub,
+				children: LBL.good
 			})
 		}),
 		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
@@ -42099,8 +31156,8 @@ function FuncScene({ step }) {
 					0
 				],
 				kind: "bad",
-				sub: narrow ? void 0 : LBL$3.poorSub,
-				children: LBL$3.poor
+				sub: narrow ? void 0 : LBL.poorSub,
+				children: LBL.poor
 			})
 		}),
 		narrow ? null : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
@@ -42112,7 +31169,7 @@ function FuncScene({ step }) {
 					0
 				],
 				kind: "good",
-				children: LBL$3.goodI
+				children: LBL.goodI
 			})
 		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
 			ref: curP,
@@ -42123,1613 +31180,9 @@ function FuncScene({ step }) {
 					0
 				],
 				kind: "bad",
-				children: LBL$3.poorI
+				children: LBL.poorI
 			})
 		})] })
-	] });
-}
-var LBL$2 = {
-	anchor: t("Nhóm neo → ITO", "Anchoring group → ITO"),
-	head: t("Nhóm đầu → perovskite", "Head group → perovskite"),
-	sam: t("SAM: phân tử đứng trên ITO", "SAM: molecules standing on ITO"),
-	nio: t("NiOₓ: lớp oxit gồm các hạt", "NiOₓ: an oxide film of grains"),
-	notScale: t("không đúng tỉ lệ", "not to scale"),
-	hypo: t("điện cực giả định · minh họa", "hypothetical electrode · illustrative"),
-	noBuf: t("Không có lớp đệm: tiếp xúc kém, hạt tải kẹt lại", "No buffer: poor contact, carriers stall"),
-	withBuf: t("Có lớp đệm phù hợp: hạt tải đi tiếp", "A suitable buffer: carriers continue"),
-	concept: t("minh họa khái niệm", "conceptual illustration"),
-	shell: t("Đóng gói (vỏ bảo vệ)", "Encapsulation (protective shell)"),
-	moist: t("Hơi ẩm", "Moisture"),
-	oxy: t("Oxy", "Oxygen"),
-	inside: t("Ánh sáng và nhiệt vẫn gây di chuyển ion bên trong", "Light and heat still drive ion migration inside"),
-	ito: t("ITO", "ITO"),
-	samOrNio: t("SAM / NiOₓ", "SAM / NiOₓ"),
-	perov: t("Perovskite", "Perovskite"),
-	etl: t("C₆₀ / PCBM", "C₆₀ / PCBM"),
-	buf: t("BCP / SnO₂", "BCP / SnO₂"),
-	metal: t("Ag / Au / Al", "Ag / Au / Al"),
-	nonbest: t("Không có vật liệu nào tối ưu cho mọi chồng lớp", "No single material is best for every stack")
-};
-var NM = 24;
-/** The HTL interface close-up: SAM molecules standing between the ITO and the perovskite, or an oxide film of grains. */
-function HtlDetail({ st, on }) {
-	const rods = (0, import_react.useRef)(null);
-	const anch = (0, import_react.useRef)(null);
-	const heads = (0, import_react.useRef)(null);
-	const grains = (0, import_react.useRef)(null);
-	const dummy = (0, import_react.useMemo)(() => new Object3D(), []);
-	useFrame(() => {
-		const d = st.current;
-		const mode = String(useSim.getState().fab.htlc ?? "sam");
-		const yTop = d.cy.tco - d.hh.tco / 2;
-		const yBot = d.cy.perov + d.hh.perov / 2;
-		const mid = (yTop + yBot) / 2;
-		const len = Math.max(.05, yTop - yBot - .03);
-		const sam = on && mode === "sam";
-		const nio = on && mode === "nio";
-		const put = (m, i, x, y, z, sx, sy, sz, show) => {
-			if (!m) return;
-			dummy.position.set(x, show ? y : -60, z);
-			dummy.scale.set(show ? sx : 1e-4, show ? sy : 1e-4, show ? sz : 1e-4);
-			dummy.updateMatrix();
-			m.setMatrixAt(i, dummy.matrix);
-		};
-		for (let i = 0; i < NM; i++) {
-			const x = (i % 6 - 2.5) * .3 + (hash1(i * 3.3) - .5) * .07;
-			const z = (Math.floor(i / 6) - 1.5) * .26 + (hash1(i * 7.7) - .5) * .07;
-			put(rods.current, i, x, mid, z, .012, len, .012, sam);
-			put(anch.current, i, x, yTop - .015, z, .032, .032, .032, sam);
-			put(heads.current, i, x, yBot + .035, z, .055, .045, .055, sam);
-			const wob = (hash1(i * 5.1) - .5) * .02;
-			put(grains.current, i, x, mid + wob, z, .14, .05 + hash1(i * 2.2) * .02, .12, nio);
-		}
-		for (const m of [
-			rods.current,
-			anch.current,
-			heads.current,
-			grains.current
-		]) if (m) m.instanceMatrix.needsUpdate = true;
-	});
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("instancedMesh", {
-			ref: rods,
-			args: [
-				void 0,
-				void 0,
-				NM
-			],
-			frustumCulled: false,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("cylinderGeometry", { args: [
-				1,
-				1,
-				1,
-				8
-			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-				color: HEX$2.htl,
-				emissive: HEX$2.htl,
-				emissiveIntensity: .4
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("instancedMesh", {
-			ref: anch,
-			args: [
-				void 0,
-				void 0,
-				NM
-			],
-			frustumCulled: false,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("sphereGeometry", { args: [
-				1,
-				10,
-				8
-			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-				color: "#eaf3fb",
-				emissive: "#9fb7cf",
-				emissiveIntensity: .5
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("instancedMesh", {
-			ref: heads,
-			args: [
-				void 0,
-				void 0,
-				NM
-			],
-			frustumCulled: false,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("sphereGeometry", { args: [
-				1,
-				12,
-				10
-			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-				color: "#7be3a8",
-				emissive: "#3fbf7f",
-				emissiveIntensity: .7
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("instancedMesh", {
-			ref: grains,
-			args: [
-				void 0,
-				void 0,
-				NM
-			],
-			frustumCulled: false,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("sphereGeometry", { args: [
-				1,
-				10,
-				8
-			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-				color: "#2f9b73",
-				emissive: "#1c6b4c",
-				emissiveIntensity: .5,
-				roughness: .8
-			})]
-		})
-	] });
-}
-var NW = 14;
-var NO = 10;
-/** Moisture and oxygen arrive at the device and are turned away by the shell; before the shell exists they reach the stack. */
-function Weather({ st, on }) {
-	const water = (0, import_react.useRef)(null);
-	const oxy = (0, import_react.useRef)(null);
-	useFrame(({ clock }) => {
-		const d = st.current;
-		const T = clock.elapsedTime;
-		const yc = (d.top + d.bottom) / 2;
-		const hx = W / 2 + .17;
-		const hy = (d.top - d.bottom) / 2 + .17;
-		const hz = D / 2 + .17;
-		const run = (api, n, seed) => {
-			if (!api) return;
-			for (let i = 0; i < n; i++) {
-				if (!on) {
-					api.hide(i);
-					continue;
-				}
-				const th = hash1(i * 4.1 + seed) * Math.PI * 2;
-				const ph = (hash1(i * 7.3 + seed) - .3) * 1.3;
-				const ux = Math.cos(th) * Math.cos(ph);
-				const uy = Math.sin(ph);
-				const uz = Math.sin(th) * Math.cos(ph);
-				const rHit = 1 / Math.max(Math.abs(ux) / hx, Math.abs(uy) / hy, Math.abs(uz) / hz);
-				const p = (T * .32 + hash1(i * 2.9 + seed)) % 1;
-				const k = p < .5 ? p / .5 : 1 - (p - .5) / .5;
-				const stop = rHit * (.2 + .8 * Math.min(1, d.shell * 1.25));
-				const r = rHit + 1.7 - (rHit + 1.7 - stop) * k * k;
-				api.set(i, ux * r, yc + uy * r, uz * r, 1);
-			}
-			api.flush();
-		};
-		run(water.current, NW, 0);
-		run(oxy.current, NO, 40);
-	});
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Swarm, {
-		ref: water,
-		count: NW,
-		color: HEX$2.enc,
-		radius: .04,
-		halo: 1.8,
-		haloOpacity: .16,
-		emissive: 1.1
-	}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Swarm, {
-		ref: oxy,
-		count: NO,
-		color: "#e8eef5",
-		radius: .03,
-		halo: 1.8,
-		haloOpacity: .12,
-		emissive: .8
-	})] });
-}
-function MatTags({ st, on }) {
-	const refs = (0, import_react.useRef)({});
-	const texts = {
-		glass: "",
-		tco: LBL$2.ito,
-		htl: LBL$2.samOrNio,
-		perov: LBL$2.perov,
-		etl: LBL$2.etl,
-		buf: LBL$2.buf,
-		metal: LBL$2.metal
-	};
-	useFrame(() => {
-		for (const id of LAYER_IDS) refs.current[id]?.position.set(0, st.current.cy[id], 0);
-	});
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_jsx_runtime.Fragment, { children: LAYER_IDS.filter((id) => id !== "glass").map((id) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-		ref: (el) => void (refs.current[id] = el),
-		children: on ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				-W / 2 - .6,
-				0,
-				D / 2
-			],
-			kind: "layer",
-			children: texts[id]
-		}) : null
-	}, id)) });
-}
-/** 5.3 · Why those ingredients: one layer at a time, with the interface close-ups the choice depends on. */
-function MatScene({ step }) {
-	const clock = useStoryClock(step, stepDur("why", step), 2);
-	const st = (0, import_react.useRef)(newDev());
-	const cf = (0, import_react.useRef)(newCfg());
-	const gSam = useGate(() => step === 1 && String(useSim.getState().fab.htlc ?? "sam") === "sam");
-	const gNio = useGate(() => step === 1 && String(useSim.getState().fab.htlc ?? "sam") === "nio");
-	const gHypo = useGate(() => step === 0);
-	const gNoBuf = useGate(() => step === 4 && String(useSim.getState().fab.buf ?? "no") === "no");
-	const gBuf = useGate(() => step === 4 && String(useSim.getState().fab.buf ?? "no") === "yes");
-	const gShell = useGate(() => step === 5 && st.current.shell > .5);
-	const gCompare = useGate(() => step === 6);
-	const bufTag = (0, import_react.useRef)(null);
-	const htlTag = (0, import_react.useRef)(null);
-	const shellTag = (0, import_react.useRef)(null);
-	useFrame((_, dtRaw) => {
-		const T = clock.current.t;
-		const dt = Math.min(dtRaw, .05);
-		const d = st.current;
-		const c = cf.current;
-		const f = useSim.getState().fab;
-		d.T = T;
-		c.T = T;
-		d.nip = 0;
-		for (const id of LAYER_IDS) {
-			d.hi[id] = 0;
-			d.op[id] = 1;
-			d.tags[id] = false;
-		}
-		d.dim = 0;
-		d.region = 0;
-		d.paths = 0;
-		d.defect = 0;
-		d.defectAt = "etl";
-		d.poles = false;
-		d.circuit = 0;
-		d.current = 0;
-		d.shell = 0;
-		d.sel = null;
-		c.light = 1;
-		c.photons = true;
-		c.pairs = true;
-		c.only = "both";
-		c.reach = 1;
-		c.ext = true;
-		c.defect = 0;
-		c.parasitic = 0;
-		c.unabs = 0;
-		c.reject = "none";
-		c.clab = false;
-		const ex = [
-			.45,
-			.55,
-			.5,
-			.5,
-			.45,
-			.12,
-			.5
-		][step] ?? .4;
-		d.explode += (ex - d.explode) * Math.min(1, dt * 3);
-		switch (step) {
-			case 0: {
-				const clear = String(f.tcoc ?? "bal") === "clear";
-				d.hi.tco = 1;
-				d.dim = .5;
-				d.tags.tco = d.tags.glass = true;
-				c.parasitic = clear ? 0 : 1;
-				d.circuit = 1;
-				d.poles = true;
-				d.current = clear ? .18 : .9;
-				break;
-			}
-			case 1:
-				d.hi.htl = 1;
-				d.op.htl = .22;
-				d.dim = .55;
-				d.tags.tco = d.tags.htl = d.tags.perov = true;
-				c.only = "h";
-				c.reach = .66;
-				c.ext = false;
-				if (String(f.ifc ?? "ok") === "bad") {
-					d.defectAt = "htl";
-					d.defect = 1;
-					c.defect = .55;
-				}
-				break;
-			case 2:
-				d.hi.perov = 1;
-				d.dim = .5;
-				d.tags.perov = true;
-				c.reach = .54;
-				c.ext = false;
-				break;
-			case 3:
-				d.hi.etl = 1;
-				d.dim = .55;
-				d.tags.etl = d.tags.perov = true;
-				c.only = "e";
-				c.reach = .66;
-				c.ext = false;
-				break;
-			case 4: {
-				const yes = String(f.buf ?? "no") === "yes";
-				d.hi.etl = .5;
-				d.hi.buf = yes ? 1 : 0;
-				d.op.buf = yes ? 1 : 0;
-				d.dim = .5;
-				d.tags.etl = true;
-				d.tags.metal = true;
-				d.tags.buf = yes;
-				d.circuit = 1;
-				d.poles = true;
-				if (yes) d.current = .9;
-				else {
-					d.defectAt = "buf";
-					d.defect = 1;
-					c.defect = .5;
-					d.current = .25;
-				}
-				break;
-			}
-			case 5:
-				d.shell = between(T, .8, 2.4);
-				d.hi.metal = 1;
-				d.dim = .35;
-				d.tags.metal = true;
-				d.circuit = 1;
-				d.current = .9;
-				break;
-			default: c.light = 0;
-		}
-		const L = f.layer;
-		if (L === "enc") d.shell = Math.max(d.shell, .9);
-		if (L && LAYER_IDS.includes(L) && step !== 6) d.hi[L] = Math.max(d.hi[L], .5);
-		if (bufTag.current) bufTag.current.position.set(.3, (d.cy.etl + d.cy.metal) / 2, .4);
-		if (htlTag.current) htlTag.current.position.set(0, d.cy.htl, 0);
-		if (shellTag.current) shellTag.current.position.set(0, d.top + .25, 0);
-	});
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DeviceRig, {
-			st,
-			cf,
-			arch: "pin",
-			pickable: true,
-			short: true
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(HtlDetail, {
-			st,
-			on: step === 1
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Weather, {
-			st,
-			on: step === 5
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(MatTags, {
-			st,
-			on: gCompare
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: htlTag,
-			children: [gSam ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-					position: [
-						.95,
-						.16,
-						.4
-					],
-					kind: "concept",
-					sub: LBL$2.notScale,
-					children: LBL$2.sam
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-					position: [
-						-.4,
-						.2,
-						.65
-					],
-					kind: "tiny",
-					minor: true,
-					children: LBL$2.anchor
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-					position: [
-						-.4,
-						-.2,
-						.65
-					],
-					kind: "tiny",
-					minor: true,
-					children: LBL$2.head
-				})
-			] }) : null, gNio ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					.95,
-					.16,
-					.4
-				],
-				kind: "concept",
-				sub: LBL$2.notScale,
-				children: LBL$2.nio
-			}) : null]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: bufTag,
-			children: [gNoBuf ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					.2,
-					-.05,
-					0
-				],
-				kind: "bad",
-				sub: LBL$2.concept,
-				children: LBL$2.noBuf
-			}) : null, gBuf ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					.2,
-					-.05,
-					0
-				],
-				kind: "good",
-				sub: LBL$2.concept,
-				children: LBL$2.withBuf
-			}) : null]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: shellTag,
-			children: gShell ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-					position: [
-						0,
-						.1,
-						0
-					],
-					kind: "layer",
-					children: LBL$2.shell
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-					position: [
-						-1.5,
-						-.8,
-						1
-					],
-					kind: "particle",
-					minor: true,
-					children: LBL$2.moist
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-					position: [
-						1.5,
-						-.8,
-						1
-					],
-					kind: "tiny",
-					minor: true,
-					children: LBL$2.oxy
-				})
-			] }) : null
-		}),
-		gHypo ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				0,
-				-1.45,
-				0
-			],
-			kind: "tiny",
-			children: LBL$2.hypo
-		}) : null,
-		gCompare ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				0,
-				-1.5,
-				0
-			],
-			kind: "concept",
-			children: LBL$2.nonbest
-		}) : null
-	] });
-}
-var LBL$1 = {
-	sample: t("Mẫu (pin perovskite)", "Sample (perovskite cell)"),
-	sim: t("Nguồn sáng: máy mô phỏng mặt trời", "Light source: solar simulator"),
-	instr: t("Thiết bị đo (đường J–V, theo dõi MPP)", "Measurement instrument (J–V, MPP tracking)"),
-	chamber: t("Buồng thử có kiểm soát", "Controlled test chamber"),
-	light: t("Ánh sáng", "Light"),
-	temp: t("Nhiệt độ", "Temperature"),
-	rh: t("Độ ẩm tương đối", "Relative humidity"),
-	env: t("Môi trường", "Environment"),
-	load: t("Tải điện", "Electrical load"),
-	a: t("Mẫu A", "Sample A"),
-	b: t("Mẫu B", "Sample B"),
-	aSub: t("ISOS-L-2: ánh sáng + nhiệt (minh họa)", "ISOS-L-2: light + heat (illustrative)"),
-	bSub: t("ISOS-D-3: nhiệt ẩm trong tối (minh họa)", "ISOS-D-3: damp heat in the dark (illustrative)"),
-	illus: t("minh họa — không phải kết quả đo", "illustrative — not measured results"),
-	whole: t("Trở lại toàn bộ pin", "Back to the whole cell"),
-	enc: t("Phải báo cáo: có đóng gói hay không, và chi tiết", "Report it: encapsulated or not, and the details"),
-	outdoor: t("Ngoài trời: ghi nhận nhiệt độ, độ ẩm, bức xạ", "Outdoors: temperature, humidity and irradiance are recorded"),
-	dark: t("Trong tối", "In the dark"),
-	bench: t("Bàn đo", "Bench")
-};
-/** What a test group looks like inside the chamber: only the variables the protocol defines. */
-function conditions(fam, lvl, T) {
-	const hot = lvl >= 2 ? .7 : 0;
-	const rh3 = lvl === 3;
-	const tri = (x) => 1 - Math.abs((x % 2 + 2) % 2 - 1);
-	switch (fam) {
-		case "D": return {
-			lamp: 0,
-			heat: hot,
-			rh: rh3 ? .85 : 0,
-			door: 0,
-			outdoor: false,
-			bias: false
-		};
-		case "V": return {
-			lamp: 0,
-			heat: hot,
-			rh: rh3 ? .85 : 0,
-			door: 0,
-			outdoor: false,
-			bias: true
-		};
-		case "L": return {
-			lamp: 1,
-			heat: hot,
-			rh: rh3 ? .5 : 0,
-			door: 0,
-			outdoor: false,
-			bias: false
-		};
-		case "O": return {
-			lamp: 1,
-			heat: .1,
-			rh: .2,
-			door: 0,
-			outdoor: true,
-			bias: false
-		};
-		case "T": return {
-			lamp: 0,
-			heat: lvl === 3 ? -.8 + 1.6 * tri(T * .35) : .7 * tri(T * .35),
-			rh: lvl === 3 ? .3 : 0,
-			door: 0,
-			outdoor: false,
-			bias: false
-		};
-		case "LC": return {
-			lamp: Math.sin(T * 1.2) > 0 ? 1 : .05,
-			heat: hot,
-			rh: rh3 ? .5 : 0,
-			door: 0,
-			outdoor: false,
-			bias: false
-		};
-		case "LT": return {
-			lamp: 1,
-			heat: lvl === 1 ? .5 * tri(T * .3) : lvl === 2 ? -.1 + .8 * tri(T * .3) : -.6 + 1.3 * tri(T * .3),
-			rh: lvl === 1 ? .2 : .5,
-			door: 0,
-			outdoor: false,
-			bias: false
-		};
-	}
-}
-var UP = new Vector3(0, 1, 0);
-var FEED = new Vector3(-1.5, -.3, .3);
-var tmpD = new Vector3();
-function placeRod(m, a, b, r = .02, show = true) {
-	if (!m) return;
-	m.visible = show;
-	if (!show) return;
-	tmpD.copy(b).sub(a);
-	const len = Math.max(.001, tmpD.length());
-	m.position.copy(a).addScaledVector(tmpD, .5);
-	m.quaternion.setFromUnitVectors(UP, tmpD.normalize());
-	m.scale.set(r, len, r);
-}
-var NDROP = 24;
-/** One test chamber: frame, glass door, lamp panel, heater plate, droplets, thermometer. */
-function ChamberBox({ cfg, T, pos = [
-	0,
-	0,
-	0
-], scale = 1, shown = true }) {
-	const door = (0, import_react.useRef)(null);
-	const lampMat = (0, import_react.useRef)(null);
-	const cone = (0, import_react.useRef)(null);
-	const coneMat = (0, import_react.useRef)(null);
-	const heatMat = (0, import_react.useRef)(null);
-	const fill = (0, import_react.useRef)(null);
-	const fillMat = (0, import_react.useRef)(null);
-	const drops = (0, import_react.useRef)(null);
-	const colHot = (0, import_react.useMemo)(() => new Color("#ff6a3a"), []);
-	const colCold = (0, import_react.useMemo)(() => new Color("#4aa3ff"), []);
-	const tmpC = (0, import_react.useMemo)(() => new Color(), []);
-	useFrame(() => {
-		const c = cfg.current;
-		const tt = T.current;
-		if (door.current) door.current.rotation.y = -1.45 * c.door;
-		if (lampMat.current) lampMat.current.color.setScalar(.25 + .75 * c.lamp);
-		if (coneMat.current) coneMat.current.opacity = .11 * c.lamp;
-		if (cone.current) cone.current.visible = c.lamp > .05;
-		if (heatMat.current) {
-			tmpC.copy(c.heat >= 0 ? colHot : colCold);
-			heatMat.current.emissive.copy(tmpC);
-			heatMat.current.emissiveIntensity = Math.abs(c.heat) * 1.4;
-		}
-		if (fill.current && fillMat.current) {
-			const frac = .5 + .5 * c.heat;
-			fill.current.scale.set(.08, Math.max(.02, 1.2 * frac), .08);
-			fill.current.position.y = -.6 + .6 * frac;
-			tmpC.copy(colCold).lerp(colHot, frac);
-			fillMat.current.color.copy(tmpC);
-			fillMat.current.emissive.copy(tmpC);
-		}
-		const n = Math.round(c.rh * NDROP);
-		for (let i = 0; i < NDROP; i++) {
-			if (i >= n) {
-				drops.current?.hide(i);
-				continue;
-			}
-			const life = (tt * .12 + hash1(i * 3.3)) % 1;
-			drops.current?.set(i, (hash1(i * 5.1) - .5) * 2.4, .72 - life * 1.4, (hash1(i * 7.9) - .5) * 1.4, 1);
-		}
-		drops.current?.flush();
-	});
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-		position: pos,
-		scale,
-		visible: shown,
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-				position: [
-					0,
-					-.82,
-					0
-				],
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-					3,
-					.1,
-					2
-				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-					color: "#3a444f",
-					metalness: .5,
-					roughness: .5
-				})]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-				position: [
-					0,
-					.88,
-					0
-				],
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-					3,
-					.1,
-					2
-				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-					color: "#3a444f",
-					metalness: .5,
-					roughness: .5
-				})]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-				position: [
-					0,
-					.03,
-					-.97
-				],
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-					3,
-					1.7,
-					.06
-				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", { color: "#27303a" })]
-			}),
-			[-1.47, 1.47].map((x) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-				position: [
-					x,
-					.03,
-					0
-				],
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-					.06,
-					1.7,
-					2
-				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-					color: "#aeb8c4",
-					transparent: true,
-					opacity: .22,
-					depthWrite: false
-				})]
-			}, x)),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-				position: [
-					-1.47,
-					.03,
-					.98
-				],
-				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-					ref: door,
-					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-						position: [
-							1.47,
-							0,
-							0
-						],
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-							2.94,
-							1.7,
-							.04
-						] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-							color: "#cfe9fb",
-							transparent: true,
-							opacity: .16,
-							depthWrite: false
-						})]
-					})
-				})
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-				position: [
-					0,
-					.8,
-					0
-				],
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-					2.2,
-					.05,
-					1.4
-				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshBasicMaterial", {
-					ref: lampMat,
-					color: "#ffeeb0"
-				})]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-				ref: cone,
-				position: [
-					0,
-					.1,
-					0
-				],
-				visible: false,
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("cylinderGeometry", { args: [
-					.95,
-					1.2,
-					1.45,
-					24,
-					1,
-					true
-				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshBasicMaterial", {
-					ref: coneMat,
-					color: "#ffe9a0",
-					transparent: true,
-					opacity: .1,
-					depthWrite: false,
-					blending: 2,
-					side: 2
-				})]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-				position: [
-					0,
-					-.74,
-					0
-				],
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-					2.3,
-					.05,
-					1.5
-				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-					ref: heatMat,
-					color: "#2a2f36",
-					emissive: "#ff6a3a",
-					emissiveIntensity: 0
-				})]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Swarm, {
-				ref: drops,
-				count: NDROP,
-				color: HEX$2.enc,
-				radius: .035,
-				halo: 1.8,
-				haloOpacity: .15,
-				emissive: 1
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-				position: [
-					1.62,
-					.03,
-					.5
-				],
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-					.16,
-					1.3,
-					.1
-				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", { color: "#1b222a" })]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-				ref: fill,
-				position: [
-					1.62,
-					0,
-					.56
-				],
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-					1,
-					1,
-					1
-				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-					ref: fillMat,
-					color: "#ff6a3a",
-					emissive: "#ff6a3a",
-					emissiveIntensity: .8
-				})]
-			})
-		]
-	});
-}
-/** A rack with the sun above it and a small weather station: the outdoor group. */
-function OutdoorRack({ shown }) {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-		visible: shown,
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-				position: [
-					0,
-					-.86,
-					0
-				],
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-					4.6,
-					.06,
-					3
-				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", { color: "#263a2b" })]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-				position: [
-					0,
-					-.5,
-					0
-				],
-				rotation: [
-					0,
-					0,
-					0
-				],
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-					.1,
-					.7,
-					.1
-				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-					color: "#9aa6b2",
-					metalness: .6
-				})]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-				position: [
-					2,
-					-.35,
-					-.4
-				],
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-					position: [
-						0,
-						-.1,
-						0
-					],
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-						.06,
-						1,
-						.06
-					] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-						color: "#9aa6b2",
-						metalness: .6
-					})]
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-					position: [
-						0,
-						.45,
-						0
-					],
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-						.35,
-						.12,
-						.35
-					] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", { color: "#cfd6de" })]
-				})]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(GlowBall, {
-				position: [
-					-1.8,
-					2.3,
-					-.6
-				],
-				color: "#ffe14a",
-				radius: .22,
-				intensity: 1.8
-			})
-		]
-	});
-}
-/** 5.4 · Prove it with ISOS: a test lab whose chamber shows only the variables of the chosen protocol group. */
-function IsosScene({ step }) {
-	const clock = useStoryClock(step, stepDur("verify", step), 2);
-	const T = (0, import_react.useRef)(0);
-	const st = (0, import_react.useRef)(newDev());
-	const cf = (0, import_react.useRef)(newCfg());
-	const st2 = (0, import_react.useRef)(newDev());
-	const cf2 = (0, import_react.useRef)(newCfg());
-	const chA = (0, import_react.useRef)({
-		lamp: 0,
-		heat: 0,
-		rh: 0,
-		door: 1,
-		outdoor: false,
-		bias: false
-	});
-	const chB = (0, import_react.useRef)({
-		lamp: 0,
-		heat: 0,
-		rh: 0,
-		door: 0,
-		outdoor: false,
-		bias: false
-	});
-	const sampleG = (0, import_react.useRef)(null);
-	const sampleG2 = (0, import_react.useRef)(null);
-	const grpA = (0, import_react.useRef)(null);
-	const grpB = (0, import_react.useRef)(null);
-	const bench = (0, import_react.useRef)(null);
-	const simHead = (0, import_react.useRef)(null);
-	const instr = (0, import_react.useRef)(null);
-	const screenMat = (0, import_react.useRef)(null);
-	const cab1 = (0, import_react.useRef)(null);
-	const cab2 = (0, import_react.useRef)(null);
-	const rack = (0, import_react.useRef)(null);
-	const a0 = (0, import_react.useMemo)(() => new Vector3(), []);
-	const b0 = (0, import_react.useMemo)(() => new Vector3(), []);
-	const fam = useSim((s) => String(s.fab.iso ?? "L"));
-	const lvl = useSim((s) => Number(s.fab.lvl ?? 2) || 2);
-	const row = (ISO_FAMILIES.find((f) => f.fam === fam) ?? ISO_FAMILIES[2]).rows[lvl - 1];
-	const outdoor = fam === "O";
-	const gBench = useGate(() => step === 0);
-	const gVars = useGate(() => step === 2);
-	const gRun = useGate(() => step >= 3 && step <= 5);
-	const gCmp = useGate(() => step === 6);
-	const gEnd = useGate(() => step === 7);
-	useFrame(() => {
-		const tt = clock.current.t;
-		T.current = tt;
-		const f = useSim.getState().fab;
-		const fm = String(f.iso ?? "L");
-		const lv = Number(f.lvl ?? 2) || 2;
-		const cmp = step === 6;
-		const end = step === 7;
-		const cond = cmp ? conditions("L", 2, tt) : conditions(fm, lv, tt);
-		const condB = conditions("D", 3, tt);
-		const run = step <= 0 ? 0 : step === 1 ? .35 : step === 2 ? .7 : step === 3 ? between(tt, 1, 4) : 1;
-		const a = chA.current;
-		a.lamp = cond.lamp * run;
-		a.heat = cond.heat * run;
-		a.rh = cond.rh * run;
-		a.door = step <= 2 ? 1 : step === 3 ? 1 - between(tt, 3.3, 4.2) : 0;
-		const b = chB.current;
-		b.lamp = condB.lamp;
-		b.heat = condB.heat;
-		b.rh = condB.rh;
-		b.door = 0;
-		const inside = step >= 3;
-		const kIn = step === 3 ? between(tt, .4, 3.4) : inside ? 1 : 0;
-		const out = !outdoor;
-		const sx = lerp(-.3, 0, kIn);
-		const sy = lerp(-.62, outdoor ? -.3 : -.4, kIn);
-		const sz = lerp(2.3, 0, kIn);
-		const sc = lerp(.5, outdoor ? .55 : .42, kIn);
-		const sg = sampleG.current;
-		if (sg) {
-			if (cmp) {
-				sg.position.set(-1.2, -.168, 0);
-				sg.scale.setScalar(.42 * .42);
-			} else if (end) {
-				sg.position.set(0, 0, 0);
-				sg.scale.setScalar(1);
-			} else {
-				sg.position.set(sx, sy, sz);
-				sg.scale.setScalar(sc);
-			}
-		}
-		if (sampleG2.current) {
-			sampleG2.current.visible = cmp;
-			sampleG2.current.position.set(1.2, -.168, 0);
-			sampleG2.current.scale.setScalar(.42 * .42);
-		}
-		if (grpA.current) {
-			grpA.current.position.set(cmp ? -1.2 : 0, 0, 0);
-			grpA.current.scale.setScalar(cmp ? .42 : 1);
-			grpA.current.visible = !end && out;
-		}
-		if (grpB.current) {
-			grpB.current.visible = cmp;
-			grpB.current.position.set(1.2, 0, 0);
-			grpB.current.scale.setScalar(.42);
-		}
-		if (rack.current) rack.current.visible = outdoor && !end && !cmp;
-		if (bench.current) bench.current.visible = !end;
-		if (instr.current) instr.current.visible = !end && !cmp;
-		if (simHead.current) simHead.current.visible = step <= 2 && !end;
-		if (screenMat.current) screenMat.current.color.set(step >= 3 && step <= 5 ? "#5ff0a5" : "#2a6a4a");
-		const d = st.current;
-		const c = cf.current;
-		d.T = tt;
-		c.T = tt;
-		d.nip = 0;
-		for (const id of LAYER_IDS) {
-			d.hi[id] = 0;
-			d.tags[id] = end;
-			d.op[id] = 1;
-		}
-		d.dim = 0;
-		d.sel = null;
-		d.region = 0;
-		d.paths = 0;
-		d.defect = 0;
-		d.poles = false;
-		d.circuit = 0;
-		d.current = 0;
-		d.shell = end ? between(tt, .8, 2.2) * .9 : 0;
-		d.explode += ((end ? .45 : 0) - d.explode) * .08;
-		c.light = (step === 0 && true || step >= 3 && a.lamp > .5 && !cmp || cmp && a.lamp > .5) && !end ? 1 : 0;
-		c.photons = true;
-		c.pairs = true;
-		c.reach = 1;
-		c.ext = false;
-		c.rate = .1;
-		c.defect = 0;
-		c.reject = "none";
-		c.only = "both";
-		c.unabs = 0;
-		c.parasitic = 0;
-		c.clab = false;
-		const d2 = st2.current;
-		const c2 = cf2.current;
-		d2.T = tt;
-		c2.T = tt;
-		d2.nip = 0;
-		d2.explode = 0;
-		for (const id of LAYER_IDS) {
-			d2.hi[id] = 0;
-			d2.tags[id] = false;
-			d2.op[id] = 1;
-		}
-		d2.shell = 0;
-		d2.defect = 0;
-		d2.circuit = 0;
-		d2.current = 0;
-		d2.dim = 0;
-		d2.region = 0;
-		d2.paths = 0;
-		d2.poles = false;
-		c2.light = 0;
-		const insideChamber = inside && out && !end;
-		const term = a0.set(sg ? sg.position.x - 1.3 * (sg.scale.x || 1) : 0, sg ? sg.position.y : 0, sg ? sg.position.z : 0);
-		const port = b0.set(-3.55, -.3, .2);
-		if (insideChamber) {
-			placeRod(cab1.current, term, FEED, .02, !cmp);
-			placeRod(cab2.current, FEED, port, .02, !cmp);
-		} else {
-			placeRod(cab1.current, term, port, .02, !end && !cmp);
-			placeRod(cab2.current, term, port, .02, false);
-		}
-	});
-	const labelsRun = gRun;
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: bench,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-				position: [
-					0,
-					-.93,
-					.4
-				],
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-					9.2,
-					.1,
-					5.4
-				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", { color: "#18202a" })]
-			}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-				position: [
-					-.3,
-					-.84,
-					2.3
-				],
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-					1.6,
-					.07,
-					1.1
-				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-					color: "#2a3340",
-					metalness: .3
-				})]
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: grpA,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChamberBox, {
-				cfg: chA,
-				T
-			})
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: grpB,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChamberBox, {
-				cfg: chB,
-				T
-			})
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: rack,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(OutdoorRack, { shown: true })
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: simHead,
-			position: [
-				-.3,
-				.55,
-				2.3
-			],
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-				1,
-				.18,
-				.8
-			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-				color: "#4a5560",
-				metalness: .5
-			})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-				position: [
-					0,
-					-.12,
-					0
-				],
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-					.85,
-					.04,
-					.65
-				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshBasicMaterial", { color: "#ffeeb0" })]
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", {
-			ref: instr,
-			position: [
-				-3.9,
-				-.3,
-				.2
-			],
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-					.7,
-					.9,
-					.8
-				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-					color: "#27313c",
-					metalness: .4,
-					roughness: .5
-				})] }),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-					position: [
-						0,
-						.18,
-						.41
-					],
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("boxGeometry", { args: [
-						.52,
-						.36,
-						.02
-					] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshBasicMaterial", {
-						ref: screenMat,
-						color: "#2a6a4a"
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-					position: [
-						-.2,
-						-.2,
-						.41
-					],
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("sphereGeometry", { args: [
-						.05,
-						10,
-						8
-					] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-						color: "#ffb347",
-						emissive: "#ffb347",
-						emissiveIntensity: 1
-					})]
-				})
-			]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-			ref: cab1,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("cylinderGeometry", { args: [
-				1,
-				1,
-				1,
-				8
-			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-				color: "#cfd6de",
-				metalness: .6,
-				roughness: .4
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-			ref: cab2,
-			visible: false,
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("cylinderGeometry", { args: [
-				1,
-				1,
-				1,
-				8
-			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshStandardMaterial", {
-				color: "#cfd6de",
-				metalness: .6,
-				roughness: .4
-			})]
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: sampleG,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DeviceRig, {
-				st,
-				cf,
-				arch: "pin"
-			})
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("group", {
-			ref: sampleG2,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DeviceRig, {
-				st: st2,
-				cf: cf2,
-				arch: "pin"
-			})
-		}),
-		gBench ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-.3,
-					-.15,
-					2.9
-				],
-				kind: "layer",
-				children: LBL$1.sample
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-.3,
-					.95,
-					2.3
-				],
-				kind: "concept",
-				children: LBL$1.sim
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-3.9,
-					.45,
-					.2
-				],
-				kind: "concept",
-				children: LBL$1.instr
-			})
-		] }) : null,
-		gVars ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					0,
-					1.25,
-					0
-				],
-				kind: "tiny",
-				sub: row.light,
-				children: outdoor ? t("Ánh sáng: ánh nắng", "Light: sunlight") : LBL$1.light
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					1.9,
-					.6,
-					.3
-				],
-				kind: "tiny",
-				sub: row.temp,
-				children: LBL$1.temp
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-2,
-					-.2,
-					.6
-				],
-				kind: "tiny",
-				sub: row.rh,
-				children: LBL$1.rh
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					0,
-					-1.15,
-					1.2
-				],
-				kind: "tiny",
-				sub: row.env,
-				children: LBL$1.env
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-3.9,
-					.55,
-					.2
-				],
-				kind: "tiny",
-				sub: row.load,
-				children: LBL$1.load
-			})
-		] }) : null,
-		labelsRun ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				0,
-				1.2,
-				0
-			],
-			kind: "concept",
-			sub: t(`ISOS-${row.id}`, `ISOS-${row.id}`),
-			children: LBL$1.chamber
-		}), step >= 3 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				0,
-				-1.25,
-				1.2
-			],
-			kind: "tiny",
-			children: LBL$1.illus
-		}) : null] }) : null,
-		gCmp ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					-1.2,
-					.6,
-					0
-				],
-				kind: "layer",
-				sub: LBL$1.aSub,
-				children: LBL$1.a
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					1.2,
-					.6,
-					0
-				],
-				kind: "layer",
-				sub: LBL$1.bSub,
-				children: LBL$1.b
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					0,
-					-.85,
-					.8
-				],
-				kind: "tiny",
-				children: LBL$1.illus
-			})
-		] }) : null,
-		gEnd ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				0,
-				2.3,
-				0
-			],
-			kind: "concept",
-			children: LBL$1.whole
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				0,
-				-1.7,
-				0
-			],
-			kind: "tiny",
-			children: LBL$1.enc
-		})] }) : null
-	] });
-}
-var LBL = {
-	s1: t("1 · Kiến trúc", "1 · Architecture"),
-	s2: t("2 · Chức năng", "2 · Function"),
-	s3: t("3 · Vật liệu", "3 · Materials"),
-	s4: t("4 · Độ bền", "4 · Stability"),
-	redesign: t("Thiết kế lại dựa trên bằng chứng", "Evidence-based redesign"),
-	stress: t("Ánh sáng · nhiệt · độ ẩm — điều kiện xác định", "Light · heat · humidity — defined conditions"),
-	concept: t("minh họa khái niệm", "conceptual illustration")
-};
-var RING_R = 2.5;
-var NR = 18;
-var ringPt = (a) => [
-	Math.sin(a) * RING_R,
-	Math.cos(a) * RING_R * .62 + .1,
-	-1.4
-];
-/** 5.5 · The same device, walked through the four steps and then closed into a loop. */
-function FinScene({ step }) {
-	const clock = useStoryClock(step, stepDur("c5fin", step), 2);
-	const st = (0, import_react.useRef)(newDev());
-	const cf = (0, import_react.useRef)(newCfg());
-	const ring = (0, import_react.useRef)(null);
-	useFrame((_, dtRaw) => {
-		const T = clock.current.t;
-		const dt = Math.min(dtRaw, .05);
-		const d = st.current;
-		const c = cf.current;
-		d.T = T;
-		c.T = T;
-		d.nip = 0;
-		for (const id of LAYER_IDS) {
-			d.hi[id] = 0;
-			d.op[id] = 1;
-			d.tags[id] = false;
-		}
-		d.dim = 0;
-		d.region = 0;
-		d.paths = 0;
-		d.defect = 0;
-		d.poles = false;
-		d.circuit = 0;
-		d.current = 0;
-		d.shell = 0;
-		d.sel = null;
-		c.light = 1;
-		c.photons = true;
-		c.pairs = false;
-		c.reach = 1;
-		c.ext = false;
-		c.defect = 0;
-		c.reject = "none";
-		c.only = "both";
-		c.unabs = 0;
-		c.parasitic = 0;
-		c.clab = false;
-		let ex = .45;
-		switch (step) {
-			case 0:
-				d.region = between(T, .4, 2);
-				d.tags.glass = d.tags.tco = d.tags.buf = d.tags.metal = T > 2.5;
-				break;
-			case 1:
-				ex = .2;
-				c.pairs = true;
-				c.ext = true;
-				d.circuit = between(T, .2, 1.4);
-				d.current = between(T, 1, 3);
-				d.hi.htl = .8;
-				d.hi.perov = .8;
-				d.hi.etl = .8;
-				d.dim = .4;
-				break;
-			case 2:
-				ex = .55;
-				d.defect = .5 + .2 * Math.sin(T * 3);
-				d.defectAt = "etl";
-				c.light = 0;
-				break;
-			case 3:
-				ex = .1;
-				d.shell = between(T, .5, 1.8);
-				c.pairs = true;
-				c.ext = true;
-				d.circuit = 1;
-				d.current = .8;
-				break;
-			default:
-				ex = .35;
-				c.pairs = true;
-				c.ext = true;
-				d.circuit = 1;
-				d.current = .8;
-				d.shell = .8;
-		}
-		d.explode += (ex - d.explode) * Math.min(1, dt * 3);
-		const on = step === 4;
-		for (let i = 0; i < NR; i++) {
-			if (!on) {
-				ring.current?.hide(i);
-				continue;
-			}
-			const p = ringPt((T * .18 + i / NR) % 1 * Math.PI * 2 % (Math.PI * 2));
-			ring.current?.set(i, p[0], p[1], p[2], 1);
-		}
-		ring.current?.flush();
-	});
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("group", { children: [
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(DeviceRig, {
-			st,
-			cf,
-			arch: "pin",
-			short: true
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(MatTags, {
-			st,
-			on: step === 2
-		}),
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Weather, {
-			st,
-			on: step === 3
-		}),
-		step === 4 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("mesh", {
-			position: [
-				0,
-				.1,
-				-1.4
-			],
-			scale: [
-				1,
-				.62,
-				1
-			],
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("torusGeometry", { args: [
-				RING_R,
-				.012,
-				8,
-				120
-			] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("meshBasicMaterial", {
-				color: HEX$2.ph,
-				transparent: true,
-				opacity: .45
-			})]
-		}) : null,
-		/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Swarm, {
-			ref: ring,
-			count: NR,
-			color: HEX$2.ph,
-			radius: .05,
-			halo: 2.2,
-			haloOpacity: .2,
-			emissive: 1.4
-		}),
-		step === 3 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-			position: [
-				0,
-				-1.5,
-				.5
-			],
-			kind: "concept",
-			sub: LBL.concept,
-			children: LBL.stress
-		}) : null,
-		step === 4 ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: ringPt(0),
-				kind: "layer",
-				children: LBL.s1
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: ringPt(Math.PI / 2),
-				kind: "layer",
-				children: LBL.s2
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: ringPt(Math.PI),
-				kind: "layer",
-				children: LBL.s3
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: ringPt(Math.PI * 1.5),
-				kind: "layer",
-				children: LBL.s4
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(StoryTag, {
-				position: [
-					0,
-					2.2,
-					0
-				],
-				kind: "good",
-				children: LBL.redesign
-			})
-		] }) : null
 	] });
 }
 /** The interactive scenes of sections 3.1 – 3.6 and their recap. Keys are the lesson scene ids. */
@@ -43748,21 +31201,10 @@ var storyScenes = {
 	dion: IonsScene,
 	dall: StressScene,
 	sSpin: SpinScene,
-	sLeadA: LeadAScene,
-	sLeadB: LeadBScene,
-	sLeadC: LeadCScene,
-	sMkt: MarketScene,
-	sSlot: SlotScene,
 	sBlade: BladeScene,
-	sQd: QdScene,
-	sCry: CrystalScene,
 	sVac: VacuumScene,
-	sTwo: TwoStepScene,
 	sPin: PinScene,
-	sFunc: FuncScene,
-	sMat: MatScene,
-	sIsos: IsosScene,
-	sFin: FinScene
+	sFunc: FuncScene
 };
 var CAM = {
 	default: [
@@ -43968,7 +31410,6 @@ function SimApp() {
 	const help = useSim((s) => s.help);
 	const query = useSim((s) => s.query);
 	const inspect = useSim((s) => s.inspect);
-	const quiz = useSim((s) => s.quiz);
 	const locale = useSim((s) => s.locale);
 	const textScale = useSim((s) => s.textScale);
 	const presenting = useSim((s) => s.presenting);
@@ -43992,7 +31433,6 @@ function SimApp() {
 	const bumpReplay = useSim((s) => s.bumpReplay);
 	const resetStory = useSim((s) => s.resetStory);
 	const toggleHelp = useSim((s) => s.toggleHelp);
-	const answerQuiz = useSim((s) => s.answerQuiz);
 	(0, import_react.useEffect)(() => {
 		try {
 			const raw = localStorage.getItem("perovskite-lab-v1");
@@ -44003,7 +31443,7 @@ function SimApp() {
 			if (typeof saved.textScale === "number") useSim.getState().setTextScale(saved.textScale);
 			if (typeof saved.explain === "boolean") {
 				const id = useSim.getState().lessonId;
-				const force = id === "glossary" || id === "refs" || id === "quiz";
+				const force = id === "glossary" || id === "refs";
 				useSim.setState({ explain: force ? true : saved.explain });
 			}
 			if (typeof saved.navOpen === "boolean") useSim.setState({ navOpen: saved.navOpen });
@@ -44098,9 +31538,6 @@ function SimApp() {
 		if (!query.trim()) return true;
 		return `${s.title} ${s.body}`.toLowerCase().includes(query.trim().toLowerCase());
 	});
-	const quizItem = lesson.id === "quiz" ? QUIZ[step] : void 0;
-	const quizEn = lesson.id === "quiz" ? QUIZ_EN[step] : void 0;
-	const quizScore = QUIZ.reduce((n, q, i) => n + (quiz[i] === q.answer ? 1 : 0), 0);
 	const table = TABLES[lesson.id];
 	const figure = current.caption ? tr(locale, current.caption) : table?.caption[locale];
 	const gloss = lesson.id === "glossary" ? GLOSSARY[step] : void 0;
@@ -44280,7 +31717,10 @@ function SimApp() {
 				className: "stage-wrap",
 				children: [
 					lesson.page === "landing" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Ch4Landing, {}) : null,
-					lesson.page === "summary" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Ch4Summary, {}) : null,
+					lesson.page === "materials" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(MaterialsPage, {}) : null,
+					lesson.page === "lead" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LeadPage, {}) : null,
+					lesson.page === "market" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(MarketPage, {}) : null,
+					lesson.page === "conclusion" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ConclusionPage, {}) : null,
 					lesson.page ? null : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 						className: "stage",
 						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Stage, {})
@@ -44423,7 +31863,7 @@ function SimApp() {
 						}) : null,
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 							className: "prose",
-							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { text: gloss && locale === "en" ? `${gloss.en}. ${GLOSS_EN[gloss.vi] ?? gloss.blurb}` : lesson.id === "quiz" && locale === "en" && quizEn ? quizEn.prompt : tr(locale, current.body) + (story?.steps[step]?.cite ? ` ${story.steps[step].cite.map((n) => `[${n}]`).join(" ")}` : "") })
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { text: gloss && locale === "en" ? `${gloss.en}. ${GLOSS_EN[gloss.vi] ?? gloss.blurb}` : tr(locale, current.body) + (story?.steps[step]?.cite ? ` ${story.steps[step].cite.map((n) => `[${n}]`).join(" ")}` : "") })
 						}),
 						current.more ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
 							className: "prose more",
@@ -44455,34 +31895,6 @@ function SimApp() {
 								className: "table-wrap",
 								children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("table", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("tr", { children: table.headers[locale].map((h) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("th", { children: h }, h)) }) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("tbody", { children: table.rows[locale].map((row) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("tr", { children: row.map((cell, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("td", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { text: cell }) }, `${cell}-${i}`)) }, row.join("|"))) })] })
 							})]
-						}) : null,
-						quizItem ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "quiz",
-							children: [
-								(locale === "en" && quizEn ? quizEn.options : quizItem.options).map((opt, i) => {
-									const picked = quiz[step];
-									const cls = picked === null ? "btn" : i === quizItem.answer ? "btn good" : i === picked ? "btn bad" : "btn";
-									return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-										type: "button",
-										className: cls,
-										onClick: () => answerQuiz(step, i),
-										children: opt
-									}, opt);
-								}),
-								quiz[step] !== null ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-									className: "prose",
-									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { text: locale === "en" && quizEn ? quizEn.why : quizItem.why })
-								}) : null,
-								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-									className: "score",
-									children: [
-										ui(locale, "correct"),
-										" ",
-										quizScore,
-										"/6"
-									]
-								})
-							]
 						}) : null,
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 							className: "step-jump",

@@ -26,7 +26,6 @@ const UI = {
     of: "/",
     searchTerms: "Tìm thuật ngữ",
     searchRefs: "Tìm nguồn",
-    correct: "Đúng",
     more: "Giải thích thêm",
     figure: "Chú thích hình",
     table: "Bảng",
@@ -82,7 +81,6 @@ const UI = {
     of: "/",
     searchTerms: "Search terms",
     searchRefs: "Search sources",
-    correct: "Score",
     more: "A closer look",
     figure: "Figure caption",
     table: "Table",
@@ -440,7 +438,6 @@ const PHRASE: Record<string, string> = {
   "Một tổ hợp hiếm": "A rare combination",
   "Mạng mềm là cả hai mặt": "The soft lattice is both sides of the coin",
   "Đích bây giờ là độ bền": "The target now is lifetime",
-  "Tự kiểm — sáu câu ôn cả hành trình": "Check yourself — six questions over the whole path",
   "Câu 1 · Photon 900 nm": "Question 1 · a 900 nm photon",
   "Câu 2 · Đếm trong ô lập phương": "Question 2 · counting the cubic cell",
   "Câu 3 · Hai pha vàng, hai lý do": "Question 3 · two yellow phases, two reasons",
@@ -723,30 +720,6 @@ export const TABLES: Record<string, TableSpec> = {
       ],
     },
   },
-  lead: {
-    caption: {
-      vi: "Hiệu suất pin một lớp của các họ ít chì hoặc không chì so với perovskite chì, theo các mốc tài liệu dẫn [34][36][41]. Trục ngang là phần trăm. Thiếc–chì vẫn là hợp kim có chì.",
-      en: "Single-junction efficiency of lower-lead and lead-free families versus lead perovskite, using the marks cited in the notes [34][36][41]. The horizontal axis is percent. Tin–lead is still a lead alloy.",
-    },
-    headers: {
-      vi: ["Họ", "Hiệu suất nêu trong tài liệu", "Vướng mắc"],
-      en: ["Family", "Efficiency cited", "The problem"],
-    },
-    rows: {
-      vi: [
-        ["Chì Pb", "27,3%", "Độc, tan trong nước"],
-        ["Thiếc–chì", "24,8%", "Vẫn còn chì"],
-        ["Thiếc Sn", "16,65%", "Sn²⁺ dễ thành Sn⁴⁺, pin rò"],
-        ["Kép Cs₂AgBiBr₆", "6,37%", "Vùng cấm gián tiếp, hấp thụ kém"],
-      ],
-      en: [
-        ["Lead Pb", "27.3%", "Toxic, water-soluble"],
-        ["Tin–lead", "24.8%", "Still contains lead"],
-        ["Tin Sn", "16.65%", "Sn²⁺ oxidizes to Sn⁴⁺, the cell leaks"],
-        ["Double Cs₂AgBiBr₆", "6.37%", "Indirect gap, weak absorption"],
-      ],
-    },
-  },
   sq: {
     caption: {
       vi: "Trần Shockley–Queisser của một lớp [70]. Hai tổn thất không tránh: photon yếu hơn Eg đi xuyên, photon mạnh hơn Eg chỉ nộp đúng Eg và phần dư thành nhiệt. Đỉnh minh họa giữ ở 33,7%, quanh 1,34 eV. Từ 1,0 đến 1,6 eV đường vẫn trên 30%. Hai lớp không bị buộc theo đường này.",
@@ -792,61 +765,3 @@ export const TABLES: Record<string, TableSpec> = {
     },
   },
 };
-
-export const QUIZ_EN: { prompt: string; options: string[]; why: string }[] = [
-  {
-    prompt: "A 900 nm photon meets MAPbI₃. What happens?",
-    options: [
-      "It is reflected because it is too strong",
-      "E ≈ 1.38 eV, below Eg ≈ 1.57 eV, so it passes through",
-      "It is fully absorbed because it is visible",
-      "It is stopped only if the layer is thicker than 180 µm",
-    ],
-    why: "1240/900 ≈ 1.38 eV. MAPbI₃ has Eg near 1.57 eV. A photon below the gap does not create a charge pair.",
-  },
-  {
-    prompt: "How many A, B and X are in one cubic cell?",
-    options: [
-      "8 A, 6 B, 1 X",
-      "1 A, 1 B, 3 X — a corner counts as 1/8 because eight cells share it",
-      "1 A, 3 B, 1 X",
-      "4 A, 4 B, 4 X",
-    ],
-    why: "A corner belongs to 8 cells, a face center to 2, the body center to 1. 8×1/8 + 1 + 6×1/2 = ABX₃.",
-  },
-  {
-    prompt: "Why do both CsPbI₃ and FAPbI₃ turn yellow easily?",
-    options: [
-      "Both have t ≈ 1.00",
-      "Cs is too small (t ≈ 0.85) and the frame collapses; FA is too large (t ≈ 0.99) and it turns hexagonal, face-sharing",
-      "Both lose lead in water",
-      "They share silicon’s 1.12 eV gap",
-    ],
-    why: "Two opposite size problems around the same cavity: a small A collapses the frame, a large A switches how the octahedra connect.",
-  },
-  {
-    prompt: "PLQY falls from 1% to 0.01%. What happens to Voc?",
-    options: ["It rises by about 60 mV", "It falls by about 120 mV", "It is unchanged because Voc depends only on Eg", "It is cut in half"],
-    why: "Two factors of ten. Each costs about 60 mV, because (kT/q)·ln(10) ≈ 60 mV at 300 K.",
-  },
-  {
-    prompt: "How does a tandem beat 33.7%?",
-    options: [
-      "By using a layer thicker than silicon",
-      "Several layers with different gaps each take part of the spectrum, so it is no longer a single-junction cell",
-      "By turning the light off to stop recombination",
-      "By measuring under a spectrum stronger than AM1.5G",
-    ],
-    why: "33.7% is the limit for one gap. Stacking different gaps avoids both thermalization loss and the photons that were passing through.",
-  },
-  {
-    prompt: "Why should a material not be chosen only for a high initial efficiency?",
-    options: [
-      "Because initial efficiency is always a wrong number",
-      "Because it must also fit its role, align energetically, be compatible with neighbouring layers and survive fabrication and operation",
-      "Because only the cheapest material may be used",
-      "Because perovskite cells need no contact layers",
-    ],
-    why: "Section 5.3: a material that improves one property can create a problem elsewhere (for example a passivation layer that helps n–i–p cells but can hurt p–i–n cells [103]), so the whole stack must be optimised together.",
-  },
-];

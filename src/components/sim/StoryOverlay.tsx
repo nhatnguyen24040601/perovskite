@@ -23,7 +23,7 @@ import {
   type StorySpec,
 } from "@/lib/sim/story";
 import { C4 } from "@/lib/sim/story4";
-import { BackToOverview, DesignTable, FactsPanel, LeadTable, LeadTabs, MarketPanel } from "./Ch4Pages";
+import { BackToOverview, FactsPanel } from "./Ch4Pages";
 import { Ch5Panel, FactsPanel5 } from "./Ch5Pages";
 import { RichText } from "./RichText";
 
@@ -36,21 +36,18 @@ export function StoryOverlay({ lessonId }: { lessonId: string }) {
   if (!spec) return null;
   const current = spec.steps[step] ?? spec.steps[0]!;
   const tx = (text: string) => tr(locale, text);
-  const isLead = spec.id === "lead" || spec.id === "leadmit" || spec.id === "leadcmp";
   const cites = (current.cite ?? []).map((n) => `[${n}]`).join(" ");
-  const tableStep = (spec.id === "lead" && step === 5) || (spec.id === "leadcmp" && step === spec.steps.length - 1);
 
   return (
     <div className="story-layer">
       <div className="story-top">
         {spec.group === "degrade" ? <DegradeTabs current={spec.id} /> : null}
-        {isLead ? <LeadTabs current={spec.id} /> : null}
         <div className="story-card">
           <span className="story-kicker">
             {tx(spec.section)} · {ui(locale, "step")} {step + 1}/{spec.steps.length}
           </span>
           <strong>{tx(current.title)}</strong>
-          {spec.brief || tableStep ? null : <CardText key={`${spec.id}-${step}`} text={tx(current.body)} cites={cites} />}
+          {spec.brief ? null : <CardText key={`${spec.id}-${step}`} text={tx(current.body)} cites={cites} />}
           {current.why ? (
             <p className="story-why">
               <b>{su(locale, "why")}:</b> {tx(current.why)}
@@ -64,7 +61,6 @@ export function StoryOverlay({ lessonId }: { lessonId: string }) {
         </div>
         {spec.facts || spec.factList ? <FactsToggle spec={spec} /> : null}
       </div>
-      {spec.id === "market" ? <MarketPanel step={step} /> : null}
       {spec.group === "design" ? <Ch5Panel spec={spec} step={step} /> : null}
 
       {spec.id === "recap" ? <RecapChain step={step} /> : null}
@@ -77,9 +73,7 @@ export function StoryOverlay({ lessonId }: { lessonId: string }) {
             {tx(current.info)}
           </div>
         ) : null}
-        {spec.id === "lead" && step === 5 ? <LeadTableSlot foot={spec.final} /> : null}
-        {spec.id === "leadcmp" && step === spec.steps.length - 1 ? <DesignTableSlot foot={spec.final} /> : null}
-        {current.final && !tableStep ? <FinalMessage spec={spec} /> : null}
+        {current.final ? <FinalMessage spec={spec} /> : null}
         <StoryBar spec={spec} step={step} />
       </div>
     </div>
@@ -131,24 +125,6 @@ function FactsToggle({ spec }: { spec: StorySpec }) {
         spec.facts ? <FactsPanel facts={spec.facts} onClose={() => setOpen(false)} /> : <FactsPanel5 spec={spec} onClose={() => setOpen(false)} />
       ) : null}
     </>
-  );
-}
-
-function LeadTableSlot({ foot }: { foot: string }) {
-  const pick = useSim((s) => s.fab.pick);
-  return (
-    <div className="lead-slot">
-      <LeadTable pick={String(pick ?? "pb")} foot={foot} />
-    </div>
-  );
-}
-
-function DesignTableSlot({ foot }: { foot: string }) {
-  const design = useSim((s) => s.fab.design);
-  return (
-    <div className="lead-slot">
-      <DesignTable design={String(design ?? "1")} foot={foot} />
-    </div>
   );
 }
 
@@ -205,7 +181,7 @@ function FabControls({ spec, step }: { spec: StorySpec; step: number }) {
 
 function FinalMessage({ spec }: { spec: StorySpec }) {
   const locale = useSim((s) => s.locale);
-  const compact = spec.brief || spec.group === "design" || spec.id === "lead" || spec.id === "leadcmp" || spec.id === "leadmit";
+  const compact = spec.brief || spec.group === "design";
   return (
     <div className={compact ? "story-final story-final-brief" : "story-final"} role="status">
       <strong>{tr(locale, spec.final)}</strong>

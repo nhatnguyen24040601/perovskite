@@ -39,30 +39,10 @@ const FAB: Record<string, Record<string, Pose>> = {
   },
 };
 
-FAB.sTwo = {
-  "1": { pos: [3.2, 2.3, 4.7], target: [0, 0.1, 0] },
-  "2": { pos: [1.4, 1.9, 2.9], target: [0, 0.05, 0] },
-  xs: { pos: [4.6, 1.4, 5.2], target: [3.2, 0.7, 0] },
-  "3": { pos: [4.2, 1.5, 5.4], target: [3.7, 0.85, 0] },
-};
-
 FAB.sVac = {
   "1": { pos: [4.6, 2.2, 7.0], target: [-0.2, 0.4, 0] },
   "2": { pos: [1.9, 1.7, 3.6], target: [0, 1.0, 0] },
   xs: { pos: [5.2, 1.4, 5.4], target: [2.6, 0.8, 0] },
-};
-
-FAB.sCry = {
-  "1": { pos: [3.6, 1.8, 6.2], target: [0.7, 0.2, 0] },
-  "2": { pos: [1.3, 0.9, 4.6], target: [-0.7, -0.15, 0] },
-  "3": { pos: [3.7, 1.5, 6.0], target: [2.3, 0.55, 0] },
-  cmp: { pos: [0.1, 1.1, 6.2], target: [0, 0.5, 0] },
-};
-
-FAB.sQd = {
-  "1": { pos: [1.2, 1.6, 8.2], target: [0.7, 0.3, 0] },
-  "2": { pos: [3.0, 0.9, 5.8], target: [2.8, 0.45, 0] },
-  "3": { pos: [3.0, 0.8, 4.4], target: [2.9, 0.45, 0] },
 };
 
 FAB.sBlade = {
@@ -72,48 +52,6 @@ FAB.sBlade = {
   "3": { pos: [0.9, 0.85, 1.9], target: [0.2, 0.05, 0] },
   xs: { pos: [4.8, 1.3, 6.4], target: [2.3, 0.4, 0] },
 };
-
-FAB.sSlot = {
-  "1": { pos: [0.6, 2.2, 9.6], target: [0, 0.6, 0] },
-  tank: { pos: [-1.9, 1.7, 6.2], target: [-2.0, 1.2, 0] },
-  "2": { pos: [-0.3, 1.1, 4.0], target: [-1.0, 0.5, 0.2] },
-  mid: { pos: [0.2, 1.4, 6.4], target: [0.2, 0.4, 0] },
-  dry: { pos: [1.5, 1.4, 5.2], target: [1.3, 0.4, 0] },
-  "3": { pos: [2.6, 0.9, 2.4], target: [2.5, 0.3, 0] },
-  line: { pos: [0.4, 2.5, 10.4], target: [0, 0.7, 0] },
-};
-
-FAB.sMkt = {
-  "1": { pos: [0.6, 2.2, 9.4], target: [0, 1.5, 0] },
-  w: { pos: [0.6, 2.2, 9.4], target: [0, 1.5, 0] },
-  dev: { pos: [1.2, 1.8, 6.8], target: [0, 1.1, 0] },
-  line: { pos: [0.2, 2.6, 12.4], target: [0, 0.9, 0] },
-  bench: { pos: [0.4, 2.1, 10.2], target: [0, 1.4, 0] },
-  cmp: { pos: [0, 1.8, 7.8], target: [0, 1.3, 0] },
-  tandem: { pos: [0.5, 2.4, 10.0], target: [0, 1.6, 0] },
-};
-
-FAB.sLeadA = {
-  "1": { pos: [0, 1.2, 8.6], target: [0, 0.1, 0] },
-  pb: { pos: [-3.3, 1.0, 6.6], target: [-3.3, 0.2, 0] },
-  snpb: { pos: [-2.2, 1.2, 7.4], target: [-2.2, 0.4, 0] },
-  sn: { pos: [1.1, 1.0, 6.6], target: [1.1, 0.4, 0] },
-  dbl: { pos: [3.3, 0.9, 7.0], target: [3.3, 0.1, 0] },
-};
-FAB.sLeadB = {
-  "1": { pos: [0.4, 3.0, 7.4], target: [0, 0.6, 0] },
-  "2": { pos: [0.6, 3.0, 5.8], target: [0, 0.5, 0] },
-  cmp: { pos: [0, 3.0, 7.8], target: [0, 0.5, 0] },
-  "3": { pos: [0.9, 2.0, 4.0], target: [0.45, 0.5, 0] },
-  fact: { pos: [0, 2.6, 11.0], target: [0, 1.0, 0] },
-  recy: { pos: [0, 2.8, 11.6], target: [0, 1.0, 0] },
-};
-FAB.sLeadC = {
-  "1": { pos: [0.6, 3.0, 7.6], target: [0.4, 0.6, 0] },
-  "2": { pos: [0.8, 3.0, 5.8], target: [0.3, 0.5, 0] },
-  "3": { pos: [1.2, 2.2, 4.8], target: [0.8, 0.5, 0] },
-};
-
 
 /** Chapter 5: 1 the whole device, 2 the layers (exploded), 3 an interface close up, plus named framings. */
 const C5_DEV: Record<string, Pose> = {
@@ -131,14 +69,6 @@ FAB.sPin = {
   "3": { pos: [0.1, 1.2, 11.8], target: [0, 0.2, 0] },
 };
 FAB.sFunc = FAB.sPin;
-FAB.sMat = { ...C5_DEV, "1": { pos: [4.4, 1.5, 9.4], target: [0.5, 0.15, 0] }, "2": { pos: [5.2, 1.1, 10.8], target: [0.4, 0.15, 0] } };
-FAB.sFin = { ...C5_DEV, "1": { pos: [4.4, 1.5, 9.4], target: [0.5, 0.15, 0] }, "2": { pos: [5.2, 1.1, 10.8], target: [0.4, 0.15, 0] } };
-FAB.sIsos = {
-  "1": { pos: [-0.9, 1.5, 10.8], target: [-0.6, -0.1, 0.4] },
-  "2": { pos: [-0.3, 1.2, 8.8], target: [-0.3, -0.1, 0.4] },
-  "3": { pos: [4.4, 1.5, 9.4], target: [0.5, 0.1, 0] },
-  cmp: { pos: [0, 1.2, 9.6], target: [0, -0.1, 0] },
-};
 
 export const POSES: Record<string, Record<string, Pose>> = {
   ...FAB,
@@ -199,7 +129,7 @@ export function StoryRig({ scene, cam }: { scene: string; cam: string }) {
     const c5 = /^s(Pin|Func|Mat|Isos|Fin)$/.test(scene);
     // on a phone the two cells of 5.1 sit higher, clear of the caption pill
     const narrow = (scene === "sPin" || scene === "sFunc") && size.width < 600;
-    const shiftX = scene === "sMkt" ? Math.round(size.width * 0.1) : c5 ? Math.round(size.width * (scene === "sPin" || scene === "sFunc" ? -0.07 : panelOpen ? 0.15 : -0.07)) : 0;
+    const shiftX = c5 ? Math.round(size.width * (scene === "sPin" || scene === "sFunc" ? -0.07 : panelOpen ? 0.15 : -0.07)) : 0;
     const shiftY = c5 ? Math.round(size.height * (narrow ? 0.17 : 0.05)) : Math.round(size.height * 0.1);
     cam.setViewOffset(size.width, size.height, shiftX, shiftY, size.width, size.height);
     return () => cam.clearViewOffset();

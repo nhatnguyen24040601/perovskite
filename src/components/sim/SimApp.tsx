@@ -1,7 +1,7 @@
 import { BookOpen, ChevronLeft, ChevronRight, CircleHelp, Image as ImageIcon, Maximize2, Minimize2, Pause, Play, RotateCcw, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { chapters, getLesson, GLOSSARY, lessons, QUIZ } from "@/lib/sim/content";
-import { GLOSS_EN, HELP, QUIZ_EN, TABLES, tr, ui } from "@/lib/sim/i18n";
+import { chapters, getLesson, GLOSSARY, lessons } from "@/lib/sim/content";
+import { GLOSS_EN, HELP, TABLES, tr, ui } from "@/lib/sim/i18n";
 import { photoAlt, photosFor, type Photo } from "@/lib/sim/media";
 import { storyOf } from "@/lib/sim/story";
 import {
@@ -17,8 +17,12 @@ import {
 import { useSim, type Locale } from "@/lib/sim/store";
 import type { Cation } from "@/lib/sim/types";
 import type { ControlKind } from "@/lib/sim/content";
-import { Ch4Landing, Ch4Summary, CiteCard } from "./Ch4Pages";
+import { Ch4Landing, CiteCard } from "./Ch4Pages";
+import { LeadPage } from "./Ch4Lead";
+import { MarketPage } from "./Ch4Market";
+import { ConclusionPage } from "./Ch6Conclusion";
 import { RichText } from "./RichText";
+import { MaterialsPage } from "./Ch5Materials";
 import { StoryOverlay } from "./StoryOverlay";
 import { Stage } from "./three/Stage";
 
@@ -52,7 +56,6 @@ export function SimApp() {
   const help = useSim((s) => s.help);
   const query = useSim((s) => s.query);
   const inspect = useSim((s) => s.inspect);
-  const quiz = useSim((s) => s.quiz);
   const locale = useSim((s) => s.locale);
   const textScale = useSim((s) => s.textScale);
   const presenting = useSim((s) => s.presenting);
@@ -76,7 +79,6 @@ export function SimApp() {
   const bumpReplay = useSim((s) => s.bumpReplay);
   const resetStory = useSim((s) => s.resetStory);
   const toggleHelp = useSim((s) => s.toggleHelp);
-  const answerQuiz = useSim((s) => s.answerQuiz);
 
   useEffect(() => {
     try {
@@ -96,7 +98,7 @@ export function SimApp() {
       if (typeof saved.textScale === "number") useSim.getState().setTextScale(saved.textScale);
       if (typeof saved.explain === "boolean") {
         const id = useSim.getState().lessonId;
-        const force = id === "glossary" || id === "refs" || id === "quiz";
+        const force = id === "glossary" || id === "refs";
         useSim.setState({ explain: force ? true : saved.explain });
       }
       if (typeof saved.navOpen === "boolean") useSim.setState({ navOpen: saved.navOpen });
@@ -191,9 +193,6 @@ export function SimApp() {
       return hay.includes(query.trim().toLowerCase());
     });
 
-  const quizItem = lesson.id === "quiz" ? QUIZ[step] : undefined;
-  const quizEn = lesson.id === "quiz" ? QUIZ_EN[step] : undefined;
-  const quizScore = QUIZ.reduce((n, q, i) => n + (quiz[i] === q.answer ? 1 : 0), 0);
   const table = TABLES[lesson.id];
   const figure = current.caption ? tr(locale, current.caption) : table?.caption[locale];
   const gloss = lesson.id === "glossary" ? GLOSSARY[step] : undefined;
@@ -323,7 +322,10 @@ export function SimApp() {
 
       <div className="stage-wrap">
         {lesson.page === "landing" ? <Ch4Landing /> : null}
-        {lesson.page === "summary" ? <Ch4Summary /> : null}
+        {lesson.page === "materials" ? <MaterialsPage /> : null}
+        {lesson.page === "lead" ? <LeadPage /> : null}
+        {lesson.page === "market" ? <MarketPage /> : null}
+        {lesson.page === "conclusion" ? <ConclusionPage /> : null}
         {lesson.page ? null : (
           <div className="stage">
             <Stage />
@@ -440,9 +442,7 @@ export function SimApp() {
                 text={
                   gloss && locale === "en"
                     ? `${gloss.en}. ${GLOSS_EN[gloss.vi] ?? gloss.blurb}`
-                    : lesson.id === "quiz" && locale === "en" && quizEn
-                      ? quizEn.prompt
-                      : tr(locale, current.body) + (story?.steps[step]?.cite ? ` ${story.steps[step]!.cite!.map((n) => `[${n}]`).join(" ")}` : "")
+                    : tr(locale, current.body) + (story?.steps[step]?.cite ? ` ${story.steps[step]!.cite!.map((n) => `[${n}]`).join(" ")}` : "")
                 }
               />
             </p>
@@ -493,28 +493,6 @@ export function SimApp() {
                   </table>
                 </div>
               </figure>
-            ) : null}
-            {quizItem ? (
-              <div className="quiz">
-                {(locale === "en" && quizEn ? quizEn.options : quizItem.options).map((opt, i) => {
-                  const picked = quiz[step];
-                  const cls =
-                    picked === null ? "btn" : i === quizItem.answer ? "btn good" : i === picked ? "btn bad" : "btn";
-                  return (
-                    <button key={opt} type="button" className={cls} onClick={() => answerQuiz(step, i)}>
-                      {opt}
-                    </button>
-                  );
-                })}
-                {quiz[step] !== null ? (
-                  <p className="prose">
-                    <RichText text={locale === "en" && quizEn ? quizEn.why : quizItem.why} />
-                  </p>
-                ) : null}
-                <p className="score">
-                  {ui(locale, "correct")} {quizScore}/6
-                </p>
-              </div>
             ) : null}
             <div className="step-jump">
               {filtered.map(({ s, i }) => (

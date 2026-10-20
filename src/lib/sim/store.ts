@@ -1,11 +1,16 @@
 import { create } from "zustand";
 import { getLesson, lessonIndex, lessons, nextLessonId, prevLessonId } from "./content";
+import { fabDefaults, storyOf } from "./story";
 import type { Architecture, Cation } from "./types";
 
 export type Locale = "vi" | "en";
 export type AbsorbMode = "auto" | "thin" | "thick";
 export type DefectMode = "real" | "perfect";
 export type Coating = "spin" | "slot" | "inkjet";
+/** 3.8 switches: "auto" lets the lesson's own script decide. */
+export type LightMode = "auto" | "on" | "off";
+export type UvMode = "auto" | "visible" | "uv";
+export type FieldMode = "auto" | "on" | "off";
 
 type SimState = {
   lessonId: string;
@@ -56,6 +61,17 @@ type SimState = {
   absorbMode: AbsorbMode;
   defectMode: DefectMode;
   coating: Coating;
+  /** 3.8: microscopic zoom. Off keeps the camera on the whole solar cell. */
+  micro: boolean;
+  /** 3.8: bumped by "Camera reset" so the camera glides back to the pose of the step. */
+  camNonce: number;
+  lightMode: LightMode;
+  uvMode: UvMode;
+  fieldMode: FieldMode;
+  /** Chapter 4: current value of each control of the open lesson (see FabControl). */
+  fab: Record<string, number | string>;
+  /** Chapter 4: the open citation card (reference number) or null. */
+  cite: number | null;
   setLesson: (id: string) => void;
   setStep: (n: number) => void;
   next: () => void;
@@ -123,6 +139,13 @@ export const useSim = create<SimState>((set, get) => ({
   absorbMode: "auto",
   defectMode: "real",
   coating: "spin",
+  micro: true,
+  camNonce: 0,
+  lightMode: "auto",
+  uvMode: "auto",
+  fieldMode: "auto",
+  fab: {},
+  cite: null,
   setLesson: (id) => {
     const lesson = getLesson(id);
     set((s) => ({
@@ -133,6 +156,13 @@ export const useSim = create<SimState>((set, get) => ({
       brLock: false,
       absorbMode: "auto",
       defectMode: "real",
+      lightMode: "auto",
+      uvMode: "auto",
+      fieldMode: "auto",
+      fab: fabDefaults(storyOf(lesson.id)),
+      cite: null,
+      // the temperature slider of 3.8.3 must not leak into the phase lesson
+      temp: 25,
       inspect: null,
       query: "",
       explain: lesson.id === "glossary" || lesson.id === "refs" || lesson.id === "quiz" ? true : s.explain,
@@ -199,6 +229,11 @@ export const useSim = create<SimState>((set, get) => ({
       brLock: false,
       absorbMode: "auto",
       defectMode: "real",
+      lightMode: "auto",
+      uvMode: "auto",
+      fieldMode: "auto",
+      fab: fabDefaults(storyOf(lesson.id)),
+      cite: null,
       replay: s.replay + 1,
       inspect: null,
     }));
@@ -206,6 +241,11 @@ export const useSim = create<SimState>((set, get) => ({
     if (tune) set(tune);
   },
 }));
+
+// Dev only: lets the browser tests pick a lesson and step directly (compiled out of production builds).
+if (import.meta.env.DEV && typeof window !== "undefined") {
+  (window as unknown as { __sim?: typeof useSim }).__sim = useSim;
+}
 
 export function progressLabel(): string {
   const id = useSim.getState().lessonId;

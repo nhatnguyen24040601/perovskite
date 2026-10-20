@@ -4,7 +4,7 @@
  * string stays the key (like the rest of the site) and `tr()` finds the English one
  * through STORY_EN.
  */
-import type { NoteKind } from "./content";
+import type { NoteKind, Swatch } from "./content";
 import type { Tune } from "./types";
 
 export const STORY_EN: Record<string, string> = {};
@@ -20,6 +20,8 @@ export type CamKey = string;
 export type StoryStep = {
   title: string;
   body: string;
+  /** Reference numbers (REFS) that support this step; shown as clickable citations. */
+  cite?: number[];
   /** "Why it matters" — one short sentence. */
   why?: string;
   /** Small information box shown on the stage. */
@@ -32,7 +34,52 @@ export type StoryStep = {
   final?: boolean;
 };
 
-export type StoryOptions = "absorb" | "defects" | "bandgap" | "coating" | "none";
+export type StoryOptions =
+  | "absorb"
+  | "defects"
+  | "bandgap"
+  | "coating"
+  | "heat"
+  | "light"
+  | "uv"
+  | "field"
+  | "none";
+
+/** One interactive control of a Chapter 4 lesson. The scene reads its value from `useSim().fab[key]`. */
+export type FabControl =
+  | {
+      kind: "slider";
+      key: string;
+      label: string;
+      lo: string;
+      hi: string;
+      min: number;
+      max: number;
+      step: number;
+      def: number;
+      /** Shown only on these steps (all steps when omitted). */
+      at?: number[];
+    }
+  | {
+      kind: "seg";
+      key: string;
+      label: string;
+      opts: { v: string; label: string }[];
+      def: string;
+      at?: number[];
+    };
+
+/** The "method facts" panel of a fabrication lesson. */
+export type Facts = {
+  inputs: string;
+  equipment: string;
+  process: string;
+  result: string;
+  pros: string;
+  cons: string;
+  scale: string;
+  refs: number[];
+};
 
 export type StorySpec = {
   id: string;
@@ -43,11 +90,22 @@ export type StorySpec = {
   sentence: string;
   final: string;
   qa: { q: string; a: string };
-  legend: {
-    swatch:
-      "electron" | "hole" | "sun" | "iodine" | "br" | "good" | "warn" | "etl" | "htl" | "metal";
-    label: string;
-  }[];
+  legend: { swatch: Swatch; label: string }[];
+  /** Part of the degradation set (3.8): shows the mechanism tabs and the zoom / camera controls. */
+  group?: "degrade" | "fab" | "design";
+  /** Chapter 4: names of the three camera levels (equipment, film, lattice). */
+  views?: [string, string, string];
+  /** Chapter 4: show the micro-zoom switch (off keeps the camera on the equipment). */
+  microSwitch?: boolean;
+  controls?: FabControl[];
+  facts?: Facts;
+  /** Chapter 5: the compact scientific-facts panel, as label / text rows plus the references behind them. */
+  factList?: { k: string; v: string }[];
+  factRefs?: number[];
+  /** Short plain-language analogy shown once, under the first step. */
+  simple?: string;
+  /** The story card shows only the title and the "why" line; the full text lives in the notes panel. */
+  brief?: boolean;
   options: StoryOptions;
   steps: StoryStep[];
   tune?: Tune[];
@@ -672,9 +730,605 @@ export const STORIES: StorySpec[] = [
       },
     ],
   },
+
+  /* ───────────────────────── 3.8 · degradation ───────────────────────── */
+  {
+    id: "dmoist",
+    scene: "dmoist",
+    section: "3.8.1",
+    group: "degrade",
+    title: t("3.8.1 Hơi ẩm", "3.8.1 Moisture"),
+    sentence: t(
+      "Nước có thể chui vào theo các đường yếu như ranh giới hạt và làm perovskite phân hủy nhanh hơn.",
+      "Water can enter along weak paths such as grain boundaries and speed up perovskite breakdown.",
+    ),
+    final: t(
+      "Hơi ẩm đi vào qua các đường yếu và làm perovskite phân hủy nhanh hơn.",
+      "Moisture enters through vulnerable pathways and accelerates perovskite decomposition.",
+    ),
+    qa: {
+      q: t("Nước làm gì với perovskite?", "What does water do to perovskite?"),
+      a: t(
+        "Nó đi vào theo ranh giới hạt và làm tinh thể phân hủy nhanh hơn.",
+        "It enters along grain boundaries and speeds up decomposition.",
+      ),
+    },
+    legend: [
+      { swatch: "water", label: t("Phân tử nước H₂O", "Water molecule H₂O") },
+      { swatch: "pbi2", label: t("PbI₂ (sản phẩm phân hủy)", "PbI₂ (breakdown product)") },
+      LEG.electron,
+    ],
+    options: "none",
+    steps: [
+      {
+        title: t("Một pin khỏe mạnh", "A healthy solar cell"),
+        body: t(
+          "Ánh sáng đi vào. Lớp perovskite tạo điện tích. Điện tích chạy ra thành dòng điện.",
+          "Light comes in. The perovskite layer makes charges. The charges flow out as current.",
+        ),
+        cam: "1",
+        dur: 6.5,
+      },
+      {
+        title: t("Phóng vào lớp perovskite", "Zoom into the perovskite"),
+        body: t(
+          "Lớp này gồm nhiều tinh thể nhỏ gọi là hạt. Khe giữa các hạt là ranh giới hạt.",
+          "The layer is made of many tiny crystals called grains. The gaps between them are grain boundaries.",
+        ),
+        cam: "2",
+        dur: 7,
+      },
+      {
+        title: t("Nước tới", "Water arrives"),
+        body: t(
+          "Phân tử nước rơi xuống bề mặt. Phần lớn trượt dọc theo ranh giới hạt.",
+          "Water molecules land on the surface. Most of them slide along the grain boundaries.",
+        ),
+        info: t(
+          "Đã đơn giản hóa: các lớp phía trên được nhấc ra để thấy các hạt.",
+          "Simplified: the top layers are lifted away so the grains can be seen.",
+        ),
+        cam: "2",
+        dur: 10,
+      },
+      {
+        title: t("Xuống theo ranh giới hạt", "Down a grain boundary"),
+        body: t(
+          "Ranh giới là lối đi dễ dàng. Nước đi sâu xuống và chạm vào bên trong tinh thể.",
+          "A boundary is an easy path. Water goes deep and reaches the inside of the crystal.",
+        ),
+        cam: "gb",
+        dur: 8,
+      },
+      {
+        title: t("Hư hại cục bộ, từ từ", "Slow, local damage"),
+        body: t(
+          "Gần chỗ có nước, mạng tinh thể mất trật tự dần. Một vùng PbI₂ màu vàng bắt đầu hình thành.",
+          "Near the water, the crystal slowly loses its order. A yellow PbI₂ region starts to form.",
+        ),
+        why: t(
+          "Hư hại bắt đầu nhỏ rồi lan dần theo thời gian.",
+          "The damage starts small and spreads over time.",
+        ),
+        info: t(
+          "PbI₂ chỉ là hình đơn giản cho sản phẩm phân hủy. Không phải mọi phân tử nước đều phá hủy ngay.",
+          "PbI₂ is a simplified picture of the breakdown product. Not every water molecule destroys the crystal at once.",
+        ),
+        cam: "3",
+        dur: 13,
+      },
+      {
+        title: t("Quay lại tế bào pin", "Back to the solar cell"),
+        body: t(
+          "Vùng bị hư thu điện tích kém. Ít dòng điện hơn tới mạch ngoài.",
+          "The damaged zone collects charge poorly. Less current reaches the outside circuit.",
+        ),
+        cam: "1",
+        dur: 10,
+        final: true,
+      },
+    ],
+  },
+
+  {
+    id: "doxy",
+    scene: "doxy",
+    section: "3.8.2",
+    group: "degrade",
+    title: t("3.8.2 Oxy + ánh sáng", "3.8.2 Oxygen + Light"),
+    sentence: t(
+      "Dưới ánh sáng, oxy có thể tham gia phản ứng hóa học làm perovskite xuống cấp nhanh hơn.",
+      "Under light, oxygen can join chemical reactions that make perovskite degrade faster.",
+    ),
+    final: t(
+      "Oxy gây hại nhiều hơn khi có ánh sáng và có thể làm suy giảm hóa học nhanh hơn.",
+      "Oxygen becomes more harmful under illumination and can accelerate chemical degradation.",
+    ),
+    qa: {
+      q: t("Khi nào oxy gây hại nhiều nhất?", "When is oxygen most harmful?"),
+      a: t("Khi pin đang được chiếu sáng.", "When the cell is lit."),
+    },
+    legend: [
+      { swatch: "oxygen", label: t("Phân tử oxy O₂", "Oxygen molecule O₂") },
+      LEG.photon,
+      LEG.electron,
+      LEG.hole,
+    ],
+    options: "light",
+    steps: [
+      {
+        title: t("Pin khỏe dưới ánh sáng", "A healthy cell in the light"),
+        body: t(
+          "Ánh sáng tạo điện tích và chúng chạy ra ngoài. Mọi thứ hoạt động tốt.",
+          "Sunlight makes charges and they flow out. Everything works well.",
+        ),
+        cam: "1",
+        dur: 6.5,
+      },
+      {
+        title: t("Oxy ở gần bề mặt", "Oxygen gathers at the surface"),
+        body: t(
+          "Phân tử oxy (O₂) tụ lại quanh bề mặt perovskite. Khi tắt đèn, hầu như chưa có gì xảy ra.",
+          "Oxygen (O₂) molecules gather around the perovskite surface. With the light off, little happens.",
+        ),
+        cam: "2",
+        dur: 9,
+      },
+      {
+        title: t("Bật đèn", "Light switches on"),
+        body: t(
+          "Photon đi vào perovskite và tạo điện tử và lỗ trống. Các điện tích này đang được kích thích.",
+          "Photons enter the perovskite and make electrons and holes. These charges are now excited.",
+        ),
+        cam: "2",
+        dur: 9,
+      },
+      {
+        title: t("Phản ứng nhờ ánh sáng", "A light-assisted reaction"),
+        body: t(
+          "Điện tích bị kích thích gặp oxy ở gần bề mặt. Các dạng oxy hoạt động có thể hình thành.",
+          "Excited charges meet oxygen near the surface. Reactive oxygen species can form.",
+        ),
+        info: t(
+          "Đã đơn giản hóa: hình không khẳng định một con đường hóa học duy nhất.",
+          "Simplified: the picture does not claim one single chemical pathway.",
+        ),
+        cam: "3",
+        dur: 11,
+      },
+      {
+        title: t("Hư hại tích lũy", "Damage builds up"),
+        body: t(
+          "Vị trí ở bề mặt và mặt tiếp xúc đổi dần. Khuyết tật xuất hiện nhiều hơn.",
+          "Sites at the surface and interface slowly change. More defects appear.",
+        ),
+        why: t(
+          "Khuyết tật là nơi điện tích bị giữ lại và mất đi.",
+          "Defects are where charges get caught and lost.",
+        ),
+        cam: "3",
+        dur: 11,
+      },
+      {
+        title: t("Ít điện hơn", "Less current"),
+        body: t(
+          "Khuyết tật giữ điện tích lại. Ít điện tích hơn tới điện cực.",
+          "Defects trap charges. Fewer charges reach the electrodes.",
+        ),
+        cam: "1",
+        dur: 10,
+        final: true,
+      },
+    ],
+  },
+
+  {
+    id: "dheat",
+    scene: "dheat",
+    section: "3.8.3",
+    group: "degrade",
+    title: t("3.8.3 Nhiệt", "3.8.3 Heat"),
+    sentence: t(
+      "Nhiệt độ cao làm nguyên tử và ion chuyển động nhiều hơn, nên hư hại diễn ra nhanh hơn.",
+      "Higher temperature makes atoms and ions move more, so damage happens faster.",
+    ),
+    final: t(
+      "Nhiệt làm tăng tốc sự xuống cấp và chuyển động của nguyên tử, ion trong perovskite.",
+      "Heat speeds up degradation and atomic/ion movement inside the perovskite.",
+    ),
+    qa: {
+      q: t("Nhiệt làm gì bên trong perovskite?", "What does heat do inside perovskite?"),
+      a: t(
+        "Nguyên tử rung mạnh hơn, ion di chuyển nhiều hơn, hư hại nhanh hơn.",
+        "Atoms vibrate harder, ions move more, and damage is faster.",
+      ),
+    },
+    legend: [
+      { swatch: "iodine", label: t("Ion iodide I⁻", "Iodide ion I⁻") },
+      { swatch: "warn", label: t("Nhiệt độ cao", "High temperature") },
+      { swatch: "pbi2", label: t("Vùng hư hại", "Damaged region") },
+    ],
+    options: "heat",
+    tune: [{ temp: 25 }, { temp: 25 }, { temp: 50 }, { temp: 75 }, { temp: 100 }, { temp: 100 }],
+    steps: [
+      {
+        title: t("Một pin ở 25 °C", "A cell at 25 °C"),
+        body: t(
+          "Pin đang ở nhiệt độ phòng. Hãy nhìn vào nguyên tử bên trong.",
+          "The cell is at room temperature. Let us look at the atoms inside.",
+        ),
+        cam: "1",
+        dur: 6.5,
+      },
+      {
+        title: t("Nguyên tử yên ổn", "Calm atoms"),
+        body: t(
+          "Ở 25 °C nguyên tử chỉ rung nhẹ. Mạng tinh thể ổn định.",
+          "At 25 °C the atoms only vibrate a little. The lattice is stable.",
+        ),
+        cam: "3",
+        dur: 8,
+      },
+      {
+        title: t("Tăng nhiệt độ", "Turn up the heat"),
+        body: t(
+          "Ở 50 °C nguyên tử rung mạnh hơn.",
+          "At 50 °C the atoms vibrate harder.",
+        ),
+        cam: "3",
+        dur: 8,
+      },
+      {
+        title: t("Ion bắt đầu di chuyển", "Ions start to move"),
+        body: t(
+          "Ở 75 °C ion nhảy thường hơn và mạng tinh thể bị cong nhẹ.",
+          "At 75 °C ions jump more often and the lattice bends a little.",
+        ),
+        cam: "3",
+        dur: 9,
+      },
+      {
+        title: t("Hư hại nhanh hơn", "Faster degradation"),
+        body: t(
+          "Ở 100 °C hư hại lớn nhanh. Thanh trượt nhiệt độ quyết định tốc độ.",
+          "At 100 °C the damage grows quickly. The slider sets the speed.",
+        ),
+        why: t(
+          "Cùng một pin, càng nóng thì càng nhanh xuống cấp.",
+          "The same cell degrades faster the hotter it gets.",
+        ),
+        info: t(
+          "Các mức nhiệt chỉ để minh họa, không phải ngưỡng hỏng chung cho mọi pin.",
+          "These temperatures are for illustration only. They are not universal failure limits.",
+        ),
+        cam: "3",
+        dur: 12,
+      },
+      {
+        title: t("Quay lại tế bào pin", "Back to the solar cell"),
+        body: t(
+          "Lớp hấp thụ nóng và hư thu điện tích kém hơn. Công suất giảm.",
+          "The hot, damaged absorber collects charge poorly. Output falls.",
+        ),
+        cam: "1",
+        dur: 10,
+        final: true,
+      },
+    ],
+  },
+
+  {
+    id: "duv",
+    scene: "duv",
+    section: "3.8.4",
+    group: "degrade",
+    title: t("3.8.4 Tia cực tím (UV)", "3.8.4 Ultraviolet (UV)"),
+    sentence: t(
+      "Tia UV năng lượng cao có thể làm hư nhanh hơn, nhất là ở các mặt tiếp xúc và lớp truyền tải.",
+      "High-energy UV light can speed up damage, especially at interfaces and transport layers.",
+    ),
+    final: t(
+      "UV có thể làm suy giảm nhanh hơn, nhất là ở các mặt tiếp xúc yếu.",
+      "UV exposure can accelerate degradation, especially at vulnerable interfaces.",
+    ),
+    qa: {
+      q: t("UV gây hại nhiều nhất ở đâu?", "Where does UV hurt most?"),
+      a: t(
+        "Ở các mặt tiếp xúc yếu và lớp truyền tải.",
+        "At vulnerable interfaces and transport layers.",
+      ),
+    },
+    legend: [
+      { swatch: "sun", label: t("Photon ánh sáng nhìn thấy", "Visible-light photon") },
+      { swatch: "uv", label: t("Photon UV (năng lượng cao)", "UV photon (higher energy)") },
+      { swatch: "etl", label: t("Lớp truyền điện tử (ETL)", "Electron transport layer (ETL)") },
+    ],
+    options: "uv",
+    steps: [
+      {
+        title: t("Ánh sáng mặt trời bình thường", "Normal sunlight"),
+        body: t(
+          "Photon ánh sáng nhìn thấy đi vào pin và tạo điện.",
+          "Visible-light photons enter the cell and make power.",
+        ),
+        cam: "1",
+        dur: 6.5,
+      },
+      {
+        title: t("Chọn loại ánh sáng", "Pick the light"),
+        body: t(
+          "Đổi giữa ánh sáng nhìn thấy và UV. Photon UV mang nhiều năng lượng hơn.",
+          "Switch between visible light and UV. UV photons carry more energy.",
+        ),
+        cam: "1",
+        dur: 10,
+      },
+      {
+        title: t("UV đập vào pin", "UV hits the device"),
+        body: t(
+          "Photon UV đập vào các lớp phía trên trước. Lớp truyền tải và mặt tiếp xúc của nó chịu nhiều nhất.",
+          "UV photons strike the top layers first. The transport layer and its interface take the most.",
+        ),
+        cam: "1",
+        dur: 9,
+      },
+      {
+        title: t("Hư hại ở mặt tiếp xúc", "Damage at the interface"),
+        body: t(
+          "Tại mặt tiếp xúc giữa lớp truyền tải và perovskite, UV kích thích điện tích và tạo khuyết tật.",
+          "At the interface between the transport layer and the perovskite, UV excites charges and creates defects.",
+        ),
+        info: t(
+          "Đã đơn giản hóa: UV không phải lúc nào cũng phân hủy trực tiếp khối perovskite.",
+          "Simplified: UV does not always break down the bulk perovskite directly.",
+        ),
+        cam: "ins",
+        dur: 12,
+      },
+      {
+        title: t("Điện tích bị kẹt", "Charges get stuck"),
+        body: t(
+          "Khuyết tật giữ điện tử lại trước lớp truyền tải. Việc thu điện tích kém đi.",
+          "Defects hold electrons back before the transport layer. Collection gets worse.",
+        ),
+        cam: "mid",
+        dur: 10,
+      },
+      {
+        title: t("Quay lại tế bào pin", "Back to the solar cell"),
+        body: t(
+          "Công suất thấp hơn. Mặt tiếp xúc yếu là nơi gây ra vấn đề.",
+          "Output is lower. The weak interface is the trouble spot.",
+        ),
+        cam: "1",
+        dur: 10,
+        final: true,
+      },
+    ],
+  },
+
+  {
+    id: "dion",
+    scene: "dion",
+    section: "3.8.5",
+    group: "degrade",
+    title: t("3.8.5 Ion iodide di chuyển", "3.8.5 Mobile iodide ions"),
+    sentence: t(
+      "Ion iodide có thể di chuyển trong perovskite khi có nhiệt, ánh sáng hoặc điện trường.",
+      "Iodide ions can move through perovskite under heat, light or an electric field.",
+    ),
+    final: t(
+      "Ion iodide di động có thể dồn chỗ dưới nhiệt, ánh sáng hoặc điện trường, làm đổi tính chất cục bộ và giảm độ bền của pin.",
+      "Mobile iodide ions can redistribute under heat, light, or electric fields, changing local material properties and reducing device stability.",
+    ),
+    qa: {
+      q: t("Điều gì xảy ra khi ion iodide di chuyển?", "What happens when iodide ions move?"),
+      a: t(
+        "Thành phần cục bộ đổi, và tính chất cục bộ đổi theo.",
+        "The local composition changes, and so do the local properties.",
+      ),
+    },
+    legend: [
+      { swatch: "ma", label: t("Ion vị trí A", "A-site ion") },
+      { swatch: "lead", label: t("Chì Pb²⁺", "Lead Pb²⁺") },
+      { swatch: "iodine", label: t("Iodide I⁻", "Iodide I⁻") },
+      { swatch: "br", label: t("Bromide Br⁻", "Bromide Br⁻") },
+    ],
+    options: "field",
+    steps: [
+      {
+        title: t("Bên trong lớp hấp thụ", "Inside the absorber"),
+        body: t(
+          "Bên trong tinh thể perovskite có các ion. Một số ion có thể di chuyển.",
+          "Inside the perovskite crystal there are ions. Some of them can move.",
+        ),
+        cam: "1",
+        dur: 6.5,
+      },
+      {
+        title: t("Mạng ABX₃", "The ABX₃ lattice"),
+        body: t(
+          "Ion vị trí A, chì (Pb) và halide (I⁻, Br⁻) tạo nên tinh thể.",
+          "A-site ions, lead (Pb) and halides (I⁻, Br⁻) build the crystal.",
+        ),
+        cam: "3",
+        dur: 9,
+      },
+      {
+        title: t("Chỗ trống là lối đi", "Vacancies are pathways"),
+        body: t(
+          "Hầu hết ion đứng yên. Chỗ trống halide cho iodide một nơi để nhảy tới.",
+          "Most ions stay put. Empty halide sites give iodide a place to hop to.",
+        ),
+        cam: "3",
+        dur: 9,
+      },
+      {
+        title: t("Bật điện trường", "Turn on an electric field"),
+        body: t(
+          "Điện trường đẩy lên các ion mang điện. Iodide âm bị kéo về phía cực dương.",
+          "An electric field pushes on charged ions. Negative iodide is pulled toward the + side.",
+        ),
+        cam: "3",
+        dur: 8,
+      },
+      {
+        title: t("Vài ion nhảy", "Selected ions hop"),
+        body: t(
+          "Chỉ một số ion I⁻ nhảy, mỗi lần một ô, vào chỗ trống kế bên.",
+          "Only some I⁻ ions hop, one site at a time, into a neighbouring vacancy.",
+        ),
+        cam: "3",
+        dur: 13,
+      },
+      {
+        title: t("Iodide dồn lại một phía", "Iodide piles up on one side"),
+        body: t(
+          "Dần dần một phía có nhiều I⁻ hơn, phía kia nhiều Br⁻ hơn.",
+          "Over time one side gets more I⁻ and the other side gets more Br⁻.",
+        ),
+        cam: "3",
+        dur: 12,
+      },
+      {
+        title: t("Mỗi vùng một tính chất", "Each region, its own properties"),
+        body: t(
+          "Vùng giàu iodide có vùng cấm nhỏ hơn. Vùng giàu bromide có vùng cấm lớn hơn.",
+          "The iodide-rich region has a smaller bandgap. The bromide-rich region has a larger one.",
+        ),
+        cam: "3",
+        dur: 10,
+      },
+      {
+        title: t("Quay lại tế bào pin", "Back to the solar cell"),
+        body: t(
+          "Điện tử rơi vào vùng cấm nhỏ và bị mất. Pin kém bền hơn.",
+          "Electrons roll into the low-gap region and are lost. The cell is less stable.",
+        ),
+        cam: "1",
+        dur: 11,
+        final: true,
+      },
+    ],
+  },
+
+  {
+    id: "dall",
+    scene: "dall",
+    section: "3.8.6",
+    group: "degrade",
+    title: t("3.8.6 Năm căng thẳng, một kết quả", "3.8.6 Five stresses, one result"),
+    sentence: t(
+      "Nước, oxy với ánh sáng, nhiệt, UV và ion di động đều tác động lên cùng một lớp hấp thụ.",
+      "Water, oxygen with light, heat, UV and mobile ions all act on the same absorber.",
+    ),
+    final: t(
+      "Căng thẳng môi trường và vận hành làm perovskite xuống cấp, sinh khuyết tật, làm mất điện tích và hạ hiệu suất.",
+      "Environmental and operating stress degrades perovskite, creates defects, loses charge and lowers efficiency.",
+    ),
+    qa: {
+      q: t("Vì sao cả năm điều này làm pin kém đi?", "Why do all five hurt the cell?"),
+      a: t(
+        "Chúng đều tạo khuyết tật hoặc đổi thành phần, nên mất điện tích.",
+        "They all create defects or change the composition, so charge is lost.",
+      ),
+    },
+    legend: [],
+    options: "none",
+    steps: [
+      {
+        title: t("Một pin, năm căng thẳng", "One cell, five stresses"),
+        body: t(
+          "Nước, oxy, nhiệt, UV và ion di động cùng tác động vào lớp perovskite.",
+          "Water, oxygen, heat, UV and moving ions all act on the perovskite layer.",
+        ),
+        cam: "wide",
+        dur: 8,
+      },
+      {
+        title: t("Hơi ẩm", "Moisture"),
+        body: t("Nước → phân hủy.", "Water → decomposition."),
+        cam: "wide",
+        dur: 6,
+      },
+      {
+        title: t("Oxy + ánh sáng", "Oxygen + light"),
+        body: t(
+          "O₂ + chiếu sáng → suy giảm quang hóa.",
+          "O₂ + illumination → photo-chemical degradation.",
+        ),
+        cam: "wide",
+        dur: 6,
+      },
+      {
+        title: t("Nhiệt", "Heat"),
+        body: t(
+          "Nhiệt độ ↑ → phản ứng và chuyển động ion ↑.",
+          "Temperature ↑ → reactions and ion movement ↑.",
+        ),
+        cam: "wide",
+        dur: 6,
+      },
+      {
+        title: t("Tia UV", "UV"),
+        body: t(
+          "Bức xạ năng lượng cao → hư hại nhanh hơn.",
+          "High-energy radiation → accelerated damage.",
+        ),
+        cam: "wide",
+        dur: 6,
+      },
+      {
+        title: t("Ion di chuyển", "Ion migration"),
+        body: t(
+          "I⁻ di chuyển → đổi thành phần và tính chất.",
+          "I⁻ movement → composition and property changes.",
+        ),
+        cam: "wide",
+        dur: 6,
+      },
+      {
+        title: t("Căng thẳng → xuống cấp", "Stress → degradation"),
+        body: t(
+          "Mọi căng thẳng đều làm perovskite xuống cấp.",
+          "Every stress makes the perovskite degrade.",
+        ),
+        cam: "1",
+        dur: 8,
+      },
+      {
+        title: t("Khuyết tật → mất điện tích", "Defects → charge loss"),
+        body: t(
+          "Xuống cấp sinh thêm khuyết tật hoặc đổi thành phần. Điện tích bị giữ lại và mất.",
+          "Degradation creates more defects or changes the composition. Charges are caught and lost.",
+        ),
+        cam: "1",
+        dur: 9,
+      },
+      {
+        title: t("Hiệu suất và độ bền giảm", "Lower efficiency and stability"),
+        body: t(
+          "Mất điện tích nghĩa là ít điện hơn và pin sống ngắn hơn.",
+          "Lost charge means less power and a shorter cell life.",
+        ),
+        cam: "1",
+        dur: 10,
+        final: true,
+      },
+    ],
+  },
 ];
 
-export const STORY_IDS: ReadonlySet<string> = new Set(STORIES.map((s) => s.id));
+export const STORY_IDS: Set<string> = new Set(STORIES.map((s) => s.id));
+
+/** Chapter 4 adds its lessons here (story4.ts), so this file does not have to know them. */
+export function registerStories(list: StorySpec[]): void {
+  for (const spec of list) {
+    if (STORY_IDS.has(spec.id)) continue;
+    STORIES.push(spec);
+    STORY_IDS.add(spec.id);
+  }
+}
 
 export function storyOf(id: string): StorySpec | undefined {
   return STORIES.find((s) => s.id === id);
@@ -682,6 +1336,13 @@ export function storyOf(id: string): StorySpec | undefined {
 
 export function isStory(id: string): boolean {
   return STORY_IDS.has(id);
+}
+
+/** Starting value of every control of a lesson. */
+export function fabDefaults(spec: StorySpec | undefined): Record<string, number | string> {
+  const out: Record<string, number | string> = {};
+  for (const c of spec?.controls ?? []) out[c.key] = c.def;
+  return out;
 }
 
 export const NOTE_WHY: { kind: NoteKind; title: string } = {
@@ -779,6 +1440,117 @@ export const L = {
   electricity: t("Điện", "Electricity"),
 };
 
+/** Labels of the degradation set (3.8). */
+export const LD = {
+  sunlight: t("Ánh sáng mặt trời", "Sunlight"),
+  transparent: t("Điện cực trong suốt", "Transparent electrode"),
+  etl: t("Lớp truyền điện tử (ETL)", "Electron transport layer (ETL)"),
+  perov: t("Lớp hấp thụ perovskite", "Perovskite absorber"),
+  htl: t("Lớp truyền lỗ trống (HTL)", "Hole transport layer (HTL)"),
+  metal: t("Điện cực kim loại", "Metal electrode"),
+  grain: t("Hạt tinh thể", "Grain"),
+  boundary: t("Ranh giới hạt", "Grain boundary"),
+  perovskite: t("Perovskite", "Perovskite"),
+  water: t("Nước", "Water"),
+  degraded: t("Vùng bị suy giảm", "Degraded region"),
+  pbi2: t("PbI₂", "PbI₂"),
+  healthy: t("Pin khỏe", "Healthy cell"),
+  lookHere: t("Phóng vào đây", "Zoom in here"),
+  poorCollect: t("Thu điện tích kém", "Poor charge collection"),
+  charges: t("Điện tích", "Charges"),
+  power: t("Công suất", "Power output"),
+  oxygen: t("Oxy O₂", "Oxygen O₂"),
+  lightOn: t("Đèn bật", "Light ON"),
+  lightOff: t("Đèn tắt", "Light OFF"),
+  reactive: t("Dạng oxy hoạt động", "Reactive oxygen species"),
+  simplified: t("(đơn giản hóa)", "(simplified)"),
+  defects: t("Khuyết tật tăng", "More defects"),
+  surface: t("Bề mặt / mặt tiếp xúc", "Surface / interface"),
+  excited: t("Điện tích bị kích thích", "Excited charge"),
+  atTemp: t("Nhiệt độ", "Temperature"),
+  vibration: t("Rung mạnh hơn", "Stronger vibration"),
+  ionMove: t("Ion di chuyển nhiều hơn", "More ion movement"),
+  degSpeed: t("Tốc độ hư hại", "Degradation speed"),
+  stable: t("Mạng ổn định", "Stable lattice"),
+  visible: t("Ánh sáng nhìn thấy", "Visible light"),
+  uv: t("Tia UV", "UV light"),
+  uvPhoton: t("Photon UV", "UV photon"),
+  highEnergy: t("năng lượng cao", "higher energy"),
+  interface: t("Mặt tiếp xúc ETL / perovskite", "ETL / perovskite interface"),
+  etlLattice: t("Lớp truyền điện tử", "Transport layer"),
+  stuck: t("Điện tử bị kẹt", "Electron stuck"),
+  aSite: t("Ion vị trí A", "A-site ion"),
+  pb: t("Chì Pb²⁺", "Lead Pb²⁺"),
+  iodideI: t("Iodide I⁻", "Iodide I⁻"),
+  bromideBr: t("Bromide Br⁻", "Bromide Br⁻"),
+  vacancy: t("Chỗ trống halide", "Halide vacancy"),
+  field: t("Điện trường", "Electric field"),
+  hop: t("Nhảy vào chỗ trống", "Hops into a vacancy"),
+  iRich: t("Nhiều iodide", "Iodide-rich"),
+  brRich: t("Nhiều bromide", "Bromide-rich"),
+  smallGap: t("Vùng cấm nhỏ", "Smaller bandgap"),
+  largeGap: t("Vùng cấm lớn", "Larger bandgap"),
+  before: t("Trước", "Before"),
+  after: t("Sau khi dồn", "After redistribution"),
+  lowGap: t("Vùng năng lượng thấp", "Low-energy region"),
+  lossHere: t("Mất điện tích", "Charge loss"),
+  normalPath: t("Đường bình thường", "Normal path"),
+  divertedPath: t("Sau khi ion dồn", "After ion redistribution"),
+  moist: t("Hơi ẩm", "Moisture"),
+  oxyLight: t("Oxy + ánh sáng", "Oxygen + light"),
+  heat: t("Nhiệt", "Heat"),
+  ionMig: t("Ion di chuyển", "Ion migration"),
+  moistTag: t("💧 Hơi ẩm", "💧 Moisture"),
+  oxyTag: t("O₂ + ánh sáng", "O₂ + light"),
+  heatTag: t("🔥 Nhiệt", "🔥 Heat"),
+  uvTag: t("UV", "UV"),
+  ionTag: t("I⁻ di chuyển", "I⁻ migration"),
+};
+
+/** Mechanism tabs of the degradation set, in teaching order. */
+export const DEGRADE_TABS: { id: string; icon: string; name: string }[] = [
+  { id: "dmoist", icon: "💧", name: t("Hơi ẩm", "Moisture") },
+  { id: "doxy", icon: "O₂", name: t("Oxy + ánh sáng", "Oxygen + light") },
+  { id: "dheat", icon: "🔥", name: t("Nhiệt", "Heat") },
+  { id: "duv", icon: "UV", name: t("Tia UV", "UV") },
+  { id: "dion", icon: "I⁻", name: t("Ion di chuyển", "Ion migration") },
+  { id: "dall", icon: "Σ", name: t("Tổng kết", "Summary") },
+];
+
+/** The comparison screen: what attacks, and what it does. */
+export const STRESS_ROWS: { icon: string; name: string; effect: string }[] = [
+  { icon: "💧", name: t("HƠI ẨM", "MOISTURE"), effect: t("Nước → phân hủy", "Water → decomposition") },
+  {
+    icon: "O₂",
+    name: t("OXY + ÁNH SÁNG", "OXYGEN + LIGHT"),
+    effect: t("O₂ + chiếu sáng → suy giảm quang hóa", "O₂ + illumination → photo-chemical degradation"),
+  },
+  {
+    icon: "🔥",
+    name: t("NHIỆT", "HEAT"),
+    effect: t("Nhiệt độ ↑ → phản ứng và chuyển động ion ↑", "Temperature ↑ → reactions and ion movement ↑"),
+  },
+  {
+    icon: "UV",
+    name: t("TIA UV", "UV"),
+    effect: t("Bức xạ năng lượng cao → hư hại nhanh hơn", "High-energy radiation → accelerated damage"),
+  },
+  {
+    icon: "I⁻",
+    name: t("ION DI CHUYỂN", "ION MIGRATION"),
+    effect: t("I⁻ di chuyển → đổi thành phần và tính chất", "I⁻ movement → composition and property changes"),
+  },
+];
+
+/** The cause → consequence chain of the summary. */
+export const STRESS_CHAIN: string[] = [
+  t("Căng thẳng môi trường / vận hành", "Environmental / operating stress"),
+  t("Perovskite xuống cấp", "Perovskite degradation"),
+  t("Thêm khuyết tật / đổi thành phần", "More defects / altered composition"),
+  t("Mất điện tích", "Charge loss"),
+  t("Hiệu suất và độ bền thấp hơn", "Lower efficiency and stability"),
+];
+
 /** Toolbar and overlay strings. */
 const SUI = {
   vi: {
@@ -792,7 +1564,7 @@ const SUI = {
     speed: "Tốc độ",
     normal: "Thường",
     slow: "Chậm",
-    auto: "Tự chuyển bước",
+    auto: "Tự chuyển",
     reset: "Đặt lại",
     thin: "Perovskite mỏng",
     thick: "Lớp hấp thụ dày",
@@ -811,6 +1583,21 @@ const SUI = {
     why: "Vì sao quan trọng",
     keys: "← → đổi bước · Space phát/dừng · R đặt lại",
     chain: "Chuỗi liên hệ",
+    micro: "Phóng vi mô",
+    camReset: "Đặt lại camera",
+    lightSwitch: "Ánh sáng",
+    lightAuto: "Theo bài",
+    lightOnBtn: "Bật",
+    lightOffBtn: "Tắt",
+    visibleBtn: "Ánh sáng nhìn thấy",
+    uvBtn: "Tia UV",
+    fieldSwitch: "Điện trường",
+    temperature: "Nhiệt độ",
+    illustration: "Chỉ để minh họa",
+    compare: "So sánh năm căng thẳng",
+    tabs: "Chọn cơ chế",
+    more: "Xem thêm",
+    less: "Thu gọn",
   },
   en: {
     view: "View",
@@ -823,7 +1610,7 @@ const SUI = {
     speed: "Speed",
     normal: "Normal",
     slow: "Slow",
-    auto: "Auto-step",
+    auto: "Auto",
     reset: "Reset",
     thin: "Thin perovskite",
     thick: "Thick absorber",
@@ -842,6 +1629,21 @@ const SUI = {
     why: "Why it matters",
     keys: "← → step · Space play/pause · R reset",
     chain: "The chain",
+    micro: "Micro-zoom",
+    camReset: "Camera reset",
+    lightSwitch: "Light",
+    lightAuto: "Follow lesson",
+    lightOnBtn: "On",
+    lightOffBtn: "Off",
+    visibleBtn: "Visible light",
+    uvBtn: "UV light",
+    fieldSwitch: "Electric field",
+    temperature: "Temperature",
+    illustration: "For illustration only",
+    compare: "The five stresses compared",
+    tabs: "Choose a mechanism",
+    more: "Read more",
+    less: "Show less",
   },
 } as const;
 

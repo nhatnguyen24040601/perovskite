@@ -1,4 +1,7 @@
 import { NOTE_INFO, STORIES, type StorySpec } from "./story";
+import { C4_INTRO } from "./story4";
+import "./story5";
+import { SOURCES } from "./sources";
 import type { Tune } from "./types";
 
 export type NoteKind = "base" | "warn" | "idea";
@@ -32,7 +35,22 @@ export type Swatch =
   | "good"
   | "warn"
   | "oxide"
-  | "metal";
+  | "metal"
+  | "water"
+  | "oxygen"
+  | "uv"
+  | "pbi2"
+  | "perov"
+  | "dot"
+  | "c5tco"
+  | "c5htl"
+  | "c5perov"
+  | "c5etl"
+  | "c5metal"
+  | "c5defect"
+  | "c5shell"
+  | "c5heat"
+  | "c5humid";
 
 export type ControlKind =
   | "wavelength"
@@ -42,8 +60,7 @@ export type ControlKind =
   | "sn"
   | "temperature"
   | "lifetime"
-  | "plqy"
-  | "enemy"
+    | "enemy"
   | "explode"
   | "eg"
   | "nwell"
@@ -60,8 +77,10 @@ export type Lesson = {
   legend?: { swatch: Swatch; label: string }[];
   controls?: ControlKind[];
   tune?: Tune[];
-  /** Interactive 3D story (sections 3.1 – 3.6): drives the story clock, camera and toolbar. */
+  /** Interactive 3D story (sections 3.1 – 3.6 and 3.8): drives the story clock, camera and toolbar. */
   story?: boolean;
+  /** Chapter 4: a full-page HTML screen instead of the 3D stage. */
+  page?: "landing" | "summary";
   steps: Step[];
 };
 
@@ -791,37 +810,9 @@ const sourceLessons: Lesson[] = [
     ],
   },
   {
-    id: "plqy",
-    chapter: "c3",
-    section: "3.7",
-    title: "Hệ quả — pin tốt cũng phát sáng tốt",
-    scene: "plqy",
-    cam: "default",
-    controls: ["plqy"],
-    tune: [{ plqy: 0.1 }, { plqy: 0.01 }, { plqy: 0.0001 }, { plqy: 0.05 }],
-    steps: [
-      {
-        title: "Quan hệ thuận nghịch Rau",
-        body: "Voc = Voc,rad + (kT/q)·ln(PLQY) [71]. Voc,rad là điện áp khi chỉ còn tái hợp phát sáng. PLQY là tỉ lệ cặp điện tử–lỗ trống tái hợp bằng cách nhả photon.",
-      },
-      {
-        title: "Mỗi thập phân mất khoảng 60 mV",
-        body: "(kT/q)·ln(10) ≈ 60 mV ở 300 K. PLQY giảm 10 lần thì pin mất khoảng 60 mV. Mô hình lấy Voc,rad minh họa = 1,32 V.",
-      },
-      {
-        title: "Hai thập phân là khoảng 120 mV",
-        body: "Từ 1% xuống 0,01% là hai lần chia 10. Đó chính là câu tự kiểm tra số 4 ở cuối tài liệu.",
-      },
-      {
-        title: "Thụ động hóa để kéo Voc",
-        body: "Phủ phân tử lấp bẫy làm tăng PLQY. Voc nhờ đó tới khoảng 1,2 V — ví dụ 1,203 V ở pin 26,9% trên 1 cm² [2].",
-      },
-    ],
-  },
-  {
     id: "compare",
     chapter: "c3",
-    section: "3.8",
+    section: "3.7",
     title: "Bảng so sánh với silicon, CdTe và pin hữu cơ",
     scene: "compare",
     cam: "wide",
@@ -848,562 +839,18 @@ const sourceLessons: Lesson[] = [
       },
     ],
   },
-  {
-    id: "enemies",
-    chapter: "c3",
-    section: "3.9",
-    title: "Năm kẻ thù sẽ bị chặn ở chương 5",
-    scene: "enemies",
-    cam: "default",
-    controls: ["enemy"],
-    tune: [
-      { enemy: 1, defense: false },
-      { enemy: 2, defense: false },
-      { enemy: 3, defense: false },
-      { enemy: 4, defense: false },
-      { enemy: 5, defense: false },
-      { enemy: 5, defense: true },
-    ],
-    steps: [
-      {
-        title: "1 · Hơi ẩm",
-        body: "Nước len vào ranh giới hạt, phân hủy perovskite thành PbI₂ màu vàng. Chống bằng lớp 2D kỵ nước và đóng gói kín.",
-      },
-      {
-        title: "2 · Oxy và ánh sáng",
-        body: "Oxy tạo gốc superoxide (O₂⁻) tại chỗ trống iod [27]. Cần thụ động hóa và đóng gói.",
-      },
-      {
-        title: "3 · Nhiệt",
-        body: "Phân tử MA dễ bay hơi khi tấm pin nóng. Cách chống trong tài liệu: bỏ MA, dùng FA cộng Cs.",
-      },
-      {
-        title: "4 · Tia cực tím",
-        body: "Lớp TiO₂ bị kích hoạt dưới UV và tạo bẫy sâu [26]. Dùng kính lọc UV hoặc đổi lớp vận chuyển.",
-      },
-      {
-        title: "5 · Ion iod di chuyển",
-        body: "Ion iod nhảy qua chỗ trống, hàng rào năng lượng khoảng 0,6 eV, rồi ăn mòn điện cực và gây tách pha [25]. Cần lớp rào và giảm chỗ trống.",
-      },
-      {
-        title: "Bật phòng thủ",
-        body: "Mạng ion mềm vừa giúp tinh thể tự vá, vừa mở cửa cho cả năm kẻ thù. Nút phòng thủ trên màn hình cho thấy ý chương 5: chặn đồng thời, không chặn từng cái một.",
-        note: base("Chính liên kết yếu tạo hiệu suất cao cũng là gốc của sự kém bền."),
-      },
-    ],
-  },
-  {
-    id: "methods",
-    chapter: "c4",
-    section: "4.0",
-    title: "Bản đồ bảy cách chế tạo",
-    scene: "methods",
-    cam: "wide",
-    steps: [
-      {
-        title: "Bảy lối, cùng hai giai đoạn",
-        body: "Trước khi đi từng nhịp, hãy nhìn cả bản đồ. Mọi cách dưới đây đều có tạo mầm rồi lớn lên. Khác nhau ở chỗ mầm được ép xuất hiện: bằng dung môi đối, bằng nhiệt, bằng chân không, hay bằng dao khí.",
-        more: "Ba cách đầu dành cho màng trong phòng thí nghiệm (vài cm²). Hai cách tiếp theo làm đơn tinh thể và chấm lượng tử. Hai cách cuối thay quay phủ khi lên diện tích lớn — quay phủ không phủ đều được tấm hàng mét.",
-        caption: "Sơ đồ tổng quan bảy cách chế tạo halide perovskite. Mỗi thẻ là một lộ trình sẽ được mở từng nhịp ở các mục 4.2–4.4. Màu tím là màng hấp thụ, vàng là PbI₂ chưa chuyển pha, lam là buồng chân không.",
-      },
-      {
-        title: "1 · Quay phủ + dung môi đối",
-        body: "Nhỏ mực lên đế, quay vài nghìn vòng/phút, rồi nhỏ chlorobenzene để cả màng kết tinh cùng lúc. Sấy 100–150 °C. Đây là cách làm tế bào nhỏ trong phòng thí nghiệm [47].",
-        caption: "Thẻ 1 trên bản đồ: quay phủ một bước kèm dung môi đối. Dùng cho tế bào cỡ centimet, không dùng cho tấm mét vuông.",
-      },
-      {
-        title: "2 · Lắng đọng hai bước",
-        body: "Phủ PbI₂ vàng trước, rồi nhúng hoặc phủ muối hữu cơ MAI/FAI. Màng chuyển từ vàng sang đen khi perovskite hình thành [46].",
-        caption: "Thẻ 2: hai lớp xếp lần lượt. Vàng = PbI₂, đen = perovskite sau khi gặp muối hữu cơ.",
-      },
-      {
-        title: "3 · Bay hơi chân không",
-        body: "Không dung môi. Muối bị đốt trong buồng hút chân không, hơi bám lên đế — kể cả bề mặt nhám của silicon. Năm 2026 tài liệu dẫn tandem Oxford làm hoàn toàn bằng chân không, 27,2% [51].",
-        caption: "Thẻ 3: nguồn nóng ở dưới, đế ở trên. Hạt hơi đi theo đường thẳng trong chân không nên lấp được chỗ lồi lõm.",
-      },
-      {
-        title: "4 · Kết tinh nhiệt độ ngược",
-        body: "Độ tan của MAPbX₃ trong một số dung môi giảm khi nóng. Đun dung dịch đã hòa tan thì tinh thể lớn mọc ra, nhanh hơn khoảng 10 lần các cách cũ [49]. Dùng cho đầu dò tia X và đo đạc cơ bản.",
-        caption: "Thẻ 4: lọ dung dịch, nhiệt độ tăng, một tinh thể lớn — không phải màng mỏng.",
-      },
-      {
-        title: "5 · Chích nóng",
-        body: "Đun muối chì halide với oleic acid và oleylamine ở 140–200 °C, chích nhanh cesium. Mầm bùng cùng lúc theo mô hình LaMer [73], rồi làm lạnh bằng nước đá. Ra chấm khoảng 10 nm, phát từ 410 đến 700 nm [45].",
-        caption: "Thẻ 5: nhiều hạt nano đồng kích thước. Màu phát sáng đổi theo halide, không phải màu của mực pin.",
-      },
-      {
-        title: "6 · Dao gạt và dao khí",
-        body: "Lưỡi dao kéo một lớp mực mỏng trên kính hoặc nhựa. Dao khí nitơ thổi khô ngay, thay vai trò của dung môi đối, để mầm ra cùng lúc trên diện rộng [50].",
-        caption: "Thẻ 6: lưỡi dao định độ dày ướt; luồng N₂ phía sau làm khô tức thì. Mũi tên chỉ chiều chạy của đế.",
-      },
-      {
-        title: "7 · Phủ khe và cuộn-sang-cuộn",
-        body: "Slot-die đẩy mực qua một khe hẹp lên tấm chạy liên tục, giống in báo. Tài liệu ghi pin cuộn-sang-cuộn đã khoảng 10–14%. Chân không cũng phủ được diện lớn, và ngành màn hình đã quen thiết bị này [50].",
-        caption: "Thẻ 7: đầu phủ khe đứng yên, cuộn đế chạy bên dưới. Con số 10–14% là mức tài liệu ghi cho pin cuộn, không phải kỷ lục tế bào nhỏ.",
-      },
-    ],
-  },
-  {
-    id: "nucleation",
-    chapter: "c4",
-    section: "4.1",
-    title: "Nguyên tắc chung — mầm cùng lúc, rồi lớn đều",
-    scene: "nucleation",
-    cam: "wide",
-    steps: [
-      {
-        title: "Hai giai đoạn",
-        body: "Mọi cách nuôi tinh thể đều có tạo mầm (nucleation) — những mầm tí hon xuất hiện — và lớn lên (growth).",
-        caption: "Hai giai đoạn của mọi cách nuôi tinh thể: tạo mầm, rồi lớn lên.",
-      },
-      {
-        title: "Mầm cùng một lúc",
-        body: "Bí quyết của màng mịn, hạt đều: mọi mầm xuất hiện đồng loạt, rồi lớn với tốc độ như nhau.",
-        caption: "Mầm cùng cỡ nghĩa là chúng xuất hiện cùng lúc và lớn cùng tốc độ.",
-      },
-      {
-        title: "Mầm rải rác thì thủng lỗ kim",
-        body: "Nếu mầm xuất hiện lúc có lúc không, màng có lỗ kim (pinhole) và hạt to nhỏ lẫn lộn. Một lỗ kim trên tấm pin lớn có thể thành đường chập.",
-        caption: "Chấm cam là lỗ kim. Trên tấm lớn, một lỗ có thể thành đường chập cả mô-đun.",
-      },
-    ],
-  },
-  {
-    id: "films",
-    chapter: "c4",
-    section: "4.2",
-    title: "Cách 1–3 — quay phủ, hai bước, chân không",
-    scene: "films",
-    cam: "wide",
-    steps: [
-      {
-        title: "Nhịp 1 — nhỏ mực lên đế",
-        body: "Mực là muối PbI₂ và muối hữu cơ hòa trong DMF/DMSO. Nhỏ một giọt lên giữa đế thủy tinh hoặc đế đã có lớp dẫn, khi đế còn đứng yên hoặc vừa bắt đầu quay.",
-        more: "Lượng giọt quyết định có đủ vật liệu cho lớp khoảng 0,5 µm hay không. Thừa thì văng ra khi quay; thiếu thì màng thủng.",
-        caption: "Hình động nhịp 1 của quay phủ: giọt mực rơi xuống tâm đế tròn. Đế chưa quay nhanh. Chú thích màu: vàng nhạt = mực chưa kết tinh.",
-      },
-      {
-        title: "Nhịp 2 — quay vài nghìn vòng/phút",
-        body: "Đế quay rất nhanh. Lực ly tâm trải mực thành màng ướt và hất phần thừa. Dung môi bắt đầu bay, nhưng nếu chỉ chờ tự khô thì mầm xuất hiện lúc có lúc không.",
-        more: "Vài nghìn vòng/phút là tốc độ phòng thí nghiệm điển hình cho tế bào nhỏ, không phải tốc độ của dây chuyền mét vuông.",
-        caption: "Nhịp 2: đế quay, màng ướt mỏng dần từ tâm ra rìa. Các vòng cung là quỹ đạo mực bị văng.",
-      },
-      {
-        title: "Nhịp 3 — nhỏ dung môi đối",
-        body: "Vài giây sau, nhỏ chlorobenzene hoặc một dung môi không hòa tan perovskite. Độ tan tụt đột ngột, nên mầm xuất hiện gần như cùng một lúc trên cả mặt đế [47].",
-        more: "Đây là mẹo then chốt của màng mịn: không phải quay cho khô tự nhiên, mà ép kết tinh đồng loạt.",
-        caption: "Nhịp 3: giọt dung môi đối (lam) rơi lên màng đang quay. Màng đổi từ vàng nhạt sang tím đen khi tinh thể perovskite hình thành đồng loạt.",
-      },
-      {
-        title: "Nhịp 4 — sấy 100–150 °C",
-        body: "Đưa đế lên bàn nhiệt. Dung môi còn lại ra hết, hạt tinh thể lớn thêm một chút, màng ổn định màu đen. Nhiệt này thấp hơn rất nhiều so với lò silicon trên 1400 °C.",
-        caption: "Nhịp 4: bàn nhiệt dưới đế. Màng đã đen. Nhiệt độ ghi trên nhãn là khoảng sấy của perovskite, không phải nhiệt độ nóng chảy.",
-      },
-      {
-        title: "Hai bước — phủ PbI₂ vàng",
-        body: "Cách thứ hai tách phản ứng làm hai lớp. Trước hết phủ PbI₂. Màng có màu vàng đặc trưng, chưa phải perovskite [46].",
-        caption: "Lắng đọng hai bước, nhịp A: lớp PbI₂ vàng trên đế. Chưa có cation A trong màng.",
-      },
-      {
-        title: "Hai bước — cho MAI hoặc FAI vào",
-        body: "Nhúng đế vào dung dịch muối hữu cơ, hoặc phủ MAI/FAI lên trên. Ion hữu cơ khuếch tán vào mạng PbI₂, màng chuyển từ vàng sang đen khi thành ABX₃.",
-        more: "Thời gian nhúng quyết định phản ứng có chạy hết chiều dày hay còn lõi PbI₂ vàng.",
-        caption: "Nhịp B: các chấm lục là muối hữu cơ đi xuống lớp vàng. Vùng đã phản ứng chuyển đen từ trên xuống.",
-      },
-      {
-        title: "Chân không — đốt nguồn, đế ở trên",
-        body: "Bỏ dung môi. Trong buồng đã hút khí, thuyền kim loại chứa muối được đốt nóng. Hơi bay lên và bám vào đế lạnh hơn treo phía trên.",
-        caption: "Bay hơi nhiệt trong chân không: nguồn sáng ở dưới, đế ở trên, các hạt là hơi tiền chất. Buồng vẽ dạng khung dây, không theo tỉ lệ thiết bị thật.",
-      },
-      {
-        title: "Chân không — bám cả mặt gồ ghề",
-        body: "Hạt hơi đi gần như thẳng trong chân không, nên phủ được lên bề mặt nhám của pin silicon có sẵn. Tài liệu dẫn tandem Oxford làm hoàn toàn bằng chân không đạt 27,2% năm 2026 [51].",
-        note: warn("Mốc 27,2% được tài liệu đánh dấu là cần đối chiếu bài gốc [51]."),
-        caption: "Đế silicon vẽ có gờ. Màng perovskite bám theo gờ chứ không chỉ nằm trên mặt phẳng. Số 27,2% là mốc tài liệu dẫn, không phải số đo của mô hình.",
-      },
-    ],
-  },
-  {
-    id: "grow",
-    chapter: "c4",
-    section: "4.3",
-    title: "Cách 4–5 — đơn tinh thể và chấm lượng tử",
-    scene: "grow",
-    cam: "default",
-    steps: [
-      {
-        title: "Hòa tan khi còn nguội",
-        body: "Kết tinh nhiệt độ ngược bắt đầu ngược với trực giác: MAPbX₃ tan nhiều hơn khi dung dịch lạnh, trong một số dung môi như GBL. Ta hòa hết muối ở nhiệt độ thấp, trong lọ kín [49].",
-        caption: "Nhịp 1 của kết tinh nhiệt độ ngược: lọ dung dịch trong, chưa có tinh thể. Nhiệt độ nhãn còn thấp.",
-      },
-      {
-        title: "Đun — độ tan giảm, mầm xuất hiện",
-        body: "Tăng nhiệt. Độ tan giảm nên dung dịch trở nên quá bão hòa. Vài mầm tinh thể xuất hiện trong lòng chất lỏng, không cần đế quay.",
-        caption: "Nhịp 2: lọ ấm lên (quầng cam). Những chấm tím là mầm vừa xuất hiện trong dung dịch.",
-      },
-      {
-        title: "Giữ nóng cho tinh thể lớn",
-        body: "Giữ nhiệt ổn định. Mầm ăn ion trong dung dịch và lớn thành tinh thể milimet, nhanh hơn khoảng 10 lần các cách nuôi cũ [49]. Không có ranh giới hạt như màng đa tinh thể.",
-        caption: "Nhịp 3: một bát diện lớn trong lọ. Kích thước vẽ phóng đại so với lọ để thấy hình khối, không phải tinh thể thật chiếm hết thể tích.",
-      },
-      {
-        title: "Dùng để đo và làm đầu dò",
-        body: "Đơn tinh thể ít ranh giới hạt nên điện tích đi được rất xa — có báo cáo trên 175 µm [11]. Người ta dùng chúng cho đầu dò tia X và để đo tính chất gốc, không phải để cán thành tấm pin mái nhà.",
-        caption: "Nhịp 4: tinh thể đặt trên đế đo. Mũi tên là tia X tới; tín hiệu ra ở điện cực. Đây là vai trò của đơn tinh thể, khác màng 0,5 µm của pin.",
-      },
-      {
-        title: "Chích nóng — đun muối chì với phối tử",
-        body: "Trong khí trơ, đun muối chì halide cùng oleic acid và oleylamine ở 140–200 °C. Phối tử sẽ bọc bề mặt hạt nano, không cho chúng dính vào nhau [45].",
-        caption: "Nhịp 1 của chích nóng: bình cầu, dung dịch chì nóng. Chưa chích cesium nên chưa có màu phát quang.",
-      },
-      {
-        title: "Chích cesium — mầm bùng cùng lúc",
-        body: "Bơm nhanh dung dịch cesium oleate. Nồng độ vọt qua ngưỡng, hàng loạt mầm ra cùng một lúc theo mô hình LaMer [73]. Vì ra cùng lúc, các hạt có kích thước gần nhau.",
-        more: "Nếu chích chậm, mầm ra trước sẽ lớn hơn mầm ra sau — màu phát sáng sẽ lẫn.",
-        caption: "Nhịp 2: kim bơm cesium vào bình. Đám chấm cùng kích thước là mầm vừa bùng. LaMer là mô hình cổ điển của sự bùng mầm [73].",
-      },
-      {
-        title: "Nước đá — chấm khoảng 10 nm, đủ màu",
-        body: "Sau vài giây, nhúng bình vào nước đá để dừng lớn lên. Hạt khoảng 10 nm. Đổi I/Br/Cl thì màu phát đi từ đỏ 700 nm tới tím 410 nm [45].",
-        caption: "Nhịp 3: dãy lọ phát quang 410–700 nm. Mỗi lọ là một thành phần halide, không phải bảy bước của cùng một phản ứng.",
-      },
-    ],
-  },
-  {
-    id: "scale",
-    chapter: "c4",
-    section: "4.4",
-    title: "Cách 6–7 — dao gạt, phủ khe, lên tấm lớn",
-    scene: "scale",
-    cam: "wide",
-    steps: [
-      {
-        title: "Tế bào kỷ lục thường rất nhỏ",
-        body: "Nhiều kỷ lục đo trên diện tích dưới 1 cm², có khi chỉ 0,05 cm². Lên tấm hàng mét vuông, một lỗ kim cũng có thể thành đường chập. Quay phủ không trải đều được cỡ đó, nên phải đổi cách đưa mực lên đế.",
-        caption: "Trái: tế bào nhỏ. Phải: tấm lớn với một chấm cam là lỗ kim. Chú thích: một lỗ trên tấm lớn nguy hiểm hơn cùng một lỗ trên tế bào 0,05 cm² vì nó có thể chập cả mô-đun.",
-      },
-      {
-        title: "Dao gạt trải mực",
-        body: "Lưỡi dao cách đế một khe cố định và chạy dọc. Khe ấy đặt độ dày ướt. Mực perovskite bị kéo thành một dải đều, không cần đế quay [50].",
-        caption: "Nhịp 1 của phủ dao gạt: lưỡi xám chạy sang phải, vệt tím là mực vừa được trải. Mũi tên là chiều dao. Độ dày vẽ phóng đại.",
-      },
-      {
-        title: "Dao khí nitơ làm khô tức thì",
-        body: "Ngay sau lưỡi dao, một khe thổi khí N₂. Dung môi bay rất nhanh, giống vai trò của chlorobenzene ở quay phủ: mầm ra cùng lúc trên cả chiều rộng tấm.",
-        caption: "Nhịp 2: luồng lam là N₂. Vùng vừa bị thổi đổi sang đen vì kết tinh đồng loạt. Không còn giọt dung môi đối.",
-      },
-      {
-        title: "Phủ khe — mực đi qua một khe hẹp",
-        body: "Slot-die giữ đầu phủ đứng yên. Mực được bơm qua một khe, tạo cầu lỏng giữa đầu phủ và đế đang chạy. Tốc độ bơm và tốc độ đế cùng quyết định độ dày.",
-        caption: "Đầu phủ khe ở trên, đế chạy bên dưới. Cầu chất lỏng nối hai bên là chỗ mực thoát ra. Đây là lát cắt ngang, không phải nhìn từ trên.",
-      },
-      {
-        title: "Cuộn sang cuộn — chạy như in báo",
-        body: "Đế nhựa đi từ cuộn này sang cuộn kia, qua đầu phủ khe rồi qua vùng sấy. Tài liệu ghi hiệu suất pin làm theo kiểu này khoảng 10–14% — thấp hơn tế bào nhỏ, nhưng làm được diện dài.",
-        caption: "Hai trục cuộn, dải đế chạy liên tục, vùng tím là màng vừa phủ. Con số 10–14% là mức tài liệu ghi cho quy trình cuộn, không phải kỷ lục 27% của tế bào nhỏ.",
-      },
-      {
-        title: "Chân không cho mặt lớn và mặt nhám",
-        body: "Bay hơi chân không không phụ thuộc vào mực chảy. Nó phủ đều tấm lớn và cả bề mặt kim tự tháp của silicon. Ngành màn hình và bán dẫn đã có sẵn lò loại này.",
-        caption: "Buồng chân không khổ lớn. Các hạt hơi rơi đều lên tấm. So với phủ ướt, không có vệt dao hay mép giọt.",
-      },
-    ],
-  },
-  {
-    id: "apps",
-    chapter: "c4",
-    section: "4.5",
-    title: "Cùng vật liệu ấy, nhiều ứng dụng",
-    scene: "apps",
-    cam: "default",
-    steps: [
-      {
-        title: "Pin một lớp",
-        body: "Tận dụng hấp thụ mạnh và quãng đường điện tích dài. Mức trưởng thành mà tài liệu ghi: thí điểm.",
-      },
-      {
-        title: "Tandem perovskite/silicon",
-        body: "Eg khoảng 1,7 eV, phủ được lên silicon có sẵn. Thí điểm, và đã chạm cửa thương mại.",
-      },
-      {
-        title: "Pin trong nhà và pin dẻo",
-        body: "Eg chỉnh được, phủ nhiệt độ thấp lên nhựa. Vẫn là thí điểm.",
-      },
-      {
-        title: "Lớp chuyển màu cho màn hình",
-        body: "Nano tinh thể phát sáng mạnh, màu thuần. Tài liệu xếp gần thương mại.",
-      },
-      {
-        title: "Đèn PeLED",
-        body: "PLQY cao. Tài liệu dẫn hiệu suất lượng tử ngoài khoảng 31% với màu lục [55], nhưng lam còn yếu, và nguồn ấy được đánh dấu cần kiểm chứng.",
-      },
-      {
-        title: "Cảm biến quang",
-        body: "Nhạy sáng, dòng tối thấp [56]. Còn trong phòng thí nghiệm.",
-      },
-      {
-        title: "Đầu dò tia X và chất phát quang",
-        body: "Pb và Cs nặng nên nuốt tia X mạnh [57][58]. Phòng thí nghiệm đến thí điểm.",
-      },
-      {
-        title: "Nhiên liệu mặt trời",
-        body: "Pin cấp điện áp cho tách nước hoặc khử CO₂ [59]. Vẫn là nghiên cứu.",
-      },
-    ],
-  },
-  {
-    id: "market",
-    chapter: "c4",
-    section: "4.6",
-    title: "Thị trường 2024–2026 — đường gần nhất là tandem",
-    scene: "market",
-    cam: "wide",
-    steps: [
-      {
-        title: "6/2024 · Oxford PV",
-        body: "Module tandem 60 tế bào, khoảng 1,6 m², hiệu suất 26,9% do Fraunhofer chứng nhận [61].",
-      },
-      {
-        title: "4/2025 · LONGi 34,85%",
-        body: "Pin tandem silicon/perovskite, NREL chứng nhận theo thông cáo được tài liệu dẫn [4].",
-      },
-      {
-        title: "7/2025 · Caelux",
-        body: "Giao lô kính phủ perovskite thương mại đầu tiên để gắn lên tấm silicon [62].",
-      },
-      {
-        title: "2026 · Biểu đồ và module",
-        body: "Tài liệu ghi biểu đồ NREL: một lớp 27,3%, tandem 35% [1]; bảng hiệu suất ghi module tandem LONGi 29,4% trên khoảng 1,7 m² [2].",
-      },
-      {
-        title: "7/2026 · 35,5% chưa lên biểu đồ",
-        body: "LONGi công bố 35,5%. Tài liệu nói rõ đó là thông cáo công ty, chưa lên biểu đồ NREL [5].",
-        note: warn("Thông cáo và dự báo là tuyên bố của bên thứ ba, chưa phải số chứng nhận độc lập."),
-      },
-      {
-        title: "Con đường gần nhất",
-        body: "Đặt một lớp perovskite mỏng lên dây chuyền silicon sẵn có, kéo module từ khoảng 22–24% lên gần 30%. IDTechEx ước doanh thu khoảng 12 tỷ USD/năm vào 2035 [63] — đây là dự báo, không phải đo đạc.",
-      },
-    ],
-  },
-  {
-    id: "lead",
-    chapter: "c4",
-    section: "4.7",
-    title: "Chì — ít gam, nhưng phải khóa lại",
-    scene: "lead",
-    cam: "plot",
-    steps: [
-      {
-        title: "Vài gam trên một mét vuông",
-        body: "Một tấm pin perovskite chứa chì cỡ vài gam mỗi mét vuông, ít hơn nhiều so với một ắc quy ô tô. Nhưng chì hòa tan trong nước, nên vẫn phải ngăn rò rỉ.",
-        caption: "Cột ngang là hiệu suất tài liệu dùng để so họ vật liệu, không phải bảng thị trường.",
-      },
-      {
-        title: "Thiếc cùng nhóm, dễ bị oxy hóa",
-        body: "Sn²⁺ dễ thành Sn⁴⁺, thừa lỗ trống, pin bị rò điện. Tài liệu nêu kỷ lục khoảng 16–17%. Cột Sn–Pb cao hơn, khoảng 24% trong hình minh họa của tài liệu, vẫn dưới chì 27,3%.",
-        caption: "Cột thiếc thấp hơn chì vì Sn²⁺ dễ thành Sn⁴⁺ và pin bị rò.",
-      },
-      {
-        title: "Perovskite kép",
-        body: "Cs₂AgBiBr₆ thay hai Pb bằng một Ag và một Bi xếp xen kẽ. Bền, nhưng vùng cấm gián tiếp, hấp thụ kém, hiệu suất khoảng 6% [36].",
-        caption: "Cs₂AgBiBr₆ bền hơn nhưng vùng cấm gián tiếp, hấp thụ kém, nên cột ngắn.",
-      },
-      {
-        title: "Việc làm được ngay",
-        body: "Giảm lượng chì, đóng gói chống rò, thêm lớp hấp phụ chì, và thiết kế để tái chế. Thay chì hoàn toàn vẫn còn kém xa về hiệu suất.",
-        caption: "Việc làm được ngay là khóa chì lại. Cột ngắn không có nghĩa chất ấy đã thay được chì.",
-        note: warn("Các cột là số tài liệu dùng để so sánh họ vật liệu, không phải một bảng xếp hạng thị trường."),
-      },
-    ],
-  },
-  {
-    id: "pin",
-    chapter: "c5",
-    section: "5.1",
-    title: "Bước 1 — chọn kiến trúc p-i-n",
-    scene: "pin",
-    cam: "stack",
-    controls: ["architecture"],
-    tune: [{ architecture: "nip" }, { architecture: "pin" }, { architecture: "pin" }, { architecture: "pin" }],
-    legend: [
-      { swatch: "etl", label: "Đường của điện tử" },
-      { swatch: "htl", label: "Đường của lỗ trống" },
-    ],
-    steps: [
-      {
-        title: "n-i-p, ánh sáng vào cửa điện tử",
-        body: "Kiến trúc kinh điển (regular): ánh sáng đi qua lớp vận chuyển điện tử trước. Nhiều pin đời đầu dùng lớp lỗ trống có phụ gia, như Spiro-OMeTAD pha muối lithium.",
-      },
-      {
-        title: "p-i-n, ánh sáng vào cửa lỗ trống",
-        body: "Kiến trúc đảo (inverted): ánh sáng đi qua lớp lỗ trống. Hầu hết pin trên 27% hiện là p-i-n, vì NiOₓ, SAM và C₆₀ bền hơn và ít tổn thất hơn [39].",
-        caption: "Hai cách xếp cùng một lớp hấp thụ. p-i-n đón nắng ở cửa lỗ trống. Hầu hết pin trên 27% hiện là kiểu này [39].",
-      },
-      {
-        title: "Đổi chiều ánh sáng",
-        body: "Nút trên màn hình lật hai cách xếp. Cùng một lớp hấp thụ, thứ tự cửa chọn lọc đổi vai trò của mặt đón nắng.",
-        caption: "Hình: bên trái n-i-p, bên phải p-i-n. Mũi tên vàng là chiều ánh sáng. Bấm nút để đổi kiểu đang được nói tới.",
-      },
-      {
-        title: "Bậc thang năng lượng",
-        body: "Các mức được xếp thành bậc. Điện tử chỉ có đường xuống dốc về phía ETL. Lỗ trống chỉ có đường về phía HTL. Không cần chúng «chọn đúng» bằng ý chí.",
-        caption: "Hình: khối lam là cửa điện tử, khối cam là cửa lỗ trống. Các hạt chạy về đúng cửa của mình.",
-      },
-    ],
-  },
-  {
-    id: "stack",
-    chapter: "c5",
-    section: "5.2",
-    title: "Bước 2 — mỗi lớp một việc",
-    scene: "stack",
-    cam: "stack",
-    controls: ["explode"],
-    tune: [
-      { explode: 0.15 },
-      { explode: 0.85 },
-      { explode: 0.85 },
-      { explode: 0.85 },
-      { explode: 0.85 },
-      { explode: 0.85 },
-      { explode: 0.85 },
-      { explode: 0.85 },
-      { explode: 0.85 },
-      { explode: 0.85 },
-      { explode: 0.85 },
-    ],
-    steps: [
-      {
-        title: "Không phát minh một chất mới",
-        body: "Đề xuất chương 5 ghép những gì đã được chứng minh riêng lẻ, để chặn cùng lúc năm kẻ thù ở mục 3.9. Bấm từng lát trên mô hình để nhảy tới lời dẫn của lát đó.",
-        caption: "Hình: chồng lớp của đề xuất. Lớp đang sáng là lớp đang được nói tới. Độ dày vẽ không theo tỉ lệ thật.",
-      },
-      {
-        title: "Kính lọc UV",
-        body: "Chặn tia cực tím trước khi vào pin. Nhắm kẻ thù số 4 [26].",
-        caption: "Kính trên cùng chặn tia cực tím trước khi vào pin.",
-      },
-      {
-        title: "ITO + NiOₓ + SAM",
-        body: "Điện cực trong suốt, lớp lấy lỗ trống, và đơn lớp tự sắp xếp tạo mặt tiếp xúc ít khuyết tật [39].",
-        caption: "ITO trong suốt lấy dòng. NiOₓ và SAM là cửa lỗ trống, ít phụ gia hơn các lớp lỗ trống đời đầu.",
-      },
-      {
-        title: "Lớp 2D mặt dưới",
-        body: "Thụ động hóa giao diện dưới, cản ion và đỡ tổn thất điện áp [30].",
-        caption: "Lớp 2D mặt dưới lấp bẫy và cản ion ở giao diện dưới.",
-      },
-      {
-        title: "Lõi Cs₀.₀₅FA₀.₉₅PbI₃",
-        body: "Không MA nên bền nhiệt hơn. Thuần iod nên không tách pha kiểu Hoke. Hệ số dung hạn nằm vùng chịu được [19][22][24].",
-        caption: "Lõi không có methylammonium, chỉ iod, thêm khoảng 5% cesium để khung khỏi đổ sang pha vàng.",
-      },
-      {
-        title: "Lớp 2D mặt trên",
-        body: "Lấp bẫy, kỵ nước, chặn ion. Nhắm ẩm và di chuyển ion [29][30].",
-        caption: "Lớp 2D mặt trên kỵ nước và chặn ion đi lên.",
-      },
-      {
-        title: "C₆₀",
-        body: "Lấy điện tử, đưa chúng ra khỏi perovskite [39].",
-        caption: "C₆₀ nhận điện tử và đưa chúng ra khỏi perovskite.",
-      },
-      {
-        title: "SnO₂ phủ từng lớp nguyên tử",
-        body: "ALD cho một lớp ô-xít mỏng nhưng đặc khít, ngăn iod đi lên ăn điện cực kim loại [39][40].",
-        caption: "SnO₂ phủ từng lớp nguyên tử là một tấm chắn đặc, để iod không ăn điện cực kim loại.",
-      },
-      {
-        title: "Điện cực Cu/Ag",
-        body: "Thu điện tử sau khi chúng đã qua rào SnO₂. Kim loại không được chạm trực tiếp dòng iod.",
-        caption: "Kim loại chỉ gặp điện tử sau khi chúng đã qua rào SnO₂.",
-      },
-      {
-        title: "Kính–kính và gioăng mép",
-        body: "Đóng gói kín, chặn ẩm và oxy [38]. Kéo thanh «tách lớp» để xem từng lát; hình không theo tỉ lệ bề dày thật.",
-        caption: "Kéo thanh tách lớp để xem từng lát. Kính dưới và gioăng mép khóa ẩm với oxy.",
-      },
-    ],
-  },
-  {
-    id: "why",
-    chapter: "c5",
-    section: "5.3",
-    title: "Bước 3 — vì sao đúng những chất ấy",
-    scene: "why",
-    cam: "default",
-    steps: [
-      {
-        title: "Bỏ MA",
-        body: "Methylammonium bay hơi ở nhiệt độ tấm pin ngoài trời, khoảng 65–85 °C. FA và Cs bền nhiệt hơn nhiều.",
-      },
-      {
-        title: "Chỉ iod",
-        body: "Tránh hiệu ứng Hoke. Eg khoảng 1,53 eV vẫn gần tối ưu cho pin một lớp.",
-      },
-      {
-        title: "5% cesium",
-        body: "Kéo hệ số dung hạn trung bình của FAPbI₃ về giữa vùng bền, hạn chế pha vàng lục giác.",
-      },
-      {
-        title: "2D cả hai mặt",
-        body: "Nhóm Azmi (2024) cho thấy kẹp 2D hai mặt vừa tăng điện áp vừa tăng độ bền [30]. Cùng hướng nghiên cứu đã vượt phép thử 85 °C / 85% độ ẩm năm 2022 [29].",
-      },
-      {
-        title: "Rào ALD",
-        body: "SnO₂ đặc khít chặn iod khuếch tán tới điện cực kim loại — một kiểu hỏng phổ biến của pin p-i-n.",
-      },
-    ],
-  },
-  {
-    id: "verify",
-    chapter: "c5",
-    section: "5.4",
-    title: "Bước 4 — chứng minh bằng chuẩn ISOS",
-    scene: "verify",
-    cam: "plot",
-    steps: [
-      {
-        title: "Một con số bền phải kèm điều kiện",
-        body: "Cộng đồng đã thống nhất bộ giao thức ISOS, đăng trên Nature Energy năm 2020 [38]. Không có điều kiện thử thì một câu «bền 1000 giờ» không nói được gì.",
-        caption: "Trục ngang là giờ chiếu, trục dọc là phần trăm hiệu suất còn lại.",
-      },
-      {
-        title: "Mức đề xuất: ISOS-L-3",
-        body: "Chiếu sáng liên tục, nhiệt độ 65–85 °C, có độ ẩm. Ba mũi tên trên mô hình là đèn, nhiệt và ẩm cùng lúc.",
-        caption: "Mức đề xuất là đèn, nhiệt 65–85 °C và ẩm cùng lúc — ISOS-L-3.",
-      },
-      {
-        title: "Thước T80",
-        body: "T80 là thời gian cho tới khi hiệu suất còn 80% giá trị ban đầu. Đường đỏ là pin chưa tối ưu. Đường xanh là mục tiêu thiết kế.",
-        caption: "Đường cam giảm nhanh. Đường lục là mục tiêu thiết kế, chưa phải số đo của đúng tổ hợp này.",
-      },
-      {
-        title: "Mục tiêu của đề xuất",
-        body: "Hiệu suất ban đầu ≥ 26% trên tế bào 1 cm². Giữ trên 90% sau 2000 giờ ISOS-L-3. Dấu sao nhắc mức tài liệu nêu cho pin 27,3%: khoảng 93% sau 2000 giờ [39] — đó là số đã báo cáo cho một pin khác, không phải cho đúng tổ hợp này.",
-        caption: "Mốc 93% sau 2000 giờ là số đã báo cáo cho một pin khác [39], đặt lên hình để có thước so.",
-      },
-      {
-        title: "Phép đo đi kèm",
-        body: "PLQY để theo dõi Voc. Nhiễu xạ tia X để xem pha còn nguyên không. Phổ khối hoặc XPS để bắt iod đã bò tới điện cực hay chưa.",
-        caption: "PLQY, nhiễu xạ tia X và phổ khối là ba phép đo đi kèm. Chúng không vẽ thành đường thứ ba.",
-      },
-      {
-        title: "Bỏ lần lượt từng lớp",
-        body: "Đối chứng: tháo lớp 2D trên, lớp 2D dưới, rồi lớp ALD, để biết mỗi lớp đóng góp bao nhiêu. Không làm đối chứng thì không biết lớp nào đang gánh.",
-        caption: "Tháo lần lượt lớp 2D và lớp ALD mới biết mỗi lớp đóng góp bao nhiêu.",
-      },
-      {
-        title: "Và đây vẫn là giả thuyết",
-        body: "Từng mảnh đã có bài báo. Chưa có nghiên cứu nào kiểm chứng đúng tổ hợp này. Các lớp có thể cãi nhau: lớp 2D làm giảm dẫn, quy trình ALD có thể hỏng bề mặt perovskite.",
-        caption: "Nhãn giả thuyết nghĩa là hình này chưa phải một pin đã chế tạo.",
-        note: idea(
-          "Đừng đọc chương 5 như một bản thiết kế đã chạy ra pin. Tài liệu gọi đúng tên của nó: một giả thuyết hợp lý.",
-        ),
-      },
-    ],
-  },
+  // Chapter 5 sections 5.1 – 5.4 are story lessons (story5.ts); these entries only keep their place in the order.
+  ...["pin", "stack", "why", "verify"].map(
+    (id, i): Lesson => ({
+      id,
+      chapter: "c5",
+      section: `5.${i + 1}`,
+      title: id,
+      scene: id,
+      cam: "default",
+      steps: [{ title: id, body: id }],
+    }),
+  ),
   {
     id: "finale",
     chapter: "c6",
@@ -1430,7 +877,7 @@ const sourceLessons: Lesson[] = [
       {
         title: "Kết luận 4 — Mạng mềm là cả ưu điểm lẫn năm kẻ thù",
         body: "Cùng liên kết yếu cho tinh thể tự vá và cho ion iod nhảy, cho ẩm, oxy, nhiệt và tia cực tím làm hỏng pin. Năm kẻ thù ấy không phải chuyện phụ của hiệu suất cao.",
-        caption: "Hình: tinh thể ở giữa, năm chấm cảnh báo quay quanh. Mỗi chấm là một kẻ thù đã gặp ở mục 3.9.",
+        caption: "Hình: tinh thể ở giữa, năm chấm cảnh báo quay quanh. Mỗi chấm là một kẻ thù đã gặp ở mục 3.8.",
       },
       {
         title: "Kết luận 5 — Bảy cách chế tạo, một quy tắc mầm",
@@ -1438,14 +885,14 @@ const sourceLessons: Lesson[] = [
         caption: "Hình: nhiều mầm cùng cỡ bung ra, rồi khép thành một màng. Ảnh thực của từng cách nằm ở chương phương pháp chế tạo.",
       },
       {
-        title: "Kết luận 6 — Đề xuất cải tiến chặn kẻ thù bằng từng lớp",
-        body: "Không cần một chất mới. Kính lọc UV, cửa lỗ trống NiOₓ và SAM, lớp 2D hai mặt, lõi FA/Cs thuần iod, C₆₀, rào SnO₂ và kính kín — mỗi lớp gánh một kẻ thù. Đây vẫn là giả thuyết ghép từ các bài đã công bố, chưa phải pin đã làm.",
-        caption: "Hình: chồng lớp của đề xuất. Lớp đang sáng là lớp đang được nói tới. Độ dày vẽ không theo tỉ lệ thật.",
+        title: "Kết luận 6 — Cải tiến là một chồng lớp được thiết kế",
+        body: "Chương 5 không bán một chất mới. Nó đi qua bốn bước: chọn kiến trúc p–i–n, giao cho mỗi lớp một vai trò chính, biện minh từng vật liệu bằng nhiều tiêu chí, rồi kiểm chứng độ bền. Chồng lớp kính / ITO / SAM / perovskite / C₆₀ / lớp đệm / kim loại chỉ là một ví dụ minh họa.",
+        caption: "Hình: chồng lớp ví dụ của chương 5. Lớp nào đặt ở đâu và vì sao là câu hỏi, không phải một công thức cố định. Độ dày vẽ không theo tỉ lệ thật.",
       },
       {
         title: "Kết luận 7 — Việc còn lại là độ bền; đường gần là tandem",
-        body: "Số bền chỉ có nghĩa khi kèm điều kiện. Mục tiêu đề xuất là giữ trên 90% sau 2000 giờ ISOS-L-3, trên tế bào khoảng 1 cm², rồi mới nói tới tấm lớn. Con đường thương mại gần nhất vẫn là trải perovskite lên silicon có sẵn.",
-        caption: "Hình: lớp perovskite mỏng nằm trên lát silicon dày. Đồng hồ là phép thử T80, chưa phải một pin đã qua 2000 giờ.",
+        body: "Số bền chỉ có nghĩa khi kèm điều kiện. ISOS là bộ quy trình nghiên cứu và báo cáo, không phải chứng nhận đạt/trượt và không hứa 25 năm. Con đường thương mại gần nhất vẫn là trải perovskite lên silicon có sẵn.",
+        caption: "Hình: lớp perovskite mỏng nằm trên lát silicon dày. Đồng hồ minh họa một phép thử độ bền, không phải số đo của một pin cụ thể.",
       },
     ],
   },
@@ -1503,15 +950,31 @@ export const chapters: Chapter[] = [
     id: "c3",
     num: "3",
     title: "Vì sao hợp làm pin",
-    lessonIds: ["race", "absorb", "diffusion", "exciton", "defects", "tune", "ink", "recap", "plqy", "compare", "enemies"],
+    lessonIds: [
+      "race",
+      "absorb",
+      "diffusion",
+      "exciton",
+      "defects",
+      "tune",
+      "ink",
+      "recap",
+      "compare",
+      "dmoist",
+      "doxy",
+      "dheat",
+      "duv",
+      "dion",
+      "dall",
+    ],
   },
   {
     id: "c4",
     num: "4",
     title: "Phương pháp chế tạo",
-    lessonIds: ["methods", "nucleation", "films", "grow", "scale", "apps", "market", "lead"],
+    lessonIds: ["c4home", "spin", "twostep", "vacuum", "crystal", "qdot", "market", "blade", "slot", "lead", "leadmit", "leadcmp", "c4sum"],
   },
-  { id: "c5", num: "5", title: "Đề xuất cải tiến", lessonIds: ["pin", "stack", "why", "verify"] },
+  { id: "c5", num: "5", title: "Đề xuất cải tiến", lessonIds: ["pin", "stack", "why", "verify", "c5fin"] },
   { id: "c6", num: "6", title: "Kết luận", lessonIds: ["finale", "quiz"] },
   { id: "cA", num: "A", title: "Phụ lục", lessonIds: ["glossary", "refs"] },
 ];
@@ -1557,8 +1020,8 @@ export type RefItem = { n: string; cite: string };
 export const REFS: RefItem[] = [
   { n: "1", cite: "NREL. Best Research-Cell Efficiency Chart, Rev. 03-19-2026." },
   { n: "2", cite: "Green, M. A. et al. Solar cell efficiency tables (Version 68). Joule 2026. DOI: 10.1016/j.joule.2026.102494" },
-  { n: "4", cite: "LONGi. 34,85% tandem silicon/perovskite, thông cáo 15/4/2025." },
-  { n: "5", cite: "LONGi. 35,5%, thông cáo 14/7/2026 — tài liệu ghi chưa lên biểu đồ NREL." },
+  { n: "4", cite: "LONGi. 34.85% two-terminal silicon/perovskite tandem cell, press release 21 Apr 2025 (certified by NREL, per LONGi)." },
+  { n: "5", cite: "LONGi. 35.5% silicon/perovskite tandem cell, announced 14 Jul 2026 (ESTI certification stated by LONGi); not yet in Version 68." },
   { n: "7", cite: "Kojima, Miyasaka et al. J. Am. Chem. Soc. 2009, 131, 6050. DOI: 10.1021/ja809598r" },
   { n: "9", cite: "Stranks et al. Science 2013, 342, 341. DOI: 10.1126/science.1243982" },
   { n: "10", cite: "Xing et al. Science 2013, 342, 344. DOI: 10.1126/science.1243167" },
@@ -1610,6 +1073,13 @@ export const REFS: RefItem[] = [
   { n: "73", cite: "LaMer, Dinegar. J. Am. Chem. Soc. 1950, 72, 4847. Bùng mầm." },
   { n: "77", cite: "D'Innocenzo et al. Nat. Commun. 2014, 5, 3586. Exciton và điện tích tự do." },
 ];
+
+// Chapter 4 sources (n >= 80) are generated from the source registry, so the bibliography and the citation cards agree.
+for (const src of SOURCES) {
+  if (src.n < 80) continue;
+  const where = src.doi ? `DOI: ${src.doi}` : src.url;
+  REFS.push({ n: String(src.n), cite: `${src.by}. ${src.title}. ${src.date}. ${where}` });
+}
 
 export const QUIZ: {
   prompt: string;
@@ -1673,22 +1143,22 @@ export const QUIZ: {
     why: "Trần 33,7% là cho một vùng cấm. Xếp chồng các vùng cấm khác nhau né được đồng thời cả tổn thất nhiệt hóa và photon bỏ đi.",
   },
   {
-    prompt: "Lớp nào trong đề xuất chặn ion iod?",
+    prompt: "Vì sao không nên chọn một vật liệu chỉ vì hiệu suất ban đầu cao?",
     options: [
-      "Chỉ kính lọc UV",
-      "Lớp 2D hai mặt chặn và kỵ nước; SnO₂ ALD thành rào đặc trước điện cực; lõi thuần iod giảm tách pha",
-      "Chỉ điện cực bạc",
-      "Lớp Spiro-OMeTAD pha lithium",
+      "Vì hiệu suất ban đầu luôn là số sai",
+      "Vì vật liệu còn phải khớp vai trò, mức năng lượng, hợp với lớp kề và sống sót qua chế tạo và vận hành",
+      "Vì chỉ vật liệu rẻ nhất mới được dùng",
+      "Vì pin perovskite không cần lớp tiếp xúc",
     ],
     answer: 1,
-    why: "Tài liệu gán kẻ thù số 5 cho lớp 2D, rào ALD, và việc giảm chỗ trống. UV kính nhắm kẻ thù khác.",
+    why: "Mục 5.3: một vật liệu cải thiện một tính chất có thể gây vấn đề ở nơi khác (ví dụ một lớp thụ động hóa có lợi ở n–i–p nhưng có thể hại ở p–i–n [103]), nên cả chồng lớp phải được tối ưu cùng nhau.",
   },
 ];
 
 function storyLesson(spec: StorySpec): Lesson {
   return {
     id: spec.id,
-    chapter: "c3",
+    chapter: spec.group === "fab" ? "c4" : spec.group === "design" ? "c5" : "c3",
     section: spec.section,
     title: spec.title,
     scene: spec.scene,
@@ -1714,6 +1184,41 @@ export const lessons: Lesson[] = sourceLessons.flatMap((lesson) => {
   const recap = STORIES.find((s) => s.id === "recap");
   const at = lessons.findIndex((l) => l.id === "ink");
   if (recap && at >= 0) lessons.splice(at + 1, 0, storyLesson(recap));
+  // 3.8 · degradation: five mechanisms and a summary, right after the comparison table (3.7)
+  const degrade = STORIES.filter((s) => s.group === "degrade").map(storyLesson);
+  const after = lessons.findIndex((l) => l.id === "compare");
+  if (after >= 0) lessons.splice(after + 1, 0, ...degrade);
+  // Chapter 4: overview page, the nine sections in the order of the chapter, and the synthesis page
+  const ch4 = ["spin", "twostep", "vacuum", "crystal", "qdot", "market", "blade", "slot", "lead", "leadmit", "leadcmp"]
+    .map((id) => STORIES.find((s) => s.id === id))
+    .filter((s): s is StorySpec => s !== undefined)
+    .map(storyLesson);
+  const home: Lesson = {
+    id: "c4home",
+    chapter: "c4",
+    section: "4.0",
+    title: C4_INTRO.title,
+    scene: "page",
+    cam: "default",
+    page: "landing",
+    steps: [{ title: C4_INTRO.title, body: C4_INTRO.body }],
+  };
+  const sum: Lesson = {
+    id: "c4sum",
+    chapter: "c4",
+    section: "4.10",
+    title: C4_INTRO.sumTitle,
+    scene: "page",
+    cam: "default",
+    page: "summary",
+    steps: [{ title: C4_INTRO.sumTitle, body: C4_INTRO.sumBody }],
+  };
+  // Chapter 5: the closing synthesis comes right after 5.4
+  const fin = STORIES.find((s) => s.id === "c5fin");
+  const afterVerify = lessons.findIndex((l) => l.id === "verify");
+  if (fin && afterVerify >= 0) lessons.splice(afterVerify + 1, 0, storyLesson(fin));
+  const before = lessons.findIndex((l) => l.id === "pin");
+  lessons.splice(before >= 0 ? before : lessons.length, 0, home, ...ch4, sum);
 }
 
 function glossaryLesson(): Lesson {

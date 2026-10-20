@@ -33,7 +33,8 @@ export const EXTRA_EN: Record<string, string> = {
   "Kết luận 3 — Tổ hợp hiếm: 3,8% lên 27,3% rồi tandem": "Conclusion 3 — a rare mix: 3.8% to 27.3%, then a tandem",
   "Kết luận 4 — Mạng mềm là cả ưu điểm lẫn năm kẻ thù": "Conclusion 4 — the soft lattice is the advantage and the five threats",
   "Kết luận 5 — Bảy cách chế tạo, một quy tắc mầm": "Conclusion 5 — seven fabrication routes, one nucleation rule",
-  "Kết luận 6 — Đề xuất cải tiến chặn kẻ thù bằng từng lớp": "Conclusion 6 — the proposal blocks each threat with a layer",
+  "Kết luận 6 — Cải tiến là một chồng lớp được thiết kế":
+    "Conclusion 6 — improvement is a designed stack",
   "Kết luận 7 — Việc còn lại là độ bền; đường gần là tandem": "Conclusion 7 — what remains is lifetime; the near path is the tandem",
 
   "Photon rơi vào lớp tím. Điện tử đi lên vùng dẫn, lỗ trống ở lại, rồi hai hạt ra hai cửa. Không có máy quay, không đốt nhiên liệu.":
@@ -53,23 +54,23 @@ export const EXTRA_EN: Record<string, string> = {
 
   "Cùng liên kết yếu cho tinh thể tự vá và cho ion iod nhảy, cho ẩm, oxy, nhiệt và tia cực tím làm hỏng pin. Năm kẻ thù ấy không phải chuyện phụ của hiệu suất cao.":
     "The same weak bonds let the crystal heal itself and let iodide ions hop, and they let moisture, oxygen, heat and ultraviolet light damage the cell. Those five threats are not a footnote to the high efficiency.",
-  "Hình: tinh thể ở giữa, năm chấm cảnh báo quay quanh. Mỗi chấm là một kẻ thù đã gặp ở mục 3.9.":
-    "Figure: the crystal in the center, five warning dots around it. Each dot is a threat already met in section 3.9.",
+  "Hình: tinh thể ở giữa, năm chấm cảnh báo quay quanh. Mỗi chấm là một kẻ thù đã gặp ở mục 3.8.":
+    "Figure: the crystal in the center, five warning dots around it. Each dot is a threat already met in section 3.8.",
 
   "Quay phủ, hai bước, chân không, kết tinh nhiệt độ ngược, chích nóng, dao gạt và phủ khe khác nhau ở chỗ ép mầm ra. Chúng giống nhau ở quy tắc: mầm phải xuất hiện cùng lúc, rồi lớn đều, nếu không thì thủng lỗ kim.":
     "Spin coating, two-step, vacuum, inverse-temperature growth, hot injection, blade and slot-die differ in how they force nuclei to appear. They share one rule: the nuclei must appear together and then grow evenly, or the film gets pinholes.",
   "Hình: nhiều mầm cùng cỡ bung ra, rồi khép thành một màng. Ảnh thực của từng cách nằm ở chương phương pháp chế tạo.":
     "Figure: many nuclei of one size burst out, then close into a film. Real photos of each route sit in the fabrication chapter.",
 
-  "Không cần một chất mới. Kính lọc UV, cửa lỗ trống NiOₓ và SAM, lớp 2D hai mặt, lõi FA/Cs thuần iod, C₆₀, rào SnO₂ và kính kín — mỗi lớp gánh một kẻ thù. Đây vẫn là giả thuyết ghép từ các bài đã công bố, chưa phải pin đã làm.":
-    "No new material is required. UV-filter glass, a NiOₓ and SAM hole contact, 2D layers on both faces, an iodide-only FA/Cs core, C₆₀, an SnO₂ barrier and a glass seal — each layer carries one threat. This is still a hypothesis assembled from published pieces, not a cell that has been built.",
-  "Hình: chồng lớp của đề xuất. Lớp đang sáng là lớp đang được nói tới. Độ dày vẽ không theo tỉ lệ thật.":
-    "Figure: the proposed stack. The bright layer is the one being discussed. Drawn thicknesses are not to scale.",
+  "Chương 5 không bán một chất mới. Nó đi qua bốn bước: chọn kiến trúc p–i–n, giao cho mỗi lớp một vai trò chính, biện minh từng vật liệu bằng nhiều tiêu chí, rồi kiểm chứng độ bền. Chồng lớp kính / ITO / SAM / perovskite / C₆₀ / lớp đệm / kim loại chỉ là một ví dụ minh họa.":
+    "Chapter 5 does not sell a new material. It goes through four steps: choose a p–i–n architecture, give each layer a primary role, justify each material against several criteria, then verify stability. The stack glass / ITO / SAM / perovskite / C₆₀ / buffer / metal is only an illustrative example.",
+  "Hình: chồng lớp ví dụ của chương 5. Lớp nào đặt ở đâu và vì sao là câu hỏi, không phải một công thức cố định. Độ dày vẽ không theo tỉ lệ thật.":
+    "Figure: the example stack of chapter 5. Which layer goes where, and why, is the question, not a fixed recipe. Drawn thicknesses are not to scale.",
 
-  "Số bền chỉ có nghĩa khi kèm điều kiện. Mục tiêu đề xuất là giữ trên 90% sau 2000 giờ ISOS-L-3, trên tế bào khoảng 1 cm², rồi mới nói tới tấm lớn. Con đường thương mại gần nhất vẫn là trải perovskite lên silicon có sẵn.":
-    "A lifetime number means something only with its test conditions. The proposal’s target is to keep more than 90% after 2000 hours of ISOS-L-3, on a cell of about 1 cm², before anyone talks about a large module. The nearest commercial path is still perovskite spread onto silicon that already exists.",
-  "Hình: lớp perovskite mỏng nằm trên lát silicon dày. Đồng hồ là phép thử T80, chưa phải một pin đã qua 2000 giờ.":
-    "Figure: a thin perovskite layer on a thick silicon slice. The clock is the T80 test, not a cell that has already passed 2000 hours.",
+  "Số bền chỉ có nghĩa khi kèm điều kiện. ISOS là bộ quy trình nghiên cứu và báo cáo, không phải chứng nhận đạt/trượt và không hứa 25 năm. Con đường thương mại gần nhất vẫn là trải perovskite lên silicon có sẵn.":
+    "A lifetime number means something only with its test conditions. ISOS is a set of research and reporting procedures, not a pass/fail certificate and not a promise of 25 years. The nearest commercial path is still perovskite spread onto silicon that already exists.",
+  "Hình: lớp perovskite mỏng nằm trên lát silicon dày. Đồng hồ minh họa một phép thử độ bền, không phải số đo của một pin cụ thể.":
+    "Figure: a thin perovskite layer on a thick silicon slice. The clock illustrates a stability test, not a measurement of a specific cell.",
 
   "Đường dòng–áp. Trục ngang là điện áp, trục dọc là dòng trên mỗi cm². Voc nằm trên trục điện áp khi dòng bằng không.":
     "Current–voltage curve. Horizontal axis is voltage, vertical axis is current per square centimetre. Voc sits on the voltage axis where current is zero.",

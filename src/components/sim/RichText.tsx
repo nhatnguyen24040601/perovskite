@@ -23,7 +23,12 @@ export function RichText({ text }: { text: string }) {
           <span
             key={i}
             className="cite"
+            role="button"
             tabIndex={0}
+            onClick={() => useSim.setState({ cite: Number(m[1]) })}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") useSim.setState({ cite: Number(m[1]) });
+            }}
             onMouseEnter={() => setHot(i)}
             onMouseLeave={() => setHot(null)}
             onFocus={() => setHot(i)}

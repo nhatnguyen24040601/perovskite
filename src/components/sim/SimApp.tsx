@@ -12,12 +12,12 @@ import {
   photonEnergy,
   sqEfficiency,
   tolerance,
-  vocFromPlqy,
   ION,
 } from "@/lib/sim/physics";
 import { useSim, type Locale } from "@/lib/sim/store";
 import type { Cation } from "@/lib/sim/types";
 import type { ControlKind } from "@/lib/sim/content";
+import { Ch4Landing, Ch4Summary, CiteCard } from "./Ch4Pages";
 import { RichText } from "./RichText";
 import { StoryOverlay } from "./StoryOverlay";
 import { Stage } from "./three/Stage";
@@ -203,6 +203,9 @@ export function SimApp() {
     navOpen ? "" : "nav-off",
     presenting ? "presenting" : "",
     lesson.story ? "story-lesson" : "",
+    story?.group === "degrade" ? "degrade-lesson" : "",
+    story?.group === "design" ? "design-lesson" : "",
+    lesson.page ? "page-lesson" : "",
   ]
     .filter(Boolean)
     .join(" ");
@@ -319,10 +322,14 @@ export function SimApp() {
       </nav>
 
       <div className="stage-wrap">
-        <div className="stage">
-          <Stage />
-        </div>
-        {lesson.story ? (
+        {lesson.page === "landing" ? <Ch4Landing /> : null}
+        {lesson.page === "summary" ? <Ch4Summary /> : null}
+        {lesson.page ? null : (
+          <div className="stage">
+            <Stage />
+          </div>
+        )}
+        {lesson.page ? null : lesson.story ? (
           <StoryOverlay lessonId={lessonId} />
         ) : (
           <div className="stage-caption">
@@ -338,7 +345,7 @@ export function SimApp() {
             ) : null}
           </div>
         )}
-        {lesson.legend ? (
+        {lesson.legend && !lesson.page ? (
           <div className="legend">
             {lesson.legend.map((item) => (
               <div key={item.label} className="legend-row">
@@ -435,7 +442,7 @@ export function SimApp() {
                     ? `${gloss.en}. ${GLOSS_EN[gloss.vi] ?? gloss.blurb}`
                     : lesson.id === "quiz" && locale === "en" && quizEn
                       ? quizEn.prompt
-                      : tr(locale, current.body)
+                      : tr(locale, current.body) + (story?.steps[step]?.cite ? ` ${story.steps[step]!.cite!.map((n) => `[${n}]`).join(" ")}` : "")
                 }
               />
             </p>
@@ -522,6 +529,8 @@ export function SimApp() {
           </div>
         ) : null}
       </aside>
+
+      <CiteCard />
 
       {help ? (
         <div className="help-layer" onClick={toggleHelp} role="presentation">
@@ -735,39 +744,6 @@ function ControlDock({ kinds }: { kinds: ControlKind[] }) {
           <button type="button" className={s.singleCrystal ? "btn on" : "btn"} onClick={() => s.patch({ singleCrystal: !s.singleCrystal })}>
             {s.singleCrystal ? ui(locale, "crystal") : ui(locale, "film")}
           </button>
-        </div>
-      ) : null}
-      {kinds.includes("plqy") ? (
-        <label className="ctrl">
-          <span>
-            PLQY <strong>{(s.plqy * 100).toFixed(s.plqy < 0.01 ? 3 : 2)}%</strong> · Voc ≈ {vocFromPlqy(s.plqy).toFixed(3)} V
-          </span>
-          <input
-            type="range"
-            min={0}
-            max={1000}
-            value={Math.round(((Math.log(s.plqy) - Math.log(1e-6)) / (0 - Math.log(1e-6))) * 1000)}
-            onChange={(e) => {
-              const u = Number(e.target.value) / 1000;
-              const plqy = Math.exp(Math.log(1e-6) + u * (0 - Math.log(1e-6)));
-              s.patch({ plqy });
-            }}
-          />
-        </label>
-      ) : null}
-      {kinds.includes("enemy") ? (
-        <div className="ctrl">
-          <span>{ui(locale, "enemy")}</span>
-          <span className="chip-row">
-            {[1, 2, 3, 4, 5].map((n) => (
-              <button key={n} type="button" className={s.enemy === n ? "btn on" : "btn"} onClick={() => s.patch({ enemy: n })}>
-                {n}
-              </button>
-            ))}
-            <button type="button" className={s.defense ? "btn on" : "btn"} onClick={() => s.patch({ defense: !s.defense })}>
-              {ui(locale, "defense")}
-            </button>
-          </span>
         </div>
       ) : null}
       {kinds.includes("explode") ? (

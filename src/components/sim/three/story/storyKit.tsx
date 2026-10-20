@@ -433,16 +433,20 @@ export type CellState = {
   etl: number;
   htl: number;
   perov: number;
+  /** 3.8: 0 = layers in place, 1 = glass and ETL lifted away and faded, so the grains show. */
+  lift: number;
+  /** 3.8: 0 = healthy absorber colour, 1 = browned by damage. */
+  dmg: number;
 };
 
 export function makeCellState(h: number = STACK.thin): CellState {
-  return { h, thick: 0, etl: 0, htl: 0, perov: 0 };
+  return { h, thick: 0, etl: 0, htl: 0, perov: 0, lift: 0, dmg: 0 };
 }
 
 const UNIT_BOX = new THREE.BoxGeometry(1, 1, 1);
 const UNIT_EDGES = new THREE.EdgesGeometry(UNIT_BOX);
 
-type LayerKey = "glass" | "etl" | "perov" | "htl" | "elec";
+export type LayerKey = "glass" | "etl" | "perov" | "htl" | "elec";
 
 const LAYER_STYLE: Record<
   LayerKey,
@@ -474,15 +478,19 @@ const LABEL_DY: Record<LayerKey, number> = {
 
 const THIN_PEROV = new THREE.Color(LAYER_STYLE.perov.color);
 const THICK_PEROV = new THREE.Color("#5b6f7d");
+const DAMAGED_PEROV = new THREE.Color("#8a6a2a");
 
 export function CellStack({
   state,
   layerLabels = false,
   lattice,
   dim = 1,
+  names,
 }: {
   state: CellState;
   layerLabels?: boolean;
+  /** Replaces the default layer names (3.8 calls the top layer the transparent electrode). */
+  names?: Partial<Record<LayerKey, string>>;
   /** Drawn at the centre of the thin perovskite layer, hidden while the layer is thick. */
   lattice?: ReactNode;
   dim?: number;
@@ -508,27 +516,41 @@ export function CellStack({
     htl: useRef<THREE.MeshStandardMaterial>(null),
     elec: useRef<THREE.MeshStandardMaterial>(null),
   };
+  const edgeMats = {
+    glass: useRef<THREE.LineBasicMaterial>(null),
+    etl: useRef<THREE.LineBasicMaterial>(null),
+  };
   const latticeGroup = useRef<THREE.Group>(null);
   const keys: LayerKey[] = ["glass", "etl", "perov", "htl", "elec"];
 
   useFrame(() => {
     const sp = stackSpans(state.h);
+    // lifting only moves the two layers above the absorber
+    const fade = 1 - smooth(state.lift);
     for (const k of keys) {
       const s = k === "perov" ? sp.perov : sp[k];
-      refs[k].current?.position.set(0, s.mid, 0);
+      const up = k === "glass" ? 1.1 : k === "etl" ? 0.8 : 0;
+      refs[k].current?.position.set(0, s.mid + up * smooth(state.lift), 0);
       inner[k].current?.scale.set(STACK.w, s.h, STACK.d);
+      if (k === "glass" || k === "etl") {
+        const g = refs[k].current;
+        if (g) g.visible = fade > 0.02;
+        const em = edgeMats[k].current;
+        if (em) em.opacity = 0.55 * fade;
+      }
     }
     const m = mats;
     if (m.perov.current) {
-      m.perov.current.color.copy(THIN_PEROV).lerp(THICK_PEROV, state.thick);
-      m.perov.current.emissive.copy(THIN_PEROV).lerp(THICK_PEROV, state.thick);
+      m.perov.current.color.copy(THIN_PEROV).lerp(THICK_PEROV, state.thick).lerp(DAMAGED_PEROV, state.dmg);
+      m.perov.current.emissive.copy(THIN_PEROV).lerp(THICK_PEROV, state.thick).lerp(DAMAGED_PEROV, state.dmg);
       m.perov.current.emissiveIntensity = 0.1 + state.perov * 0.6;
       m.perov.current.opacity = (0.3 + state.thick * 0.26) * dim;
     }
     if (m.etl.current) {
       m.etl.current.emissiveIntensity = 0.12 + state.etl * 1.4;
-      m.etl.current.opacity = Math.min(0.9, (0.5 + state.etl * 0.25) * dim);
+      m.etl.current.opacity = Math.min(0.9, (0.5 + state.etl * 0.25) * dim) * fade;
     }
+    if (m.glass.current) m.glass.current.opacity = LAYER_STYLE.glass.opacity * fade;
     if (m.htl.current) {
       m.htl.current.emissiveIntensity = 0.12 + state.htl * 1.4;
       m.htl.current.opacity = Math.min(0.9, (0.5 + state.htl * 0.25) * dim);
@@ -560,12 +582,17 @@ export function CellStack({
                 />
               </mesh>
               <lineSegments geometry={UNIT_EDGES}>
-                <lineBasicMaterial color={st.edge} transparent opacity={0.55} />
+                <lineBasicMaterial
+                  ref={k === "glass" || k === "etl" ? edgeMats[k] : undefined}
+                  color={st.edge}
+                  transparent
+                  opacity={0.55}
+                />
               </lineSegments>
             </group>
             {layerLabels ? (
               <StoryTag position={[STACK.w / 2 + 0.35, LABEL_DY[k], 0.4]} kind="layer" minor>
-                {LAYER_NAME[k]}
+                {names?.[k] ?? LAYER_NAME[k]}
               </StoryTag>
             ) : null}
           </group>

@@ -53,7 +53,11 @@ export function Stage() {
   const autoRotate = useSim((s) => s.autoRotate);
   const camLevel = useSim((s) => s.camLevel);
   const lesson = getLesson(lessonId);
-  const storyCam = lesson.story ? (camLevel ? String(camLevel) : (storyOf(lesson.id)?.steps[step]?.cam ?? "1")) : "";
+  const micro = useSim((s) => s.micro);
+  const spec = lesson.story ? storyOf(lesson.id) : undefined;
+  // 3.8: with the microscope off the camera stays on the whole solar cell
+  const stepCam = (spec?.group === "degrade" || spec?.microSwitch) && !micro ? "1" : (spec?.steps[step]?.cam ?? "1");
+  const storyCam = lesson.story ? (camLevel ? String(camLevel) : stepCam) : "";
   const locale = useSim((s) => s.locale);
   const [ready, setReady] = useState(false);
   useEffect(() => setReady(true), []);

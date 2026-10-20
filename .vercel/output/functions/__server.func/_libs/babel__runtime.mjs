@@ -1,4 +1,4 @@
-//#region node_modules/@babel/runtime/helpers/esm/extends.js
+//#region node_modules/.pnpm/@babel+runtime@7.29.10/node_modules/@babel/runtime/helpers/esm/extends.js
 function _extends() {
 	return _extends = Object.assign ? Object.assign.bind() : function(n) {
 		for (var e = 1; e < arguments.length; e++) {

@@ -1,6 +1,6 @@
 import { i as __toESM } from "../_runtime.mjs";
-import { y as require_react } from "./@react-three/drei+[...].mjs";
-//#region node_modules/lucide-react/dist/esm/shared/src/utils.js
+import { F as require_react } from "./@react-three/drei+[...].mjs";
+//#region node_modules/.pnpm/lucide-react@0.510.0_react@19.3.0/node_modules/lucide-react/dist/esm/shared/src/utils.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 /**
 * @license lucide-react v0.510.0 - ISC
@@ -21,7 +21,7 @@ var hasA11yProp = (props) => {
 	for (const prop in props) if (prop.startsWith("aria-") || prop === "role" || prop === "title") return true;
 };
 //#endregion
-//#region node_modules/lucide-react/dist/esm/defaultAttributes.js
+//#region node_modules/.pnpm/lucide-react@0.510.0_react@19.3.0/node_modules/lucide-react/dist/esm/defaultAttributes.js
 /**
 * @license lucide-react v0.510.0 - ISC
 *
@@ -40,7 +40,7 @@ var defaultAttributes = {
 	strokeLinejoin: "round"
 };
 //#endregion
-//#region node_modules/lucide-react/dist/esm/Icon.js
+//#region node_modules/.pnpm/lucide-react@0.510.0_react@19.3.0/node_modules/lucide-react/dist/esm/Icon.js
 /**
 * @license lucide-react v0.510.0 - ISC
 *
@@ -59,7 +59,7 @@ var Icon = (0, import_react.forwardRef)(({ color = "currentColor", size = 24, st
 	...rest
 }, [...iconNode.map(([tag, attrs]) => (0, import_react.createElement)(tag, attrs)), ...Array.isArray(children) ? children : [children]]));
 //#endregion
-//#region node_modules/lucide-react/dist/esm/createLucideIcon.js
+//#region node_modules/.pnpm/lucide-react@0.510.0_react@19.3.0/node_modules/lucide-react/dist/esm/createLucideIcon.js
 /**
 * @license lucide-react v0.510.0 - ISC
 *
@@ -76,6 +76,19 @@ var createLucideIcon = (iconName, iconNode) => {
 	Component.displayName = toPascalCase(iconName);
 	return Component;
 };
+/**
+* @license lucide-react v0.510.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var ArrowLeft = createLucideIcon("arrow-left", [["path", {
+	d: "m12 19-7-7 7-7",
+	key: "1l729n"
+}], ["path", {
+	d: "M19 12H5",
+	key: "x3x0zl"
+}]]);
 /**
 * @license lucide-react v0.510.0 - ISC
 *
@@ -137,6 +150,133 @@ var CircleHelp = createLucideIcon("circle-help", [
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
+var Crosshair = createLucideIcon("crosshair", [
+	["circle", {
+		cx: "12",
+		cy: "12",
+		r: "10",
+		key: "1mglay"
+	}],
+	["line", {
+		x1: "22",
+		x2: "18",
+		y1: "12",
+		y2: "12",
+		key: "l9bcsi"
+	}],
+	["line", {
+		x1: "6",
+		x2: "2",
+		y1: "12",
+		y2: "12",
+		key: "13hhkx"
+	}],
+	["line", {
+		x1: "12",
+		x2: "12",
+		y1: "6",
+		y2: "2",
+		key: "10w3f3"
+	}],
+	["line", {
+		x1: "12",
+		x2: "12",
+		y1: "22",
+		y2: "18",
+		key: "15g9kq"
+	}]
+]);
+/**
+* @license lucide-react v0.510.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var ExternalLink = createLucideIcon("external-link", [
+	["path", {
+		d: "M15 3h6v6",
+		key: "1q9fwt"
+	}],
+	["path", {
+		d: "M10 14 21 3",
+		key: "gplh6r"
+	}],
+	["path", {
+		d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6",
+		key: "a6xqqp"
+	}]
+]);
+/**
+* @license lucide-react v0.510.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var EyeOff = createLucideIcon("eye-off", [
+	["path", {
+		d: "M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49",
+		key: "ct8e1f"
+	}],
+	["path", {
+		d: "M14.084 14.158a3 3 0 0 1-4.242-4.242",
+		key: "151rxh"
+	}],
+	["path", {
+		d: "M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143",
+		key: "13bj9a"
+	}],
+	["path", {
+		d: "m2 2 20 20",
+		key: "1ooewy"
+	}]
+]);
+/**
+* @license lucide-react v0.510.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var Eye = createLucideIcon("eye", [["path", {
+	d: "M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0",
+	key: "1nclc0"
+}], ["circle", {
+	cx: "12",
+	cy: "12",
+	r: "3",
+	key: "1v7zrd"
+}]]);
+/**
+* @license lucide-react v0.510.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var FastForward = createLucideIcon("fast-forward", [["polygon", {
+	points: "13 19 22 12 13 5 13 19",
+	key: "587y9g"
+}], ["polygon", {
+	points: "2 19 11 12 2 5 2 19",
+	key: "3pweh0"
+}]]);
+/**
+* @license lucide-react v0.510.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var Gauge = createLucideIcon("gauge", [["path", {
+	d: "m12 14 4-4",
+	key: "9kzdfg"
+}], ["path", {
+	d: "M3.34 19a10 10 0 1 1 17.32 0",
+	key: "19p75a"
+}]]);
+/**
+* @license lucide-react v0.510.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
 var Image = createLucideIcon("image", [
 	["rect", {
 		width: "18",
@@ -156,6 +296,28 @@ var Image = createLucideIcon("image", [
 	["path", {
 		d: "m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21",
 		key: "1xmnt7"
+	}]
+]);
+/**
+* @license lucide-react v0.510.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var Info = createLucideIcon("info", [
+	["circle", {
+		cx: "12",
+		cy: "12",
+		r: "10",
+		key: "1mglay"
+	}],
+	["path", {
+		d: "M12 16v-4",
+		key: "1dtifu"
+	}],
+	["path", {
+		d: "M12 8h.01",
+		key: "e9boi3"
 	}]
 ]);
 /**
@@ -186,6 +348,38 @@ var Maximize2 = createLucideIcon("maximize-2", [
 		y1: "21",
 		y2: "14",
 		key: "1atl0r"
+	}]
+]);
+/**
+* @license lucide-react v0.510.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var Microscope = createLucideIcon("microscope", [
+	["path", {
+		d: "M6 18h8",
+		key: "1borvv"
+	}],
+	["path", {
+		d: "M3 22h18",
+		key: "8prr45"
+	}],
+	["path", {
+		d: "M14 22a7 7 0 1 0 0-14h-1",
+		key: "1jwaiy"
+	}],
+	["path", {
+		d: "M9 14h2",
+		key: "197e7h"
+	}],
+	["path", {
+		d: "M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z",
+		key: "1bmzmy"
+	}],
+	["path", {
+		d: "M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3",
+		key: "1drr47"
 	}]
 ]);
 /**
@@ -268,6 +462,34 @@ var RotateCcw = createLucideIcon("rotate-ccw", [["path", {
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
+var Sparkles = createLucideIcon("sparkles", [
+	["path", {
+		d: "M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z",
+		key: "4pj2yx"
+	}],
+	["path", {
+		d: "M20 3v4",
+		key: "1olli1"
+	}],
+	["path", {
+		d: "M22 5h-4",
+		key: "1gvqau"
+	}],
+	["path", {
+		d: "M4 17v2",
+		key: "vumght"
+	}],
+	["path", {
+		d: "M5 18H3",
+		key: "zchphs"
+	}]
+]);
+/**
+* @license lucide-react v0.510.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
 var TriangleAlert = createLucideIcon("triangle-alert", [
 	["path", {
 		d: "m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3",
@@ -296,4 +518,4 @@ var X = createLucideIcon("x", [["path", {
 	key: "d8bk6v"
 }]]);
 //#endregion
-export { Pause as a, Image as c, ChevronLeft as d, BookOpen as f, Play as i, CircleHelp as l, TriangleAlert as n, Minimize2 as o, RotateCcw as r, Maximize2 as s, X as t, ChevronRight as u };
+export { ArrowLeft as S, Crosshair as _, Play as a, ChevronLeft as b, Microscope as c, Image as d, Gauge as f, ExternalLink as g, EyeOff as h, RotateCcw as i, Maximize2 as l, Eye as m, TriangleAlert as n, Pause as o, FastForward as p, Sparkles as r, Minimize2 as s, X as t, Info as u, CircleHelp as v, BookOpen as x, ChevronRight as y };

@@ -1,6 +1,5 @@
 import type { Locale } from "./store";
 import { LABELS_EN } from "./labels-en";
-import { FAB_EN } from "./fab-en";
 import { EXTRA_EN } from "./extra-en";
 import { BODY_EN } from "./body-en";
 import { STORY_EN } from "./story";
@@ -454,7 +453,7 @@ const PHRASE: Record<string, string> = {
 
 export function tr(locale: Locale, text: string): string {
   if (locale === "vi" || !text) return text;
-  return STORY_EN[text] ?? PHRASE[text] ?? LABELS_EN[text] ?? FAB_EN[text] ?? EXTRA_EN[text] ?? BODY_EN[text] ?? text;
+  return STORY_EN[text] ?? PHRASE[text] ?? LABELS_EN[text] ?? EXTRA_EN[text] ?? BODY_EN[text] ?? text;
 }
 
 export const HELP: Record<Locale, string[]> = {
@@ -748,64 +747,6 @@ export const TABLES: Record<string, TableSpec> = {
       ],
     },
   },
-  stack: {
-    caption: {
-      vi: "Các lớp của đề xuất p-i-n, theo thứ tự ánh sáng đi từ kính lọc UV lên điện cực kim loại (trong mô hình 3D ánh sáng đi từ dưới). Bề dày không theo tỉ lệ thật. Cột «chặn» trỏ về năm kẻ thù ở mục 3.9. Cơ sở là số tài liệu [n].",
-      en: "Layers of the proposed p-i-n cell, in the order light travels from the UV glass toward the metal (in the 3D model light comes from below). Thicknesses are not to scale. The “blocks” column points at the five threats in section 3.9. The basis is citation [n].",
-    },
-    headers: {
-      vi: ["Lớp", "Việc của lớp", "Chặn", "Cơ sở"],
-      en: ["Layer", "Job", "Blocks", "Basis"],
-    },
-    rows: {
-      vi: [
-        ["Kính lọc UV", "Chặn tia cực tím", "4 UV", "[26]"],
-        ["ITO + NiOₓ + SAM", "Điện cực trong suốt, lấy lỗ trống", "Tổn thất áp", "[39]"],
-        ["2D mặt dưới", "Thụ động hóa giao diện dưới", "Áp, ion", "[30]"],
-        ["Lõi FA/Cs thuần iod", "Hấp thụ; không MA; không Hoke", "3 nhiệt", "[19][22][24]"],
-        ["2D mặt trên", "Kỵ nước, chặn ion", "1 ẩm, 5 ion", "[29][30]"],
-        ["C₆₀", "Lấy điện tử", "—", "[39]"],
-        ["SnO₂ ALD", "Rào đặc, chặn iod", "5 ion, 1 ẩm", "[39][40]"],
-        ["Cu/Ag", "Thu điện tử", "—", "—"],
-        ["Kính và gioăng mép", "Đóng gói kín", "1 ẩm, 2 oxy", "[38]"],
-      ],
-      en: [
-        ["UV glass", "Stop ultraviolet before the cell", "4 UV", "[26]"],
-        ["ITO + NiOₓ + SAM", "Transparent contact, collect holes", "Voltage loss", "[39]"],
-        ["Bottom 2D", "Passivate the lower interface", "Voltage, ions", "[30]"],
-        ["Pure-iodide FA/Cs core", "Absorb; no MA; no Hoke", "3 heat", "[19][22][24]"],
-        ["Top 2D", "Repel water, block ions", "1 moisture, 5 ions", "[29][30]"],
-        ["C₆₀", "Collect electrons", "—", "[39]"],
-        ["SnO₂ ALD", "Dense barrier against iodide", "5 ions, 1 moisture", "[39][40]"],
-        ["Cu/Ag", "Collect electrons", "—", "—"],
-        ["Glass and edge seal", "A sealed package", "1 moisture, 2 oxygen", "[38]"],
-      ],
-    },
-  },
-  verify: {
-    caption: {
-      vi: "Mục tiêu đề xuất để kiểm chứng, chưa phải kết quả đã đo trên đúng tổ hợp này. Đường trên mô hình: cam là pin chưa tối ưu, lục là mục tiêu giữ trên 90% sau 2000 giờ. Sao vàng là mốc 93% / 2000 giờ đã được báo cáo cho một pin 27,3% [39], không phải số của tổ hợp giả thuyết.",
-      en: "Proposed targets to test, not results already measured on this exact stack. On the model: orange is an unoptimized cell, green is the goal of staying above 90% after 2000 hours. The gold mark is the reported 93% / 2000 h for a 27.3% cell [39], not a measurement of the hypothetical stack.",
-    },
-    headers: {
-      vi: ["Hạng mục", "Mục tiêu"],
-      en: ["Item", "Target"],
-    },
-    rows: {
-      vi: [
-        ["Hiệu suất ban đầu, 1 cm²", "≥ 26%"],
-        ["ISOS-L-3", "> 90% sau 2000 giờ"],
-        ["Phép đo kèm", "PLQY, nhiễu xạ tia X, phổ khối hoặc XPS"],
-        ["Đối chứng", "Bỏ lần lượt 2D trên, 2D dưới, lớp ALD"],
-      ],
-      en: [
-        ["Initial efficiency, 1 cm²", "≥ 26%"],
-        ["ISOS-L-3", "> 90% after 2000 hours"],
-        ["Accompanying tests", "PLQY, X-ray diffraction, mass spectrometry or XPS"],
-        ["Controls", "Remove top 2D, bottom 2D, and the ALD layer one at a time"],
-      ],
-    },
-  },
   sq: {
     caption: {
       vi: "Trần Shockley–Queisser của một lớp [70]. Hai tổn thất không tránh: photon yếu hơn Eg đi xuyên, photon mạnh hơn Eg chỉ nộp đúng Eg và phần dư thành nhiệt. Đỉnh minh họa giữ ở 33,7%, quanh 1,34 eV. Từ 1,0 đến 1,6 eV đường vẫn trên 30%. Hai lớp không bị buộc theo đường này.",
@@ -899,13 +840,13 @@ export const QUIZ_EN: { prompt: string; options: string[]; why: string }[] = [
     why: "33.7% is the limit for one gap. Stacking different gaps avoids both thermalization loss and the photons that were passing through.",
   },
   {
-    prompt: "Which part of the proposal stops iodide ions?",
+    prompt: "Why should a material not be chosen only for a high initial efficiency?",
     options: [
-      "Only the UV-filter glass",
-      "2D layers on both faces, plus a dense SnO₂ ALD barrier, plus a pure-iodide core that avoids phase segregation",
-      "Only a silver electrode",
-      "A lithium-doped Spiro-OMeTAD layer",
+      "Because initial efficiency is always a wrong number",
+      "Because it must also fit its role, align energetically, be compatible with neighbouring layers and survive fabrication and operation",
+      "Because only the cheapest material may be used",
+      "Because perovskite cells need no contact layers",
     ],
-    why: "Threat 5 is assigned to the 2D layers, the ALD barrier, and fewer vacancies. The UV glass aims at a different threat.",
+    why: "Section 5.3: a material that improves one property can create a problem elsewhere (for example a passivation layer that helps n–i–p cells but can hurt p–i–n cells [103]), so the whole stack must be optimised together.",
   },
 ];

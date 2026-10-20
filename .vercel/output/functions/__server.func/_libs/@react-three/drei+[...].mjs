@@ -1,6 +1,6 @@
 import { i as __toESM, n as __exportAll, t as __commonJSMin } from "../../_runtime.mjs";
 import { t as _extends } from "../babel__runtime.mjs";
-//#region node_modules/react/cjs/react.production.js
+//#region node_modules/.pnpm/react@19.3.0/node_modules/react/cjs/react.production.js
 /**
 * @license React
 * react.production.js
@@ -387,12 +387,12 @@ var require_react_production = /* @__PURE__ */ __commonJSMin(((exports) => {
 	exports.version = "19.3.0";
 }));
 //#endregion
-//#region node_modules/react/index.js
+//#region node_modules/.pnpm/react@19.3.0/node_modules/react/index.js
 var require_react = /* @__PURE__ */ __commonJSMin(((exports, module) => {
 	module.exports = require_react_production();
 }));
 //#endregion
-//#region node_modules/react/cjs/react-jsx-runtime.production.js
+//#region node_modules/.pnpm/react@19.3.0/node_modules/react/cjs/react-jsx-runtime.production.js
 /**
 * @license React
 * react-jsx-runtime.production.js
@@ -427,12 +427,12 @@ var require_react_jsx_runtime_production = /* @__PURE__ */ __commonJSMin(((expor
 	exports.jsxs = jsxProd;
 }));
 //#endregion
-//#region node_modules/react/jsx-runtime.js
+//#region node_modules/.pnpm/react@19.3.0/node_modules/react/jsx-runtime.js
 var require_jsx_runtime = /* @__PURE__ */ __commonJSMin(((exports, module) => {
 	module.exports = require_react_jsx_runtime_production();
 }));
 //#endregion
-//#region node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.production.js
+//#region node_modules/.pnpm/use-sync-external-store@1.7.0_react@19.3.0/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim.production.js
 /**
 * @license React
 * use-sync-external-store-shim.production.js
@@ -492,12 +492,12 @@ var require_use_sync_external_store_shim_production = /* @__PURE__ */ __commonJS
 	exports.useSyncExternalStore = void 0 !== React.useSyncExternalStore ? React.useSyncExternalStore : shim;
 }));
 //#endregion
-//#region node_modules/use-sync-external-store/shim/index.js
+//#region node_modules/.pnpm/use-sync-external-store@1.7.0_react@19.3.0/node_modules/use-sync-external-store/shim/index.js
 var require_shim = /* @__PURE__ */ __commonJSMin(((exports, module) => {
 	module.exports = require_use_sync_external_store_shim_production();
 }));
 //#endregion
-//#region node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.production.js
+//#region node_modules/.pnpm/use-sync-external-store@1.7.0_react@19.3.0/node_modules/use-sync-external-store/cjs/use-sync-external-store-shim/with-selector.production.js
 /**
 * @license React
 * use-sync-external-store-shim/with-selector.production.js
@@ -569,12 +569,12 @@ var require_with_selector_production = /* @__PURE__ */ __commonJSMin(((exports) 
 	};
 }));
 //#endregion
-//#region node_modules/use-sync-external-store/shim/with-selector.js
+//#region node_modules/.pnpm/use-sync-external-store@1.7.0_react@19.3.0/node_modules/use-sync-external-store/shim/with-selector.js
 var require_with_selector = /* @__PURE__ */ __commonJSMin(((exports, module) => {
 	module.exports = require_with_selector_production();
 }));
 //#endregion
-//#region node_modules/zustand/esm/vanilla.mjs
+//#region node_modules/.pnpm/zustand@5.0.15_@types+react@19.3.0_react@19.3.0_use-sync-external-store@1.7.0_react@19.3.0_/node_modules/zustand/esm/vanilla.mjs
 var import_react = /* @__PURE__ */ __toESM(require_react(), 1);
 var import_jsx_runtime = require_jsx_runtime();
 var import_with_selector = /* @__PURE__ */ __toESM(require_with_selector(), 1);
@@ -606,7 +606,7 @@ var createStoreImpl = (createState) => {
 };
 var createStore$1 = ((createState) => createState ? createStoreImpl(createState) : createStoreImpl);
 //#endregion
-//#region node_modules/scheduler/cjs/scheduler.production.js
+//#region node_modules/.pnpm/scheduler@0.28.0/node_modules/scheduler/cjs/scheduler.production.js
 /**
 * @license React
 * scheduler.production.js
@@ -861,12 +861,12 @@ var require_scheduler_production = /* @__PURE__ */ __commonJSMin(((exports) => {
 	};
 }));
 //#endregion
-//#region node_modules/scheduler/index.js
+//#region node_modules/.pnpm/scheduler@0.28.0/node_modules/scheduler/index.js
 var require_scheduler = /* @__PURE__ */ __commonJSMin(((exports, module) => {
 	module.exports = require_scheduler_production();
 }));
 //#endregion
-//#region node_modules/react-dom/cjs/react-dom.production.js
+//#region node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom.production.js
 /**
 * @license React
 * react-dom.production.js
@@ -1019,7 +1019,7 @@ var require_react_dom_production = /* @__PURE__ */ __commonJSMin(((exports) => {
 	exports.version = "19.3.0";
 }));
 //#endregion
-//#region node_modules/react-dom/index.js
+//#region node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/index.js
 var require_react_dom = /* @__PURE__ */ __commonJSMin(((exports, module) => {
 	function checkDCE() {
 		if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === "undefined" || typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== "function") return;
@@ -1033,7 +1033,7 @@ var require_react_dom = /* @__PURE__ */ __commonJSMin(((exports, module) => {
 	module.exports = require_react_dom_production();
 }));
 //#endregion
-//#region node_modules/react-dom/cjs/react-dom-client.production.js
+//#region node_modules/.pnpm/react-dom@19.3.0_react@19.3.0/node_modules/react-dom/cjs/react-dom-client.production.js
 /**
 * @license React
 * react-dom-client.production.js
@@ -11608,7 +11608,7 @@ var require_react_dom_client_production = /* @__PURE__ */ __commonJSMin(((export
 	};
 }));
 //#endregion
-//#region node_modules/three/build/three.core.js
+//#region node_modules/.pnpm/three@0.186.1/node_modules/three/build/three.core.js
 var import_client = /* @__PURE__ */ __toESM((/* @__PURE__ */ __commonJSMin(((exports, module) => {
 	function checkDCE() {
 		if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === "undefined" || typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== "function") return;
@@ -52974,7 +52974,7 @@ if (typeof window !== "undefined") {
 	else window.__THREE__ = "186";
 }
 //#endregion
-//#region node_modules/three/build/three.module.js
+//#region node_modules/.pnpm/three@0.186.1/node_modules/three/build/three.module.js
 /**
 * @license
 * Copyright 2010-2026 Three.js Authors
@@ -64349,7 +64349,7 @@ var WebGLRenderer = class {
 	}
 };
 //#endregion
-//#region node_modules/zustand/esm/traditional.mjs
+//#region node_modules/.pnpm/zustand@5.0.15_@types+react@19.3.0_react@19.3.0_use-sync-external-store@1.7.0_react@19.3.0_/node_modules/zustand/esm/traditional.mjs
 var { useSyncExternalStoreWithSelector } = import_with_selector.default;
 var identity = (arg) => arg;
 function useStoreWithEqualityFn(api, selector = identity, equalityFn) {
@@ -64365,7 +64365,7 @@ var createWithEqualityFnImpl = (createState, defaultEqualityFn) => {
 };
 var createWithEqualityFn = ((createState, defaultEqualityFn) => createState ? createWithEqualityFnImpl(createState, defaultEqualityFn) : createWithEqualityFnImpl);
 //#endregion
-//#region node_modules/suspend-react/index.js
+//#region node_modules/.pnpm/suspend-react@0.1.3_react@19.3.0/node_modules/suspend-react/index.js
 var isPromise = (promise) => typeof promise === "object" && typeof promise.then === "function";
 var globalCache = [];
 function shallowEqualArrays(arrA, arrB, equal = (a, b) => a === b) {
@@ -64415,7 +64415,7 @@ var clear = (keys) => {
 	}
 };
 //#endregion
-//#region node_modules/its-fine/dist/index.js
+//#region node_modules/.pnpm/its-fine@2.1.1_@types+react@19.3.0_react@19.3.0/node_modules/its-fine/dist/index.js
 var import_scheduler = /* @__PURE__ */ __toESM(require_scheduler());
 /* @__PURE__ */ (() => {
 	var e, t;
@@ -64549,7 +64549,7 @@ function N() {
 	}), [t]), t.Bridge;
 }
 //#endregion
-//#region node_modules/@react-three/fiber/dist/events-9ce18a08.esm.js
+//#region node_modules/.pnpm/@react-three+fiber@9.8.1_@types+react@19.3.0_react-dom@19.3.0_react@19.3.0__react@19.3.0_three@0.186.1/node_modules/@react-three/fiber/dist/events-9ce18a08.esm.js
 /**
 * Returns the instance's initial (outmost) root.
 */
@@ -71821,7 +71821,7 @@ function createPointerEvents(store) {
 	};
 }
 //#endregion
-//#region node_modules/react-use-measure/dist/index.js
+//#region node_modules/.pnpm/react-use-measure@2.1.7_react-dom@19.3.0_react@19.3.0__react@19.3.0/node_modules/react-use-measure/dist/index.js
 function g(n, t) {
 	let o;
 	return (...i) => {
@@ -71943,7 +71943,7 @@ var k = [
 ];
 var D = (n, t) => k.every((o) => n[o] === t[o]);
 //#endregion
-//#region node_modules/@react-three/fiber/dist/react-three-fiber.esm.js
+//#region node_modules/.pnpm/@react-three+fiber@9.8.1_@types+react@19.3.0_react-dom@19.3.0_react@19.3.0__react@19.3.0_three@0.186.1/node_modules/@react-three/fiber/dist/react-three-fiber.esm.js
 function CanvasImpl({ ref, children, fallback, resize, style, gl, events = createPointerEvents, eventSource, eventPrefix, shadows, linear, flat, legacy, orthographic, frameloop, dpr, performance, raycaster, camera, scene, onPointerMissed, onCreated, ...props }) {
 	import_react.useMemo(() => extend(three_module_exports), []);
 	const Bridge = useBridge();
@@ -72064,7 +72064,7 @@ function Canvas(props) {
 	return /*#__PURE__*/ (0, import_jsx_runtime.jsx)(h, { children: /*#__PURE__*/ (0, import_jsx_runtime.jsx)(CanvasImpl, { ...props }) });
 }
 //#endregion
-//#region node_modules/@react-three/drei/web/Html.js
+//#region node_modules/.pnpm/@react-three+drei@10.7.9_@react-three+fiber@9.8.1_@types+react@19.3.0_react-dom@19.3.0__57f30cc1689007102dce44010e96cbaf/node_modules/@react-three/drei/web/Html.js
 var v1 = /* @__PURE__ */ new Vector3();
 var v2 = /* @__PURE__ */ new Vector3();
 var v3 = /* @__PURE__ */ new Vector3();
@@ -72410,7 +72410,7 @@ var Html = /* @__PURE__ */ import_react.forwardRef(({ children, eps = .001, styl
 	})));
 });
 //#endregion
-//#region node_modules/three-stdlib/controls/EventDispatcher.js
+//#region node_modules/.pnpm/three-stdlib@2.36.1_three@0.186.1/node_modules/three-stdlib/controls/EventDispatcher.js
 var __defProp$1 = Object.defineProperty;
 var __defNormalProp$1 = (obj, key, value) => key in obj ? __defProp$1(obj, key, {
 	enumerable: true,
@@ -72476,7 +72476,7 @@ var EventDispatcher = class {
 	}
 };
 //#endregion
-//#region node_modules/three-stdlib/controls/OrbitControls.js
+//#region node_modules/.pnpm/three-stdlib@2.36.1_three@0.186.1/node_modules/three-stdlib/controls/OrbitControls.js
 var __defProp = Object.defineProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, {
 	enumerable: true,
@@ -73211,7 +73211,7 @@ var OrbitControls$1 = class extends EventDispatcher {
 	}
 };
 //#endregion
-//#region node_modules/@react-three/drei/core/shaderMaterial.js
+//#region node_modules/.pnpm/@react-three+drei@10.7.9_@react-three+fiber@9.8.1_@types+react@19.3.0_react-dom@19.3.0__57f30cc1689007102dce44010e96cbaf/node_modules/@react-three/drei/core/shaderMaterial.js
 function shaderMaterial(uniforms, vertexShader, fragmentShader, onInit) {
 	var _Class = class extends ShaderMaterial {
 		constructor(parameters) {
@@ -73238,11 +73238,11 @@ function shaderMaterial(uniforms, vertexShader, fragmentShader, onInit) {
 	return _Class.key = MathUtils.generateUUID(), _Class;
 }
 //#endregion
-//#region node_modules/@react-three/drei/helpers/constants.js
+//#region node_modules/.pnpm/@react-three+drei@10.7.9_@react-three+fiber@9.8.1_@types+react@19.3.0_react-dom@19.3.0__57f30cc1689007102dce44010e96cbaf/node_modules/@react-three/drei/helpers/constants.js
 var getVersion = () => parseInt("186".replace(/\D+/g, ""));
 var version = /* @__PURE__ */ getVersion();
 //#endregion
-//#region node_modules/@react-three/drei/core/OrbitControls.js
+//#region node_modules/.pnpm/@react-three+drei@10.7.9_@react-three+fiber@9.8.1_@types+react@19.3.0_react-dom@19.3.0__57f30cc1689007102dce44010e96cbaf/node_modules/@react-three/drei/core/OrbitControls.js
 var OrbitControls = /* @__PURE__ */ import_react.forwardRef(({ makeDefault, camera, regress, domElement, enableDamping = true, keyEvents = false, onChange, onStart, onEnd, ...restProps }, ref) => {
 	const invalidate = useThree((state) => state.invalidate);
 	const defaultCamera = useThree((state) => state.camera);
@@ -73311,7 +73311,7 @@ var OrbitControls = /* @__PURE__ */ import_react.forwardRef(({ makeDefault, came
 	}, restProps));
 });
 //#endregion
-//#region node_modules/@react-three/drei/core/Grid.js
+//#region node_modules/.pnpm/@react-three+drei@10.7.9_@react-three+fiber@9.8.1_@types+react@19.3.0_react-dom@19.3.0__57f30cc1689007102dce44010e96cbaf/node_modules/@react-three/drei/core/Grid.js
 var GridMaterial = /* @__PURE__ */ shaderMaterial({
 	cellSize: .5,
 	sectionSize: 1,
@@ -73427,4 +73427,4 @@ var Grid = /* @__PURE__ */ import_react.forwardRef(({ args, cellColor = "#000000
 	}, uniforms1, uniforms2)), /*#__PURE__*/ import_react.createElement("planeGeometry", { args }));
 });
 //#endregion
-export { require_with_selector as _, useFrame as a, EdgesGeometry as c, OctahedronGeometry as d, Quaternion as f, createStore$1 as g, require_react_dom as h, Canvas as i, MathUtils as l, Vector3 as m, OrbitControls as n, useThree as o, SphereGeometry as p, Html as r, BoxGeometry as s, Grid as t, Object3D as u, require_jsx_runtime as v, require_react as y };
+export { Vector3 as A, Quaternion as C, SphereGeometry as D, ShaderMaterial as E, require_react as F, createStore$1 as M, require_with_selector as N, TorusGeometry as O, require_jsx_runtime as P, OctahedronGeometry as S, SRGBColorSpace as T, Line as _, useFrame as a, MeshStandardMaterial as b, BufferAttribute as c, CatmullRomCurve3 as d, Color as f, Float32BufferAttribute as g, Euler as h, Canvas as i, require_react_dom as j, TubeGeometry as k, BufferGeometry as l, EdgesGeometry as m, OrbitControls as n, useThree as o, CylinderGeometry as p, Html as r, BoxGeometry as s, Grid as t, CanvasTexture as u, LineBasicMaterial as v, RepeatWrapping as w, Object3D as x, Matrix4 as y };

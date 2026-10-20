@@ -8,17 +8,17 @@
 @theme {
   /* Tsinghua purple is the brand colour; the lighter lilac is its tint for text and highlights on the dark stage */
   --color-brand: #660874;
-  --color-bg: #0e0a13;
-  --color-surface: #1a1322;
-  --color-surface-2: #251a31;
+  --color-bg: #231b31;
+  --color-surface: #2b2139;
+  --color-surface-2: #382c49;
   --color-fg: #f6f1f9;
-  --color-muted: #a99db7;
+  --color-muted: #c3b8d1;
   --color-accent: #cf9ae6;
   --color-accent-fg: #1d0a26;
-  --color-line: #3a2c49;
+  --color-line: #574772;
   --color-good: #8fd0a8;
   --color-warn: #e08a55;
-  --color-ink: #09060d;
+  --color-ink: #261d35;
   --font-sans: "Be Vietnam Pro", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
   --radius: 0.75rem;
@@ -376,7 +376,7 @@
   max-height: none;
   object-fit: contain;
   object-position: center;
-  background: #09060d;
+  background: #261d35;
   border-radius: 12px;
 }
 

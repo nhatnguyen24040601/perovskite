@@ -78,9 +78,9 @@ export function Stage() {
       dpr={[1, 1.6]}
       gl={{ antialias: true }}
     >
-      <color attach="background" args={[theme === "light" ? "#f1eaf6" : "#0e0a13"]} />
+      <color attach="background" args={[theme === "light" ? "#f1eaf6" : "#241c32"]} />
       <ambientLight intensity={0.55} />
-      <hemisphereLight args={["#f4efe6", "#1a140e", 0.45]} />
+      <hemisphereLight args={["#f4efe6", "#3a3046", 0.6]} />
       <directionalLight position={[4.5, 6, 3]} intensity={1.45} />
       <directionalLight position={[-4, 2, -3]} intensity={0.35} color="#8ea2ff" />
       <Grid
@@ -91,8 +91,8 @@ export function Stage() {
         sectionThickness={1}
         fadeDistance={18}
         fadeStrength={1.5}
-        cellColor="#24303a"
-        sectionColor="#314555"
+        cellColor="#37465a"
+        sectionColor="#4a6177"
         position={[0, -1.65, 0]}
         infiniteGrid
       />

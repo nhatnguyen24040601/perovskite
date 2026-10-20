@@ -45,6 +45,8 @@ type SimState = {
   inspect: string | null;
   locale: Locale;
   textScale: number;
+  /** Colour theme of the whole site; light is the default. */
+  theme: "light" | "dark";
   presenting: boolean;
   photos: boolean;
   /** Story lessons (3.1 – 3.6): scientific labels on or off. */
@@ -84,6 +86,7 @@ type SimState = {
   patch: (p: Partial<SimState>) => void;
   setLocale: (locale: Locale) => void;
   setTextScale: (n: number) => void;
+  toggleTheme: () => void;
   togglePresent: () => void;
   togglePhotos: () => void;
   toggleLabels: () => void;
@@ -126,6 +129,7 @@ export const useSim = create<SimState>((set, get) => ({
   inspect: null,
   locale: "vi",
   textScale: 1,
+  theme: "light",
   presenting: false,
   photos: false,
   labels: true,
@@ -206,6 +210,7 @@ export const useSim = create<SimState>((set, get) => ({
   patch: (p) => set(p),
   setLocale: (locale) => set({ locale }),
   setTextScale: (n) => set({ textScale: Math.min(1.45, Math.max(0.85, n)) }),
+  toggleTheme: () => set((s) => ({ theme: s.theme === "light" ? "dark" : "light" })),
   togglePresent: () => set((s) => ({ presenting: !s.presenting })),
   togglePhotos: () => set((s) => ({ photos: !s.photos })),
   toggleLabels: () => set((s) => ({ labels: !s.labels })),

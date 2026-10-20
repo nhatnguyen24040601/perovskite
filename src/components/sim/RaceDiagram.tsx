@@ -48,14 +48,14 @@ export function RaceDiagram(_props: { step: number }) {
 
   return (
     <svg className="race-svg" viewBox="0 0 920 500" role="img" aria-label={t("sơ đồ hiệu suất theo năm")}>
-      <line x1={86} y1={318} x2={846} y2={318} stroke="#93a0ac" strokeWidth="2" />
-      <line x1={86} y1={318} x2={86} y2={58} stroke="#93a0ac" strokeWidth="2" />
+      <line x1={86} y1={318} x2={846} y2={318} stroke="var(--color-muted)" strokeWidth="2" />
+      <line x1={86} y1={318} x2={86} y2={58} stroke="var(--color-muted)" strokeWidth="2" />
       {[0, 10, 20, 30, 40].map((pct) => {
         const [, y] = xy(2009, pct);
         return (
           <g key={pct}>
-            <line x1={80} y1={y} x2={86} y2={y} stroke="#93a0ac" strokeWidth="2" />
-            <text x={72} y={y + 4} textAnchor="end" fill="#c5d0da" fontSize="14">
+            <line x1={80} y1={y} x2={86} y2={y} stroke="var(--color-muted)" strokeWidth="2" />
+            <text x={72} y={y + 4} textAnchor="end" fill="var(--color-fg)" fontSize="14">
               {pct}
             </text>
           </g>
@@ -64,15 +64,15 @@ export function RaceDiagram(_props: { step: number }) {
       {[2009, 2016, 2026].map((year) => {
         const [x] = xy(year, 0);
         return (
-          <text key={year} x={x} y={342} textAnchor="middle" fill="#c5d0da" fontSize="14">
+          <text key={year} x={x} y={342} textAnchor="middle" fill="var(--color-fg)" fontSize="14">
             {year}
           </text>
         );
       })}
-      <text x={466} y={372} textAnchor="middle" fill="#9aa6b4" fontSize="15">
+      <text x={466} y={372} textAnchor="middle" fill="var(--color-muted)" fontSize="15">
         {t("năm")}
       </text>
-      <text x={28} y={188} textAnchor="middle" fill="#9aa6b4" fontSize="15" transform="rotate(-90 28 188)">
+      <text x={28} y={188} textAnchor="middle" fill="var(--color-muted)" fontSize="15" transform="rotate(-90 28 188)">
         %
       </text>
 
@@ -86,7 +86,7 @@ export function RaceDiagram(_props: { step: number }) {
         const [x, y] = xy(year, pct);
         return <circle key={year} cx={x} cy={y} r={year === 2009 || year === 2026 ? 6 : 4} fill="#e08a55" />;
       })}
-      <text x={first[0] + 12} y={first[1] + 22} fill="#f4efe6" fontSize="16">
+      <text x={first[0] + 12} y={first[1] + 22} fill="var(--color-fg)" fontSize="16">
         {t("3,8% · 2009")}
       </text>
       <text x={endSingle[0] - 8} y={endSingle[1] + 28} textAnchor="end" fill="#e08a55" fontSize="18">
@@ -106,15 +106,15 @@ export function RaceDiagram(_props: { step: number }) {
 
       <g>
         <line x1="100" y1="28" x2="132" y2="28" stroke="#e08a55" strokeWidth="4" />
-        <text x="140" y="33" fill="#f4efe6" fontSize="15">
+        <text x="140" y="33" fill="var(--color-fg)" fontSize="15">
           {t("một lớp")}
         </text>
         <line x1="250" y1="28" x2="282" y2="28" stroke="#8fd0a8" strokeWidth="4" />
-        <text x="290" y="33" fill="#f4efe6" fontSize="15">
+        <text x="290" y="33" fill="var(--color-fg)" fontSize="15">
           33,7%
         </text>
         <line x1="400" y1="28" x2="432" y2="28" stroke="#79b0ff" strokeWidth="4" />
-        <text x="440" y="33" fill="#f4efe6" fontSize="15">
+        <text x="440" y="33" fill="var(--color-fg)" fontSize="15">
           tandem
         </text>
       </g>
@@ -124,7 +124,7 @@ export function RaceDiagram(_props: { step: number }) {
           const x = 70 + (i % 3) * 280;
           const y = 424 + Math.floor(i / 3) * 30;
           return (
-            <text key={num} x={x} y={y} fill="#f4efe6" fontSize="15">
+            <text key={num} x={x} y={y} fill="var(--color-fg)" fontSize="15">
               <tspan fill="#e4a23a">{num}</tspan>
               <tspan> {t(label)}</tspan>
             </text>

@@ -6,17 +6,19 @@
 @import "@fontsource/ibm-plex-mono/500.css";
 
 @theme {
-  --color-bg: #0b0f13;
-  --color-surface: #151c24;
-  --color-surface-2: #1e2832;
-  --color-fg: #f4efe6;
-  --color-muted: #93a0ac;
-  --color-accent: #e4a23a;
-  --color-accent-fg: #1c1306;
-  --color-line: #2c3946;
+  /* Tsinghua purple is the brand colour; the lighter lilac is its tint for text and highlights on the dark stage */
+  --color-brand: #660874;
+  --color-bg: #0e0a13;
+  --color-surface: #1a1322;
+  --color-surface-2: #251a31;
+  --color-fg: #f6f1f9;
+  --color-muted: #a99db7;
+  --color-accent: #cf9ae6;
+  --color-accent-fg: #1d0a26;
+  --color-line: #3a2c49;
   --color-good: #8fd0a8;
   --color-warn: #e08a55;
-  --color-ink: #070a0d;
+  --color-ink: #09060d;
   --font-sans: "Be Vietnam Pro", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
   --radius: 0.75rem;
@@ -80,8 +82,8 @@
   align-items: center;
   gap: 8px 16px;
   padding: 10px 14px;
-  border-bottom: 1px solid var(--color-line);
-  background: var(--color-ink);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-brand) 60%, var(--color-line));
+  background: linear-gradient(100deg, var(--color-brand) 0%, #470654 55%, #2a0833 100%);
   min-height: 60px;
 }
 
@@ -309,7 +311,7 @@
 }
 
 .data-fig th {
-  background: #241c33;
+  background: var(--color-surface-2);
   color: var(--color-fg);
   font-weight: 600;
   position: sticky;
@@ -374,7 +376,7 @@
   max-height: none;
   object-fit: contain;
   object-position: center;
-  background: #070a0d;
+  background: #09060d;
   border-radius: 12px;
 }
 
@@ -569,7 +571,7 @@
   align-items: center;
   justify-content: center;
   padding: 148px 24px 16px;
-  background: #0b0f13;
+  background: var(--color-bg);
 }
 
 .race-svg {
@@ -3741,4 +3743,562 @@
 
 @media (max-width: 560px) {
   .c6-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ── presentation mode, redesigned: quiet captions, nothing overlapping, pages full screen ── */
+
+/* story lessons: a smaller caption under the model */
+.app.presenting.story-lesson .story-card {
+  max-width: min(820px, calc(100% - 40px));
+  max-height: 34vh;
+  overflow: hidden;
+  padding: 12px 22px 14px;
+  gap: 6px;
+}
+
+.app.presenting.story-lesson .story-card p {
+  font-size: clamp(17px, 1.7vw, 24px);
+  line-height: 1.35;
+}
+
+.app.presenting.story-lesson .story-card .story-why,
+.app.presenting.story-lesson .story-card .story-simple {
+  font-size: clamp(13px, 1.05vw, 16px);
+  font-style: normal;
+  line-height: 1.35;
+  color: var(--color-muted);
+}
+
+.app.presenting.story-lesson .story-card .story-why b {
+  color: var(--color-good);
+}
+
+.app.presenting.story-lesson .story-card .story-simple b {
+  color: var(--color-accent);
+}
+
+.app.presenting.story-lesson .story-card .story-cites {
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.app.presenting.story-lesson .story-card .cite {
+  font-size: 0.8em;
+}
+
+.app.presenting.story-lesson .story-final {
+  padding: 8px 18px;
+}
+
+.app.presenting.story-lesson .story-final strong {
+  font-size: clamp(15px, 1.35vw, 20px);
+  line-height: 1.3;
+}
+
+.app.presenting.story-lesson .story-final span {
+  font-size: clamp(12px, 1vw, 15px);
+}
+
+/* the title strip, the exit button and the side buttons each get their own corner */
+.app.presenting.story-lesson .story-present-title {
+  max-width: calc(100% - 420px);
+}
+
+.app.presenting.story-lesson .story-exit {
+  top: 12px;
+  right: 12px;
+}
+
+.app.presenting.story-lesson .c5-toggle,
+.app.presenting.story-lesson .story-top .facts-btn {
+  top: 52px;
+  right: 12px;
+}
+
+.app.presenting.story-lesson .story-top .facts-btn {
+  position: absolute;
+  z-index: 4;
+}
+
+.app.presenting.story-lesson .c5-panel {
+  top: 92px;
+  max-height: calc(100% - 300px);
+}
+
+/* flat pages: the slide takes the whole screen, with a small control pill in the corner */
+.app.presenting.page-lesson,
+.app.presenting.page-lesson.explain-off,
+.app.presenting.page-lesson.nav-off,
+.app.presenting.page-lesson:not(.explain-off),
+.app.presenting.page-lesson.nav-off:not(.explain-off) {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  grid-template-areas: "stage";
+}
+
+.app.presenting.page-lesson .topbar,
+.app.presenting.page-lesson .nav,
+.app.presenting.page-lesson .panel,
+.app.presenting.page-lesson .playback {
+  display: none;
+}
+
+.app.presenting.page-lesson .page-scroll {
+  padding: 28px clamp(24px, 5vw, 80px) 56px;
+}
+
+.app.presenting.page-lesson .m5-inner,
+.app.presenting.page-lesson .page-inner {
+  max-width: 1240px;
+}
+
+.page-pres {
+  position: absolute;
+  z-index: 6;
+  right: 14px;
+  bottom: 12px;
+  display: flex;
+  gap: 6px;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+
+.page-pres:hover,
+.page-pres:focus-within {
+  opacity: 1;
+}
+
+/* ── framing slides: title, agenda, section dividers, thank you ── */
+
+.dk-page {
+  display: grid;
+  place-items: center;
+}
+
+.dk-center {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  text-align: center;
+  max-width: 1000px;
+}
+
+.dk-wide {
+  width: min(760px, 100%);
+  display: grid;
+  gap: 22px;
+}
+
+.dk-title {
+  margin: 0;
+  font-size: calc(54px * var(--type, 1));
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.dk-h2 {
+  margin: 0;
+  font-size: calc(40px * var(--type, 1));
+}
+
+.dk-sub {
+  margin: 0;
+  max-width: 34ch;
+  font-size: calc(24px * var(--type, 1));
+  color: var(--color-muted);
+  line-height: 1.3;
+}
+
+.dk-chips {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.dk-chips li {
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  font-weight: 600;
+  font-size: calc(18px * var(--type, 1));
+}
+
+.dk-agenda {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.dk-agenda button {
+  all: unset;
+  box-sizing: border-box;
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 18px;
+  border-radius: 14px;
+  border: 1px solid var(--color-line);
+  background: color-mix(in srgb, var(--color-ink) 94%, transparent);
+  font-size: calc(26px * var(--type, 1));
+  font-weight: 600;
+}
+
+.dk-agenda button:hover,
+.dk-agenda button:focus-visible {
+  border-color: var(--color-accent);
+  outline: none;
+}
+
+.dk-agenda b {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: #1c1306;
+  font-size: calc(22px * var(--type, 1));
+}
+
+.dk-num {
+  display: grid;
+  place-items: center;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: #1c1306;
+  font-size: calc(54px * var(--type, 1));
+  font-weight: 800;
+}
+
+.dk-dots {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+  display: flex;
+  gap: 10px;
+}
+
+.dk-dots li {
+  width: 34px;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--color-line);
+}
+
+.dk-dots li.seen {
+  background: color-mix(in srgb, var(--color-accent) 45%, var(--color-line));
+}
+
+.dk-dots li.on {
+  background: var(--color-accent);
+}
+
+.dk-q {
+  margin: 0;
+  font-size: calc(44px * var(--type, 1));
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+@media (max-width: 760px) {
+  .dk-title { font-size: calc(32px * var(--type, 1)); }
+  .dk-h2 { font-size: calc(28px * var(--type, 1)); }
+  .dk-sub { font-size: calc(18px * var(--type, 1)); }
+  .dk-agenda button { font-size: calc(18px * var(--type, 1)); }
+  .dk-num { width: 72px; height: 72px; font-size: calc(40px * var(--type, 1)); }
+}
+
+/* the four single-slide pages (4.4, 4.5, 5.3, 6) sit in the middle of the screen */
+.m5-page {
+  display: flex;
+}
+
+.m5-page .m5-inner {
+  margin: auto;
+  width: 100%;
+}
+
+.m5-page .m5-head {
+  text-align: center;
+}
+
+/* when the stage is narrow (contents and notes both open) the four conclusion cards go two by two */
+.m5-page {
+  container-type: inline-size;
+}
+
+@container (max-width: 980px) {
+  .c6-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@container (max-width: 480px) {
+  .c6-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* presentation mode: the sources of the slide, bottom left */
+.src-foot {
+  position: absolute;
+  z-index: 5;
+  left: 20px;
+  bottom: 10px;
+  right: 340px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--color-muted);
+  pointer-events: auto;
+}
+
+.src-foot b {
+  flex: none;
+  padding-top: 1px;
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.src-foot ul {
+  flex: 1;
+  min-width: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 16px;
+}
+
+.src-foot li {
+  white-space: nowrap;
+}
+
+/* flat pages show their sources in the footer instead of the collapsed list; the caption rises to make room */
+.app.presenting .m5-sources {
+  display: none;
+}
+
+.app.presenting.story-lesson .story-card {
+  bottom: 68px;
+}
+
+@media (max-width: 900px) {
+  .src-foot { right: 20px; bottom: 56px; }
+  .app.presenting.page-lesson .src-foot { bottom: 10px; right: 20px; }
+}
+
+/* lessons with the older layout (3D stage plus its own controls): the stage stops above the sources line */
+.stage-wrap.with-src .dock {
+  bottom: 70px;
+}
+
+.stage-wrap.with-src .src-foot {
+  bottom: 8px;
+}
+
+/* the footer already lists them */
+.app.presenting .c6-src {
+  display: none;
+}
+
+/* ── light theme (the default); dark is the toggle ── */
+
+html[data-theme="light"] {
+  color-scheme: light;
+  --color-bg: #f6f2f9;
+  --color-surface: #ffffff;
+  --color-surface-2: #efe7f5;
+  --color-fg: #1f1426;
+  --color-muted: #675874;
+  --color-accent: #660874;
+  --color-accent-fg: #ffffff;
+  --color-line: #d8cae4;
+  --color-good: #1e7a4b;
+  --color-warn: #b4570f;
+  --color-ink: #ffffff;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* the purple top bar keeps the same look in both themes */
+html[data-theme="light"] .topbar {
+  --color-fg: #ffffff;
+  --color-muted: #e6d3f0;
+  --color-accent: #f1d9fa;
+  --color-accent-fg: #2a0833;
+  --color-line: rgba(255, 255, 255, 0.34);
+  --color-ink: #3a0546;
+  --color-surface: rgba(255, 255, 255, 0.12);
+  --color-surface-2: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+/* presentation mode: keep the brand, section and title; hide only the tool buttons */
+.app.presenting .top-actions {
+  display: none;
+}
+
+/* light theme: cards sitting on the dark 3D floor stay solid so their text reads */
+html[data-theme="light"] .app.presenting.story-lesson .story-card,
+html[data-theme="light"] .story-card {
+  background: color-mix(in srgb, var(--color-ink) 95%, transparent);
+}
+
+/* ── 4.0 chapter overview slide ── */
+
+.l0-flow {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  align-items: stretch;
+}
+
+.l0-col {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.l0-col + .l0-col::before {
+  content: "→";
+  position: absolute;
+  left: -24px;
+  top: 3px;
+  width: 20px;
+  text-align: center;
+  color: var(--color-accent);
+  font-size: calc(22px * var(--type, 1));
+}
+
+.l0-step {
+  align-self: flex-start;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: var(--color-brand);
+  color: #fff;
+  font-weight: 700;
+  font-size: calc(15px * var(--type, 1));
+}
+
+.l0-col h3 {
+  margin: 0;
+  min-height: 2.6em;
+  font-size: calc(20px * var(--type, 1));
+  line-height: 1.3;
+  color: var(--color-fg);
+}
+
+.l0-cards {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.l0-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "icon num"
+    "icon name"
+    "icon line";
+  column-gap: 14px;
+  align-items: center;
+  text-align: left;
+  padding: 16px 18px;
+  min-height: 118px;
+  border-radius: 16px;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  color: var(--color-fg);
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.l0-card:hover,
+.l0-card:focus-visible {
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+.l0-icon {
+  grid-area: icon;
+  font-size: calc(34px * var(--type, 1));
+  line-height: 1;
+}
+
+.l0-num {
+  grid-area: num;
+  font-family: var(--font-mono, monospace);
+  font-size: calc(12px * var(--type, 1));
+  color: var(--color-accent);
+  letter-spacing: 0.08em;
+}
+
+.l0-card strong {
+  grid-area: name;
+  font-size: calc(21px * var(--type, 1));
+  line-height: 1.2;
+}
+
+.l0-line {
+  grid-area: line;
+  color: var(--color-muted);
+  font-size: calc(15px * var(--type, 1));
+  line-height: 1.3;
+}
+
+.l0-tail {
+  margin: 26px 0 0;
+  text-align: center;
+  font-size: calc(24px * var(--type, 1));
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+@container (max-width: 700px) {
+  .l0-flow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .l0-col + .l0-col::before {
+    display: none;
+  }
+
+  .l0-col h3 {
+    min-height: 0;
+  }
+}
+
+.app.presenting .l0-card {
+  cursor: default;
 }

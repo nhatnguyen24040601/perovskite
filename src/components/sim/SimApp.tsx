@@ -1,4 +1,4 @@
-import { BookOpen, ChevronLeft, ChevronRight, CircleHelp, Image as ImageIcon, Maximize2, Minimize2, Pause, Play, RotateCcw, X } from "lucide-react";
+import { BookOpen, ChevronLeft, ChevronRight, CircleHelp, Image as ImageIcon, Maximize2, Minimize2, Moon, Pause, Play, RotateCcw, Sun, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { chapters, getLesson, GLOSSARY, lessons } from "@/lib/sim/content";
 import { GLOSS_EN, HELP, TABLES, tr, ui } from "@/lib/sim/i18n";
@@ -21,6 +21,9 @@ import { Ch4Landing, CiteCard } from "./Ch4Pages";
 import { LeadPage } from "./Ch4Lead";
 import { MarketPage } from "./Ch4Market";
 import { ConclusionPage } from "./Ch6Conclusion";
+import { SourceFooter } from "./SourceFooter";
+import { citesFor } from "@/lib/sim/cites";
+import { AgendaSlide, DividerSlide, ThanksSlide, TitleSlide } from "./Ch0Slides";
 import { RichText } from "./RichText";
 import { MaterialsPage } from "./Ch5Materials";
 import { StoryOverlay } from "./StoryOverlay";
@@ -39,9 +42,9 @@ const FOCUS_SWATCH: Record<string, "fa" | "lead" | "iodine" | "electron" | "sun"
 function Mark() {
   return (
     <svg className="brand-mark" viewBox="0 0 36 36" aria-hidden="true">
-      <rect width="36" height="36" rx="8" fill="#151c24" />
-      <path d="M18 5 30 18 18 31 6 18Z" fill="none" stroke="#e4a23a" strokeWidth="1.6" />
-      <path d="M6 18h24M18 5l7 13-7 13-7-13Z" fill="none" stroke="#6d4bd6" strokeWidth="1.2" />
+      <rect width="36" height="36" rx="8" fill="#660874" />
+      <path d="M18 5 30 18 18 31 6 18Z" fill="none" stroke="#f1d9fa" strokeWidth="1.6" />
+      <path d="M6 18h24M18 5l7 13-7 13-7-13Z" fill="none" stroke="#cf9ae6" strokeWidth="1.2" />
       <circle cx="18" cy="18" r="2.2" fill="#c5ccd6" />
     </svg>
   );
@@ -59,6 +62,8 @@ export function SimApp() {
   const locale = useSim((s) => s.locale);
   const textScale = useSim((s) => s.textScale);
   const presenting = useSim((s) => s.presenting);
+  const theme = useSim((s) => s.theme);
+  const toggleTheme = useSim((s) => s.toggleTheme);
   const photos = useSim((s) => s.photos);
   const setLocale = useSim((s) => s.setLocale);
   const setTextScale = useSim((s) => s.setTextScale);
@@ -90,6 +95,7 @@ export function SimApp() {
         locale?: Locale;
         textScale?: number;
         navOpen?: boolean;
+        theme?: "light" | "dark";
       };
       if (saved.lessonId && lessons.some((l) => l.id === saved.lessonId)) {
         useSim.getState().setLesson(saved.lessonId);
@@ -102,6 +108,7 @@ export function SimApp() {
         useSim.setState({ explain: force ? true : saved.explain });
       }
       if (typeof saved.navOpen === "boolean") useSim.setState({ navOpen: saved.navOpen });
+      if (saved.theme === "light" || saved.theme === "dark") useSim.setState({ theme: saved.theme });
     } catch {
       /* ignore broken saves */
     }
@@ -117,10 +124,15 @@ export function SimApp() {
           navOpen: s.navOpen,
           locale: s.locale,
           textScale: s.textScale,
+          theme: s.theme,
         }),
       );
     });
   }, []);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+  }, [theme]);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -248,6 +260,9 @@ export function SimApp() {
             <ImageIcon size={16} />
             <span className="btn-label">{photos ? ui(locale, "photosHide") : ui(locale, "photos")}</span>
           </button>
+          <button type="button" className="btn btn-icon" onClick={toggleTheme} aria-label={ui(locale, "theme")} title={ui(locale, "theme")}>
+            {theme === "light" ? <Moon size={16} /> : <Sun size={16} />}
+          </button>
           <button type="button" className={presenting ? "btn on" : "btn"} onClick={onPresent} aria-label={ui(locale, "present")}>
             {presenting ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
             <span className="btn-label">{presenting ? ui(locale, "presentExit") : ui(locale, "present")}</span>
@@ -320,12 +335,31 @@ export function SimApp() {
         ) : null}
       </nav>
 
-      <div className="stage-wrap">
+      <div className={presenting && !lesson.story && !lesson.page && citesFor(lessonId, step).length > 0 ? "stage-wrap with-src" : "stage-wrap"}>
         {lesson.page === "landing" ? <Ch4Landing /> : null}
         {lesson.page === "materials" ? <MaterialsPage /> : null}
         {lesson.page === "lead" ? <LeadPage /> : null}
         {lesson.page === "market" ? <MarketPage /> : null}
         {lesson.page === "conclusion" ? <ConclusionPage /> : null}
+        {lesson.page === "title" ? <TitleSlide /> : null}
+        {lesson.page === "agenda" ? <AgendaSlide /> : null}
+        {lesson.page === "divider" ? <DividerSlide /> : null}
+        {lesson.page === "thanks" ? <ThanksSlide /> : null}
+        {presenting ? <SourceFooter /> : null}
+        {presenting && !lesson.story ? (
+          <div className="page-pres">
+            <button type="button" className="btn" onClick={prev} aria-label={ui(locale, "prev")}>
+              <ChevronLeft size={16} />
+            </button>
+            <button type="button" className="btn" onClick={next} aria-label={ui(locale, "next")}>
+              <ChevronRight size={16} />
+            </button>
+            <button type="button" className="btn" onClick={onPresent}>
+              <Minimize2 size={14} />
+              <span>{ui(locale, "presentExit")}</span>
+            </button>
+          </div>
+        ) : null}
         {lesson.page ? null : (
           <div className="stage">
             <Stage />

@@ -132,27 +132,33 @@ export function Ch4Landing() {
   const locale = useSim((s) => s.locale);
   const setLesson = useSim((s) => s.setLesson);
   return (
-    <div className="page-scroll">
-      <div className="page-inner">
-        <p className="page-lead">{tr(locale, LANDING.lead)}</p>
-        {GROUPS.map((g) => (
-          <section key={g.title} className="page-group">
-            <h2>{tr(locale, g.title)}</h2>
-            <div className="page-cards">
-              {g.cards.map((c) => (
-                <button key={c.id} type="button" className="page-card" onClick={() => setLesson(c.id)}>
-                  <span className="page-card-icon" aria-hidden="true">
-                    {c.icon}
-                  </span>
-                  <span className="page-card-num">{c.num}</span>
-                  <strong>{tr(locale, c.name)}</strong>
-                  <span>{tr(locale, c.line)}</span>
-                  <span className="page-card-kind">{tr(locale, c.kind)}</span>
-                </button>
-              ))}
-            </div>
-          </section>
-        ))}
+    <div className="page-scroll m5-page">
+      <div className="m5-inner">
+        <header className="m5-head">
+          <span className="m5-kicker">{tr(locale, LANDING.kicker)}</span>
+          <h2>{tr(locale, LANDING.title)}</h2>
+        </header>
+        <ol className="l0-flow" aria-label={tr(locale, LANDING.flow)}>
+          {GROUPS.map((g, gi) => (
+            <li key={g.title} className="l0-col">
+              <span className="l0-step">{gi + 1}</span>
+              <h3>{tr(locale, g.title)}</h3>
+              <div className="l0-cards">
+                {g.cards.map((c) => (
+                  <button key={c.id} type="button" className="l0-card" onClick={() => setLesson(c.id)}>
+                    <span className="l0-icon" aria-hidden="true">
+                      {c.icon}
+                    </span>
+                    <span className="l0-num">{c.num}</span>
+                    <strong>{tr(locale, c.name)}</strong>
+                    <span className="l0-line">{tr(locale, c.line)}</span>
+                  </button>
+                ))}
+              </div>
+            </li>
+          ))}
+        </ol>
+        <p className="l0-tail">{tr(locale, LANDING.tail)}</p>
       </div>
     </div>
   );

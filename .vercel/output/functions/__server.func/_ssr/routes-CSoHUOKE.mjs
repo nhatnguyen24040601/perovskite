@@ -1,8 +1,8 @@
 import { i as __toESM } from "../_runtime.mjs";
 import { C as ShaderMaterial, D as Vector3, E as TubeGeometry, M as require_react, S as SRGBColorSpace, T as TorusGeometry, _ as Matrix4, a as useFrame, b as Quaternion, c as BufferAttribute, d as CatmullRomCurve3, f as Color, g as Float32BufferAttribute, h as Euler, i as Canvas, j as require_jsx_runtime, l as BufferGeometry, m as EdgesGeometry, n as OrbitControls, o as useThree, p as CylinderGeometry, r as Html, s as BoxGeometry, t as Grid, u as CanvasTexture, v as Object3D, w as SphereGeometry, x as RepeatWrapping, y as OctahedronGeometry } from "../_libs/@react-three/drei+[...].mjs";
-import { S as ArrowLeft, _ as Crosshair, a as Play, b as ChevronLeft, c as Microscope, d as Image, f as Gauge, g as ExternalLink, h as EyeOff, i as RotateCcw, l as Maximize2, m as Eye, o as Pause, p as FastForward, r as Sparkles, s as Minimize2, t as X, u as Info, v as CircleHelp, x as BookOpen, y as ChevronRight } from "../_libs/lucide-react.mjs";
+import { C as BookOpen, S as ChevronLeft, _ as EyeOff, a as RotateCcw, b as CircleHelp, c as Moon, d as Maximize2, f as Info, g as Eye, h as FastForward, i as Sparkles, l as Minimize2, m as Gauge, o as Play, p as Image, r as Sun, s as Pause, t as X, u as Microscope, v as ExternalLink, w as ArrowLeft, x as ChevronRight, y as Crosshair } from "../_libs/lucide-react.mjs";
 import { t as create } from "../_libs/zustand.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-BXdsiR4k.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-CSoHUOKE.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var STORY_EN = {};
@@ -1579,9 +1579,13 @@ var GROUPS = [
 ];
 var C4_INTRO = {
 	title: t("Chương 4 — Chế tạo, thị trường và an toàn chì", "Chapter 4 — Fabrication, market and lead safety"),
-	body: t("Chọn một mục ở giữa màn hình. Mỗi mục có mô hình 3D, từng bước, bảng thông tin và nguồn.", "Choose a section in the centre of the screen. Each has a 3D model, step-by-step explanation, a facts panel and sources.")
+	body: t("Ba phần: chế tạo màng, mở rộng quy mô, rồi thị trường và an toàn chì. Bấm một thẻ để mở.", "Three parts: make the film, scale it up, then the market and lead safety. Click a card to open it.")
 };
 var LANDING = {
+	kicker: t("Chương 4", "Chapter 4"),
+	title: t("Chế tạo, thị trường và an toàn chì", "Fabrication, market and lead safety"),
+	tail: t("Từ phòng thí nghiệm đến thị trường.", "From the lab to the market."),
+	flow: t("Ba phần của chương", "The three parts of the chapter"),
 	lead: t("Chọn một mục để học độc lập: cách chế tạo, mở rộng quy mô, thị trường và an toàn chì.", "Pick any section to learn on its own: how it is made, how it scales, the market and lead safety."),
 	open: t("Mở", "Open")
 };
@@ -1813,6 +1817,65 @@ var C6 = {
 	closing: t("Hấp thụ ánh sáng rất tốt. Còn lại: độ bền và chì.", "A great light absorber. What is left: durability and lead."),
 	next: t("Đường gần nhất: tandem trên silicon.", "Nearest path: tandem on silicon."),
 	lessonBody: t("Một trang tổng kết về perovskite và perovskite halide.", "One summary page on perovskite and halide perovskite.")
+};
+/** The framing slides of the talk: title, agenda, one divider per big section, and the closing Q&A. */
+var DECK_SECTIONS = [
+	{
+		n: 1,
+		id: "div1",
+		title: t("Từ ánh sáng đến điện", "From light to electricity"),
+		teaser: t("Pin mặt trời cần gì ở vật liệu hấp thụ?", "What does a solar cell need from its absorber?")
+	},
+	{
+		n: 2,
+		id: "div2",
+		title: t("Khung ABX₃", "The ABX₃ frame"),
+		teaser: t("Một khung tinh thể, ba núm vặn.", "One crystal frame, three knobs.")
+	},
+	{
+		n: 3,
+		id: "div3",
+		title: t("Vì sao hợp làm pin", "Why it suits a solar cell"),
+		teaser: t("Vì sao hấp thụ ánh sáng tốt, và vì sao dễ hỏng.", "Why it absorbs light so well, and why it degrades.")
+	},
+	{
+		n: 4,
+		id: "div4",
+		title: t("Phương pháp chế tạo", "Fabrication methods"),
+		teaser: t("Chế tạo, mở rộng, thị trường và chì.", "Making it, scaling it, the market and lead.")
+	},
+	{
+		n: 5,
+		id: "div5",
+		title: t("Đề xuất cải tiến", "Proposed improvement"),
+		teaser: t("Chồng lớp được thiết kế, đúng vật liệu cho từng lớp.", "A designed layer stack, the right material for each layer.")
+	},
+	{
+		n: 6,
+		id: "div6",
+		title: t("Kết luận", "Conclusion"),
+		teaser: t("Tóm tắt và việc còn lại.", "The summary and what is left.")
+	}
+];
+var DECK = {
+	titleLesson: t("Giới thiệu", "Introduction"),
+	titleSection: t("Mở đầu", "Opening"),
+	kicker: t("Giới thiệu", "Introduction"),
+	title: t("Pin mặt trời perovskite halide", "Halide perovskite solar cells"),
+	subtitle: t("Từ ánh sáng đến điện: cách hoạt động, cách chế tạo, việc còn lại.", "From light to electricity: how they work, how they are made, what is left."),
+	chips: [
+		t("Tinh thể ABX₃", "ABX₃ crystal"),
+		t("Pin màng mỏng", "Thin-film solar cell"),
+		t("Hiệu suất tăng nhanh", "Fast-rising efficiency")
+	],
+	agendaLesson: t("Các phần chính", "Main sections"),
+	agendaTitle: t("Nội dung", "Agenda"),
+	part: (n) => t(`Phần ${n}`, `Part ${n}`),
+	thanksSection: t("Hỏi đáp", "Q&A"),
+	thanksLesson: t("Cảm ơn · Câu hỏi", "Thank you · Questions"),
+	thanks: t("Cảm ơn đã lắng nghe", "Thank you for listening"),
+	questions: t("Câu hỏi?", "Questions?"),
+	body: t("Trang trình chiếu.", "A presentation slide.")
 };
 /**
 * Chapter 5 · Proposed improvement: choose a p–i–n stack, give every layer a job, justify the materials,
@@ -3836,13 +3899,18 @@ var chapters = [
 		id: "c0",
 		num: "0",
 		title: "Mở đầu cùng một hành trình",
-		lessonIds: ["intro"]
+		lessonIds: [
+			"title",
+			"agenda",
+			"intro"
+		]
 	},
 	{
 		id: "c1",
 		num: "1",
 		title: "Từ ánh sáng đến điện",
 		lessonIds: [
+			"div1",
 			"foundation",
 			"photon",
 			"bands",
@@ -3857,6 +3925,7 @@ var chapters = [
 		num: "2",
 		title: "Khung ABX₃",
 		lessonIds: [
+			"div2",
 			"origin",
 			"parts",
 			"build",
@@ -3870,6 +3939,7 @@ var chapters = [
 		num: "3",
 		title: "Vì sao hợp làm pin",
 		lessonIds: [
+			"div3",
 			"race",
 			"absorb",
 			"diffusion",
@@ -3892,6 +3962,7 @@ var chapters = [
 		num: "4",
 		title: "Phương pháp chế tạo",
 		lessonIds: [
+			"div4",
 			"c4home",
 			"spin",
 			"vacuum",
@@ -3905,6 +3976,7 @@ var chapters = [
 		num: "5",
 		title: "Đề xuất cải tiến",
 		lessonIds: [
+			"div5",
 			"pin",
 			"stack",
 			"why"
@@ -3914,7 +3986,11 @@ var chapters = [
 		id: "c6",
 		num: "6",
 		title: "Kết luận",
-		lessonIds: ["finale"]
+		lessonIds: [
+			"div6",
+			"finale",
+			"thanks"
+		]
 	},
 	{
 		id: "cA",
@@ -4416,6 +4492,37 @@ function refsLesson() {
 			body: r.cite
 		}))
 	};
+}
+{
+	const slide = (id, chapter, section, title, page) => ({
+		id,
+		chapter,
+		section,
+		title,
+		scene: "page",
+		cam: "default",
+		page,
+		steps: [{
+			title,
+			body: DECK.body
+		}]
+	});
+	const before = (id, ...add) => {
+		const at = lessons.findIndex((l) => l.id === id);
+		if (at >= 0) lessons.splice(at, 0, ...add);
+	};
+	before("intro", slide("title", "c0", DECK.titleSection, DECK.titleLesson, "title"), slide("agenda", "c0", DECK.titleSection, DECK.agendaLesson, "agenda"));
+	const first = {
+		1: "foundation",
+		2: "origin",
+		3: "race",
+		4: "c4home",
+		5: "pin",
+		6: "finale"
+	};
+	for (const s of DECK_SECTIONS) before(first[s.n], slide(s.id, `c${s.n}`, DECK.part(s.n), s.title, "divider"));
+	const fin = lessons.findIndex((l) => l.id === "finale");
+	if (fin >= 0) lessons.splice(fin + 1, 0, slide("thanks", "c6", DECK.thanksSection, DECK.thanksLesson, "thanks"));
 }
 lessons.push(glossaryLesson(), refsLesson());
 var byId = new Map(lessons.map((l) => [l.id, l]));
@@ -5631,6 +5738,7 @@ var UI = {
 		help: "Cách đọc",
 		photos: "Ảnh thực",
 		photosHide: "Đóng ảnh",
+		theme: "Giao diện sáng/tối",
 		present: "Trình chiếu",
 		presentExit: "Thoát trình chiếu",
 		rotate: "Xoay",
@@ -5686,6 +5794,7 @@ var UI = {
 		help: "How to read",
 		photos: "Real photos",
 		photosHide: "Hide photos",
+		theme: "Light / dark theme",
 		present: "Present",
 		presentExit: "Exit presentation",
 		rotate: "Spin",
@@ -7387,6 +7496,7 @@ var useSim = create((set, get) => ({
 	inspect: null,
 	locale: "vi",
 	textScale: 1,
+	theme: "light",
 	presenting: false,
 	photos: false,
 	labels: true,
@@ -7473,6 +7583,7 @@ var useSim = create((set, get) => ({
 	patch: (p) => set(p),
 	setLocale: (locale) => set({ locale }),
 	setTextScale: (n) => set({ textScale: Math.min(1.45, Math.max(.85, n)) }),
+	toggleTheme: () => set((s) => ({ theme: s.theme === "light" ? "dark" : "light" })),
 	togglePresent: () => set((s) => ({ presenting: !s.presenting })),
 	togglePhotos: () => set((s) => ({ photos: !s.photos })),
 	toggleLabels: () => set((s) => ({ labels: !s.labels })),
@@ -7634,40 +7745,60 @@ function Ch4Landing() {
 	const locale = useSim((s) => s.locale);
 	const setLesson = useSim((s) => s.setLesson);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-		className: "page-scroll",
+		className: "page-scroll m5-page",
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "page-inner",
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-				className: "page-lead",
-				children: tr(locale, LANDING.lead)
-			}), GROUPS.map((g) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
-				className: "page-group",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: tr(locale, g.title) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-					className: "page-cards",
-					children: g.cards.map((c) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-						type: "button",
-						className: "page-card",
-						onClick: () => setLesson(c.id),
+			className: "m5-inner",
+			children: [
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", {
+					className: "m5-head",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+						className: "m5-kicker",
+						children: tr(locale, LANDING.kicker)
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: tr(locale, LANDING.title) })]
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ol", {
+					className: "l0-flow",
+					"aria-label": tr(locale, LANDING.flow),
+					children: GROUPS.map((g, gi) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", {
+						className: "l0-col",
 						children: [
 							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-								className: "page-card-icon",
-								"aria-hidden": "true",
-								children: c.icon
+								className: "l0-step",
+								children: gi + 1
 							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-								className: "page-card-num",
-								children: c.num
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: tr(locale, c.name) }),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: tr(locale, c.line) }),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-								className: "page-card-kind",
-								children: tr(locale, c.kind)
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: tr(locale, g.title) }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+								className: "l0-cards",
+								children: g.cards.map((c) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+									type: "button",
+									className: "l0-card",
+									onClick: () => setLesson(c.id),
+									children: [
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "l0-icon",
+											"aria-hidden": "true",
+											children: c.icon
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "l0-num",
+											children: c.num
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("strong", { children: tr(locale, c.name) }),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "l0-line",
+											children: tr(locale, c.line)
+										})
+									]
+								}, c.id))
 							})
 						]
-					}, c.id))
-				})]
-			}, g.title))]
+					}, g.title))
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+					className: "l0-tail",
+					children: tr(locale, LANDING.tail)
+				})
+			]
 		})
 	});
 }
@@ -8218,6 +8349,172 @@ function ConclusionPage() {
 					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { text: "[7] [1] [2]" })
 				})
 			]
+		})
+	});
+}
+var CONCLUSION_CITES = [
+	7,
+	1,
+	2
+];
+/** every [n] mark inside a piece of content, in any language */
+var marks = (x) => Array.from(JSON.stringify(x ?? "").matchAll(/\[(\d+)\]/g), (m) => Number(m[1]));
+var unique = (xs) => Array.from(new Set(xs)).sort((a, b) => a - b);
+/** The sources the slide on screen relies on. Flat pages list theirs; story lessons use the step's; other lessons use the [n] marks in the step text. */
+function citesFor(lessonId, step) {
+	const lesson = getLesson(lessonId);
+	if (lesson.page) {
+		if (lesson.page === "materials") return unique(MAT_LAYERS.flatMap((l) => [
+			...l.jobCite,
+			...l.examples.flatMap((e) => e.cite),
+			...l.learn.flatMap((p) => p.cite)
+		]));
+		if (lesson.page === "market") return unique([...MK_CITES, ...marks(TABLES[lessonId])]);
+		if (lesson.page === "lead") return unique(L4_CITES);
+		if (lesson.page === "conclusion") return unique(CONCLUSION_CITES);
+		return [];
+	}
+	const spec = storyOf(lessonId);
+	if (spec) {
+		const s = spec.steps[step];
+		return unique([...s?.cite ?? [], ...marks(s)]);
+	}
+	return unique([...marks(lesson.steps[step]), ...marks(TABLES[lessonId])]);
+}
+/** One line for the footer: "H. Lee et al., 2023", plus the title when there are only a few sources. */
+function shortCite(n, withTitle) {
+	const s = sourceOf(n);
+	if (s) {
+		const head = `${s.by.split(",")[0].trim()}${s.by.includes(",") ? " et al." : ""}, ${s.date.slice(0, 4)}`;
+		if (!withTitle) return head;
+		return `${head} · ${s.title.length > 52 ? `${s.title.slice(0, 50)}…` : s.title}`;
+	}
+	const ref = REFS.find((r) => r.n === String(n));
+	if (!ref) return "";
+	const parts = [];
+	for (const seg of ref.cite.replace(/\s*DOI:.*$/i, "").split(/\.\s+/)) {
+		parts.push(seg.replace(/\.$/, ""));
+		if (/\b(19|20)\d{2}\b/.test(seg)) break;
+	}
+	const text = parts.join(". ");
+	return text.length > 72 ? `${text.slice(0, 70)}…` : text;
+}
+var LABEL = t("Nguồn", "Sources");
+/** Presentation mode: the sources of what is on screen, small, at the bottom left. */
+function SourceFooter() {
+	const locale = useSim((s) => s.locale);
+	const cites = citesFor(useSim((s) => s.lessonId), useSim((s) => s.step));
+	if (cites.length === 0) return null;
+	const withTitle = cites.length <= 3;
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("footer", {
+		className: "src-foot",
+		"aria-label": tr(locale, LABEL),
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: tr(locale, LABEL) }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", { children: cites.map((n) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(RichText, { text: `[${n}]` }),
+			" ",
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: tr(locale, shortCite(n, withTitle)) })
+		] }, n)) })]
+	});
+}
+/** The talk's title slide. */
+function TitleSlide() {
+	const locale = useSim((s) => s.locale);
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+		className: "page-scroll dk-page",
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "dk-center",
+			children: [
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+					className: "m5-kicker",
+					children: tr(locale, DECK.kicker)
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
+					className: "dk-title",
+					children: tr(locale, DECK.title)
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+					className: "dk-sub",
+					children: tr(locale, DECK.subtitle)
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
+					className: "dk-chips",
+					children: DECK.chips.map((c) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: tr(locale, c) }, c))
+				})
+			]
+		})
+	});
+}
+/** The agenda: one row per big section; a click jumps to that section. */
+function AgendaSlide() {
+	const locale = useSim((s) => s.locale);
+	const setLesson = useSim((s) => s.setLesson);
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+		className: "page-scroll dk-page",
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "dk-wide",
+			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+				className: "dk-h2",
+				children: tr(locale, DECK.agendaTitle)
+			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("ol", {
+				className: "dk-agenda",
+				children: DECK_SECTIONS.map((s) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+					type: "button",
+					onClick: () => setLesson(s.id),
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: s.n }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: tr(locale, s.title) })]
+				}) }, s.id))
+			})]
+		})
+	});
+}
+/** The slide between two big sections: which part comes next. */
+function DividerSlide() {
+	const locale = useSim((s) => s.locale);
+	const lessonId = useSim((s) => s.lessonId);
+	const sec = DECK_SECTIONS.find((s) => s.id === lessonId) ?? DECK_SECTIONS[0];
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+		className: "page-scroll dk-page",
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "dk-center",
+			children: [
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+					className: "dk-num",
+					children: sec.n
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+					className: "m5-kicker",
+					children: tr(locale, DECK.part(sec.n))
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
+					className: "dk-title",
+					children: tr(locale, sec.title)
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+					className: "dk-sub",
+					children: tr(locale, sec.teaser)
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ol", {
+					className: "dk-dots",
+					"aria-hidden": "true",
+					children: DECK_SECTIONS.map((s) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("li", { className: s.n === sec.n ? "on" : s.n < sec.n ? "seen" : "" }, s.id))
+				})
+			]
+		})
+	});
+}
+/** The last slide: thanks and questions. */
+function ThanksSlide() {
+	const locale = useSim((s) => s.locale);
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+		className: "page-scroll dk-page",
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "dk-center",
+			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
+				className: "dk-title",
+				children: tr(locale, DECK.thanks)
+			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+				className: "dk-q",
+				children: tr(locale, DECK.questions)
+			})]
 		})
 	});
 }
@@ -16431,7 +16728,7 @@ function RaceDiagram(_props) {
 				y1: 318,
 				x2: 846,
 				y2: 318,
-				stroke: "#93a0ac",
+				stroke: "var(--color-muted)",
 				strokeWidth: "2"
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("line", {
@@ -16439,7 +16736,7 @@ function RaceDiagram(_props) {
 				y1: 318,
 				x2: 86,
 				y2: 58,
-				stroke: "#93a0ac",
+				stroke: "var(--color-muted)",
 				strokeWidth: "2"
 			}),
 			[
@@ -16455,13 +16752,13 @@ function RaceDiagram(_props) {
 					y1: y,
 					x2: 86,
 					y2: y,
-					stroke: "#93a0ac",
+					stroke: "var(--color-muted)",
 					strokeWidth: "2"
 				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
 					x: 72,
 					y: y + 4,
 					textAnchor: "end",
-					fill: "#c5d0da",
+					fill: "var(--color-fg)",
 					fontSize: "14",
 					children: pct
 				})] }, pct);
@@ -16476,7 +16773,7 @@ function RaceDiagram(_props) {
 					x,
 					y: 342,
 					textAnchor: "middle",
-					fill: "#c5d0da",
+					fill: "var(--color-fg)",
 					fontSize: "14",
 					children: year
 				}, year);
@@ -16485,7 +16782,7 @@ function RaceDiagram(_props) {
 				x: 466,
 				y: 372,
 				textAnchor: "middle",
-				fill: "#9aa6b4",
+				fill: "var(--color-muted)",
 				fontSize: "15",
 				children: t("năm")
 			}),
@@ -16493,7 +16790,7 @@ function RaceDiagram(_props) {
 				x: 28,
 				y: 188,
 				textAnchor: "middle",
-				fill: "#9aa6b4",
+				fill: "var(--color-muted)",
 				fontSize: "15",
 				transform: "rotate(-90 28 188)",
 				children: "%"
@@ -16532,7 +16829,7 @@ function RaceDiagram(_props) {
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
 				x: first[0] + 12,
 				y: first[1] + 22,
-				fill: "#f4efe6",
+				fill: "var(--color-fg)",
 				fontSize: "16",
 				children: t("3,8% · 2009")
 			}),
@@ -16582,7 +16879,7 @@ function RaceDiagram(_props) {
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
 					x: "140",
 					y: "33",
-					fill: "#f4efe6",
+					fill: "var(--color-fg)",
 					fontSize: "15",
 					children: t("một lớp")
 				}),
@@ -16597,7 +16894,7 @@ function RaceDiagram(_props) {
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
 					x: "290",
 					y: "33",
-					fill: "#f4efe6",
+					fill: "var(--color-fg)",
 					fontSize: "15",
 					children: "33,7%"
 				}),
@@ -16612,7 +16909,7 @@ function RaceDiagram(_props) {
 				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("text", {
 					x: "440",
 					y: "33",
-					fill: "#f4efe6",
+					fill: "var(--color-fg)",
 					fontSize: "15",
 					children: "tandem"
 				})
@@ -16623,7 +16920,7 @@ function RaceDiagram(_props) {
 				return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("text", {
 					x,
 					y,
-					fill: "#f4efe6",
+					fill: "var(--color-fg)",
 					fontSize: "15",
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("tspan", {
 						fill: "#e4a23a",
@@ -31275,6 +31572,7 @@ function Stage() {
 	const stepCam = (spec?.group === "degrade" || spec?.microSwitch) && !micro ? "1" : spec?.steps[step]?.cam ?? "1";
 	const storyCam = lesson.story ? camLevel ? String(camLevel) : stepCam : "";
 	const locale = useSim((s) => s.locale);
+	const theme = useSim((s) => s.theme);
 	const [ready, setReady] = (0, import_react.useState)(false);
 	(0, import_react.useEffect)(() => setReady(true), []);
 	if (!ready) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
@@ -31296,7 +31594,7 @@ function Stage() {
 		children: [
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("color", {
 				attach: "background",
-				args: ["#0b0f13"]
+				args: [theme === "light" ? "#f1eaf6" : "#0e0a13"]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ambientLight", { intensity: .55 }),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("hemisphereLight", { args: [
@@ -31378,18 +31676,18 @@ function Mark() {
 				width: "36",
 				height: "36",
 				rx: "8",
-				fill: "#151c24"
+				fill: "#660874"
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", {
 				d: "M18 5 30 18 18 31 6 18Z",
 				fill: "none",
-				stroke: "#e4a23a",
+				stroke: "#f1d9fa",
 				strokeWidth: "1.6"
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", {
 				d: "M6 18h24M18 5l7 13-7 13-7-13Z",
 				fill: "none",
-				stroke: "#6d4bd6",
+				stroke: "#cf9ae6",
 				strokeWidth: "1.2"
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("circle", {
@@ -31413,6 +31711,8 @@ function SimApp() {
 	const locale = useSim((s) => s.locale);
 	const textScale = useSim((s) => s.textScale);
 	const presenting = useSim((s) => s.presenting);
+	const theme = useSim((s) => s.theme);
+	const toggleTheme = useSim((s) => s.toggleTheme);
 	const photos = useSim((s) => s.photos);
 	const setLocale = useSim((s) => s.setLocale);
 	const setTextScale = useSim((s) => s.setTextScale);
@@ -31447,6 +31747,7 @@ function SimApp() {
 				useSim.setState({ explain: force ? true : saved.explain });
 			}
 			if (typeof saved.navOpen === "boolean") useSim.setState({ navOpen: saved.navOpen });
+			if (saved.theme === "light" || saved.theme === "dark") useSim.setState({ theme: saved.theme });
 		} catch {}
 	}, []);
 	(0, import_react.useEffect)(() => {
@@ -31456,10 +31757,14 @@ function SimApp() {
 				explain: s.explain,
 				navOpen: s.navOpen,
 				locale: s.locale,
-				textScale: s.textScale
+				textScale: s.textScale,
+				theme: s.theme
 			}));
 		});
 	}, []);
+	(0, import_react.useEffect)(() => {
+		document.documentElement.dataset.theme = theme;
+	}, [theme]);
 	(0, import_react.useEffect)(() => {
 		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) useSim.setState({
 			autoRotate: false,
@@ -31622,6 +31927,14 @@ function SimApp() {
 									children: photos ? ui(locale, "photosHide") : ui(locale, "photos")
 								})]
 							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+								type: "button",
+								className: "btn btn-icon",
+								onClick: toggleTheme,
+								"aria-label": ui(locale, "theme"),
+								title: ui(locale, "theme"),
+								children: theme === "light" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Moon, { size: 16 }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sun, { size: 16 })
+							}),
 							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
 								type: "button",
 								className: presenting ? "btn on" : "btn",
@@ -31714,13 +32027,43 @@ function SimApp() {
 				}) : null]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "stage-wrap",
+				className: presenting && !lesson.story && !lesson.page && citesFor(lessonId, step).length > 0 ? "stage-wrap with-src" : "stage-wrap",
 				children: [
 					lesson.page === "landing" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Ch4Landing, {}) : null,
 					lesson.page === "materials" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(MaterialsPage, {}) : null,
 					lesson.page === "lead" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LeadPage, {}) : null,
 					lesson.page === "market" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(MarketPage, {}) : null,
 					lesson.page === "conclusion" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ConclusionPage, {}) : null,
+					lesson.page === "title" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TitleSlide, {}) : null,
+					lesson.page === "agenda" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AgendaSlide, {}) : null,
+					lesson.page === "divider" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DividerSlide, {}) : null,
+					lesson.page === "thanks" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ThanksSlide, {}) : null,
+					presenting ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SourceFooter, {}) : null,
+					presenting && !lesson.story ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "page-pres",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+								type: "button",
+								className: "btn",
+								onClick: prev,
+								"aria-label": ui(locale, "prev"),
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronLeft, { size: 16 })
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+								type: "button",
+								className: "btn",
+								onClick: next,
+								"aria-label": ui(locale, "next"),
+								children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChevronRight, { size: 16 })
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+								type: "button",
+								className: "btn",
+								onClick: onPresent,
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Minimize2, { size: 14 }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: ui(locale, "presentExit") })]
+							})
+						]
+					}) : null,
 					lesson.page ? null : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 						className: "stage",
 						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Stage, {})

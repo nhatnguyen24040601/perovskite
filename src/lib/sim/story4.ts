@@ -442,12 +442,16 @@ export const GROUPS: { title: string; cards: MethodCard[] }[] = [
 export const C4_INTRO = {
   title: t("Chương 4 — Chế tạo, thị trường và an toàn chì", "Chapter 4 — Fabrication, market and lead safety"),
   body: t(
-    "Chọn một mục ở giữa màn hình. Mỗi mục có mô hình 3D, từng bước, bảng thông tin và nguồn.",
-    "Choose a section in the centre of the screen. Each has a 3D model, step-by-step explanation, a facts panel and sources.",
+    "Ba phần: chế tạo màng, mở rộng quy mô, rồi thị trường và an toàn chì. Bấm một thẻ để mở.",
+    "Three parts: make the film, scale it up, then the market and lead safety. Click a card to open it.",
   ),
 };
 
 export const LANDING = {
+  kicker: t("Chương 4", "Chapter 4"),
+  title: t("Chế tạo, thị trường và an toàn chì", "Fabrication, market and lead safety"),
+  tail: t("Từ phòng thí nghiệm đến thị trường.", "From the lab to the market."),
+  flow: t("Ba phần của chương", "The three parts of the chapter"),
   lead: t(
     "Chọn một mục để học độc lập: cách chế tạo, mở rộng quy mô, thị trường và an toàn chì.",
     "Pick any section to learn on its own: how it is made, how it scales, the market and lead safety.",

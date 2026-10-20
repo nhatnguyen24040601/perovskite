@@ -59,6 +59,7 @@ export function Stage() {
   const stepCam = (spec?.group === "degrade" || spec?.microSwitch) && !micro ? "1" : (spec?.steps[step]?.cam ?? "1");
   const storyCam = lesson.story ? (camLevel ? String(camLevel) : stepCam) : "";
   const locale = useSim((s) => s.locale);
+  const theme = useSim((s) => s.theme);
   const [ready, setReady] = useState(false);
   useEffect(() => setReady(true), []);
   if (!ready) return <div className="stage-wait">{ui(locale, "building")}</div>;
@@ -77,7 +78,7 @@ export function Stage() {
       dpr={[1, 1.6]}
       gl={{ antialias: true }}
     >
-      <color attach="background" args={["#0b0f13"]} />
+      <color attach="background" args={[theme === "light" ? "#f1eaf6" : "#0e0a13"]} />
       <ambientLight intensity={0.55} />
       <hemisphereLight args={["#f4efe6", "#1a140e", 0.45]} />
       <directionalLight position={[4.5, 6, 3]} intensity={1.45} />

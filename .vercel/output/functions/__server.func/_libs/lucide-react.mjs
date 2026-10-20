@@ -418,6 +418,16 @@ var Minimize2 = createLucideIcon("minimize-2", [
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
+var Moon = createLucideIcon("moon", [["path", {
+	d: "M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z",
+	key: "a7tn18"
+}]]);
+/**
+* @license lucide-react v0.510.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
 var Pause = createLucideIcon("pause", [["rect", {
 	x: "14",
 	y: "4",
@@ -490,6 +500,52 @@ var Sparkles = createLucideIcon("sparkles", [
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
+var Sun = createLucideIcon("sun", [
+	["circle", {
+		cx: "12",
+		cy: "12",
+		r: "4",
+		key: "4exip2"
+	}],
+	["path", {
+		d: "M12 2v2",
+		key: "tus03m"
+	}],
+	["path", {
+		d: "M12 20v2",
+		key: "1lh1kg"
+	}],
+	["path", {
+		d: "m4.93 4.93 1.41 1.41",
+		key: "149t6j"
+	}],
+	["path", {
+		d: "m17.66 17.66 1.41 1.41",
+		key: "ptbguv"
+	}],
+	["path", {
+		d: "M2 12h2",
+		key: "1t8f8n"
+	}],
+	["path", {
+		d: "M20 12h2",
+		key: "1q8mjw"
+	}],
+	["path", {
+		d: "m6.34 17.66-1.41 1.41",
+		key: "1m8zz5"
+	}],
+	["path", {
+		d: "m19.07 4.93-1.41 1.41",
+		key: "1shlcs"
+	}]
+]);
+/**
+* @license lucide-react v0.510.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
 var TriangleAlert = createLucideIcon("triangle-alert", [
 	["path", {
 		d: "m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3",
@@ -518,4 +574,4 @@ var X = createLucideIcon("x", [["path", {
 	key: "d8bk6v"
 }]]);
 //#endregion
-export { ArrowLeft as S, Crosshair as _, Play as a, ChevronLeft as b, Microscope as c, Image as d, Gauge as f, ExternalLink as g, EyeOff as h, RotateCcw as i, Maximize2 as l, Eye as m, TriangleAlert as n, Pause as o, FastForward as p, Sparkles as r, Minimize2 as s, X as t, Info as u, CircleHelp as v, BookOpen as x, ChevronRight as y };
+export { BookOpen as C, ChevronLeft as S, EyeOff as _, RotateCcw as a, CircleHelp as b, Moon as c, Maximize2 as d, Info as f, Eye as g, FastForward as h, Sparkles as i, Minimize2 as l, Gauge as m, TriangleAlert as n, Play as o, Image as p, Sun as r, Pause as s, X as t, Microscope as u, ExternalLink as v, ArrowLeft as w, ChevronRight as x, Crosshair as y };

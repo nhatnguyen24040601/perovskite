@@ -3,6 +3,7 @@ import { C4_INTRO } from "./story4";
 import { L4 } from "./lead4";
 import { MK } from "./market4";
 import { C6 } from "./conclusion6";
+import { DECK, DECK_SECTIONS } from "./deck";
 import "./story5";
 import { M5 } from "./materials5";
 import { SOURCES } from "./sources";
@@ -84,7 +85,7 @@ export type Lesson = {
   /** Interactive 3D story (sections 3.1 – 3.6 and 3.8): drives the story clock, camera and toolbar. */
   story?: boolean;
   /** Chapter 4: a full-page HTML screen instead of the 3D stage. */
-  page?: "landing" | "materials" | "lead" | "market" | "conclusion";
+  page?: "landing" | "materials" | "lead" | "market" | "conclusion" | "title" | "agenda" | "divider" | "thanks";
   steps: Step[];
 };
 
@@ -880,24 +881,25 @@ const sourceLessons: Lesson[] = [
 ];
 
 export const chapters: Chapter[] = [
-  { id: "c0", num: "0", title: "Mở đầu cùng một hành trình", lessonIds: ["intro"] },
+  { id: "c0", num: "0", title: "Mở đầu cùng một hành trình", lessonIds: ["title", "agenda", "intro"] },
   {
     id: "c1",
     num: "1",
     title: "Từ ánh sáng đến điện",
-    lessonIds: ["foundation", "photon", "bands", "cell", "sq", "silicon", "ideal"],
+    lessonIds: ["div1", "foundation", "photon", "bands", "cell", "sq", "silicon", "ideal"],
   },
   {
     id: "c2",
     num: "2",
     title: "Khung ABX₃",
-    lessonIds: ["origin", "parts", "build", "tolerance", "phases", "orbitals"],
+    lessonIds: ["div2", "origin", "parts", "build", "tolerance", "phases", "orbitals"],
   },
   {
     id: "c3",
     num: "3",
     title: "Vì sao hợp làm pin",
     lessonIds: [
+      "div3",
       "race",
       "absorb",
       "diffusion",
@@ -919,10 +921,10 @@ export const chapters: Chapter[] = [
     id: "c4",
     num: "4",
     title: "Phương pháp chế tạo",
-    lessonIds: ["c4home", "spin", "vacuum", "blade", "market", "lead"],
+    lessonIds: ["div4", "c4home", "spin", "vacuum", "blade", "market", "lead"],
   },
-  { id: "c5", num: "5", title: "Đề xuất cải tiến", lessonIds: ["pin", "stack", "why"] },
-  { id: "c6", num: "6", title: "Kết luận", lessonIds: ["finale"] },
+  { id: "c5", num: "5", title: "Đề xuất cải tiến", lessonIds: ["div5", "pin", "stack", "why"] },
+  { id: "c6", num: "6", title: "Kết luận", lessonIds: ["div6", "finale", "thanks"] },
   { id: "cA", num: "A", title: "Phụ lục", lessonIds: ["glossary", "refs"] },
 ];
 
@@ -1128,6 +1130,33 @@ function refsLesson(): Lesson {
       body: r.cite,
     })),
   };
+}
+
+// The framing slides: title and agenda before the opening, a divider before each big section, and the closing Q&A.
+{
+  const slide = (id: string, chapter: string, section: string, title: string, page: NonNullable<Lesson["page"]>): Lesson => ({
+    id,
+    chapter,
+    section,
+    title,
+    scene: "page",
+    cam: "default",
+    page,
+    steps: [{ title, body: DECK.body }],
+  });
+  const before = (id: string, ...add: Lesson[]) => {
+    const at = lessons.findIndex((l) => l.id === id);
+    if (at >= 0) lessons.splice(at, 0, ...add);
+  };
+  before(
+    "intro",
+    slide("title", "c0", DECK.titleSection, DECK.titleLesson, "title"),
+    slide("agenda", "c0", DECK.titleSection, DECK.agendaLesson, "agenda"),
+  );
+  const first: Record<number, string> = { 1: "foundation", 2: "origin", 3: "race", 4: "c4home", 5: "pin", 6: "finale" };
+  for (const s of DECK_SECTIONS) before(first[s.n]!, slide(s.id, `c${s.n}`, DECK.part(s.n), s.title, "divider"));
+  const fin = lessons.findIndex((l) => l.id === "finale");
+  if (fin >= 0) lessons.splice(fin + 1, 0, slide("thanks", "c6", DECK.thanksSection, DECK.thanksLesson, "thanks"));
 }
 
 lessons.push(glossaryLesson(), refsLesson());

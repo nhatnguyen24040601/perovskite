@@ -3777,7 +3777,7 @@ var RawStream = class {
 * the dev styles URL for route-scoped CSS collection.
 */
 async function getStartManifest(matchedRoutes) {
-	const { tsrStartManifest } = await import("../_tanstack-start-manifest_v-EWSdZEqe.mjs");
+	const { tsrStartManifest } = await import("../_tanstack-start-manifest_v-DtfqilP6.mjs");
 	const startManifest = tsrStartManifest();
 	let routes = startManifest.routes;
 	routes[rootRouteId];
@@ -6253,7 +6253,7 @@ var getBaseManifest = getProdBaseManifest;
 var createEarlyHintsForRequest = createEarlyHintsCollector;
 async function loadEntries() {
 	const [routerEntry, startEntry, pluginAdapters] = await Promise.all([
-		import("./router-CcfbVc5n.mjs").then((n) => n.t),
+		import("./router-tbYRi0CA.mjs").then((n) => n.t),
 		import("./start-BrrddFlp.mjs"),
 		import("./empty-plugin-adapters-CGdePtpk.mjs")
 	]);

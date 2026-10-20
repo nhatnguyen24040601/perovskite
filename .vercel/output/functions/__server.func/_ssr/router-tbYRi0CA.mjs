@@ -3,8 +3,8 @@ import { M as require_react, j as require_jsx_runtime } from "../_libs/@react-th
 import { c as lazyRouteComponent, d as useRouter, i as HeadContent, l as createFileRoute, o as createRouter, r as Scripts, s as Outlet, u as createRootRoute } from "../_libs/@tanstack/react-router+[...].mjs";
 import { n as TriangleAlert } from "../_libs/lucide-react.mjs";
 import { a as union, i as string, n as number, r as object, t as literal } from "../_libs/zod.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-CcfbVc5n.js
-var router_CcfbVc5n_exports = /* @__PURE__ */ __exportAll({ getRouter: () => getRouter });
+//#region node_modules/.nitro/vite/services/ssr/assets/router-tbYRi0CA.js
+var router_tbYRi0CA_exports = /* @__PURE__ */ __exportAll({ getRouter: () => getRouter });
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var FALLBACK_MESSAGE = "An unexpected error occurred. Try reloading the page.";
@@ -332,7 +332,7 @@ function PreviewHostBridge() {
 	}, [router]);
 	return null;
 }
-var styles_default = "/assets/styles-DQdvYftA.css";
+var styles_default = "/assets/styles-CyMK7-No.css";
 var APP_NAME = "Perovskite Lab";
 var Route$1 = createRootRoute({
 	head: () => ({
@@ -345,7 +345,7 @@ var Route$1 = createRootRoute({
 			{ title: APP_NAME },
 			{
 				name: "theme-color",
-				content: "#0b0f13"
+				content: "#660874"
 			}
 		],
 		links: [
@@ -370,6 +370,7 @@ var Route$1 = createRootRoute({
 	}),
 	component: () => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("html", {
 		lang: "vi",
+		"data-theme": "light",
 		suppressHydrationWarning: true,
 		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("head", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(HeadContent, {}) }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("body", { children: [
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PreviewHostBridge, {}),
@@ -378,7 +379,7 @@ var Route$1 = createRootRoute({
 		] })]
 	})
 });
-var $$splitComponentImporter = () => import("./routes-BXdsiR4k.mjs");
+var $$splitComponentImporter = () => import("./routes-CSoHUOKE.mjs");
 var rootRouteChildren = { IndexRoute: createFileRoute("/")({ component: lazyRouteComponent($$splitComponentImporter, "component") }).update({
 	id: "/",
 	path: "/",
@@ -393,4 +394,4 @@ function getRouter() {
 	});
 }
 //#endregion
-export { getRouter, router_CcfbVc5n_exports as t };
+export { getRouter, router_tbYRi0CA_exports as t };

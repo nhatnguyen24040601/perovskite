@@ -1,0 +1,17 @@
+.DS_Store
+
+# Xcode
+xcuserdata/
+DerivedData/
+build/
+*.xcuserstate
+
+# Web app (perovskite/.gitignore covers node_modules and .env)
+node_modules/
+.env
+.env.*
+perovskite/.vercel/
+perovskite/.claude/worktrees/
+perovskite/.grok/preview.log
+perovskite/screenshots/
+*.log

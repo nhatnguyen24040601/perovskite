@@ -9,7 +9,9 @@
  * keeps only the latest snapshot so a phone that connects late is up to date.
  *
  * Optional pairing PIN: start the server with REMOTE_PIN=1234 and enter the same
- * PIN in the app. Without it anyone on the same network can drive the deck.
+ * PIN in the app. Without it anyone who can reach the server can drive the deck.
+ * The deck (a browser on this Mac) never needs the PIN. Requests that arrive through a
+ * tunnel (see scripts/remote-tunnel.mjs) only ever reach /__remote/*.
  */
 import { networkInterfaces } from "node:os";
 
@@ -57,6 +59,24 @@ function lanAddresses() {
   return out;
 }
 
+const FORWARD_HEADERS = ["x-forwarded-for", "x-forwarded-host", "forwarded", "cf-connecting-ip", "cf-ray"];
+
+function isLoopback(address) {
+  return address === "127.0.0.1" || address === "::1" || address === "::ffff:127.0.0.1";
+}
+
+/** Reached us through a tunnel (cloudflared, ngrok): the connection is local but carries forwarding headers. */
+function isTunneled(req) {
+  return isLoopback(req.socket.remoteAddress ?? "") && FORWARD_HEADERS.some((h) => req.headers[h] !== undefined);
+}
+
+/** The deck itself: a browser on this Mac, by localhost or by the Mac's own network address. */
+function isLocal(req) {
+  if (isTunneled(req)) return false;
+  const from = (req.socket.remoteAddress ?? "").replace(/^::ffff:/, "");
+  return isLoopback(from) || lanAddresses().includes(from);
+}
+
 export function remoteControlPlugin() {
   const pin = process.env.REMOTE_PIN || "";
   /** @type {Set<import("node:http").ServerResponse>} */
@@ -100,16 +120,19 @@ export function remoteControlPlugin() {
       server.middlewares.use(async (req, res, next) => {
         const url = new URL(req.url ?? "/", "http://localhost");
         if (!url.pathname.startsWith(`${PREFIX}/`)) {
+          // Through a tunnel only the relay is reachable, never the rest of the dev server.
+          if (isTunneled(req)) {
+            sendJson(res, 404, { error: "not found" });
+            return;
+          }
           next();
           return;
         }
         const route = url.pathname.slice(PREFIX.length);
         const method = (req.method ?? "GET").toUpperCase();
 
-        // The deck page is served from this origin and is trusted; every other client needs the PIN.
-        const fromDeck = route === "/events" && url.searchParams.get("role") === "deck";
-        const fromDeckPost = route === "/state";
-        if (pin && !fromDeck && !fromDeckPost) {
+        // The deck runs on this Mac and is trusted; the phone, on any other network, needs the PIN.
+        if (pin && !isLocal(req)) {
           const given = req.headers["x-remote-pin"] ?? url.searchParams.get("pin");
           if (given !== pin) {
             sendJson(res, 401, { error: "bad pin" });

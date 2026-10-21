@@ -558,77 +558,6 @@ const sourceLessons: Lesson[] = [
           "Phản liên kết nghĩa là tổ hợp Pb 6s–I 5p nằm cao hơn mức khi hai orbital không tương tác [16]. Đáy vùng dẫn, chủ yếu Pb 6p, được vẽ đứng yên để thấy phần rộng thêm của Eg đến từ đỉnh hóa trị hạ xuống. Cột là sơ đồ, không phải phổ đo. Hình phóng đại độ lệch.",
         ),
       },
-      {
-        title: "Pin dùng góc này thế nào?",
-        body: "Vùng cấm hẹp, như FAPbI₃ khoảng 1,48 eV, nuốt được photon đỏ và hồng ngoại gần. Vùng cấm rộng, như CsPbI₃ khoảng 1,73 eV, bỏ nhiều photon ấy, nhưng có thể cho điện áp cao hơn nên hợp làm lớp trên của pin hai lớp. Góc không phải yếu tố duy nhất: mạng co lại thì liên kết ngắn hơn, tương tác có thể mạnh lên và vùng cấm giảm. Hai hiệu ứng có thể ngược nhau.",
-        caption:
-          "Trái: FA⁺, iod gần trục, cột hẹp ghi 1,48 eV, mũi tên đỏ dừng tại lớp tối. Phải: Cs⁺, iod lệch xa trục, cột rộng ghi 1,73 eV, mũi tên đỏ đi xuyên lớp tối, nhãn lớp trên. Hình không vẽ độ dài liên kết.",
-        note: warn(
-          "1,48 eV và 1,73 eV là số liệu [68], không đọc từ góc vẽ. Hình phóng đại độ lệch. Eg rộng hơn không có nghĩa pin một lớp tốt hơn: nó bỏ bớt photon năng lượng thấp. Lớp trên của pin hai lớp thì Eg rộng lại có ích.",
-        ),
-      },
-    ],
-  },
-  {
-    id: "orbitals",
-    chapter: "c2",
-    section: "2.6",
-    title: "Vùng cấm trực tiếp của mạng Pb–I",
-    scene: "orbitals",
-    cam: "default",
-    legend: [
-      { swatch: "lead", label: "Pb²⁺ · màu trên hình" },
-      { swatch: "iodine", label: "I⁻ · màu trên hình" },
-      { swatch: "electron", label: "electron" },
-      { swatch: "hole", label: "lỗ trống" },
-      { swatch: "sun", label: "photon" },
-    ],
-    steps: [
-      {
-        title: "Từ một bát diện tới cả mạng",
-        body: "Pb²⁺ nằm giữa sáu I⁻. Khối ấy có tám mặt tam giác, nên là bát diện, không phải khối lập phương. Khi nhiều bát diện nối đỉnh, các trạng thái electron tương tác và tạo thành những vùng năng lượng của cả vật liệu. Vùng ấy không thuộc riêng một nguyên tử Pb hay một nguyên tử I.",
-        caption:
-          "Trái: một Pb²⁺ xám ở tâm, sáu I⁻ tím theo sáu hướng, lưới tím là tám mặt tam giác, nhãn khối xây dựng. Phải: mạng 3×3×3. Iod ở chỗ hai khối chạm nhau là cùng một quả, không vẽ hai quả chồng. Ion A được ẩn. Góc trên có nhãn Minh họa giản lược.",
-        note: base(
-          "Đây là phần khung Pb–I của perovskite ABX₃. Ion A đã được ẩn. Màu xám và tím chỉ để phân biệt nguyên tử trên hình, không phải màu thật của chì và iod. Bấm một quả để xem nó chỉ là một ion trong mạng.",
-        ),
-      },
-      {
-        title: "Hai vùng năng lượng của mạng",
-        body: "Bên trái vẫn là mạng, trong không gian của tinh thể. Bên phải là biểu đồ năng lượng: vùng hóa trị ở dưới, vùng dẫn ở trên. Electron cần nhận đủ năng lượng để lên vùng dẫn. Năng lượng tối thiểu giữa hai mép gọi là bandgap, ký hiệu Eg. Hình không ghi một số Eg, vì số ấy phụ thuộc thành phần và pha.",
-        caption:
-          "Trái là mạng Pb–I. Phải là hai thanh. Thanh dưới có các chấm lam, nhãn VBM ở mép trên của thanh ấy. Thanh trên trống, nhãn CBM ở mép dưới. Khoảng giữa ghi Eg, không có số. Dòng dưới nhắc độ cao là năng lượng.",
-        note: base(
-          "Độ cao trên biểu đồ là năng lượng, không phải chỗ electron ngồi trong tinh thể. Nếu nói quỹ đạo: đỉnh vùng hóa trị có đóng góp lớn từ I 5p và Pb 6s, đáy vùng dẫn chủ yếu mang tính Pb 6p [16]. Đó là đặc tính của cả mạng, không phải của một nguyên tử.",
-        ),
-      },
-      {
-        title: "Hai mép vùng nằm cùng k",
-        body: "Trục đứng là năng lượng E, trục ngang là k — động lượng của tinh thể. Đỉnh vùng hóa trị và đáy vùng dẫn nằm cùng một giá trị k. Photon vàng đủ năng lượng thì electron chuyển lên theo mũi tên thẳng đứng trên biểu đồ, và để lại một lỗ trống. Không cần phonon để bù động lượng.",
-        caption:
-          "Trái, một mạng nhỏ, nhãn không gian tinh thể. Phải là một bảng tối, không phải tinh thể: trục đứng E, trục ngang k. Đường đồng có đỉnh, ghi VBM. Đường lam có đáy, ghi CBM. Hai mép nằm trên cùng một vạch đứt xám, nhãn Cùng k. Quả vàng đi từ trái vào khe là photon. Mũi tên trắng đứng nối đúng hai mép ấy. Chấm lam đi lên dọc mũi tên, vẫn trên vạch đứt. Vòng cam rỗng ở lại tại VBM.",
-        note: base(
-          "Hai đường cong chỉ vẽ quanh mép vùng, không phải kết quả tính toán. Mũi tên thẳng đứng là chuyển tiếp trên biểu đồ, không phải đường bay của electron trong vật liệu. Góc Pb–I–Pb ở bài 2.5 đổi bề rộng vùng cấm. Góc ấy không phải điều kiện để vùng cấm là trực tiếp.",
-        ),
-      },
-      {
-        title: "Gián tiếp thì cần thêm phonon",
-        body: "Bảng trái là trực tiếp: đỉnh vùng hóa trị và đáy vùng dẫn cùng một giá trị k, mũi tên trắng đứng nối hai mép. Bảng phải là gián tiếp: đỉnh và đáy ở hai giá trị k khác nhau. Photon chỉ đưa năng lượng và giữ nguyên k của đỉnh, nên mũi tên vàng không chạm đường dẫn. Phonon mới đổi k. Không có mũi tên chéo từ đỉnh sang đáy.",
-        caption:
-          "Hai bảng tối. Trái, nhãn trực tiếp: đường đồng và đường lam gặp nhau trên một vạch đứt xám, mũi tên trắng đứng, nhãn cùng k. Phải, nhãn gián tiếp: đỉnh đồng nằm bên trái, đáy lam nằm bên phải. Quả vàng và mũi tên vàng ngắn đứng tại đỉnh, nhãn photon, không chạm đường lam. Nét sóng xám nằm trên trục k, nhãn phonon · Δk, chỉ nối hai giá trị k. Phía dưới, một lớp mạng Pb–I dao động quanh chỗ đứng, không thêm nguyên tử.",
-        note: base(
-          "Đây là minh họa cơ chế chuyển tiếp, không phải hai vật liệu có cùng cấu trúc nguyên tử. Dao động nhỏ là phonon. Minh họa giản lược.",
-        ),
-      },
-      {
-        title: "Màng mỏng hấp thụ, rồi phải thu điện tích",
-        body: "Vùng cấm trực tiếp giúp mạng Pb–I hấp thụ ánh sáng mạnh ngay trong một màng mỏng. Photon vàng đi vào lớp perovskite rồi tắt. Ngay chỗ ấy sinh một electron và một lỗ trống. Electron được thu xuống lớp chọn lọc electron, lỗ trống lên lớp chọn lọc lỗ trống. Nếu chúng gặp lại nhau trước khi tới lớp ấy thì không thành dòng điện.",
-        caption:
-          "Trái là một bát diện PbI₆, nhãn khối trong màng. Phải là ba lớp. Lớp trên đồng, nhãn chọn lọc lỗ trống. Lớp giữa nhìn thấy các ion Pb xám và I tím, nhãn perovskite. Lớp dưới lam, nhãn chọn lọc electron. Quả vàng đi vào lớp giữa rồi tắt. Chấm lam và vòng cam sinh ra tại chỗ ấy. Chấm lam xuống lớp dưới, vòng cam lên lớp trên. Chúng đi phía trước mạng, không chạy dọc liên kết.",
-        note: base(
-          "Trực tiếp nghĩa là cùng k trên biểu đồ E–k, không phải cùng một đường trong không gian tinh thể. Hình không ghi số Eg.",
-        ),
-      },
     ],
   },
   {
@@ -892,7 +821,7 @@ export const chapters: Chapter[] = [
     id: "c2",
     num: "2",
     title: "Khung ABX₃",
-    lessonIds: ["div2", "origin", "parts", "build", "tolerance", "phases", "orbitals"],
+    lessonIds: ["div2", "origin", "parts", "build", "tolerance", "phases"],
   },
   {
     id: "c3",

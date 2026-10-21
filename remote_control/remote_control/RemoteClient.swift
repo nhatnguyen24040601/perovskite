@@ -66,13 +66,20 @@ final class RemoteClient {
         monitor.start(queue: DispatchQueue(label: "remote.path"))
     }
 
-    /// "10.0.0.5:8080", "mac.local" and "http://10.0.0.5:8080/" all work; the port defaults to 8080.
+    /// Accepts "10.0.0.5:8080", "mac.local", "100.64.1.2" and "https://abc.trycloudflare.com".
+    /// Local addresses default to http on port 8080; a public hostname (a tunnel) defaults to https.
     var baseURL: URL? {
-        var text = address.trimmingCharacters(in: .whitespacesAndNewlines)
+        let text = address.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !text.isEmpty else { return nil }
-        if !text.contains("://") { text = "http://" + text }
-        guard var parts = URLComponents(string: text), parts.host?.isEmpty == false else { return nil }
-        if parts.port == nil { parts.port = 8080 }
+        let hasScheme = text.contains("://")
+        guard var parts = URLComponents(string: hasScheme ? text : "http://" + text),
+              let host = parts.host, !host.isEmpty else { return nil }
+        if !hasScheme {
+            let isIPv4 = host.split(separator: ".").count == 4 && host.allSatisfy { $0.isNumber || $0 == "." }
+            let isLocalName = host.hasSuffix(".local") || !host.contains(".")
+            parts.scheme = (isIPv4 || isLocalName || parts.port != nil) ? "http" : "https"
+        }
+        if parts.port == nil && parts.scheme == "http" { parts.port = 8080 }
         parts.path = ""
         parts.query = nil
         return parts.url

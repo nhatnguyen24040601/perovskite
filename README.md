@@ -83,6 +83,55 @@ The dot at the top of the app tells you the state:
   photos, side menu. Labels / Slow / Auto only apply to the 3D story slides and are greyed out
   on other slides.
 
+## Phone and Mac on different networks
+
+You don't need the same Wi-Fi. Pick one:
+
+### Phone hotspot (simplest, no install)
+
+1. On the iPhone: Settings → Personal Hotspot → Allow Others to Join.
+2. On the Mac: join the iPhone's hotspot from the Wi-Fi menu.
+3. **After** the Mac has joined, run `npm run dev` in `perovskite`. The server prints its addresses
+   when it starts, so starting it earlier shows the old Wi-Fi address. Use the address on the
+   `172.20.10.x` network, for example `172.20.10.2:8080`.
+4. Enter that address in the app and tap Connect.
+
+The Mac uses your phone's mobile data while connected, and the projector setup (HDMI or AirPlay) is
+unaffected. If the Mac's address doesn't show up in the output, run `ipconfig getifaddr en0` in a
+terminal.
+
+### A. Cloudflare tunnel (nothing to install on the phone)
+
+```sh
+brew install cloudflared        # once
+cd perovskite
+npm run dev:remote
+```
+
+It starts the dev server and a tunnel, then prints:
+
+```
+  Address: https://something-random.trycloudflare.com
+  PIN:     482913
+```
+
+In the app's Connection screen enter that address and the PIN. Open the deck on the Mac at
+`http://localhost:8080/` as usual. The address and PIN change every time you run it, so enter them
+again each session.
+
+Safety: the address is reachable from the internet, so a PIN is always set, and through the tunnel
+only the remote relay is served, never the rest of the dev server. Don't share the address or PIN.
+
+### B. Tailscale (same address every time)
+
+1. Install Tailscale on the Mac and on the iPhone and sign in to the same account.
+2. Run `npm run dev` as usual (or with `REMOTE_PIN`).
+3. In the app enter the Mac's Tailscale address, for example `100.64.1.2:8080`. The Mac's address is
+   shown in the Tailscale menu bar app.
+
+It is private to your own devices and works on any network, including cellular. Use the Tailscale
+IP address; a Tailscale hostname also works if it ends in `.ts.net`.
+
 ## If the connection drops
 
 The app reconnects by itself: it reopens the link after 20 seconds of silence, straight away when
@@ -121,5 +170,6 @@ kill <PID>
 ## What was added for the remote
 
 - `perovskite/scripts/remote-control-plugin.mjs`: the relay (`/__remote/*`), dev server only.
+- `perovskite/scripts/remote-tunnel.mjs`: `npm run dev:remote`, dev server + Cloudflare tunnel + PIN.
 - `perovskite/src/lib/sim/remote.ts`: applies phone commands to the deck and reports its state.
 - `remote_control/`: the SwiftUI app (`RemoteClient.swift` is the networking, `ContentView.swift` the UI).

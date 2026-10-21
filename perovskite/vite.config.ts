@@ -152,6 +152,8 @@ export default defineConfig(({ command, isPreview }) => ({
     host: "0.0.0.0",
     port: 8080,
     strictPort: true,
+    // Public tunnels for the iPhone remote (scripts/remote-tunnel.mjs); other hostnames stay blocked.
+    allowedHosts: [".trycloudflare.com", ".ts.net", ".ngrok-free.app", ".ngrok.app"],
   },
   preview: {
     host: "127.0.0.1",

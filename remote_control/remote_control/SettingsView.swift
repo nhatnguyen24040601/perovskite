@@ -14,7 +14,7 @@ struct SettingsView: View {
         NavigationStack {
             Form {
                 Section {
-                    TextField("192.168.1.20:8080", text: $client.address)
+                    TextField("192.168.1.20:8080 or https://….trycloudflare.com", text: $client.address)
                         .keyboardType(.URL)
                         .textContentType(.URL)
                         .textInputAutocapitalization(.never)
@@ -24,7 +24,7 @@ struct SettingsView: View {
                 } header: {
                     Text("Deck server")
                 } footer: {
-                    Text("Start the deck on your Mac with `npm run dev` in the perovskite folder. The terminal prints the address as “[remote] iPhone app address”. Your phone and Mac must be on the same Wi-Fi. For a PIN, start with `REMOTE_PIN=1234 npm run dev`.")
+                    Text("On the same Wi-Fi: run `npm run dev` in the perovskite folder and enter the address printed as “[remote] iPhone app address”. On a different network: run `npm run dev:remote` and enter the https address and PIN it prints.")
                 }
             }
             .navigationTitle("Connection")
